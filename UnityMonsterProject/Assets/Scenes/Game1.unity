@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2160.39, g: 2264.553, b: 3288.1255, a: 1}
+  m_IndirectSpecularColor: {r: 2160.4778, g: 2264.5393, b: 3287.52, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -453,8 +453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputData:
-    _isVariable: 0
-    _variable: {fileID: 0}
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
     _constant:
       Horizontal: 0
       Vertical: 0
@@ -464,6 +464,77 @@ MonoBehaviour:
     _constant:
       serializedVersion: 2
       m_Bits: 4294967295
+  _steeringWheel: 1
+  _carMaxSpeed:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 10
+  _accelerationCurve:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.5109558
+        inSlope: 0.00587079
+        outSlope: 0.00587079
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.5750107
+      - serializedVersion: 3
+        time: 0.23452866
+        value: 0.98016524
+        inSlope: 0.5462574
+        outSlope: 0.5462574
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.40365052
+        value: 0.99402
+        inSlope: -0.1092212
+        outSlope: -0.1092212
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.99876213
+        value: 0.35708028
+        inSlope: -0.20714602
+        outSlope: -0.20714602
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.13884026
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.48063022
+        outSlope: -0.48063022
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.21339402
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  _tireGripFactor:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 0.5
+  _tireMass:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 10
+  _steeringLimit:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 30
   _gravity: {x: 0, y: -10, z: 0}
   _springStrength:
     _isVariable: 0
@@ -476,13 +547,17 @@ MonoBehaviour:
   _suspensionRestDistance:
     _isVariable: 0
     _variable: {fileID: 0}
-    _constant: 1
+    _constant: 2
   _wheelHeight:
     _isVariable: 0
     _variable: {fileID: 0}
     _constant: 1
   _carController: {fileID: 925199284}
+  _carTransform: {fileID: 925199283}
   _carRigidbody: {fileID: 925199285}
+  _drawAcceleration: 0
+  _drawSteering: 0
+  _drawSuspension: 0
 --- !u!1 &432432459
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,8 +652,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputData:
-    _isVariable: 0
-    _variable: {fileID: 0}
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
     _constant:
       Horizontal: 0
       Vertical: 0
@@ -588,6 +663,77 @@ MonoBehaviour:
     _constant:
       serializedVersion: 2
       m_Bits: 4294967295
+  _steeringWheel: 1
+  _carMaxSpeed:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 10
+  _accelerationCurve:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.5109558
+        inSlope: 0.00587079
+        outSlope: 0.00587079
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.5750107
+      - serializedVersion: 3
+        time: 0.23452866
+        value: 0.98016524
+        inSlope: 0.5462574
+        outSlope: 0.5462574
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.40365052
+        value: 0.99402
+        inSlope: -0.1092212
+        outSlope: -0.1092212
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.99876213
+        value: 0.35708028
+        inSlope: -0.20714602
+        outSlope: -0.20714602
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.13884026
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.48063022
+        outSlope: -0.48063022
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.21339402
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  _tireGripFactor:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 0.5
+  _tireMass:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 10
+  _steeringLimit:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 30
   _gravity: {x: 0, y: -10, z: 0}
   _springStrength:
     _isVariable: 0
@@ -600,13 +746,17 @@ MonoBehaviour:
   _suspensionRestDistance:
     _isVariable: 0
     _variable: {fileID: 0}
-    _constant: 1
+    _constant: 2
   _wheelHeight:
     _isVariable: 0
     _variable: {fileID: 0}
     _constant: 1
   _carController: {fileID: 925199284}
+  _carTransform: {fileID: 925199283}
   _carRigidbody: {fileID: 925199285}
+  _drawAcceleration: 0
+  _drawSteering: 0
+  _drawSuspension: 0
 --- !u!1 &685753737
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,8 +802,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputData:
-    _isVariable: 0
-    _variable: {fileID: 0}
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
     _constant:
       Horizontal: 0
       Vertical: 0
@@ -663,6 +813,77 @@ MonoBehaviour:
     _constant:
       serializedVersion: 2
       m_Bits: 4294967295
+  _steeringWheel: 0
+  _carMaxSpeed:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 10
+  _accelerationCurve:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.5109558
+        inSlope: 0.00587079
+        outSlope: 0.00587079
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.5750107
+      - serializedVersion: 3
+        time: 0.23452866
+        value: 0.98016524
+        inSlope: 0.5462574
+        outSlope: 0.5462574
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.40365052
+        value: 0.99402
+        inSlope: -0.1092212
+        outSlope: -0.1092212
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.99876213
+        value: 0.35708028
+        inSlope: -0.20714602
+        outSlope: -0.20714602
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.13884026
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.48063022
+        outSlope: -0.48063022
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.21339402
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  _tireGripFactor:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 0.5
+  _tireMass:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 10
+  _steeringLimit:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 0
   _gravity: {x: 0, y: -10, z: 0}
   _springStrength:
     _isVariable: 0
@@ -675,13 +896,17 @@ MonoBehaviour:
   _suspensionRestDistance:
     _isVariable: 0
     _variable: {fileID: 0}
-    _constant: 1
+    _constant: 2
   _wheelHeight:
     _isVariable: 0
     _variable: {fileID: 0}
     _constant: 1
   _carController: {fileID: 925199284}
+  _carTransform: {fileID: 925199283}
   _carRigidbody: {fileID: 925199285}
+  _drawAcceleration: 0
+  _drawSteering: 0
+  _drawSuspension: 0
 --- !u!1 &925199279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,8 +1241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputData:
-    _isVariable: 0
-    _variable: {fileID: 0}
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
     _constant:
       Horizontal: 0
       Vertical: 0
@@ -1027,6 +1252,77 @@ MonoBehaviour:
     _constant:
       serializedVersion: 2
       m_Bits: 4294967295
+  _steeringWheel: 0
+  _carMaxSpeed:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 10
+  _accelerationCurve:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.5109558
+        inSlope: 0.00587079
+        outSlope: 0.00587079
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.5750107
+      - serializedVersion: 3
+        time: 0.23452866
+        value: 0.98016524
+        inSlope: 0.5462574
+        outSlope: 0.5462574
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.40365052
+        value: 0.99402
+        inSlope: -0.1092212
+        outSlope: -0.1092212
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.99876213
+        value: 0.35708028
+        inSlope: -0.20714602
+        outSlope: -0.20714602
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.13884026
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.48063022
+        outSlope: -0.48063022
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.21339402
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  _tireGripFactor:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 0.5
+  _tireMass:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 10
+  _steeringLimit:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 0
   _gravity: {x: 0, y: -10, z: 0}
   _springStrength:
     _isVariable: 0
@@ -1039,13 +1335,17 @@ MonoBehaviour:
   _suspensionRestDistance:
     _isVariable: 0
     _variable: {fileID: 0}
-    _constant: 1
+    _constant: 2
   _wheelHeight:
     _isVariable: 0
     _variable: {fileID: 0}
     _constant: 1
   _carController: {fileID: 925199284}
+  _carTransform: {fileID: 925199283}
   _carRigidbody: {fileID: 925199285}
+  _drawAcceleration: 0
+  _drawSteering: 0
+  _drawSuspension: 0
 --- !u!1 &1669451930
 GameObject:
   m_ObjectHideFlags: 0
