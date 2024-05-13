@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2159.302, g: 2263.6272, b: 3287.2856, a: 1}
+  m_IndirectSpecularColor: {r: 2160.39, g: 2264.553, b: 3288.1255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -408,6 +408,81 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
+--- !u!1 &271484360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 271484361}
+  - component: {fileID: 271484362}
+  m_Layer: 0
+  m_Name: Tire1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &271484361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271484360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8, y: -0.3, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 925199283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &271484362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271484360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d87d56385a15f3428a1d15369b9326e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputData:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      Horizontal: 0
+      Vertical: 0
+  _drivingLayers:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      serializedVersion: 2
+      m_Bits: 4294967295
+  _gravity: {x: 0, y: -10, z: 0}
+  _springStrength:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 100
+  _springDamping:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 20
+  _suspensionRestDistance:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 1
+  _wheelHeight:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 1
+  _carController: {fileID: 925199284}
+  _carRigidbody: {fileID: 925199285}
 --- !u!1 &432432459
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +532,311 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &558914887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 558914888}
+  - component: {fileID: 558914889}
+  m_Layer: 0
+  m_Name: Tire1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &558914888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558914887}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8, y: -0.3, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 925199283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &558914889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558914887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d87d56385a15f3428a1d15369b9326e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputData:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      Horizontal: 0
+      Vertical: 0
+  _drivingLayers:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      serializedVersion: 2
+      m_Bits: 4294967295
+  _gravity: {x: 0, y: -10, z: 0}
+  _springStrength:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 100
+  _springDamping:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 20
+  _suspensionRestDistance:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 1
+  _wheelHeight:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 1
+  _carController: {fileID: 925199284}
+  _carRigidbody: {fileID: 925199285}
+--- !u!1 &685753737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 685753738}
+  - component: {fileID: 685753739}
+  m_Layer: 0
+  m_Name: Tire1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &685753738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685753737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8, y: -0.3, z: -0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 925199283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &685753739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685753737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d87d56385a15f3428a1d15369b9326e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputData:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      Horizontal: 0
+      Vertical: 0
+  _drivingLayers:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      serializedVersion: 2
+      m_Bits: 4294967295
+  _gravity: {x: 0, y: -10, z: 0}
+  _springStrength:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 100
+  _springDamping:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 20
+  _suspensionRestDistance:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 1
+  _wheelHeight:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 1
+  _carController: {fileID: 925199284}
+  _carRigidbody: {fileID: 925199285}
+--- !u!1 &925199279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925199283}
+  - component: {fileID: 925199284}
+  - component: {fileID: 925199285}
+  - component: {fileID: 925199282}
+  - component: {fileID: 925199281}
+  - component: {fileID: 925199280}
+  m_Layer: 0
+  m_Name: Car
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &925199280
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925199279}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &925199281
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925199279}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &925199282
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925199279}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &925199283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925199279}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 2.05, z: -4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 558914888}
+  - {fileID: 271484361}
+  - {fileID: 685753738}
+  - {fileID: 1492703399}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &925199284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925199279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ea41d0096b67745a6b0868b9dc14b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wheels:
+  - {fileID: 558914889}
+  - {fileID: 271484362}
+  - {fileID: 685753739}
+  - {fileID: 1492703400}
+--- !u!54 &925199285
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925199279}
+  serializedVersion: 4
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1009512309
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +971,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1492703398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1492703399}
+  - component: {fileID: 1492703400}
+  m_Layer: 0
+  m_Name: Tire1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1492703399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492703398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8, y: -0.3, z: -0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 925199283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1492703400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492703398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d87d56385a15f3428a1d15369b9326e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputData:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      Horizontal: 0
+      Vertical: 0
+  _drivingLayers:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      serializedVersion: 2
+      m_Bits: 4294967295
+  _gravity: {x: 0, y: -10, z: 0}
+  _springStrength:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 100
+  _springDamping:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 20
+  _suspensionRestDistance:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 1
+  _wheelHeight:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 1
+  _carController: {fileID: 925199284}
+  _carRigidbody: {fileID: 925199285}
 --- !u!1 &1669451930
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +1075,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255d466b0a10f474286146efebd8da39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _testInput:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
+    _constant:
+      Horizontal: 0
+      Vertical: 0
 --- !u!4 &1669451932
 Transform:
   m_ObjectHideFlags: 0
@@ -1023,3 +1484,4 @@ SceneRoots:
   - {fileID: 2141515639}
   - {fileID: 1009512314}
   - {fileID: 1669451932}
+  - {fileID: 925199283}

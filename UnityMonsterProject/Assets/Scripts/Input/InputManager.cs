@@ -1,9 +1,12 @@
+using ScriptableArchitecture.Data;
 using System.Collections;
 using UnityEngine;
 using WiimoteApi;
 
 public class InputManager : MonoBehaviour
 {
+    [SerializeField] private InputDataReference _testInput;
+
     [SerializeField] private Wiimote _mote;
 
     private void Start()
@@ -20,6 +23,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        UpdateTestUpdate();
+
         if (_mote == null) return;
 
         if (_mote.Button.home)
@@ -42,5 +47,11 @@ public class InputManager : MonoBehaviour
             Debug.Log("X:" + mouseX);
             Debug.Log("Y:" + mouseY);
         }
+    }
+
+    private void UpdateTestUpdate()
+    {
+        _testInput.Value.Horizontal = Input.GetAxisRaw("Horizontal");
+        _testInput.Value.Vertical = Input.GetAxisRaw("Vertical");
     }
 }
