@@ -9,6 +9,9 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         WiimoteManager.FindWiimotes();
+
+        if (!WiimoteManager.HasWiimote()) return;
+
         _mote = WiimoteManager.Wiimotes[0];
         _mote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL_EXT16);
         _mote.Accel.CalibrateAccel(AccelCalibrationStep.A_BUTTON_UP);
@@ -17,6 +20,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        if (_mote == null) return;
+
         if (_mote.Button.home)
         {
             _mote.Accel.CalibrateAccel(AccelCalibrationStep.A_BUTTON_UP);
