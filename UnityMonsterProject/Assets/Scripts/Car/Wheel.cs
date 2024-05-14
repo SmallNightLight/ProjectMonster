@@ -43,9 +43,16 @@ public class Wheel : MonoBehaviour
     private float _targetSteering;
     private float _currentSteering;
 
+    float _oldDistance;
+
+    [SerializeField] private float _maxSuspensionLength = 3f;
+    [SerializeField] private float _suspensionMultiplier = 120f;
+    [SerializeField] private float _dampSensitivity = 500f;
+    [SerializeField] private float _maxDamp = 40f;
+
     private void Start()
     {
-        
+        _oldDistance = _maxSuspensionLength;
     }
 
     private void Update()
@@ -69,23 +76,27 @@ public class Wheel : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CalculateSuspension();
+        ApplyForces();
     }
 
-    private void CalculateSuspension()
+    private void ApplyForces()
     {
-        bool rayHit = Physics.Raycast(transform.position, _gravity, out RaycastHit hit, _wheelHeight.Value, _drivingLayers.Value);
-
-        
         float accelerationInput = _inputData.Value.Vertical;
 
+        Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundRay);
+        bool onGround = Physics.Raycast(transform.position, _gravity, out RaycastHit hit, _wheelHeight.Value, _drivingLayers.Value);
+        
+        float distanceToGround = groundRay.distance;
+        //Debug.Log("Distance: " + distanceToGround);
+
         //Suspension
-        if (rayHit)
+        if (onGround)
         {
             Vector3 springDirection = transform.up;
+            Debug.Log("UP: " + transform.up);
             Vector3 tireWorldVelocity = _carRigidbody.GetPointVelocity(transform.position);
 
-            float offset = _suspensionRestDistance.Value - hit.distance;
+            float offset = _suspensionRestDistance.Value - distanceToGround;
 
             float velocity = Vector3.Dot(springDirection, tireWorldVelocity);
 
@@ -96,15 +107,15 @@ public class Wheel : MonoBehaviour
             if (_drawSuspension)
             {
                 Debug.DrawLine(transform.position, transform.position + (springDirection * force), Color.blue);
-                Debug.DrawLine(transform.position, transform.position + _gravity, Color.green);
+                Debug.DrawLine(transform.position, transform.position + Vector3.down * distanceToGround, Color.green);
             }
         }
 
         //Steering
-        if (rayHit)
+        if (onGround)
         {
             Vector3 steeringDirection = transform.right;
-            Debug.Log(steeringDirection);
+            
             Vector3 tireWorldVelocity = _carRigidbody.GetPointVelocity(transform.position);
 
             float steeringVelocity = Vector3.Dot(steeringDirection, tireWorldVelocity);
@@ -113,10 +124,15 @@ public class Wheel : MonoBehaviour
             float desiredAcceleration = desiredVelocityChange / Time.fixedDeltaTime;
 
             _carRigidbody.AddForceAtPosition(steeringDirection * _tireMass.Value * desiredAcceleration, transform.position);
+
+            if (_drawSteering)
+            {
+                Debug.Log(steeringDirection);
+            }
         }
 
         //Acceleration
-        if (rayHit)
+        if (onGround)
         {
             if (accelerationInput != 0.0f)
             {
