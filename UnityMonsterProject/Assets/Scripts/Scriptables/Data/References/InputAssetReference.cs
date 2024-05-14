@@ -3,9 +3,7 @@ using ScriptableArchitecture.Core;
 namespace ScriptableArchitecture.Data
 {
     [System.Serializable]
-    public class InputData : IDataPoint
+    public class InputAssetReference : Reference<InputAsset, InputAssetVariable>
     {
-        public float AccelerateInput;
-        public float SteerInput;
     }
 }

@@ -1,5 +1,6 @@
 using ScriptableArchitecture.Data;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
@@ -7,7 +8,9 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private InputDataReference _testInput;
 
-    [SerializeField] private Wiimote _mote;
+    private Wiimote _mote;
+
+    [SerializeField] private List<InputDataReference> _inputs;
 
     private void Start()
     {
@@ -23,6 +26,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        UpdateInput();
         UpdateTestUpdate();
 
         if (_mote == null) return;
@@ -49,9 +53,17 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    private void UpdateInput()
+    {
+        foreach(var v in _inputs)
+        {
+            //v.Value.
+        }
+    }
+
     private void UpdateTestUpdate()
     {
-        _testInput.Value.Horizontal = Input.GetAxisRaw("Horizontal");
-        _testInput.Value.Vertical = Input.GetAxisRaw("Vertical");
+        _testInput.Value.SteerInput = Input.GetAxisRaw("Horizontal");
+        _testInput.Value.AccelerateInput = Input.GetAxisRaw("Vertical");
     }
 }

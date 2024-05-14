@@ -63,7 +63,7 @@ public class Wheel : MonoBehaviour
 
     private void UpdateSteering()
     {
-        float steeringInput = _inputData.Value.Horizontal;
+        float steeringInput = _inputData.Value.SteerInput;
 
         _targetSteering = steeringInput * _steeringLimit.Value;
 
@@ -81,7 +81,7 @@ public class Wheel : MonoBehaviour
 
     private void ApplyForces()
     {
-        float accelerationInput = _inputData.Value.Vertical;
+        float accelerationInput = _inputData.Value.AccelerateInput;
 
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundRay);
         bool onGround = Physics.Raycast(transform.position, _gravity, out RaycastHit hit, _wheelHeight.Value, _drivingLayers.Value);
