@@ -5,7 +5,8 @@ namespace ScriptableArchitecture.Data
     [System.Serializable]
     public class InputData : IDataPoint
     {
-        public float AccelerateInput;
+        public bool IsAccelerating;
+        public bool IsBraking;
         public float SteerInput;
     }
 }

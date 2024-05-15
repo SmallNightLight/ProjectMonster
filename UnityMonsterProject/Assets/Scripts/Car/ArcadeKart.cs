@@ -303,7 +303,7 @@ namespace KartGame.KartSystems
             UpdateSuspensionParams(_wheelColliderRearLeft);
             UpdateSuspensionParams(_wheelColliderRearRight);
 
-            _wantsToDrift = _input.Value.InputData.AccelerateInput < 0;// && Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f;
+            _wantsToDrift = _input.Value.InputData.IsAccelerating && _input.Value.InputData.IsBraking;// && Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f;
 
             // apply our powerups to create our finalStats
             TickPowerups();
@@ -328,7 +328,7 @@ namespace KartGame.KartSystems
             // apply vehicle physics
             if (m_CanMove)
             {
-                MoveVehicle(_input.Value.InputData.AccelerateInput > 0, _input.Value.InputData.AccelerateInput < 0, _input.Value.InputData.SteerInput);
+                MoveVehicle(_input.Value.InputData.IsAccelerating, _input.Value.InputData.IsBraking, _input.Value.InputData.SteerInput);
             }
             GroundAirbourne();
 
@@ -396,7 +396,7 @@ namespace KartGame.KartSystems
             else
             {
                 // use this value to play kart sound when it is waiting the race start countdown.
-                return _input.Value.InputData.AccelerateInput;
+                return _input.Value.InputData.IsAccelerating ? 1 : 0;
             }
         }
 
@@ -507,21 +507,21 @@ namespace KartGame.KartSystems
                 float velocitySteering = 25f;
 
                 // If the karts lands with a forward not in the velocity direction, we start the drift
-                if (_groundPercent >= 0.0f && m_PreviousGroundPercent < 0.1f)
-                {
-                    Vector3 flattenVelocity = Vector3.ProjectOnPlane(_rigidbody.velocity, m_VerticalReference).normalized;
-                    if (Vector3.Dot(flattenVelocity, transform.forward * Mathf.Sign(accelInput)) < Mathf.Cos(_driftStats.MinAngleToFinishDrift * Mathf.Deg2Rad))
-                    {
-                        IsDrifting = true;
-                        m_CurrentGrip = _driftStats.DriftGrip;
-                        m_DriftTurningPower = 0.0f;
-                    }
-                }
+                //if (_groundPercent >= 0.0f && m_PreviousGroundPercent < 0.1f)
+                //{
+                //    Vector3 flattenVelocity = Vector3.ProjectOnPlane(_rigidbody.velocity, m_VerticalReference).normalized;
+                //    if (Vector3.Dot(flattenVelocity, transform.forward * Mathf.Sign(accelInput)) < Mathf.Cos(_driftStats.MinAngleToFinishDrift * Mathf.Deg2Rad))
+                //    {
+                //        IsDrifting = true;
+                //        m_CurrentGrip = _driftStats.DriftGrip;
+                //        m_DriftTurningPower = 0.0f;
+                //    }
+                //}
 
                 // Drift Management
                 if (!IsDrifting)
                 {
-                    if ((_wantsToDrift || isBraking) && currentSpeed > maxSpeed * _driftStats.MinSpeedPercentToFinishDrift)
+                    if (_wantsToDrift && currentSpeed > maxSpeed * _driftStats.MinSpeedPercentToFinishDrift)
                     {
                         IsDrifting = true;
                         m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.DriftAdditionalSteer);

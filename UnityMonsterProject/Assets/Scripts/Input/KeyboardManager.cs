@@ -30,8 +30,9 @@ public class KeyboardManager : MonoBehaviour, IInputManager
         {
             InputData playerInput = new InputData
             {
-                SteerInput = Input.GetAxis("Horizontal"),
-                AccelerateInput = Input.GetAxis("Vertical")
+                IsAccelerating = Input.GetKey(KeyCode.W),
+                IsBraking = Input.GetKey(KeyCode.S),
+                SteerInput = Input.GetAxis("Horizontal"), 
             };
 
             SetPlayerInput(_inputs[0], playerInput);
@@ -41,8 +42,9 @@ public class KeyboardManager : MonoBehaviour, IInputManager
             //Player 1 and 2 have the same input for testing
             InputData playerInput = new InputData
             {
+                IsAccelerating = Input.GetKey(KeyCode.W),
+                IsBraking = Input.GetKey(KeyCode.S),
                 SteerInput = Input.GetAxis("Horizontal"),
-                AccelerateInput = Input.GetAxis("Vertical")
             };
 
             SetPlayerInput(_inputs[0], playerInput);

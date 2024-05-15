@@ -16,29 +16,16 @@ public class WiiManager : MonoBehaviour, IInputManager
             return false;
         }
 
-        //Acceleration input
-        float acceleration = 0f;
-
-        if (mote.Button.two) acceleration++;
-        if (mote.Button.one) acceleration--;
-
-        //Steering input
+        //Calculate steering input
         float[] motion = mote.Accel.GetCalibratedAccelData();
-        //
-        //float mouseX = motion[0] - 0.3f;
-        //float mouseY = -motion[1] + 0.3f;
-        //
-        //if (mouseX > -0.3f && mouseX < 0.3f) mouseX = 0;
-        //
-        //if (mouseY > -0.3f && mouseY < 0.3f) mouseY = 0;
-
         float steering = -Mathf.Clamp((motion[1] - 0.75f) * 3f, -1, 1);
         //Debug.Log(steering);
         //Debug.DrawLine(transform.position, transform.position + new Vector3(motion[0], 0, motion[1]));
 
         input = new InputData
         {
-            AccelerateInput = acceleration,
+            IsAccelerating = mote.Button.two,
+            IsBraking = mote.Button.one,
             SteerInput = steering
         };
         return true;
