@@ -107,8 +107,6 @@ namespace KartGame.KartSystems
             AddedGravity        = 1f,
         };
 
-        
-
         [Header("Components")]
         private Rigidbody _rigidbody;
 
@@ -305,7 +303,7 @@ namespace KartGame.KartSystems
             UpdateSuspensionParams(_wheelColliderRearLeft);
             UpdateSuspensionParams(_wheelColliderRearRight);
 
-            _wantsToDrift = _input.Value.InputData.AccelerateInput < 0 && Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f;
+            _wantsToDrift = _input.Value.InputData.AccelerateInput < 0;// && Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f;
 
             // apply our powerups to create our finalStats
             TickPowerups();
