@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectGame.unity
     guid: e206595ca7580dc4090f679f7d2811d9
   - enabled: 1
-    path: Assets/Scenes/Game1.unity
+    path: Assets/Scenes/TestKart.unity
     guid: a072013a8af2c4146a1d35e5c96fac0d
   - enabled: 1
     path: Assets/Scenes/Game2.unity
