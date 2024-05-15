@@ -1,16 +1,12 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 using WiimoteApi;
 
 public class WiiManager : MonoBehaviour, IInputManager
 {
-    private Dictionary<InputAsset, Wiimote> _players;
-
-    private void Start()
-    {
-        _players = new Dictionary<InputAsset, Wiimote>();
-    }
+    private Dictionary<InputAsset, Wiimote> _players = new Dictionary<InputAsset, Wiimote>();
 
     public bool TryGetInput(Wiimote mote, out InputData input)
     {
@@ -28,20 +24,22 @@ public class WiiManager : MonoBehaviour, IInputManager
 
         //Steering input
         float[] motion = mote.Accel.GetCalibratedAccelData();
-        float[] zeroP = mote.Accel.GetAccelZeroPoints();
+        //
+        //float mouseX = motion[0] - 0.3f;
+        //float mouseY = -motion[1] + 0.3f;
+        //
+        //if (mouseX > -0.3f && mouseX < 0.3f) mouseX = 0;
+        //
+        //if (mouseY > -0.3f && mouseY < 0.3f) mouseY = 0;
 
-        float mouseX = motion[0] - 0.3f;
-        float mouseY = -motion[1] + 0.3f;
-
-        if (mouseX > -0.3f && mouseX < 0.3f) mouseX = 0;
-
-        if (mouseY > -0.3f && mouseY < 0.3f) mouseY = 0;
-
+        float steering = -Mathf.Clamp((motion[1] - 0.75f) * 3f, -1, 1);
+        //Debug.Log(steering);
+        //Debug.DrawLine(transform.position, transform.position + new Vector3(motion[0], 0, motion[1]));
 
         input = new InputData
         {
             AccelerateInput = acceleration,
-            SteerInput = mouseX
+            SteerInput = steering
         };
         return true;
     }
@@ -87,6 +85,6 @@ public class WiiManager : MonoBehaviour, IInputManager
 
         if (!WiimoteManager.HasWiimote()) return 0;
 
-        return PlayerCount() - WiimoteManager.Wiimotes.Count;
+        return  WiimoteManager.Wiimotes.Count - PlayerCount();
     }
 }
