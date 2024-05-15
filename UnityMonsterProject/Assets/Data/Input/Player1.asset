@@ -9,11 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 111e4c9aa8423054d9b116a3ca05bab0, type: 3}
-  m_Name: KeyboardInput
+  m_Script: {fileID: 11500000, guid: 0839ff984b34cc94aa6189e3ec8b0e1c, type: 3}
+  m_Name: Player1
   m_EditorClassIdentifier: 
   VariableType: 0
-  InitializeTypeVariable: 0
+  InitializeTypeVariable: 1
   InitializeTypeRuntimeSet: 0
+  _value:
+    Player: 1
+    InputData:
+      AccelerateInput: 0
+      SteerInput: 0
+  _startValue:
+    Player: 1
+    InputData:
+      AccelerateInput: 0
+      SteerInput: 0
   _runtimeSet: []
   _startRuntimeSet: []
+  DebugValue:
+    Player: 0
+    InputData:
+      AccelerateInput: 0
+      SteerInput: 0

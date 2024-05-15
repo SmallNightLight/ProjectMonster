@@ -1,3 +1,4 @@
+using ScriptableArchitecture.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,6 +53,8 @@ public class car : MonoBehaviour
 
     [SerializeField] float runningTotalTurnSlip = 1;
 
+    [SerializeField] private InputAssetReference _input;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -66,7 +69,7 @@ public class car : MonoBehaviour
     {
         rb.AddForce(-transform.up * transform.InverseTransformDirection(rb.velocity).z);
 
-        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        input = new Vector2(_input.Value.InputData.SteerInput, _input.Value.InputData.AccelerateInput);
         //input.x /= (1 + runningTotalTurnSlip * slipAmount[0]); //limit (FROM MATTH)
 
 
@@ -74,8 +77,6 @@ public class car : MonoBehaviour
         //else if (runningTotalTurnSlip > 0.4f) runningTotalTurnSlip -= 0.1f;
         input.x = Mathf.Clamp(input.x, -1, 1);
         smoothedTurn = Mathf.Lerp(smoothedTurn, input.x, f);
-
-        Debug.Log(RRRrelitiveMovement[0]);
 
         Vector3[] positions = { new Vector3(sLen, 0, fLen), new Vector3(-sLen, 0, fLen), new Vector3(sLen, 0, -fLen), new Vector3(-sLen, 0, -fLen) };
         for (int j = 0; j < 4; j++) wheelPos[j] = transform.position + transform.right * positions[j].x + transform.forward * positions[j].z;
@@ -154,7 +155,7 @@ public class car : MonoBehaviour
 
     void drive()
     {
-        Debug.Log("drive");
+        //Debug.Log("drive");
         for (int i = 0; i < 4; i++)
         {
             if (slipAmount[i] < 1)

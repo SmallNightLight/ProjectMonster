@@ -93,7 +93,7 @@ public class Wheel : MonoBehaviour
         if (onGround)
         {
             Vector3 springDirection = transform.up;
-            Debug.Log("UP: " + transform.up);
+            //Debug.Log("UP: " + transform.up);
             Vector3 tireWorldVelocity = _carRigidbody.GetPointVelocity(transform.position);
 
             float offset = _suspensionRestDistance.Value - distanceToGround;

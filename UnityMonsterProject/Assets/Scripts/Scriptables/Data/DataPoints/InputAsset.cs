@@ -6,14 +6,6 @@ namespace ScriptableArchitecture.Data
     public class InputAsset : IDataPoint
     {
         public int Player;
-        public IInputType InputType;
         public InputData InputData;
-    }
-
-    public interface IInputType
-    {
-        void Setup();
-        InputData UpdateInput();
-        bool IsConnected();
     }
 }

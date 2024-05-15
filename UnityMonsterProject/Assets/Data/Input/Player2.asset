@@ -10,24 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0839ff984b34cc94aa6189e3ec8b0e1c, type: 3}
-  m_Name: Player1Wii
+  m_Name: Player2
   m_EditorClassIdentifier: 
   VariableType: 0
   InitializeTypeVariable: 1
   InitializeTypeRuntimeSet: 0
   _value:
-    Player: 0
-    InputType:
-      _isVariable: 1
-      _variable: {fileID: 11400000, guid: b7fe3bfe77406bb4e9fc3e0e2a9b2e7c, type: 2}
+    Player: 2
     InputData:
       AccelerateInput: 0
       SteerInput: 0
   _startValue:
-    Player: 0
-    InputType:
-      _isVariable: 1
-      _variable: {fileID: 11400000, guid: b7fe3bfe77406bb4e9fc3e0e2a9b2e7c, type: 2}
+    Player: 2
     InputData:
       AccelerateInput: 0
       SteerInput: 0
@@ -35,9 +29,6 @@ MonoBehaviour:
   _startRuntimeSet: []
   DebugValue:
     Player: 0
-    InputType:
-      _isVariable: 0
-      _variable: {fileID: 0}
     InputData:
       AccelerateInput: 0
       SteerInput: 0

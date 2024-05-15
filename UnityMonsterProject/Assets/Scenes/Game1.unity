@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2159.7454, g: 2263.6292, b: 3286.6138, a: 1}
+  m_IndirectSpecularColor: {r: 2161.1301, g: 2265.2795, b: 3288.4849, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -561,8 +561,8 @@ MonoBehaviour:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
     _constant:
-      Horizontal: 0
-      Vertical: 0
+      AccelerateInput: 0
+      SteerInput: 0
   _drivingLayers:
     _isVariable: 0
     _variable: {fileID: 0}
@@ -953,8 +953,8 @@ MonoBehaviour:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
     _constant:
-      Horizontal: 0
-      Vertical: 0
+      AccelerateInput: 0
+      SteerInput: 0
   _drivingLayers:
     _isVariable: 0
     _variable: {fileID: 0}
@@ -1107,8 +1107,8 @@ MonoBehaviour:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
     _constant:
-      Horizontal: 0
-      Vertical: 0
+      AccelerateInput: 0
+      SteerInput: 0
   _drivingLayers:
     _isVariable: 0
     _variable: {fileID: 0}
@@ -1338,7 +1338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &925199280
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1873,8 +1873,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1458172750}
+  - component: {fileID: 1458172751}
   m_Layer: 0
-  m_Name: KeyboardInput
+  m_Name: KeyboardManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1895,6 +1896,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1669451932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1458172751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458172749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5595d3559c07ef44b8a7e45b77ebc92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxKeyboardPlayers: 2
 --- !u!1 &1492703398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,8 +1957,8 @@ MonoBehaviour:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
     _constant:
-      Horizontal: 0
-      Vertical: 0
+      AccelerateInput: 0
+      SteerInput: 0
   _drivingLayers:
     _isVariable: 0
     _variable: {fileID: 0}
@@ -2058,8 +2072,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1608578197}
+  - component: {fileID: 1608578198}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: WiiManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2080,6 +2095,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1669451932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1608578198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608578196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c70aadb578b414dbc7e3b60f30ee7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1667009487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2214,12 +2241,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255d466b0a10f474286146efebd8da39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testInput:
-    _isVariable: 1
-    _variable: {fileID: 11400000, guid: 2d983cdb50e8056449723d0130e56f9c, type: 2}
+  _playerInput:
+  - _isVariable: 1
+    _variable: {fileID: 11400000, guid: ccbc89e3f195ea043b1984abcd7e5c19, type: 2}
     _constant:
-      Horizontal: 0
-      Vertical: 0
+      Player: 0
+      InputData:
+        AccelerateInput: 0
+        SteerInput: 0
 --- !u!4 &1669451932
 Transform:
   m_ObjectHideFlags: 0
@@ -2233,8 +2262,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1458172750}
   - {fileID: 1608578197}
+  - {fileID: 1458172750}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1709250150
@@ -2310,6 +2339,14 @@ MonoBehaviour:
   engineTorque: 0.14
   wheel: {fileID: 5508002325413843875, guid: ca793a473cd32e0429fdc1ceba828acd, type: 3}
   runningTotalTurnSlip: 1
+  _input:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: ccbc89e3f195ea043b1984abcd7e5c19, type: 2}
+    _constant:
+      Player: 0
+      InputData:
+        AccelerateInput: 0
+        SteerInput: 0
   f: 0.5
   _slipThreshhold: 100
 --- !u!65 &1709250153
