@@ -72,8 +72,9 @@ public class CustomPostProcessPass : ScriptableRenderPass
             SetupBloom(cmd, _cameraColorTarget);
 
             _compositeMaterial.SetFloat("_Cutoff", _bloomEffect.DotsCutoff.value);
-            _compositeMaterial.SetFloat("_Density", _bloomEffect.DotsDensity.value);
+            _compositeMaterial.SetInt("_Density", _bloomEffect.DotsDensity.value);
             _compositeMaterial.SetVector("_Direction", _bloomEffect.ScrollDirection.value);
+            _compositeMaterial.SetFloat("_Intensity", _bloomEffect.Intensity.value);
             _compositeMaterial.mainTexture = _mbloomMipUp[0];
 
             //Texture t2 = new Texture(1, 1);
