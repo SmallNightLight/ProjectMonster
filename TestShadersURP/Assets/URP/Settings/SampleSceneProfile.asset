@@ -109,7 +109,7 @@ MonoBehaviour:
     hdr: 0
   DotsDensity:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 13
   DotsCutoff:
     m_OverrideState: 1
     m_Value: 0.39
