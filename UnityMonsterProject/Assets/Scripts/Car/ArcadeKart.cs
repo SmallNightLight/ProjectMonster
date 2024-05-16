@@ -253,8 +253,7 @@ namespace KartGame.KartSystems
 
             m_CurrentGrip = _baseStats.Grip;
 
-            if (_enableParticles)
-                InitializeParticleEffects();
+            InitializeParticleEffects();
         }
 
         private void InitializeParticleEffects()
@@ -334,8 +333,7 @@ namespace KartGame.KartSystems
 
             m_PreviousGroundPercent = _groundPercent;
 
-            if (_enableParticles)
-                UpdateDriftVFXOrientation();
+            UpdateDriftVFXOrientation();
         }
 
         void TickPowerups()
@@ -527,8 +525,7 @@ namespace KartGame.KartSystems
                         m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.DriftAdditionalSteer);
                         m_CurrentGrip = _driftStats.DriftGrip;
 
-                        if (_enableParticles)
-                            ActivateDriftVFX(true);
+                        ActivateDriftVFX(true);
                     }
                 }
 
@@ -599,8 +596,7 @@ namespace KartGame.KartSystems
                 m_LastValidRotation.eulerAngles = new Vector3(0.0f, transform.rotation.y, 0.0f);
             }
 
-            if (_enableParticles)
-                ActivateDriftVFX(IsDrifting && _groundPercent > 0.0f);
+            ActivateDriftVFX(IsDrifting && _groundPercent > 0.0f);
         }
     }
 }
