@@ -93,7 +93,7 @@ MonoBehaviour:
     m_Value: 1
   Intensity:
     m_OverrideState: 1
-    m_Value: 16.35
+    m_Value: 10.6
   Scatter:
     m_OverrideState: 1
     m_Value: 0.833
@@ -112,10 +112,13 @@ MonoBehaviour:
     m_Value: 13
   DotsCutoff:
     m_OverrideState: 1
-    m_Value: 0.39
+    m_Value: 0.333
   ScrollDirection:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0}
+  SizeThreshold:
+    m_OverrideState: 1
+    m_Value: 1.27
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

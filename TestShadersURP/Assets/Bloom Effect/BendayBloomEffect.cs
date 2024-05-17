@@ -17,6 +17,7 @@ public class BendayBloomEffect : VolumeComponent, IPostProcessComponent
     public IntParameter DotsDensity = new IntParameter(10, true);
     public ClampedFloatParameter DotsCutoff = new ClampedFloatParameter(0.4f, 0, 1, true);
     public Vector2Parameter ScrollDirection = new Vector2Parameter(new Vector2());
+    public FloatParameter SizeThreshold = new FloatParameter(1, false);
 
     public bool IsActive()
     {
