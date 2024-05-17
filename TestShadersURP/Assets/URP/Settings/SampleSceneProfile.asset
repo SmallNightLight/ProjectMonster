@@ -112,13 +112,13 @@ MonoBehaviour:
     m_Value: 13
   DotsCutoff:
     m_OverrideState: 1
-    m_Value: 0.333
+    m_Value: 0.286
   ScrollDirection:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0}
   SizeThreshold:
     m_OverrideState: 1
-    m_Value: 1.27
+    m_Value: 1.3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
