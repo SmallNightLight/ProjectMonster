@@ -1,5 +1,7 @@
 #pragma multi_compile _ _SCREEN_SPACE_OCCLUSION
 
+//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/AmbientOcclusion.hlsl"
+
 #ifndef AMBIENTOCCLUSION_INCLUDED
 #define AMBIENTOCCLUSION_INCLUDED
 
@@ -15,10 +17,4 @@ void AmbientOcclusion_float(float2 screenUV, out float indirectAmbientOcclusion,
 	#endif
 }
 
-void MyFunction_float(float2 A, float B, out float out1, out float out2)
-{
-	AmbientOcclusionFactor aoFactor = GetScreenSpaceAmbientOcclusion(A);
-    out1 = aoFactor.indirectAmbientOcclusion;
-	out2 = aoFactor.directAmbientOcclusion;
-}
 #endif
