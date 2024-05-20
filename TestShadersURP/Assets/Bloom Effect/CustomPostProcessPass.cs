@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using static Unity.VisualScripting.Member;
 
 [System.Serializable]
 public class CustomPostProcessPass : ScriptableRenderPass
@@ -61,6 +62,12 @@ public class CustomPostProcessPass : ScriptableRenderPass
     {
         if (renderingData.cameraData.cameraType == CameraType.Preview)
             return;
+
+        if (_cameraColorTarget == null)
+        {
+            Debug.Log("CameraColorTarget is null");
+            return;
+        }
 
         VolumeStack stack = VolumeManager.instance.stack;
         _bloomEffect = stack.GetComponent<BendayBloomEffect>();

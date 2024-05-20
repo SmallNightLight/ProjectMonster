@@ -14,8 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   _bloomShader: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
-  _compositeShader: {fileID: -6465566751694194690, guid: 29fe2f95794784549873aaf95ced8b7d,
+  _compositeShader: {fileID: -6465566751694194690, guid: 464be9e1226253e4a8d361d5aa4004d6,
     type: 3}
+--- !u!114 &-4606911516259015171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f9efbfd645e164f8f449872ea6a54f, type: 3}
+  m_Name: AOLinesRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  _settings:
+    Shader: {fileID: -6465566751694194690, guid: d7199ab8dab5e114f9c27c899ed8fc3d,
+      type: 3}
+    RenderPassEvent: 550
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,13 +51,13 @@ MonoBehaviour:
     Downsample: 0
     AfterOpaque: 0
     Source: 1
-    NormalSamples: 1
-    Intensity: 0.5
-    DirectLightingStrength: 0.25
-    Radius: 0.25
+    NormalSamples: 2
+    Intensity: 0.18
+    DirectLightingStrength: 0.472
+    Radius: 0.53
     Samples: 0
     BlurQuality: 0
-    Falloff: 100
+    Falloff: 107.52
     SampleCount: -1
   m_BlueNoise256Textures:
   - {fileID: 2800000, guid: 36f118343fc974119bee3d09e2111500, type: 3}
@@ -70,7 +87,8 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
   - {fileID: -9049026070970795641}
-  m_RendererFeatureMap: adc0de57c6d2eee587798974bb666b82
+  - {fileID: -4606911516259015171}
+  m_RendererFeatureMap: adc0de57c6d2eee587798974bb666b82fda5b96962f610c0
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
