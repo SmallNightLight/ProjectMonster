@@ -1,4 +1,3 @@
-using UnityEditorInternal;
 using ScriptableArchitecture.Core;
 using UnityEngine;
 
