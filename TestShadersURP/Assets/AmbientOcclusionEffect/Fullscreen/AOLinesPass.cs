@@ -52,6 +52,10 @@ public class AOLinesPass : ScriptableRenderPass
 
         using (new ProfilingScope(cmd, new ProfilingSampler("Ambient Occlusion Line Effect")))
         {
+            Texture ssaoTex = Shader.GetGlobalTexture("_ScreenSpaceOcclusionTexture");
+
+            _material.SetTexture("_SSAO", ssaoTex);
+
             Blitter.BlitCameraTexture(cmd, _source, _temp, _material, 0);
             Blitter.BlitCameraTexture(cmd, _temp, _destination, Vector2.one);
         }
