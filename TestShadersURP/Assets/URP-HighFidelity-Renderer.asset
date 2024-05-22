@@ -16,6 +16,17 @@ MonoBehaviour:
   _bloomShader: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
   _compositeShader: {fileID: -6465566751694194690, guid: 464be9e1226253e4a8d361d5aa4004d6,
     type: 3}
+  _settings:
+    Threshold: 2.12
+    Intensity: 13.41
+    Scatter: 0.596
+    Clamp: 65472
+    MaxIterations: 6
+    Density: 30
+    Cutoff: 0
+    BackgroundBloomIntensity: 12.63
+    ColorIntensityHigh: 63.1
+    ColorIntensityLow: 5
 --- !u!114 &-4606911516259015171
 MonoBehaviour:
   m_ObjectHideFlags: 0

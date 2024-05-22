@@ -7,6 +7,8 @@ using static Unity.VisualScripting.Member;
 [System.Serializable]
 public class CustomPostProcessPass : ScriptableRenderPass
 {
+    private BloomEffectSettings _settings;
+
     private Material _bloomMaterial;
     public Material _compositeMaterial;
 
@@ -16,7 +18,6 @@ public class CustomPostProcessPass : ScriptableRenderPass
     private RTHandle _destination;
 
     private RenderTextureDescriptor _descriptor;
-    private BendayBloomEffect _bloomEffect;
 
     private const int _maxPyramidSize = 16;
     private int[] _bloomMipUp;
@@ -25,8 +26,10 @@ public class CustomPostProcessPass : ScriptableRenderPass
     private RTHandle[] _mbloomMipDown;
     private GraphicsFormat _hdrFormat;
 
-    public CustomPostProcessPass(Material bloomMaterial, Material compositeMaterial)
+    public CustomPostProcessPass(BloomEffectSettings settings, Material bloomMaterial, Material compositeMaterial)
     {
+        _settings = settings;
+
         _bloomMaterial = bloomMaterial;
         _compositeMaterial = compositeMaterial;
 
@@ -69,29 +72,22 @@ public class CustomPostProcessPass : ScriptableRenderPass
             return;
         }
 
-        VolumeStack stack = VolumeManager.instance.stack;
-        _bloomEffect = stack.GetComponent<BendayBloomEffect>();
-
         CommandBuffer cmd = CommandBufferPool.Get();
 
         using (new ProfilingScope(cmd, new ProfilingSampler("Bloom Effect")))
         {
             SetupBloom(cmd, _cameraColorTarget);
 
-            _compositeMaterial.SetFloat("_Cutoff", _bloomEffect.DotsCutoff.value);
-            _compositeMaterial.SetInt("_Density", _bloomEffect.DotsDensity.value);
-            _compositeMaterial.SetVector("_Direction", _bloomEffect.ScrollDirection.value);
-            _compositeMaterial.SetFloat("_Intensity", _bloomEffect.Intensity.value);
-            _compositeMaterial.SetFloat("_SizeThreshold", _bloomEffect.SizeThreshold.value);
+            //Set textures to material
             _compositeMaterial.mainTexture = _mbloomMipUp[0];
-
-            //Texture t2 = new Texture(1, 1);
-            //Graphics.CopyTexture(_mbloomMipUp[0], t2);
             _compositeMaterial.SetTexture("_SceneTexture", _mbloomMipUp[0]);
 
-            //Blitter.BlitTexture(cmd, _cameraColorTarget, Vector2.one, _compositeMaterial, 0);
-
-            //Blitter.BlitTexture(cmd, _cameraColorTarget, new Vector4(1, 1, 1, 0), _compositeMaterial, 0);
+            //Set settings to material
+            _compositeMaterial.SetInt("_Density", _settings.Density);
+            _compositeMaterial.SetFloat("_Cutoff", _settings.Cutoff);
+            _compositeMaterial.SetFloat("_BackgroundBloomIntensity", _settings.BackgroundBloomIntensity);
+            _compositeMaterial.SetFloat("_ColorIntensityHigh", _settings.ColorIntensityHigh);
+            _compositeMaterial.SetFloat("_ColorIntensityLow", _settings.ColorIntensityLow);
 
             cmd.Blit(_cameraColorTarget, _destination, _compositeMaterial);
             cmd.Blit(_destination, _cameraColorTarget);
@@ -113,15 +109,15 @@ public class CustomPostProcessPass : ScriptableRenderPass
         //Determine the iteration count
         int maxSize = Mathf.Max(tw, th);
         int iterations = Mathf.FloorToInt(Mathf.Log(maxSize, 2f) - 1);
-        int mipCount = Mathf.Clamp(iterations, 1, _bloomEffect.MaxIterations.value);
+        int mipCount = Mathf.Clamp(iterations, 1, _settings.MaxIterations);
 
         //Pre-filtering parameters
-        float clamp = _bloomEffect.Clamp.value;
-        float threshold = Mathf.GammaToLinearSpace(_bloomEffect.Threshold.value);
+        float clamp = _settings.Clamp;
+        float threshold = Mathf.GammaToLinearSpace(_settings.Threshold);
         float thresholdKnee = threshold * 0.5f;
 
         //Material setup
-        float scatter = Mathf.Lerp(0.05f, 0.95f, _bloomEffect.Scatter.value);
+        float scatter = Mathf.Lerp(0.05f, 0.95f, _settings.Scatter);
         var bloomMaterial = _bloomMaterial;
 
         bloomMaterial.SetVector("_Params", new Vector4(scatter, clamp, threshold, thresholdKnee));
@@ -152,7 +148,6 @@ public class CustomPostProcessPass : ScriptableRenderPass
         }
 
         //Upsample
-
         for (int i = mipCount - 2; i >= 0; i--)
         {
             var lowMip = (i == mipCount - 2) ? _mbloomMipDown[i + 1] : _mbloomMipUp[i + 1];
@@ -162,9 +157,6 @@ public class CustomPostProcessPass : ScriptableRenderPass
             cmd.SetGlobalTexture("_SourceTexLowMip", lowMip);
             Blitter.BlitCameraTexture(cmd, highMip, dst, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store, _bloomMaterial, 3);
         }
-
-        cmd.SetGlobalTexture("_Bloom_Texture", _mbloomMipUp[0]);
-        cmd.SetGlobalFloat("_BloomIntensity", _bloomEffect.Intensity.value);
     }
 
     public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
