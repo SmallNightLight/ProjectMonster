@@ -3,22 +3,24 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 [System.Serializable]
-public class CustomPostProcessRenderFeature : ScriptableRendererFeature
+public class BloomEffectRenderFeature : ScriptableRendererFeature
 {
     [SerializeField] private Shader _bloomShader;
     [SerializeField] private Shader _compositeShader;
 
+    [SerializeField] private BloomEffectSettings _settings;
+
     private Material _bloomMaterial;
     private Material _compositeMaterial;
 
-    private CustomPostProcessPass _customPass;
+    private BloomEffectPass _customPass;
 
     public override void Create()
     {
         _bloomMaterial = CoreUtils.CreateEngineMaterial(_bloomShader);
         _compositeMaterial = CoreUtils.CreateEngineMaterial(_compositeShader);
 
-        _customPass = new CustomPostProcessPass(_bloomMaterial, _compositeMaterial);
+        _customPass = new BloomEffectPass(_settings, _bloomMaterial, _compositeMaterial);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -37,7 +39,7 @@ public class CustomPostProcessRenderFeature : ScriptableRendererFeature
         {
             _customPass.ConfigureInput(ScriptableRenderPassInput.Depth);
             _customPass.ConfigureInput(ScriptableRenderPassInput.Color);
-            _customPass.SetTarget(renderer.cameraColorTargetHandle, renderer.cameraDepthTargetHandle);
+            _customPass.SetTarget(renderer.cameraColorTargetHandle);
         }
     }
 
@@ -46,4 +48,21 @@ public class CustomPostProcessRenderFeature : ScriptableRendererFeature
         CoreUtils.Destroy(_bloomMaterial);
         CoreUtils.Destroy(_compositeMaterial);
     }
+}
+
+[System.Serializable]
+public class BloomEffectSettings
+{
+    [Header("Bloom")]
+    public float Threshold = 0.9f;
+    [Range(0, 1)] public float Scatter = 0.7f;
+    public int Clamp = 65472;
+    [Range(0, 10)] public int MaxIterations = 6;
+
+    [Header("Benday Dots")]
+    public int Density = 30;
+    public float Cutoff = 0.1f;
+    public float BackgroundBloomIntensity = 10.0f;
+    public float ColorIntensityHigh = 50.0f;
+    public float ColorIntensityLow = 7.0f;
 }

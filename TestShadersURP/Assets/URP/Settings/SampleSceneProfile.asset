@@ -75,50 +75,6 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &-5379233622591754304
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6412b7aa9b660b2419b596006cba804e, type: 3}
-  m_Name: BendayBloomEffect
-  m_EditorClassIdentifier: 
-  active: 1
-  Threshold:
-    m_OverrideState: 1
-    m_Value: 2
-  Intensity:
-    m_OverrideState: 1
-    m_Value: 4.68
-  Scatter:
-    m_OverrideState: 1
-    m_Value: 0.609
-  Clamp:
-    m_OverrideState: 1
-    m_Value: 65472
-  MaxIterations:
-    m_OverrideState: 0
-    m_Value: 6
-  Tint:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-    hdr: 0
-  DotsDensity:
-    m_OverrideState: 1
-    m_Value: 14
-  DotsCutoff:
-    m_OverrideState: 1
-    m_Value: 0.934
-  ScrollDirection:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0}
-  SizeThreshold:
-    m_OverrideState: 1
-    m_Value: 0.3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +91,6 @@ MonoBehaviour:
   - {fileID: 849379129802519247}
   - {fileID: -7893295128165547882}
   - {fileID: -7011558710299706105}
-  - {fileID: -5379233622591754304}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
