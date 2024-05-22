@@ -39,7 +39,7 @@ public class BloomEffectRenderFeature : ScriptableRendererFeature
         {
             _customPass.ConfigureInput(ScriptableRenderPassInput.Depth);
             _customPass.ConfigureInput(ScriptableRenderPassInput.Color);
-            _customPass.SetTarget(renderer.cameraColorTargetHandle, renderer.cameraDepthTargetHandle);
+            _customPass.SetTarget(renderer.cameraColorTargetHandle);
         }
     }
 

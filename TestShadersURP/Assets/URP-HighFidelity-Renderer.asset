@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   _bloomShader: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
-  _compositeShader: {fileID: -6465566751694194690, guid: 464be9e1226253e4a8d361d5aa4004d6,
+  _compositeShader: {fileID: -6465566751694194690, guid: 29fe2f95794784549873aaf95ced8b7d,
     type: 3}
   _settings:
     Threshold: 2.12
-    Intensity: 13.41
     Scatter: 0.596
     Clamp: 65472
     MaxIterations: 6

@@ -12,7 +12,6 @@ public class BloomEffectPass : ScriptableRenderPass
     public Material _compositeMaterial;
 
     private RTHandle _cameraColorTarget;
-    private RTHandle _cameraDepthTarget;
 
     private RTHandle _destination;
 
@@ -177,10 +176,9 @@ public class BloomEffectPass : ScriptableRenderPass
         return descriptor;
     }
 
-    public void SetTarget(RTHandle cameraColorTargetHandle, RTHandle cameraDepthHandle)
+    public void SetTarget(RTHandle cameraColorTargetHandle)
     {
         _cameraColorTarget = _destination = cameraColorTargetHandle;
-        _cameraDepthTarget = cameraDepthHandle;
 
         ConfigureTarget(_cameraColorTarget);
     }
@@ -188,7 +186,6 @@ public class BloomEffectPass : ScriptableRenderPass
     public override void OnCameraCleanup(CommandBuffer cmd)
     {
         _cameraColorTarget = null;
-        _cameraDepthTarget = null;
         _destination = null;
     }
 }
