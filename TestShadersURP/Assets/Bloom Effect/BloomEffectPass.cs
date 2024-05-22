@@ -2,10 +2,9 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using static Unity.VisualScripting.Member;
 
 [System.Serializable]
-public class CustomPostProcessPass : ScriptableRenderPass
+public class BloomEffectPass : ScriptableRenderPass
 {
     private BloomEffectSettings _settings;
 
@@ -26,7 +25,7 @@ public class CustomPostProcessPass : ScriptableRenderPass
     private RTHandle[] _mbloomMipDown;
     private GraphicsFormat _hdrFormat;
 
-    public CustomPostProcessPass(BloomEffectSettings settings, Material bloomMaterial, Material compositeMaterial)
+    public BloomEffectPass(BloomEffectSettings settings, Material bloomMaterial, Material compositeMaterial)
     {
         _settings = settings;
 

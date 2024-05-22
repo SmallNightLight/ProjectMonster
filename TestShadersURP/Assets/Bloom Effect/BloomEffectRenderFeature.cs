@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 [System.Serializable]
-public class CustomPostProcessRenderFeature : ScriptableRendererFeature
+public class BloomEffectRenderFeature : ScriptableRendererFeature
 {
     [SerializeField] private Shader _bloomShader;
     [SerializeField] private Shader _compositeShader;
@@ -13,14 +13,14 @@ public class CustomPostProcessRenderFeature : ScriptableRendererFeature
     private Material _bloomMaterial;
     private Material _compositeMaterial;
 
-    private CustomPostProcessPass _customPass;
+    private BloomEffectPass _customPass;
 
     public override void Create()
     {
         _bloomMaterial = CoreUtils.CreateEngineMaterial(_bloomShader);
         _compositeMaterial = CoreUtils.CreateEngineMaterial(_compositeShader);
 
-        _customPass = new CustomPostProcessPass(_settings, _bloomMaterial, _compositeMaterial);
+        _customPass = new BloomEffectPass(_settings, _bloomMaterial, _compositeMaterial);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
