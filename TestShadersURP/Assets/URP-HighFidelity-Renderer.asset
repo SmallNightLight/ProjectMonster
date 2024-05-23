@@ -23,7 +23,7 @@ MonoBehaviour:
     MaxIterations: 6
     Density: 30
     Cutoff: 0
-    BackgroundBloomIntensity: 12.63
+    BackgroundBloomIntensity: 5.36
     ColorIntensityHigh: 63.1
     ColorIntensityLow: 5
 --- !u!114 &-4606911516259015171
