@@ -66,7 +66,6 @@ public class BloomEffectPass : ScriptableRenderPass
 
         if (_cameraColorTarget == null)
         {
-            Debug.Log("CameraColorTarget is null");
             return;
         }
 
