@@ -45,6 +45,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 81c78cf2be7145147a308ad63b47c809, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CalculateLightingRamp_0132ba0bf0124077b3aa0e88182c7952_Texture2DE3FB59D5_1191024350_Texture2D:
+        m_Texture: {fileID: 2800000, guid: c5a6a254557a3d146bd1432b9df70f4b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CalculateLightingRamp_39eff4e36fc64b6999ebed2fd2b9c809_Texture2DE3FB59D5_1191024350_Texture2D:
         m_Texture: {fileID: 2800000, guid: c5a6a254557a3d146bd1432b9df70f4b, type: 3}
         m_Scale: {x: 1, y: 1}

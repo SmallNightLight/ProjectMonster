@@ -35,6 +35,24 @@ float GetLightIntensity(float3 color) {
     return max(color.r, max(color.g, color.b));
 }
 
+float GetStep(float value)
+{
+    if (value < 0.001f)
+    {
+        return 0.0f;
+    }
+    if (value < 0.2f)
+    {
+        return 0.4f;
+    }
+    if (value < 0.7f)
+    {
+        return 0.7f;
+    }
+
+    return 1.0f;
+}
+
 void AddAdditionalLights_float(float Smoothness, float3 WorldPosition, float3 WorldNormal, float3 WorldView,
     float MainDiffuse, float MainSpecular, float3 MainColor,
     out float Diffuse, out float Specular, out float3 Color) {
@@ -59,6 +77,33 @@ void AddAdditionalLights_float(float Smoothness, float3 WorldPosition, float3 Wo
 
     half total = Diffuse + Specular;
     Color = total <= 0 ? MainColor : Color / total;
+#endif
+}
+
+void GetAdditionalLightsWithStep_float(float Smoothness, float3 WorldPosition, float3 WorldNormal, float3 WorldView, out float Diffuse,
+    out float Specular, out float3 Color) 
+{
+    Diffuse = 0.0f;
+    Specular = 0.0f;
+    Color = float3(0.0f, 0.0f, 0.0f);
+
+#ifndef SHADERGRAPH_PREVIEW
+    int pixelLightCount = GetAdditionalLightsCount();
+    for (int i = 0; i < pixelLightCount; ++i) {
+        Light light = GetAdditionalLight(i, WorldPosition);
+        half NdotL = saturate(dot(WorldNormal, light.direction));
+        half atten = light.distanceAttenuation * light.shadowAttenuation * GetLightIntensity(light.color);
+        half thisDiffuse = atten * NdotL;
+        half thisSpecular = LightingSpecular(thisDiffuse, light.direction, WorldNormal, WorldView, 1, Smoothness);
+        Diffuse += thisDiffuse;
+        Specular += thisSpecular;
+        
+        float step = GetStep(thisDiffuse + thisSpecular);
+
+        Color += light.color * (step );
+    }
+
+    half total = Diffuse + Specular;
 #endif
 }
 
