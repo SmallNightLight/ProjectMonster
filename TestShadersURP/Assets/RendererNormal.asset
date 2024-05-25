@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8d9dbcea28c4f489daca0f45c7a000, type: 3}
   m_Name: Bloom Effect
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   _bloomShader: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
   _compositeShader: {fileID: -6465566751694194690, guid: 29fe2f95794784549873aaf95ced8b7d,
     type: 3}
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
-  m_Name: URP-HighFidelity-Renderer
+  m_Name: RendererNormal
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7,

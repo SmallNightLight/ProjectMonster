@@ -256,6 +256,20 @@
             },
             "m_InputSlot": {
                 "m_Node": {
+                    "m_Id": "4d2f01ed1522388b9f6b100be7c48a35"
+                },
+                "m_SlotId": 5
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "4e6bbb4264884106b93b0f70a55e3d41"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
                     "m_Id": "9359f396878147149524bd91fad8f0ad"
                 },
                 "m_SlotId": 0
@@ -1151,10 +1165,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 2573.60009765625,
-            "y": -427.20001220703127,
+            "x": 2600.0,
+            "y": -425.5999755859375,
             "width": 119.199951171875,
-            "height": 124.80001831054688
+            "height": 172.79998779296876
         }
     },
     "m_Slots": [
@@ -1169,6 +1183,9 @@
         },
         {
             "m_Id": "1518ae0a4909453da162e61d0355d9eb"
+        },
+        {
+            "m_Id": "d847290fa2404af689b22aecfbb535f3"
         }
     ],
     "synonyms": [],
@@ -2615,6 +2632,29 @@
     "m_Labels": [
         "X"
     ]
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "d847290fa2404af689b22aecfbb535f3",
+    "m_Id": 5,
+    "m_DisplayName": "MainLight",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "MainLight",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {
