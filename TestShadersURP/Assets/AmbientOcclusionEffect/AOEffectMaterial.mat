@@ -29,7 +29,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_938C7712:
-        m_Texture: {fileID: 2800000, guid: 81c78cf2be7145147a308ad63b47c809, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CalculateLightingRamp_4e6bbb4264884106b93b0f70a55e3d41_Texture2DE3FB59D5_1191024350_Texture2D:
+        m_Texture: {fileID: 2800000, guid: c5a6a254557a3d146bd1432b9df70f4b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_e0b7b453449f44928684825ef416a501_Texture_1_Texture2D:
@@ -50,13 +54,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_DB940B55: 0.86
+    - Vector1_DB940B55: 0.89
     - _LineMultiplier: 3.52
     - _LineRotation: 48.29
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2616156213273072019
 MonoBehaviour:

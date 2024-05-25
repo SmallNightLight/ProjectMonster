@@ -255,20 +255,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "1478e2f361164cfdb3207f7b9de34e5c"
-                },
-                "m_SlotId": 3
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "f1a8ce1e0d664b98bfa6a4b1e3983f2a"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "1d428812c1064002a4702d32082b734a"
                 },
                 "m_SlotId": 1
@@ -726,6 +712,20 @@
                     "m_Id": "739d68e6d27346ec9752da81f93bf407"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "b1e3ace555294f8fbbcc31d850509a61"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "f1a8ce1e0d664b98bfa6a4b1e3983f2a"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -1647,6 +1647,12 @@
         },
         {
             "m_Id": "22a98beb42594c818a4383424e4ab794"
+        },
+        {
+            "m_Id": "ced66dcb64a94ca0a9a8daba7da73ac6"
+        },
+        {
+            "m_Id": "4a1533d4d88c41e9a164e463d6322601"
         }
     ],
     "synonyms": [],
@@ -3049,6 +3055,29 @@
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
     "m_BareResource": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "4a1533d4d88c41e9a164e463d6322601",
+    "m_Id": 5,
+    "m_DisplayName": "MainLight",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "MainLight",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -5306,6 +5335,21 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "ced66dcb64a94ca0a9a8daba7da73ac6",
+    "m_Id": 4,
+    "m_DisplayName": "Alpha",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Alpha",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {

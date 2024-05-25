@@ -38,7 +38,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f9efbfd645e164f8f449872ea6a54f, type: 3}
   m_Name: AOLinesRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   _settings:
     Shader: {fileID: -6465566751694194690, guid: d7199ab8dab5e114f9c27c899ed8fc3d,
       type: 3}
