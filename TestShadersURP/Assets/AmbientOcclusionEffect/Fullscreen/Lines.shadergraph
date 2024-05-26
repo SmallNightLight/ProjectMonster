@@ -266,6 +266,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "1fab3e3bd28b49c09445e4a39b86aa5d",
+    "m_Id": -804920829,
+    "m_DisplayName": "Tiling",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Tiling",
+    "m_StageCapability": 3,
+    "m_Value": 0.10000000149011612,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "24dfe215ed674b9bbec5b1609812daa3",
     "m_Id": 1,
@@ -658,6 +673,9 @@
             "m_Id": "19ba49bd2dd14b53b07bcb3dc0cf0449"
         },
         {
+            "m_Id": "1fab3e3bd28b49c09445e4a39b86aa5d"
+        },
+        {
             "m_Id": "24dfe215ed674b9bbec5b1609812daa3"
         }
     ],
@@ -672,11 +690,13 @@
     "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"4f7d28ef348938745942d3c83d8dc5c1\",\n        \"type\": 3\n    }\n}",
     "m_PropertyGuids": [
         "0bb44f5f-76f1-4977-bf22-65fd67732750",
-        "270d5323-68b9-4e89-9069-3808ca2a85f6"
+        "270d5323-68b9-4e89-9069-3808ca2a85f6",
+        "87306354-60e8-45b3-8253-64013db2e213"
     ],
     "m_PropertyIds": [
         -276731786,
-        -1757841216
+        -1757841216,
+        -804920829
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
