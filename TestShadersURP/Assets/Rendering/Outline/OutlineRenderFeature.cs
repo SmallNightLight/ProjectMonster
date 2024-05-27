@@ -32,6 +32,7 @@ public class OutlineRenderFeature : ScriptableRendererFeature
 public class OutlinePassSettings
 {
     public Shader OutlineShader;
+    public Shader NormalsShader;
 
     public Color OutlineColor;
     public float Threshhold;
