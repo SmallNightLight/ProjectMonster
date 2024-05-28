@@ -30,17 +30,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
-  m_Name: OutlineSSAORenderer
+  m_Name: OutlineRenderer
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7,
       type: 3}
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
-  - {fileID: 3315894301485045958}
   - {fileID: -7622640280276325430}
-  - {fileID: 3819673993301777712}
-  m_RendererFeatureMap: c618c2804c6c042ecaab8b330df1369630dd8c6842350235
+  m_RendererFeatureMap: caab8b330df13696
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -83,57 +81,3 @@ MonoBehaviour:
   m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
---- !u!114 &3315894301485045958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf512bb614145bb43b452cb759ec0a69, type: 3}
-  m_Name: OutlineRenderFeature
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  _settings:
-    OutlineShader: {fileID: -6465566751694194690, guid: cefb5174cbc103c4ab41615064bc38ce,
-      type: 3}
-    NormalsShader: {fileID: -6465566751694194690, guid: 4e4a18b490737a34e8f86b2ada92ff71,
-      type: 3}
-    OutlineColor: {r: 0, g: 0, b: 0, a: 0}
-    Threshhold: 0.26
-    Thickness: 3.36
-    RenderPassEvent: 550
---- !u!114 &3819673993301777712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 223bb753edb610f4fbf9af419886b3d8, type: 3}
-  m_Name: ScreenSpaceOutlines
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  renderPassEvent: 550
-  outlinesLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  outlineSettings:
-    outlineColor: {r: 0, g: 0, b: 0, a: 1}
-    outlineScale: 2.8
-    depthThreshold: 4.3
-    robertsCrossMultiplier: 61
-    normalThreshold: 0.4
-    steepAngleThreshold: 0.21
-    steepAngleMultiplier: 42
-    colorFormat: 0
-    depthBufferBits: 0
-    filterMode: 0
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    perObjectData: 0
-    enableDynamicBatching: 0
-    enableInstancing: 0

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OM
+  m_Name: FullscreenOutlineMaterial
   m_Shader: {fileID: -6465566751694194690, guid: cefb5174cbc103c4ab41615064bc38ce,
     type: 3}
   m_Parent: {fileID: 0}
@@ -44,10 +44,11 @@ Material:
     - _DistanceMultiplier: 20
     - _Mul: 2708.2
     - _NormalThreshold: 0.46
+    - _NormalsThreshold: 0.46
     - _StepAngleMultiplier: 10.21
     - _StepAngleThreshold: 0.52
-    - _Thickness: 4
-    - _ThicknessThreshold: 1.5
+    - _Thickness: 4.53
+    - _ThicknessThreshold: 2.3
     - _Threshhold: 10
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}

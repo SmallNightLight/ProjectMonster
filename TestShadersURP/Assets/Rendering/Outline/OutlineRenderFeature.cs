@@ -9,7 +9,7 @@ public class OutlineRenderFeature : ScriptableRendererFeature
 
     public override void Create()
     {
-        _outlinePass = new OutlineRenderPass(_settings, name);
+        _outlinePass = new OutlineRenderPass(_settings);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -24,7 +24,8 @@ public class OutlineRenderFeature : ScriptableRendererFeature
 
     protected override void Dispose(bool disposing)
     {
-        _outlinePass.Dispose();
+        if (disposing)
+            _outlinePass?.Dispose();
     }
 }
 
@@ -34,9 +35,16 @@ public class OutlinePassSettings
     public Shader OutlineShader;
     public Shader NormalsShader;
 
-    public Color OutlineColor;
-    public float Threshhold;
+    public Color OutlineColor = Color.black;
     public float Thickness;
+    public float ThicknessThreshold;
+    public float NormalsThreshold;
+    public float CrossMultiplier = 100f;
+    public float DepthThreshold;
+    public float StepAngleThreshold;
+    public float StepAngleMultiplier;
+    public float DistanceMultiplier;
 
     public RenderPassEvent RenderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
+    public LayerMask LayerMask;
 }

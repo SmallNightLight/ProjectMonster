@@ -1,66 +1,77 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Rendering.Universal.Internal;
 
 public class OutlineRenderPass : ScriptableRenderPass
 {
     private OutlinePassSettings _settings;
 
-    private RTHandle _source;
-    private RTHandle _destination;
-    private RTHandle _temp;
-
-    private RTHandle _depthHandle;
     private RTHandle _normalsHandle;
+    private RTHandle _temporaryBuffer;
 
-    private string _profilerTag;
-
-    private Material _material;
+    private Material _outlineMaterial;
     private Material _normalsMaterial;
 
-    public OutlineRenderPass(OutlinePassSettings settings, string tag)
-    {
-        profilingSampler = new ProfilingSampler("Outlines");
+    private FilteringSettings _filteringSettings;
+    private RendererList _normalsRenderersList;
+    private List<ShaderTagId> _shaderTagIdList;
 
+    public OutlineRenderPass(OutlinePassSettings settings)
+    {
         _settings = settings;
+        _filteringSettings = new FilteringSettings(RenderQueueRange.opaque, _settings.LayerMask);
+        _shaderTagIdList = new List<ShaderTagId>
+        {
+            new ShaderTagId("UniversalForward"),
+            new ShaderTagId("UniversalForwardOnly"),
+            new ShaderTagId("LightweightForward"),
+            new ShaderTagId("SRPDefaultUnlit")
+        };
 
         renderPassEvent = settings.RenderPassEvent;
-        _profilerTag = tag;
 
-        if (_material == null && _settings.OutlineShader != null)
-            _material = CoreUtils.CreateEngineMaterial(_settings.OutlineShader);
+        if (_outlineMaterial == null && _settings.OutlineShader != null)
+            _outlineMaterial = CoreUtils.CreateEngineMaterial(_settings.OutlineShader);
 
         if (_normalsMaterial == null && _settings.NormalsShader != null)
             _normalsMaterial = CoreUtils.CreateEngineMaterial(_settings.NormalsShader);
+
+        SetMaterialProperties();
     }
 
     public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
     {
-        if (_material == null)
-            return;
-        
-        ConfigureInput(ScriptableRenderPassInput.Normal);
-        ConfigureInput(ScriptableRenderPassInput.Depth);
+        //Reallocate Normals
+        RenderTextureDescriptor textureDescriptor = renderingData.cameraData.cameraTargetDescriptor;
+        textureDescriptor.colorFormat = RenderTextureFormat.ARGBFloat;
+        textureDescriptor.depthBufferBits = 0;
+        RenderingUtils.ReAllocateIfNeeded(ref _normalsHandle, textureDescriptor, FilterMode.Point);
 
-        var descriptor = renderingData.cameraData.cameraTargetDescriptor;
-        descriptor.depthBufferBits = 0;
+        //Reallocate Color Buffer
+        textureDescriptor.depthBufferBits = 0;
+        RenderingUtils.ReAllocateIfNeeded(ref _temporaryBuffer, textureDescriptor, FilterMode.Bilinear);
 
-        RenderingUtils.ReAllocateIfNeeded(ref _temp, descriptor, name: "_TemporaryColorTexture");
+        ConfigureTarget(_normalsHandle, renderingData.cameraData.renderer.cameraDepthTargetHandle);
+        ConfigureClear(ClearFlag.Color, Color.black);
 
-        var normalDescriptor = descriptor;
-        normalDescriptor.depthBufferBits = 0;
-        normalDescriptor.graphicsFormat = DepthNormalOnlyPass.GetGraphicsFormat();
+#if UNITY_EDITOR
+        SetMaterialProperties();
+#endif
+    }
 
-        RenderingUtils.ReAllocateIfNeeded(ref _temp, normalDescriptor, FilterMode.Point, TextureWrapMode.Clamp, name: "_CameraNormalsTexture");
+    private void SetMaterialProperties()
+    {
+        if (_outlineMaterial == null) return;
 
-
-        var renderer = renderingData.cameraData.renderer;
-        _source = _destination = renderer.cameraColorTargetHandle;
-
-        _material.SetColor("_Color", _settings.OutlineColor);
-        _material.SetFloat("_Threshhold", _settings.Threshhold);
-        _material.SetFloat("_Thickness", _settings.Thickness);
+        _outlineMaterial.SetColor("_OutlineColor", _settings.OutlineColor);
+        _outlineMaterial.SetFloat("_Thickness", _settings.Thickness);
+        _outlineMaterial.SetFloat("_ThicknessThreshold", _settings.ThicknessThreshold);
+        _outlineMaterial.SetFloat("_NormalsThreshold", _settings.NormalsThreshold);
+        _outlineMaterial.SetFloat("_CrossMultiplier", _settings.CrossMultiplier);
+        _outlineMaterial.SetFloat("_DepthThreshold", _settings.DepthThreshold);
+        _outlineMaterial.SetFloat("_StepAngleThreshold", _settings.StepAngleThreshold);
+        _outlineMaterial.SetFloat("_StepAngleMultiplier", _settings.StepAngleMultiplier);
     }
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -68,41 +79,41 @@ public class OutlineRenderPass : ScriptableRenderPass
         if (renderingData.cameraData.cameraType == CameraType.Preview)
             return;
 
-        if (_material == null)
-            return;
+        if (_outlineMaterial == null || _normalsMaterial == null || renderingData.cameraData.renderer.cameraColorTargetHandle.rt == null || _temporaryBuffer.rt == null) return;
 
-        CommandBuffer cmd = CommandBufferPool.Get(_profilerTag);
+        CommandBuffer cmd = CommandBufferPool.Get();
+        context.ExecuteCommandBuffer(cmd);
+        cmd.Clear();
 
-        using (new ProfilingScope(cmd, new ProfilingSampler("Outline Pass")))
+        //Normals
+        DrawingSettings drawSettings = CreateDrawingSettings(_shaderTagIdList, ref renderingData, renderingData.cameraData.defaultOpaqueSortFlags);
+        drawSettings.perObjectData = PerObjectData.None;
+        drawSettings.enableDynamicBatching = false;
+        drawSettings.enableInstancing = false;
+        drawSettings.overrideMaterial = _normalsMaterial;
+
+        RendererListParams normalsRenderersParams = new RendererListParams(renderingData.cullResults, drawSettings, _filteringSettings);
+        _normalsRenderersList = context.CreateRendererList(ref normalsRenderersParams);
+        cmd.DrawRendererList(_normalsRenderersList);
+
+        //Pass in RT for Outlines shader
+        cmd.SetGlobalTexture(Shader.PropertyToID("_SceneViewSpaceNormals"), _normalsHandle.rt);
+
+        using (new ProfilingScope(cmd, new ProfilingSampler("Outlines")))
         {
-            Blitter.BlitCameraTexture(cmd, _source, _temp, _normalsMaterial, 0);
-            Blitter.BlitCameraTexture(cmd, _temp, _destination, Vector2.one);
-
-            //Blitter.BlitCameraTexture(cmd, _source, _temp, _material, 0);
-            //Blitter.BlitCameraTexture(cmd, _temp, _destination, Vector2.one);
+            Blitter.BlitCameraTexture(cmd, renderingData.cameraData.renderer.cameraColorTargetHandle, _temporaryBuffer, _outlineMaterial, 0);
+            Blitter.BlitCameraTexture(cmd, _temporaryBuffer, renderingData.cameraData.renderer.cameraColorTargetHandle);
         }
 
         context.ExecuteCommandBuffer(cmd);
         CommandBufferPool.Release(cmd);
     }
 
-    public void SetTarget(RTHandle depthHandle)
-    {
-        _depthHandle = depthHandle;
-
-        ConfigureTarget(_depthHandle);
-    }
-
-    public override void OnCameraCleanup(CommandBuffer cmd)
-    {
-        _source = null;
-        _destination = null;
-        _depthHandle = null;
-        _normalsHandle = null;
-    }
-
     public void Dispose()
     {
-        _temp?.Release();
+        CoreUtils.Destroy(_outlineMaterial);
+        CoreUtils.Destroy(_normalsMaterial);
+        _normalsHandle?.Release();
+        _temporaryBuffer?.Release();
     }
 }
