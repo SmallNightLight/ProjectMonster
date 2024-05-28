@@ -38,13 +38,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthThreshold: 146
-    - _Mul: 2841.6
-    - _NormalThreshold: 11.18
-    - _StepAngleMultiplier: 58.31
-    - _StepAngleThreshold: 13.5
-    - _Thickness: 3.23
-    - _Threshhold: 0.18
+    - _ActualThick: 1.5
+    - _CrossMultiplier: 38.2
+    - _DepthThreshold: 25
+    - _DistanceMultiplier: 20
+    - _Mul: 2708.2
+    - _NormalThreshold: 0.46
+    - _StepAngleMultiplier: 10.21
+    - _StepAngleThreshold: 0.52
+    - _Thickness: 4
+    - _ThicknessThreshold: 1.5
+    - _Threshhold: 10
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
