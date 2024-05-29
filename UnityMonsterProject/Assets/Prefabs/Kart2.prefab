@@ -1641,7 +1641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8270729986525616552}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.69893134, z: -0, w: -0.71518886}
+  m_LocalRotation: {x: -0, y: -0.6989335, z: 0, w: -0.7151867}
   m_LocalPosition: {x: 355, y: 0.72651, z: 590}
   m_LocalScale: {x: 1.1454914, y: 1.1454914, z: 1.1454914}
   m_ConstrainProportionsScale: 0
@@ -1673,25 +1673,31 @@ MonoBehaviour:
         IsBraking: 0
         SteerInput: 0
   _baseStats:
-    TopSpeed: 40
-    Acceleration: 15
-    ReverseSpeed: 10
-    ReverseAcceleration: 5
-    AccelerationCurve: 0.5
-    Braking: 16
-    CoastingDrag: 7
-    Grip: 0.95
-    Steer: 4
-    AddedGravity: 3
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 9b42caaeb0530c349b6ad19a728555d7, type: 2}
+    _constant:
+      TopSpeed: 40
+      Acceleration: 15
+      ReverseSpeed: 10
+      ReverseAcceleration: 5
+      AccelerationCurve: 0.5
+      Braking: 16
+      CoastingDrag: 7
+      Grip: 0.95
+      Steer: 4
+      AddedGravity: 3
   _centerOfMass: {fileID: 5347395898893514231}
   AirborneReorientationCoefficient: 1
   _driftStats:
-    DriftGrip: 0.8
-    DriftAdditionalSteer: 3
-    MinAngleToFinishDrift: 10
-    MinSpeedPercentToFinishDrift: 0.8
-    DriftControl: 10
-    DriftDampening: 10
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 848176bc011049545bc5ff59e9cf1fae, type: 2}
+    _constant:
+      DriftGrip: 0.8
+      DriftAdditionalSteer: 3
+      MinAngleToFinishDrift: 10
+      MinSpeedPercentToFinishDrift: 0.8
+      DriftControl: 10
+      DriftDampening: 10
   _enableParticles: 0
   _driftSparkVFX: {fileID: 0}
   _driftSparkHorizontalOffset: 0.1

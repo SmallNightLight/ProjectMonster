@@ -11,101 +11,15 @@ namespace KartGame.KartSystems
         [Serializable]
         public class StatPowerup
         {
-            public Stats modifiers;
+            public MovementStats modifiers;
             public string PowerUpID;
             public float ElapsedTime;
             public float MaxTime;
         }
 
-        [Serializable]
-        public struct Stats
-        {
-            [Min(0.001f), Tooltip("Top speed attainable when moving forward.")]
-            public float TopSpeed;
-
-            [Tooltip("How quickly the kart reaches top speed.")]
-            public float Acceleration;
-
-            [Min(0.001f), Tooltip("Top speed attainable when moving backward.")]
-            public float ReverseSpeed;
-
-            [Tooltip("How quickly the kart reaches top speed, when moving backward.")]
-            public float ReverseAcceleration;
-
-            [Tooltip("How quickly the kart starts accelerating from 0. A higher number means it accelerates faster sooner.")]
-            [Range(0.2f, 1)]
-            public float AccelerationCurve;
-
-            [Tooltip("How quickly the kart slows down when the brake is applied.")]
-            public float Braking;
-
-            [Tooltip("How quickly the kart will reach a full stop when no inputs are made.")]
-            public float CoastingDrag;
-
-            [Range(0.0f, 1.0f)]
-            [Tooltip("The amount of side-to-side friction.")]
-            public float Grip;
-
-            [Tooltip("How tightly the kart can turn left or right.")]
-            public float Steer;
-
-            [Tooltip("Additional gravity for when the kart is in the air.")]
-            public float AddedGravity;
-
-            // allow for stat adding for powerups.
-            public static Stats operator +(Stats a, Stats b)
-            {
-                return new Stats
-                {
-                    Acceleration        = a.Acceleration + b.Acceleration,
-                    AccelerationCurve   = a.AccelerationCurve + b.AccelerationCurve,
-                    Braking             = a.Braking + b.Braking,
-                    CoastingDrag        = a.CoastingDrag + b.CoastingDrag,
-                    AddedGravity        = a.AddedGravity + b.AddedGravity,
-                    Grip                = a.Grip + b.Grip,
-                    ReverseAcceleration = a.ReverseAcceleration + b.ReverseAcceleration,
-                    ReverseSpeed        = a.ReverseSpeed + b.ReverseSpeed,
-                    TopSpeed            = a.TopSpeed + b.TopSpeed,
-                    Steer               = a.Steer + b.Steer,
-                };
-            }
-        }
-
-        [Serializable]
-        public struct DrifStats
-        {
-            [Range(0.01f, 1.0f), Tooltip("The grip value when drifting.")]
-            public float DriftGrip;
-            [Range(0.0f, 10.0f), Tooltip("Additional steer when the kart is drifting.")]
-            public float DriftAdditionalSteer;
-            [Range(1.0f, 30.0f), Tooltip("The higher the angle, the easier it is to regain full grip.")]
-            public float MinAngleToFinishDrift;
-            [Range(0.01f, 0.99f), Tooltip("Mininum speed percentage to switch back to full grip.")]
-            public float MinSpeedPercentToFinishDrift;
-            [Range(1.0f, 20.0f), Tooltip("The higher the value, the easier it is to control the drift steering.")]
-            public float DriftControl;
-            [Range(0.0f, 20.0f), Tooltip("The lower the value, the longer the drift will last without trying to control it by steering.")]
-            public float DriftDampening;
-        }
-
         [SerializeField] private InputAssetReference _input;
 
-        private float _airPercent;
-        private float _groundPercent;
-
-        public Stats _baseStats = new Stats
-        {
-            TopSpeed            = 10f,
-            Acceleration        = 5f,
-            AccelerationCurve   = 4f,
-            Braking             = 10f,
-            ReverseAcceleration = 5f,
-            ReverseSpeed        = 5f,
-            Steer               = 5f,
-            CoastingDrag        = 4f,
-            Grip                = .95f,
-            AddedGravity        = 1f,
-        };
+        [SerializeField] private MovementStatsReference _baseStats;
 
         [Header("Components")]
         private Rigidbody _rigidbody;
@@ -119,15 +33,7 @@ namespace KartGame.KartSystems
         [Range(0.0f, 20.0f), Tooltip("Coefficient used to reorient the kart in the air. The higher the number, the faster the kart will readjust itself along the horizontal plane.")]
         public float AirborneReorientationCoefficient = 3.0f;
 
-        public DrifStats _driftStats = new DrifStats
-        {
-            DriftGrip = 0.4f,
-            DriftAdditionalSteer = 5.0f,
-            MinAngleToFinishDrift = 10.0f,
-            MinSpeedPercentToFinishDrift = 0.5f,
-            DriftControl = 10.0f,
-            DriftDampening = 10.0f
-        };
+        public DriftStatsReference _driftStats;
 
         [Header("VFX")]
         [SerializeField] private bool _enableParticles;
@@ -186,12 +92,14 @@ namespace KartGame.KartSystems
         //Can the kart move?
         private bool m_CanMove = true;
         private List<StatPowerup> m_ActivePowerupList = new List<StatPowerup>();
-        private Stats m_FinalStats;
+        private MovementStats m_FinalStats;
 
         private Quaternion m_LastValidRotation;
         private Vector3 m_LastCollisionNormal;
         private bool m_HasCollision;
         private bool m_InAir = false;
+        private float _airPercent;
+        private float _groundPercent;
 
         public void AddPowerup(StatPowerup statPowerup) => m_ActivePowerupList.Add(statPowerup);
         public void SetCanMove(bool move) => m_CanMove = move;
@@ -251,7 +159,7 @@ namespace KartGame.KartSystems
             UpdateSuspensionParams(_wheelColliderRearLeft);
             UpdateSuspensionParams(_wheelColliderRearRight);
 
-            m_CurrentGrip = _baseStats.Grip;
+            m_CurrentGrip = _baseStats.Value.Grip;
 
             InitializeParticleEffects();
         }
@@ -342,7 +250,7 @@ namespace KartGame.KartSystems
             m_ActivePowerupList.RemoveAll((p) => { return p.ElapsedTime > p.MaxTime; });
 
             // zero out powerups before we add them all up
-            var powerups = new Stats();
+            var powerups = new MovementStats();
 
             // add up all our powerups
             for (int i = 0; i < m_ActivePowerupList.Count; i++)
@@ -357,7 +265,7 @@ namespace KartGame.KartSystems
             }
 
             // add powerups to our final stats
-            m_FinalStats = _baseStats + powerups;
+            m_FinalStats = _baseStats.Value + powerups;
 
             // clamp values in finalstats
             m_FinalStats.Grip = Mathf.Clamp(m_FinalStats.Grip, 0, 1);
@@ -519,11 +427,11 @@ namespace KartGame.KartSystems
                 // Drift Management
                 if (!IsDrifting)
                 {
-                    if (_wantsToDrift && currentSpeed > maxSpeed * _driftStats.MinSpeedPercentToFinishDrift)
+                    if (_wantsToDrift && currentSpeed > maxSpeed * _driftStats.Value.MinSpeedPercentToFinishDrift)
                     {
                         IsDrifting = true;
-                        m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.DriftAdditionalSteer);
-                        m_CurrentGrip = _driftStats.DriftGrip;
+                        m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.Value.DriftAdditionalSteer);
+                        m_CurrentGrip = _driftStats.Value.DriftGrip;
 
                         ActivateDriftVFX(true);
                     }
@@ -533,20 +441,20 @@ namespace KartGame.KartSystems
                 {
                     float turnInputAbs = Mathf.Abs(turnInput);
                     if (turnInputAbs < k_NullInput)
-                        m_DriftTurningPower = Mathf.MoveTowards(m_DriftTurningPower, 0.0f, Mathf.Clamp01(_driftStats.DriftDampening * Time.fixedDeltaTime));
+                        m_DriftTurningPower = Mathf.MoveTowards(m_DriftTurningPower, 0.0f, Mathf.Clamp01(_driftStats.Value.DriftDampening * Time.fixedDeltaTime));
 
                     // Update the turning power based on input
-                    float driftMaxSteerValue = m_FinalStats.Steer + _driftStats.DriftAdditionalSteer;
-                    m_DriftTurningPower = Mathf.Clamp(m_DriftTurningPower + (turnInput * Mathf.Clamp01(_driftStats.DriftControl * Time.fixedDeltaTime)), -driftMaxSteerValue, driftMaxSteerValue);
+                    float driftMaxSteerValue = m_FinalStats.Steer + _driftStats.Value.DriftAdditionalSteer;
+                    m_DriftTurningPower = Mathf.Clamp(m_DriftTurningPower + (turnInput * Mathf.Clamp01(_driftStats.Value.DriftControl * Time.fixedDeltaTime)), -driftMaxSteerValue, driftMaxSteerValue);
 
-                    bool facingVelocity = Vector3.Dot(_rigidbody.velocity.normalized, transform.forward * Mathf.Sign(accelInput)) > Mathf.Cos(_driftStats.MinAngleToFinishDrift * Mathf.Deg2Rad);
+                    bool facingVelocity = Vector3.Dot(_rigidbody.velocity.normalized, transform.forward * Mathf.Sign(accelInput)) > Mathf.Cos(_driftStats.Value.MinAngleToFinishDrift * Mathf.Deg2Rad);
 
                     bool canEndDrift = true;
                     if (isBraking)
                         canEndDrift = false;
                     else if (!facingVelocity)
                         canEndDrift = false;
-                    else if (turnInputAbs >= k_NullInput && currentSpeed > maxSpeed * _driftStats.MinSpeedPercentToFinishDrift)
+                    else if (turnInputAbs >= k_NullInput && currentSpeed > maxSpeed * _driftStats.Value.MinSpeedPercentToFinishDrift)
                         canEndDrift = false;
 
                     if (canEndDrift || currentSpeed < k_NullSpeed)
@@ -600,3 +508,6 @@ namespace KartGame.KartSystems
         }
     }
 }
+
+//Speed boost
+//
