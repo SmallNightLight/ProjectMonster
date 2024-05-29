@@ -1,12 +1,6 @@
 {
-    "name": "ScriptableAssembly.Data",
-    "rootNamespace": "",
-    "references": [
-        "ScriptableAssembly.Core",
-        "Unity.TextMeshPro",
-        "PhotonUnityNetworking",
-        "AYellowpaper.SerializeInterfaces"
-    ],
+    "name": "AYellowpaper.SerializeInterfaces",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

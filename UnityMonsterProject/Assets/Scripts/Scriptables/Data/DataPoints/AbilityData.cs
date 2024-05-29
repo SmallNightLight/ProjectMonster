@@ -1,6 +1,7 @@
 using ScriptableArchitecture.Core;
 using System.Collections.Generic;
 using UnityEngine;
+using AYellowpaper;
 
 namespace ScriptableArchitecture.Data
 {
@@ -8,7 +9,7 @@ namespace ScriptableArchitecture.Data
     public class AbilityData : IDataPoint
     {
         public List<WorldEffect> WorldEffects;
-        public List<Variable> AdditionalStats;
+        [RequireInterface(typeof(IStatsVariable))] public List<Variable> AdditionalStats;
         public float Duration;
 
         [Header("Current")]

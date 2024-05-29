@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ScriptableArchitecture.Data
 {
     [System.Serializable]
-    public class MovementStats : KartStats
+    public class MovementStats : IDataPoint
     {
         [Min(0.001f), Tooltip("Top speed attainable when moving forward.")]
         public float TopSpeed;

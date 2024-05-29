@@ -21,9 +21,15 @@ MonoBehaviour:
     Duration: 0
     ElapsedTime: 0
   _startValue:
-    WorldEffects: []
+    WorldEffects:
+    - Prefab: {fileID: 0}
+      Position: {x: 0, y: 0, z: 0}
+      HasParent: 0
+      Parent: {fileID: 0}
+      UseIdentityRotation: 0
+      Rotation: {x: 0, y: 0, z: 0}
     AdditionalStats:
-    - {fileID: 11400000, guid: 9b42caaeb0530c349b6ad19a728555d7, type: 2}
+    - {fileID: 0}
     Duration: 2
     ElapsedTime: 0
   _runtimeSet: []
