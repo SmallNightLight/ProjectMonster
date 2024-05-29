@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8d9dbcea28c4f489daca0f45c7a000, type: 3}
   m_Name: Bloom Effect
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   _bloomShader: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
   _compositeShader: {fileID: -6465566751694194690, guid: 29fe2f95794784549873aaf95ced8b7d,
     type: 3}

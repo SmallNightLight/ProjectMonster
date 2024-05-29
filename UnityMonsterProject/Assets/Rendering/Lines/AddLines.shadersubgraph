@@ -2762,10 +2762,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2900.0,
-            "y": -907.0,
-            "width": 158.0,
-            "height": 34.0
+            "x": -2905.60009765625,
+            "y": -900.0,
+            "width": 161.60009765625,
+            "height": 33.60003662109375
         }
     },
     "m_Slots": [
@@ -8951,8 +8951,8 @@
     "m_ObjectId": "73f26b142a524db1ae5e21a133e8de6f",
     "m_Title": "Triplannar Lines",
     "m_Position": {
-        "x": -3738.399658203125,
-        "y": -1180.7998046875
+        "x": -3736.800048828125,
+        "y": -1180.7999267578125
     }
 }
 
@@ -9652,10 +9652,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3712.80029296875,
-            "y": 19.200119018554689,
-            "width": 207.999755859375,
-            "height": 312.800048828125
+            "x": -3711.199951171875,
+            "y": 19.20000648498535,
+            "width": 208.0,
+            "height": 312.8000183105469
         }
     },
     "m_Slots": [
@@ -9667,7 +9667,7 @@
         "location"
     ],
     "m_Precision": 1,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 2,
     "m_CustomColors": {
