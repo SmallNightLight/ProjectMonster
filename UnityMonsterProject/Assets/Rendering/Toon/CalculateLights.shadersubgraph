@@ -5,6 +5,9 @@
     "m_Properties": [
         {
             "m_Id": "5f476698417e928caa297f2d2832c4db"
+        },
+        {
+            "m_Id": "bf5389b801504bf8a11d2dc3da4391e8"
         }
     ],
     "m_Keywords": [],
@@ -74,6 +77,9 @@
         },
         {
             "m_Id": "844cf8f79fa9469e878507ca0bef076c"
+        },
+        {
+            "m_Id": "2f11b845cb1042af9904c3da6a6ac9e2"
         }
     ],
     "m_GroupDatas": [],
@@ -203,6 +209,20 @@
                     "m_Id": "20735d7b5b324153848efc6db3d1b725"
                 },
                 "m_SlotId": 1944804113
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "2f11b845cb1042af9904c3da6a6ac9e2"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "4e6bbb4264884106b93b0f70a55e3d41"
+                },
+                "m_SlotId": 1191024350
             }
         },
         {
@@ -971,6 +991,55 @@
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "2f11b845cb1042af9904c3da6a6ac9e2",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 1781.5999755859375,
+            "y": -579.2000122070313,
+            "width": 140.800048828125,
+            "height": 33.5999755859375
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "3165ffd2230b49bbbb5260f63ddafc24"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "bf5389b801504bf8a11d2dc3da4391e8"
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
+    "m_ObjectId": "3165ffd2230b49bbbb5260f63ddafc24",
+    "m_Id": 0,
+    "m_DisplayName": "ToonRamp",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_BareResource": false
 }
 
 {
@@ -1868,6 +1937,9 @@
     "m_ChildObjectList": [
         {
             "m_Id": "5f476698417e928caa297f2d2832c4db"
+        },
+        {
+            "m_Id": "bf5389b801504bf8a11d2dc3da4391e8"
         }
     ]
 }
@@ -2564,6 +2636,36 @@
         "z": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "bf5389b801504bf8a11d2dc3da4391e8",
+    "m_Guid": {
+        "m_GuidSerialized": "e3217356-6670-460d-9970-7608f6106b48"
+    },
+    "m_Name": "ToonRamp",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "ToonRamp",
+    "m_DefaultReferenceName": "_ToonRamp",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"d32255d732aa75e4884b091614dadd53\",\"type\":3}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
 }
 
 {

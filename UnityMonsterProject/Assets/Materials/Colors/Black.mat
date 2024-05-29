@@ -81,6 +81,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CalculateLights_230df1714ef5b7859418e50ec1f1d0d6_ToonRamp_3845223753_Texture2D:
+        m_Texture: {fileID: 2800000, guid: d32255d732aa75e4884b091614dadd53, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CoatMaskMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -195,7 +199,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_DB940B55: 1.02
+    - Vector1_DB940B55: 2
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
