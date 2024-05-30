@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 7131628883329411515}
   - component: {fileID: 5270280404791216087}
   m_Layer: 0
-  m_Name: WheelFL.001
+  m_Name: WheelFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,13 +347,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490309201610547809}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.135, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalRotation: {x: 0.00000007961751, y: 0.21150286, z: -0.000000017229116, w: 0.9773774}
+  m_LocalPosition: {x: 1.147, y: -0.331, z: 1.639}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8092969437097380443}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 24.421, z: 0}
 --- !u!33 &7131628883329411515
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -361,7 +361,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490309201610547809}
-  m_Mesh: {fileID: 5259471283286604111, guid: 9e28911e1778884489f9b829f8498667, type: 3}
+  m_Mesh: {fileID: -2309305249758762421, guid: 702fc89f7d23d51418b73cf42a9cb4ba, type: 3}
 --- !u!23 &5270280404791216087
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -855,7 +855,7 @@ GameObject:
   - component: {fileID: 8365500051350037567}
   - component: {fileID: 8467517827459840449}
   m_Layer: 0
-  m_Name: WheelBR
+  m_Name: WheelRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -870,8 +870,8 @@ Transform:
   m_GameObject: {fileID: 4084895900546737632}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: -0.833, y: -0.339, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8092969437097380443}
@@ -883,7 +883,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4084895900546737632}
-  m_Mesh: {fileID: 8395138522862345990, guid: 9e28911e1778884489f9b829f8498667, type: 3}
+  m_Mesh: {fileID: -2309305249758762421, guid: 702fc89f7d23d51418b73cf42a9cb4ba, type: 3}
 --- !u!23 &8467517827459840449
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1378,7 +1378,7 @@ GameObject:
   - component: {fileID: 3638061013755621185}
   - component: {fileID: 7479970973428382733}
   m_Layer: 0
-  m_Name: WheelFL
+  m_Name: WheelFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1393,8 +1393,8 @@ Transform:
   m_GameObject: {fileID: 6838085642322648982}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.135, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: -1.147, y: -0.331, z: 1.639}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8092969437097380443}
@@ -1406,7 +1406,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6838085642322648982}
-  m_Mesh: {fileID: 2455296504637526242, guid: 9e28911e1778884489f9b829f8498667, type: 3}
+  m_Mesh: {fileID: -2309305249758762421, guid: 702fc89f7d23d51418b73cf42a9cb4ba, type: 3}
 --- !u!23 &7479970973428382733
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1544,7 +1544,7 @@ GameObject:
   - component: {fileID: 6900426070750602439}
   - component: {fileID: 6045988628911548592}
   m_Layer: 0
-  m_Name: WheelBL
+  m_Name: WheelRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1559,8 +1559,8 @@ Transform:
   m_GameObject: {fileID: 8168468119417246133}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 0.833, y: -0.339, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8092969437097380443}
@@ -1572,7 +1572,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8168468119417246133}
-  m_Mesh: {fileID: 6359149104616213019, guid: 9e28911e1778884489f9b829f8498667, type: 3}
+  m_Mesh: {fileID: -2309305249758762421, guid: 702fc89f7d23d51418b73cf42a9cb4ba, type: 3}
 --- !u!23 &6045988628911548592
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1773,6 +1773,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c4d2ec9bbc88c4bbb2eea7d14b89fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effectBoom: {fileID: 6251822943576028894, guid: 53383e9e01046e44d91fd028aa695cf3,
+    type: 3}
+  _obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  _wheelColliderFrontLeft: {fileID: 463943974571439509}
+  _wheelColliderFrontRight: {fileID: 4023719042651684472}
+  _wheelColliderRearLeft: {fileID: 9074628113653667416}
+  _wheelColliderRearRight: {fileID: 3904084252918045450}
+  _wheelVisualFrontLeft: {fileID: 1612752279368929115}
+  _wheelVisualFrontRight: {fileID: 3578539293352991403}
+  _wheelVisualRearLeft: {fileID: 2756077253146990739}
+  _wheelVisualRearRight: {fileID: 2797963782119892542}
+  _wheelSpeedMultiplier: 0.3
+  _steeringLimit: 30
 --- !u!54 &4899419224775459057
 Rigidbody:
   m_ObjectHideFlags: 0
