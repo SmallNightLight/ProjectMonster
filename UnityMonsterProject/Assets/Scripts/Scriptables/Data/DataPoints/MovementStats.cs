@@ -1,59 +1,94 @@
 using ScriptableArchitecture.Core;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace ScriptableArchitecture.Data
 {
     [System.Serializable]
-    public class MovementStats : IDataPoint
+    public class MovementStats : IDataPoint, IStats
     {
-        [Min(0.001f), Tooltip("Top speed attainable when moving forward.")]
+        [Min(0.001f), Tooltip("Top speed when moving forward")]
         public float TopSpeed;
 
-        [Tooltip("How quickly the kart reaches top speed.")]
+        [Tooltip("How quickly the kart reaches top speed")]
         public float Acceleration;
 
-        [Min(0.001f), Tooltip("Top speed attainable when moving backward.")]
+        [Min(0.001f), Tooltip("Top speed attainable when moving backward")]
         public float ReverseSpeed;
 
-        [Tooltip("How quickly the kart reaches top speed, when moving backward.")]
+        [Tooltip("How quickly the kart reaches top speed, when moving backward")]
         public float ReverseAcceleration;
 
-        [Tooltip("How quickly the kart starts accelerating from 0. A higher number means it accelerates faster sooner.")]
-        [Range(0.2f, 1)]
+        [Range(0.2f, 1f), Tooltip("How quickly the kart starts accelerating from 0. A higher number means it accelerates faster sooner")]
         public float AccelerationCurve;
 
-        [Tooltip("How quickly the kart slows down when the brake is applied.")]
+        [Tooltip("How quickly the kart slows down when the brake is applied")]
         public float Braking;
 
-        [Tooltip("How quickly the kart will reach a full stop when no inputs are made.")]
+        [Tooltip("How quickly the kart will reach a full stop when no inputs are made")]
         public float CoastingDrag;
 
-        [Range(0.0f, 1.0f)]
-        [Tooltip("The amount of side-to-side friction.")]
+        [Range(0f, 1f), Tooltip("The amount of side-to-side friction")]
         public float Grip;
 
-        [Tooltip("How tightly the kart can turn left or right.")]
+        [Tooltip("How tightly the kart can turn left or right")]
         public float Steer;
 
-        [Tooltip("Additional gravity for when the kart is in the air.")]
+        [Tooltip("Additional gravity for when the kart is in the air")]
         public float AddedGravity;
 
-        public static MovementStats operator +(MovementStats stats1, MovementStats stats2)
+
+        public void SetStats(IStats newStats)
         {
-            return new MovementStats
+            if (newStats is MovementStats)
             {
-                Acceleration = stats1.Acceleration + stats2.Acceleration,
-                AccelerationCurve = stats1.AccelerationCurve + stats2.AccelerationCurve,
-                Braking = stats1.Braking + stats2.Braking,
-                CoastingDrag = stats1.CoastingDrag + stats2.CoastingDrag,
-                AddedGravity = stats1.AddedGravity + stats2.AddedGravity,
-                Grip = stats1.Grip + stats2.Grip,
-                ReverseAcceleration = stats1.ReverseAcceleration + stats2.ReverseAcceleration,
-                ReverseSpeed = stats1.ReverseSpeed + stats2.ReverseSpeed,
-                TopSpeed = stats1.TopSpeed + stats2.TopSpeed,
-                Steer = stats1.Steer + stats2.Steer,
-            };
+                MovementStats stats = (MovementStats)newStats;
+
+                TopSpeed = stats.TopSpeed;
+                Acceleration = stats.Acceleration;
+                ReverseSpeed = stats.ReverseSpeed;
+                ReverseAcceleration = stats.ReverseAcceleration;
+                AccelerationCurve = stats.AccelerationCurve;
+                Braking = stats.Braking;
+                CoastingDrag = stats.CoastingDrag;
+                Grip = stats.Grip;
+                Steer = stats.Steer;
+                AddedGravity = stats.AddedGravity;
+
+                return;
+            }
+
+            Debug.LogWarning($"Cannot set {this} to {newStats}");
+        }
+
+        public void AddStats(IStats otherStats)
+        {
+            if (otherStats is MovementStats)
+            {
+                MovementStats stats = (MovementStats)otherStats;
+
+                TopSpeed += stats.TopSpeed;
+                Acceleration += stats.Acceleration;
+                ReverseSpeed += stats.ReverseSpeed;
+                ReverseAcceleration += stats.ReverseAcceleration;
+                AccelerationCurve += stats.AccelerationCurve;
+                Braking += stats.Braking;
+                CoastingDrag += stats.CoastingDrag;
+                Grip += stats.Grip;
+                Steer += stats.Steer;
+                AddedGravity += stats.AddedGravity;
+                
+                return;
+            }
+
+            Debug.LogWarning($"Cannot add {otherStats} to {this}");
+        }
+
+        public void ClampStats()
+        {
+            TopSpeed = Mathf.Max(TopSpeed, 0.001f);
+            ReverseSpeed = Mathf.Max(TopSpeed, 0.001f);
+            AccelerationCurve = Mathf.Clamp(AccelerationCurve, 0.2f, 1);
+            Grip = Mathf.Clamp(Grip, 0.0f, 1.0f);
         }
     }
 }

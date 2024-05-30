@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Assembly = System.Reflection.Assembly;
+using ScriptableArchitecture.Core;
 
 namespace ScriptableArchitecture.EditorScript
 {
@@ -73,7 +74,7 @@ namespace ScriptableArchitecture.EditorScript
 
                 EditorGUILayout.BeginHorizontal();
 
-                GUIWindowList("Scriptables", _variablesPath, "New Scriptable", _scrollPositionScriptable, 11);
+                GUIWindowList("Scriptables", _variablesPath, "New Scriptable", ref _scrollPositionScriptable, 11);
 
                 switch (_currentDataWindow)
                 {
@@ -95,7 +96,7 @@ namespace ScriptableArchitecture.EditorScript
 
                 EditorGUILayout.BeginHorizontal();
 
-                GUIWindowList("DataPoints", _dataPointsPath, "New Datapoint", _scrollPositionDataPoints);
+                GUIWindowList("DataPoints", _dataPointsPath, "New Datapoint", ref _scrollPositionDataPoints);
 
                 switch (_currentDataWindow)
                 {
@@ -120,7 +121,7 @@ namespace ScriptableArchitecture.EditorScript
             }
         }
 
-        private void GUIWindowList(string labelName, string folderPath, string createrButtonName, Vector2 scrollPosition, int fileNameExclude = 3)
+        private void GUIWindowList(string labelName, string folderPath, string createrButtonName, ref Vector2 scrollPosition, int fileNameExclude = 3)
         {
             EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.MaxWidth(215));
             EditorGUILayout.Space();
@@ -548,31 +549,6 @@ namespace ScriptableArchitecture.Data
         {
             public string propertyName;
             public string propertyType;
-        }
-    }
-
-    public static class StringExtensions
-    {
-        public static string RemoveUnderscore(this string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return input;
-
-            return input.TrimStart('_');
-        }
-
-        public static string CapitalizeFirstLetter(this string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return input;
-
-            return char.ToUpper(input[0]) + input.Substring(1);
-        }
-
-        public static string RemoveAfterDot(this string input)
-        {
-            int dotIndex = input.IndexOf('.');
-            return (dotIndex != -1) ? input.Substring(0, dotIndex) : input;
         }
     }
 }

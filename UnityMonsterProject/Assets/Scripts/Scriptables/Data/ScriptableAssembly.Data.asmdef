@@ -3,9 +3,7 @@
     "rootNamespace": "",
     "references": [
         "ScriptableAssembly.Core",
-        "Unity.TextMeshPro",
-        "PhotonUnityNetworking",
-        "AYellowpaper.SerializeInterfaces"
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

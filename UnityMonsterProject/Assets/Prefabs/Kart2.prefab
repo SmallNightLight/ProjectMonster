@@ -1624,7 +1624,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5963167512563114503}
+  - component: {fileID: 6757994081088227423}
   - component: {fileID: 7221716665884278461}
+  - component: {fileID: 3180446207861544887}
+  - component: {fileID: 8187911284204335228}
   - component: {fileID: 4899419224775459057}
   m_Layer: 0
   m_Name: Kart2
@@ -1651,6 +1654,27 @@ Transform:
   - {fileID: 5347395898893514231}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -271.31702, z: 0}
+--- !u!114 &6757994081088227423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270729986525616552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c823f0b72190445a2b9cc41d5f8aa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: ccbc89e3f195ea043b1984abcd7e5c19, type: 2}
+    _constant:
+      Player: 0
+      InputData:
+        IsAccelerating: 0
+        IsBraking: 0
+        SteerInput: 0
 --- !u!114 &7221716665884278461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,31 +1687,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1704c176259187240af4683700423a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input:
-    _isVariable: 1
-    _variable: {fileID: 11400000, guid: ccbc89e3f195ea043b1984abcd7e5c19, type: 2}
-    _constant:
-      Player: 0
-      InputData:
-        IsAccelerating: 0
-        IsBraking: 0
-        SteerInput: 0
-  _baseStats:
+  _movementStats:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: 9b42caaeb0530c349b6ad19a728555d7, type: 2}
     _constant:
-      TopSpeed: 40
-      Acceleration: 15
-      ReverseSpeed: 10
-      ReverseAcceleration: 5
-      AccelerationCurve: 0.5
-      Braking: 16
-      CoastingDrag: 7
-      Grip: 0.95
-      Steer: 4
-      AddedGravity: 3
-  _centerOfMass: {fileID: 5347395898893514231}
-  AirborneReorientationCoefficient: 1
+      TopSpeed: 0
+      Acceleration: 0
+      ReverseSpeed: 0
+      ReverseAcceleration: 0
+      AccelerationCurve: 0
+      Braking: 0
+      CoastingDrag: 0
+      Grip: 0
+      Steer: 0
+      AddedGravity: 0
   _driftStats:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: 848176bc011049545bc5ff59e9cf1fae, type: 2}
@@ -1698,6 +1711,27 @@ MonoBehaviour:
       MinSpeedPercentToFinishDrift: 0.8
       DriftControl: 10
       DriftDampening: 10
+  _suspensionStats:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 90f913463ee840e42b820d76d8f3ee7f, type: 2}
+    _constant:
+      SuspensionHeight: 0.2
+      SuspensionSpring: 20000
+      SuspensionDamp: 500
+      WheelsPositionVerticalOffset: 0
+  _physicsStats:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 5c026d2b59f615647addb8ad99b8bd7e, type: 2}
+    _constant:
+      AirborneReorientationCoefficient: 1
+      GroundLayers:
+        serializedVersion: 2
+        m_Bits: 0
+  _centerOfMass: {fileID: 5347395898893514231}
+  _wheelColliderFrontLeft: {fileID: 463943974571439509}
+  _wheelColliderFrontRight: {fileID: 4023719042651684472}
+  _wheelColliderRearLeft: {fileID: 9074628113653667416}
+  _wheelColliderRearRight: {fileID: 3904084252918045450}
   _enableParticles: 0
   _driftSparkVFX: {fileID: 0}
   _driftSparkHorizontalOffset: 0.1
@@ -1708,17 +1742,37 @@ MonoBehaviour:
   _jumpVFX: {fileID: 0}
   _nozzleVFX: {fileID: 0}
   _nozzles: []
-  _suspensionHeight: 0.1
-  _suspensionSpring: 70000
-  _suspensionDamp: 500
-  _wheelsPositionVerticalOffset: 0.05
-  _wheelColliderFrontLeft: {fileID: 463943974571439509}
-  _wheelColliderFrontRight: {fileID: 4023719042651684472}
-  _wheelColliderRearLeft: {fileID: 9074628113653667416}
-  _wheelColliderRearRight: {fileID: 3904084252918045450}
-  _groundLayers:
-    serializedVersion: 2
-    m_Bits: 1
+--- !u!114 &3180446207861544887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270729986525616552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f596732f8544b0446b3dfa3d3fe7037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainAbility:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 3120cea0eef10814b90c69bb8c1c1c68, type: 2}
+    _constant:
+      AdditionalStats: []
+      Duration: 0
+      WorldEffects: []
+--- !u!114 &8187911284204335228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270729986525616552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c4d2ec9bbc88c4bbb2eea7d14b89fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &4899419224775459057
 Rigidbody:
   m_ObjectHideFlags: 0
