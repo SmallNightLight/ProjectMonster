@@ -1,5 +1,4 @@
 using ScriptableArchitecture.Data;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 [RequireComponent(typeof(KartBase))]
