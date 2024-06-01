@@ -1786,8 +1786,14 @@ MonoBehaviour:
   _wheelVisualFrontRight: {fileID: 3578539293352991403}
   _wheelVisualRearLeft: {fileID: 2756077253146990739}
   _wheelVisualRearRight: {fileID: 2797963782119892542}
-  _wheelSpeedMultiplier: 0.3
-  _steeringLimit: 30
+  _steeringLimit:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 40
+  _steeringSpeed:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 10
 --- !u!54 &4899419224775459057
 Rigidbody:
   m_ObjectHideFlags: 0

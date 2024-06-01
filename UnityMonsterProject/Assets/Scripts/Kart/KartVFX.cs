@@ -18,8 +18,8 @@ public class KartVFX : MonoBehaviour
     [SerializeField] private Transform _wheelVisualRearLeft;
     [SerializeField] private Transform _wheelVisualRearRight;
 
-    [SerializeField] private float _wheelSpeedMultiplier = 10;
-    [SerializeField] private float _steeringLimit = 30f;
+    [SerializeField] private FloatReference _steeringLimit;
+    [SerializeField] private FloatReference _steeringSpeed;
 
     private KartBase _base;
 
@@ -37,32 +37,18 @@ public class KartVFX : MonoBehaviour
 
     private void UpdateWheels()
     {
-        //Set Speed
-        //_wheelVisualFrontLeft.Rotate(Mathf.Clamp(_wheelColliderFrontLeft.rpm / 60 * 360, -_maxWheelRotationSpeed, _maxWheelRotationSpeed) * Time.deltaTime, 0, 0);
-        //_wheelVisualFrontRight.Rotate(Mathf.Clamp(_wheelColliderFrontRight.rpm / 60 * 360, -_maxWheelRotationSpeed, _maxWheelRotationSpeed) * Time.deltaTime, 0, 0);
-        //_wheelVisualRearLeft.Rotate(Mathf.Clamp(_wheelColliderRearLeft.rpm / 60 * 360, -_maxWheelRotationSpeed, _maxWheelRotationSpeed) * Time.deltaTime, 0, 0);
-        //_wheelVisualRearRight.Rotate(Mathf.Clamp(_wheelColliderRearRight.rpm / 60 * 360, -_maxWheelRotationSpeed, _maxWheelRotationSpeed) * Time.deltaTime, 0, 0);
+        float targetSteering = _base.Input.SteerInput * _steeringLimit.Value;
+        _currentSteering = Mathf.Lerp(_currentSteering, targetSteering, Time.deltaTime * _steeringSpeed.Value);
 
-        // Rotate the wheels based on their RPM for spinning
-        _wheelVisualFrontLeft.Rotate(_wheelColliderFrontLeft.rpm / 60 * 360 * _wheelSpeedMultiplier * Time.deltaTime, 0, 0);
-        _wheelVisualFrontRight.Rotate(_wheelColliderFrontRight.rpm / 60 * 360 * _wheelSpeedMultiplier * Time.deltaTime, 0, 0);
-        _wheelVisualRearLeft.Rotate(_wheelColliderRearLeft.rpm / 60 * 360 * _wheelSpeedMultiplier * Time.deltaTime, 0, 0);
-        _wheelVisualRearRight.Rotate(_wheelColliderRearRight.rpm / 60 * 360 * _wheelSpeedMultiplier * Time.deltaTime, 0, 0);
+        _wheelColliderFrontLeft.GetWorldPose(out Vector3 pos, out Quaternion speedFrontLeft);
+        _wheelColliderFrontLeft.GetWorldPose(out pos, out Quaternion speedFrontRight);
+        _wheelColliderFrontLeft.GetWorldPose(out pos, out Quaternion speedRearLeft);
+        _wheelColliderFrontLeft.GetWorldPose(out pos, out Quaternion speedRearRight);
 
-        float steeringInput = _base.Input.SteerInput;
-        float targetSteering = steeringInput * _steeringLimit;
-
-        // Calculate the target steering rotation in local space
-        Quaternion targetSteeringRotation = Quaternion.Euler(0, targetSteering, 0);
-
-        // Smoothly interpolate the current steering rotation towards the target steering rotation
-        _wheelVisualFrontLeft.localRotation = Quaternion.Lerp(_wheelVisualFrontLeft.localRotation, targetSteeringRotation, Time.deltaTime * 4f);
-        _wheelVisualFrontRight.localRotation = Quaternion.Lerp(_wheelVisualFrontRight.localRotation, targetSteeringRotation, Time.deltaTime * 4f);
-
-        // Apply the spinning rotation on top of the steering rotation
-        _wheelVisualFrontLeft.localRotation *= Quaternion.Euler(_wheelColliderFrontLeft.rpm / 60 * 360 * _wheelSpeedMultiplier * Time.deltaTime, 0, 0);
-        _wheelVisualFrontRight.localRotation *= Quaternion.Euler(_wheelColliderFrontRight.rpm / 60 * 360 * _wheelSpeedMultiplier * Time.deltaTime, 0, 0);
-
+        _wheelVisualFrontLeft.localRotation = Quaternion.Euler(new Vector3(speedFrontLeft.eulerAngles.x, _currentSteering, 0));
+        _wheelVisualFrontRight.localRotation = Quaternion.Euler(new Vector3(speedFrontRight.eulerAngles.x, _currentSteering, 0));
+        _wheelVisualRearRight.localRotation = Quaternion.Euler(new Vector3(speedRearLeft.eulerAngles.x, 0, 0));
+        _wheelVisualRearLeft.localRotation = Quaternion.Euler(new Vector3(speedRearRight.eulerAngles.x, 0, 0));
     }
 
     private void OnCollisionEnter(Collision collision)
