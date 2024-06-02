@@ -6890,6 +6890,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962652027}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1008398743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8270729986525616552, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1282545136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1103418000
 GameObject:
   m_ObjectHideFlags: 0
@@ -7440,6 +7446,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7221716665884278461, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _finalPhysicsStats.GroundLayers.m_Bits
+      value: 8179
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _steeringSpeed._variable
+      value: 
+      objectReference: {fileID: 11400000, guid: e75a7520dc76fc448827e8b2695b4526,
+        type: 2}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _steeringSpeed._instancer
+      value: 
+      objectReference: {fileID: 1282545145}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _steeringLimit._isInstance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _steeringLimit._isVariable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _steeringSpeed._isInstance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _steeringSpeed._isVariable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8270729986525616552, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_Name
@@ -7448,7 +7490,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8270729986525616552, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1282545145}
   m_SourcePrefab: {fileID: 100100000, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
 --- !u!4 &1282545137 stripped
 Transform:
@@ -7462,6 +7508,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1282545136}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1282545145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008398743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92581d557022c94dbec3b310f98df2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1326640203
 GameObject:
   m_ObjectHideFlags: 0
@@ -9111,7 +9169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 177638, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 179256, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_IsActive

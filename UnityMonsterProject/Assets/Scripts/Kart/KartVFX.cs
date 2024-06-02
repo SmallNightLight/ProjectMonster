@@ -19,7 +19,7 @@ public class KartVFX : MonoBehaviour
     [SerializeField] private Transform _wheelVisualRearRight;
 
     [SerializeField] private FloatReference _steeringLimit;
-    [SerializeField] private FloatReference _steeringSpeed;
+    [SerializeField] private FloatReference _steeringSpeed = default(FloatReference);
 
     private KartBase _base;
 
@@ -28,6 +28,9 @@ public class KartVFX : MonoBehaviour
     private void Start()
     {
         _base = GetComponent<KartBase>();
+
+        //_steeringLimit.InitializeInstance();
+        //_steeringSpeed.InitializeInstance();
     }
 
     private void Update()

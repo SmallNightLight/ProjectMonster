@@ -11,11 +11,14 @@ namespace ScriptableArchitecture.Core
     /// Implements functions from the variable for the variable, event and runtimeset
     /// </summary>
     [Serializable]
-    public class Reference<T, TVariable> where TVariable : Variable<T>
+    public class Reference<T, TVariable, TInstancer> where TVariable : Variable<T> where TInstancer : Instancer<Variable<T>>
     {
         [SerializeField] protected bool _isVariable;
         [SerializeField] protected TVariable _variable;
         [SerializeField] protected T _constant;
+
+        [SerializeField] protected bool _isInstance;
+        [SerializeField] protected TInstancer _instancer;
 
         //Variable
 
@@ -28,6 +31,8 @@ namespace ScriptableArchitecture.Core
             {
                 if (_isVariable && _variable != null)
                     return _variable.Value;
+                else if (_isInstance && _instancer != null && _instancer.Instance != null)
+                    return _instancer.Instance.Value;
                 else
                     return _constant;
             }
@@ -35,6 +40,8 @@ namespace ScriptableArchitecture.Core
             {
                 if (_isVariable && _variable != null)
                     _variable.Value = value;
+                else if (_isInstance && _instancer != null && _instancer.Instance != null)
+                    _instancer.Instance.Value = value;
                 else
                 {
                     _constant = value;
@@ -42,6 +49,17 @@ namespace ScriptableArchitecture.Core
                 }
             }
         }
+
+        //public Reference CreateCopy()
+        //{
+        //    Reference<T, TVariable> copy = (Reference<T, TVariable>)Activator.CreateInstance(GetType());
+        //    copy._isVariable = _isVariable;
+        //    copy._variable = _variable;
+        //    copy._constant = _constant;
+
+
+        //    return copy;
+        //}
 
         /// <summary>
         /// Use this function to override the variable

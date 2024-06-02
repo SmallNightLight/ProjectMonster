@@ -10,6 +10,7 @@ namespace ScriptableArchitecture.EditorScript
     public class ReferenceDrawer : PropertyDrawer
     {
         private bool _isVariable;
+        private bool _isInstance;
 
         private void OnGUIMain(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -18,8 +19,13 @@ namespace ScriptableArchitecture.EditorScript
             SerializedProperty isVariableProperty = property.FindPropertyRelative("_isVariable");
             SerializedProperty variableProperty = property.FindPropertyRelative("_variable");
             SerializedProperty constantProperty = property.FindPropertyRelative("_constant");
+            SerializedProperty isInstanceProperty = property.FindPropertyRelative("_isInstance");
+            SerializedProperty baseVariableProperty = property.FindPropertyRelative("_instanceBaseVariable");
+            SerializedProperty instanceScopeProperty = property.FindPropertyRelative("_instanceScope");
+            SerializedProperty instancerProperty = property.FindPropertyRelative("_instancer");
 
             _isVariable = isVariableProperty.boolValue;
+            _isInstance = isInstanceProperty.boolValue;
 
             if (_isVariable)
             {
@@ -35,6 +41,16 @@ namespace ScriptableArchitecture.EditorScript
                     EditorGUI.PropertyField(valueRect, variableProperty, GUIContent.none);
                 }
             }
+            else if (_isInstance)
+            {
+                Rect variableRect = new Rect(position.x, position.y, position.width - 22f, EditorGUIUtility.singleLineHeight);
+                Rect variableRect2 = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width - 22f, EditorGUIUtility.singleLineHeight);
+                
+                EditorGUI.PropertyField(variableRect, instanceScopeProperty, new GUIContent("Scope"));
+                EditorGUI.PropertyField(variableRect2, baseVariableProperty, label);
+            
+                
+            }
             else
             {
                 Rect valueRect = new Rect(0, 0, position.width - 20f, position.height);
@@ -48,16 +64,31 @@ namespace ScriptableArchitecture.EditorScript
             {
                 //Display a popup menu
                 GenericMenu menu = new GenericMenu();
-                menu.AddItem(new GUIContent("Constant"), !_isVariable, () =>
+                menu.AddItem(new GUIContent("Constant"), !_isVariable && !_isInstance, () =>
                 {
                     isVariableProperty.boolValue = false;
+                    isInstanceProperty.boolValue = false;
                     property.serializedObject.ApplyModifiedProperties();
                 });
 
                 menu.AddItem(new GUIContent("Variable"), _isVariable, () =>
                 {
                     isVariableProperty.boolValue = true;
+                    isInstanceProperty.boolValue = false;
                     property.serializedObject.ApplyModifiedProperties();
+                });
+
+                menu.AddItem(new GUIContent("Instance"), _isInstance, () =>
+                {
+                    isVariableProperty.boolValue = false;
+                    isInstanceProperty.boolValue = true;
+                    property.serializedObject.ApplyModifiedProperties();
+
+                    //TEST
+                    if (instancerProperty != null)
+                    {
+                        (instancerProperty.objectReferenceValue as Instancer)._ref = property.boxedValue as Reference;
+                    }
                 });
 
                 menu.ShowAsContext();
@@ -69,9 +100,12 @@ namespace ScriptableArchitecture.EditorScript
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             SerializedProperty isVariableProperty = property.FindPropertyRelative("_isVariable");
+            SerializedProperty isInstanceProperty = property.FindPropertyRelative("_isInstance");
 
             if (isVariableProperty.boolValue)
                 return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_variable"), true);
+            else if (isInstanceProperty.boolValue)
+                return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_instanceScope")) + EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_instanceBaseVariable"));
             else
                 return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_constant"), true);
         }

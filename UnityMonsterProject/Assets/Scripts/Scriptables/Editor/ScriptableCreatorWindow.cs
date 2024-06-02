@@ -39,6 +39,7 @@ namespace ScriptableArchitecture.EditorScript
         const string _gameEventsPath = "Assets/Scripts/Scriptables/Data/GameEvents";
         const string _referencesPath = "Assets/Scripts/Scriptables/Data/References";
         const string _variablesPath = "Assets/Scripts/Scriptables/Data/Variables";
+        const string _instancerPath = "Assets/Scripts/Scriptables/Data/Instancers";
 
         #endregion
 
@@ -326,6 +327,7 @@ namespace ScriptableArchitecture.EditorScript
             CreateScript(_variablesPath, scriptName + "Variable", GetVariableScript(_scriptableType, scriptName, baseScript));
             CreateScript(_referencesPath, scriptName + "Reference", GetReferenceScript(_scriptableType, scriptName, baseScript));
             CreateScript(_eventListenersPath, scriptName + "GameEventListener", GetGameEventListenerScript(_scriptableType, scriptName, baseScript));
+            CreateScript(_instancerPath, scriptName + "Instancer", GetInstancerScript(_scriptableType, scriptName, baseScript));
 
             AssetDatabase.Refresh();
 
@@ -541,6 +543,24 @@ namespace ScriptableArchitecture.Data
         [SerializeField] private {scriptName}Variable _event;
 
         public override IGameEvent<{type}> GetGameEventT() => _event;
+    }}
+}}";
+        }
+
+        private string GetInstancerScript(string type, string scriptName, string baseScript)
+        {
+            if (baseScript.Contains("using ScriptableArchitecture.Data;"))
+                baseScript = "";
+
+            if (baseScript != "")
+                baseScript += "\n";
+
+            return baseScript + $@"using ScriptableArchitecture.Core;
+
+namespace ScriptableArchitecture.Data
+{{
+    public class {scriptName}Instancer : Instancer<{scriptName}Variable>
+    {{
     }}
 }}";
         }

@@ -1629,6 +1629,7 @@ GameObject:
   - component: {fileID: 3180446207861544887}
   - component: {fileID: 8187911284204335228}
   - component: {fileID: 4899419224775459057}
+  - component: {fileID: 8450786951366323574}
   m_Layer: 0
   m_Name: Kart2
   m_TagString: Untagged
@@ -1675,6 +1676,9 @@ MonoBehaviour:
         IsAccelerating: 0
         IsBraking: 0
         SteerInput: 0
+    _isInstance: 0
+    _instanceBaseVariable: {fileID: 0}
+    _instanceScope: {fileID: 0}
 --- !u!114 &7221716665884278461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1761,6 +1765,9 @@ MonoBehaviour:
       AdditionalStats: []
       Duration: 0
       WorldEffects: []
+    _isInstance: 0
+    _instanceBaseVariable: {fileID: 0}
+    _instanceScope: {fileID: 0}
 --- !u!114 &8187911284204335228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1790,10 +1797,17 @@ MonoBehaviour:
     _isVariable: 0
     _variable: {fileID: 0}
     _constant: 40
+    _isInstance: 0
+    _instanceBaseVariable: {fileID: 0}
+    _instanceScope: {fileID: 0}
   _steeringSpeed:
     _isVariable: 0
     _variable: {fileID: 0}
     _constant: 10
+    _isInstance: 1
+    _instanceBaseVariable: {fileID: 11400000, guid: e75a7520dc76fc448827e8b2695b4526,
+      type: 2}
+    _instanceScope: {fileID: 8450786951366323574}
 --- !u!54 &4899419224775459057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1821,6 +1835,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8450786951366323574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270729986525616552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15ca96c71abb2342bd499f74682579a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8678727875020985089
 GameObject:
   m_ObjectHideFlags: 0
