@@ -11,7 +11,7 @@ namespace ScriptableArchitecture.Core
     /// Implements functions from the variable for the variable, event and runtimeset
     /// </summary>
     [Serializable]
-    public class Reference<T, TVariable, TInstancer> where TVariable : Variable<T> where TInstancer : Instancer<Variable<T>>
+    public class Reference<T, TVariable, TInstancer> where TVariable : Variable<T> where TInstancer : Instancer<TVariable>
     {
         [SerializeField] protected bool _isVariable;
         [SerializeField] protected TVariable _variable;

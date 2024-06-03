@@ -1,4 +1,5 @@
 using ScriptableArchitecture.Core;
+using ScriptableArchitecture.Data;
 using System;
 using System.Reflection;
 using UnityEditor;
@@ -6,11 +7,13 @@ using UnityEngine;
 
 namespace ScriptableArchitecture.EditorScript
 {
-    [CustomPropertyDrawer(typeof(Reference<,>), true)]
+    [CustomPropertyDrawer(typeof(Reference<,,>), true)]
     public class ReferenceDrawer : PropertyDrawer
     {
         private bool _isVariable;
         private bool _isInstance;
+
+        private bool _foldoutOpen;
 
         private void OnGUIMain(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -19,9 +22,8 @@ namespace ScriptableArchitecture.EditorScript
             SerializedProperty isVariableProperty = property.FindPropertyRelative("_isVariable");
             SerializedProperty variableProperty = property.FindPropertyRelative("_variable");
             SerializedProperty constantProperty = property.FindPropertyRelative("_constant");
+            
             SerializedProperty isInstanceProperty = property.FindPropertyRelative("_isInstance");
-            SerializedProperty baseVariableProperty = property.FindPropertyRelative("_instanceBaseVariable");
-            SerializedProperty instanceScopeProperty = property.FindPropertyRelative("_instanceScope");
             SerializedProperty instancerProperty = property.FindPropertyRelative("_instancer");
 
             _isVariable = isVariableProperty.boolValue;
@@ -44,12 +46,21 @@ namespace ScriptableArchitecture.EditorScript
             else if (_isInstance)
             {
                 Rect variableRect = new Rect(position.x, position.y, position.width - 22f, EditorGUIUtility.singleLineHeight);
-                Rect variableRect2 = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width - 22f, EditorGUIUtility.singleLineHeight);
                 
-                EditorGUI.PropertyField(variableRect, instanceScopeProperty, new GUIContent("Scope"));
-                EditorGUI.PropertyField(variableRect2, baseVariableProperty, label);
-            
-                
+
+                if (instancerProperty.boxedValue == null)
+                {
+                    //Create new component and add it as a reference
+                    Debug.Log($"Created new instancer component for {property.displayName} at {property.serializedObject.targetObject}");
+                    
+                    if (property.serializedObject != null && property.serializedObject.targetObject != null && property.serializedObject.targetObject is Component)
+                    {
+                        Instancer instancer = (property.serializedObject.targetObject as Component).gameObject.AddComponent<FloatInstancer>();
+                        instancerProperty.boxedValue = instancer;
+                    }
+                }
+
+                EditorGUI.PropertyField(variableRect, instancerProperty, label);
             }
             else
             {
@@ -83,12 +94,6 @@ namespace ScriptableArchitecture.EditorScript
                     isVariableProperty.boolValue = false;
                     isInstanceProperty.boolValue = true;
                     property.serializedObject.ApplyModifiedProperties();
-
-                    //TEST
-                    if (instancerProperty != null)
-                    {
-                        (instancerProperty.objectReferenceValue as Instancer)._ref = property.boxedValue as Reference;
-                    }
                 });
 
                 menu.ShowAsContext();
@@ -105,7 +110,7 @@ namespace ScriptableArchitecture.EditorScript
             if (isVariableProperty.boolValue)
                 return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_variable"), true);
             else if (isInstanceProperty.boolValue)
-                return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_instanceScope")) + EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_instanceBaseVariable"));
+                return EditorGUIUtility.singleLineHeight;
             else
                 return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_constant"), true);
         }

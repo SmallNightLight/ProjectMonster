@@ -521,7 +521,7 @@ namespace ScriptableArchitecture.Data
 namespace ScriptableArchitecture.Data
 {{
     [System.Serializable]
-    public class {scriptName}Reference : Reference<{type}, {scriptName}Variable>
+    public class {scriptName}Reference : Reference<{type}, {scriptName}Variable, {scriptName}Instancer>
     {{
     }}
 }}";

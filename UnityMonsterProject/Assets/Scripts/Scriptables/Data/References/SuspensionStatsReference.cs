@@ -1,5 +1,3 @@
-using ScriptableArchitecture.Core;
-
 namespace ScriptableArchitecture.Data
 {
     [System.Serializable]

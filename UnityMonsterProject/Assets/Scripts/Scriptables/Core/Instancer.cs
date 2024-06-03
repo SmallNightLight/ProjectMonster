@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ScriptableArchitecture.Core
 {
     [DefaultExecutionOrder(-2000)]
-    public class Instancer<TVariable> : ReferenceInstancer where TVariable : Variable
+    public class Instancer<TVariable> : Instancer where TVariable : Variable
     {
         [SerializeField] protected InstanceScope _instanceScope;
         [SerializeField] protected TVariable _baseVariable;
@@ -41,5 +41,5 @@ namespace ScriptableArchitecture.Core
         }
     }
 
-    public class ReferenceInstancer : MonoBehaviour { }
+    public class Instancer : MonoBehaviour { }
 }
