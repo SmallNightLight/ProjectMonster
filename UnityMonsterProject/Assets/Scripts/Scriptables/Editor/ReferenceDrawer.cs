@@ -1,4 +1,5 @@
 using ScriptableArchitecture.Core;
+using ScriptableArchitecture.Data;
 using System;
 using System.Reflection;
 using UnityEditor;
@@ -6,10 +7,13 @@ using UnityEngine;
 
 namespace ScriptableArchitecture.EditorScript
 {
-    [CustomPropertyDrawer(typeof(Reference<,>), true)]
+    [CustomPropertyDrawer(typeof(Reference<,,>), true)]
     public class ReferenceDrawer : PropertyDrawer
     {
         private bool _isVariable;
+        private bool _isInstance;
+
+        private bool _foldoutOpen;
 
         private void OnGUIMain(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -18,8 +22,12 @@ namespace ScriptableArchitecture.EditorScript
             SerializedProperty isVariableProperty = property.FindPropertyRelative("_isVariable");
             SerializedProperty variableProperty = property.FindPropertyRelative("_variable");
             SerializedProperty constantProperty = property.FindPropertyRelative("_constant");
+            
+            SerializedProperty isInstanceProperty = property.FindPropertyRelative("_isInstance");
+            SerializedProperty instancerProperty = property.FindPropertyRelative("_instancer");
 
             _isVariable = isVariableProperty.boolValue;
+            _isInstance = isInstanceProperty.boolValue;
 
             if (_isVariable)
             {
@@ -35,6 +43,25 @@ namespace ScriptableArchitecture.EditorScript
                     EditorGUI.PropertyField(valueRect, variableProperty, GUIContent.none);
                 }
             }
+            else if (_isInstance)
+            {
+                Rect variableRect = new Rect(position.x, position.y, position.width - 22f, EditorGUIUtility.singleLineHeight);
+                
+
+                if (instancerProperty.boxedValue == null)
+                {
+                    //Create new component and add it as a reference
+                    Debug.Log($"Created new instancer component for {property.displayName} at {property.serializedObject.targetObject}");
+                    
+                    if (property.serializedObject != null && property.serializedObject.targetObject != null && property.serializedObject.targetObject is Component)
+                    {
+                        Instancer instancer = (property.serializedObject.targetObject as Component).gameObject.AddComponent<FloatInstancer>();
+                        instancerProperty.boxedValue = instancer;
+                    }
+                }
+
+                EditorGUI.PropertyField(variableRect, instancerProperty, label);
+            }
             else
             {
                 Rect valueRect = new Rect(0, 0, position.width - 20f, position.height);
@@ -48,15 +75,24 @@ namespace ScriptableArchitecture.EditorScript
             {
                 //Display a popup menu
                 GenericMenu menu = new GenericMenu();
-                menu.AddItem(new GUIContent("Constant"), !_isVariable, () =>
+                menu.AddItem(new GUIContent("Constant"), !_isVariable && !_isInstance, () =>
                 {
                     isVariableProperty.boolValue = false;
+                    isInstanceProperty.boolValue = false;
                     property.serializedObject.ApplyModifiedProperties();
                 });
 
                 menu.AddItem(new GUIContent("Variable"), _isVariable, () =>
                 {
                     isVariableProperty.boolValue = true;
+                    isInstanceProperty.boolValue = false;
+                    property.serializedObject.ApplyModifiedProperties();
+                });
+
+                menu.AddItem(new GUIContent("Instance"), _isInstance, () =>
+                {
+                    isVariableProperty.boolValue = false;
+                    isInstanceProperty.boolValue = true;
                     property.serializedObject.ApplyModifiedProperties();
                 });
 
@@ -69,9 +105,12 @@ namespace ScriptableArchitecture.EditorScript
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             SerializedProperty isVariableProperty = property.FindPropertyRelative("_isVariable");
+            SerializedProperty isInstanceProperty = property.FindPropertyRelative("_isInstance");
 
             if (isVariableProperty.boolValue)
                 return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_variable"), true);
+            else if (isInstanceProperty.boolValue)
+                return EditorGUIUtility.singleLineHeight;
             else
                 return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_constant"), true);
         }

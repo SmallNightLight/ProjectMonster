@@ -5,7 +5,7 @@ using ScriptableArchitecture.Core;
 namespace ScriptableArchitecture.Data
 {
     [System.Serializable]
-    public class AnimationCurveReference : Reference<AnimationCurve, AnimationCurveVariable>
+    public class AnimationCurveReference : Reference<AnimationCurve, AnimationCurveVariable, AnimationCurveInstancer>
     {
     }
 }

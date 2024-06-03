@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Assembly = System.Reflection.Assembly;
+using ScriptableArchitecture.Core;
 
 namespace ScriptableArchitecture.EditorScript
 {
@@ -38,6 +39,7 @@ namespace ScriptableArchitecture.EditorScript
         const string _gameEventsPath = "Assets/Scripts/Scriptables/Data/GameEvents";
         const string _referencesPath = "Assets/Scripts/Scriptables/Data/References";
         const string _variablesPath = "Assets/Scripts/Scriptables/Data/Variables";
+        const string _instancerPath = "Assets/Scripts/Scriptables/Data/Instancers";
 
         #endregion
 
@@ -73,7 +75,7 @@ namespace ScriptableArchitecture.EditorScript
 
                 EditorGUILayout.BeginHorizontal();
 
-                GUIWindowList("Scriptables", _variablesPath, "New Scriptable", _scrollPositionScriptable, 11);
+                GUIWindowList("Scriptables", _variablesPath, "New Scriptable", ref _scrollPositionScriptable, 11);
 
                 switch (_currentDataWindow)
                 {
@@ -95,7 +97,7 @@ namespace ScriptableArchitecture.EditorScript
 
                 EditorGUILayout.BeginHorizontal();
 
-                GUIWindowList("DataPoints", _dataPointsPath, "New Datapoint", _scrollPositionDataPoints);
+                GUIWindowList("DataPoints", _dataPointsPath, "New Datapoint", ref _scrollPositionDataPoints);
 
                 switch (_currentDataWindow)
                 {
@@ -120,7 +122,7 @@ namespace ScriptableArchitecture.EditorScript
             }
         }
 
-        private void GUIWindowList(string labelName, string folderPath, string createrButtonName, Vector2 scrollPosition, int fileNameExclude = 3)
+        private void GUIWindowList(string labelName, string folderPath, string createrButtonName, ref Vector2 scrollPosition, int fileNameExclude = 3)
         {
             EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.MaxWidth(215));
             EditorGUILayout.Space();
@@ -325,6 +327,7 @@ namespace ScriptableArchitecture.EditorScript
             CreateScript(_variablesPath, scriptName + "Variable", GetVariableScript(_scriptableType, scriptName, baseScript));
             CreateScript(_referencesPath, scriptName + "Reference", GetReferenceScript(_scriptableType, scriptName, baseScript));
             CreateScript(_eventListenersPath, scriptName + "GameEventListener", GetGameEventListenerScript(_scriptableType, scriptName, baseScript));
+            CreateScript(_instancerPath, scriptName + "Instancer", GetInstancerScript(_scriptableType, scriptName, baseScript));
 
             AssetDatabase.Refresh();
 
@@ -518,7 +521,7 @@ namespace ScriptableArchitecture.Data
 namespace ScriptableArchitecture.Data
 {{
     [System.Serializable]
-    public class {scriptName}Reference : Reference<{type}, {scriptName}Variable>
+    public class {scriptName}Reference : Reference<{type}, {scriptName}Variable, {scriptName}Instancer>
     {{
     }}
 }}";
@@ -544,35 +547,28 @@ namespace ScriptableArchitecture.Data
 }}";
         }
 
+        private string GetInstancerScript(string type, string scriptName, string baseScript)
+        {
+            if (baseScript.Contains("using ScriptableArchitecture.Data;"))
+                baseScript = "";
+
+            if (baseScript != "")
+                baseScript += "\n";
+
+            return baseScript + $@"using ScriptableArchitecture.Core;
+
+namespace ScriptableArchitecture.Data
+{{
+    public class {scriptName}Instancer : Instancer<{scriptName}Variable>
+    {{
+    }}
+}}";
+        }
+
         private class PropertyData
         {
             public string propertyName;
             public string propertyType;
-        }
-    }
-
-    public static class StringExtensions
-    {
-        public static string RemoveUnderscore(this string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return input;
-
-            return input.TrimStart('_');
-        }
-
-        public static string CapitalizeFirstLetter(this string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return input;
-
-            return char.ToUpper(input[0]) + input.Substring(1);
-        }
-
-        public static string RemoveAfterDot(this string input)
-        {
-            int dotIndex = input.IndexOf('.');
-            return (dotIndex != -1) ? input.Substring(0, dotIndex) : input;
         }
     }
 }

@@ -1,0 +1,20 @@
+{
+    "name": "ScriptableAssembly.DataEditor",
+    "rootNamespace": "",
+    "references": [
+        "ScriptableAssembly.Core",
+        "ScriptableAssembly.Data",
+        "ScriptableAssembly.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
