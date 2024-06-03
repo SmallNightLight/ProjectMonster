@@ -55,7 +55,11 @@ namespace ScriptableArchitecture.EditorScript
                     
                     if (property.serializedObject != null && property.serializedObject.targetObject != null && property.serializedObject.targetObject is Component)
                     {
-                        Instancer instancer = (property.serializedObject.targetObject as Component).gameObject.AddComponent<FloatInstancer>();
+                        string typeName = property.type.Substring(0, property.type.Length - 9);
+                        string instancertypeName = typeName + "Instancer";
+                        Type instancerType = Type.GetType($"ScriptableArchitecture.Data.{instancertypeName}, ScriptableAssembly.Data");
+
+                        Instancer instancer = (property.serializedObject.targetObject as Component).gameObject.AddComponent(instancerType) as Instancer;
                         instancerProperty.boxedValue = instancer;
                     }
                 }
@@ -110,7 +114,7 @@ namespace ScriptableArchitecture.EditorScript
             if (isVariableProperty.boolValue)
                 return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_variable"), true);
             else if (isInstanceProperty.boolValue)
-                return EditorGUIUtility.singleLineHeight;
+                return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_instancer"), true);
             else
                 return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_constant"), true);
         }
