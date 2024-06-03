@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using ScriptableArchitecture.Data;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -23,25 +24,6 @@ public class KartMovement : MonoBehaviour
     private KartBase _base;
     private Rigidbody _rigidbody;
 
-    [Header("VFX")]
-    [SerializeField] private bool _enableParticles;
-    [Tooltip("VFX that will be placed on the wheels when drifting.")]
-    [SerializeField] private ParticleSystem _driftSparkVFX;
-    [Range(0.0f, 0.2f), Tooltip("Offset to displace the VFX to the side.")]
-    [SerializeField] private float _driftSparkHorizontalOffset = 0.1f;
-    [Range(0.0f, 90.0f), Tooltip("Angle to rotate the VFX.")]
-    [SerializeField] private float _driftSparkRotation = 17.0f;
-    [Tooltip("VFX that will be placed on the wheels when drifting.")]
-    [SerializeField] private GameObject _driftTrailPrefab;
-    [Range(-0.1f, 0.1f), Tooltip("Vertical to move the trails up or down and ensure they are above the ground.")]
-    [SerializeField] private float _driftTrailVerticalOffset;
-    [Tooltip("VFX that will spawn upon landing, after a jump.")]
-    [SerializeField] private GameObject _jumpVFX;
-    [Tooltip("VFX that is spawn on the nozzles of the kart.")]
-    [SerializeField] private GameObject _nozzleVFX;
-    [Tooltip("List of the kart's nozzles.")]
-    [SerializeField] private List<Transform> _nozzles;
-
     private const float k_NullInput = 0.01f;
     private const float k_NullSpeed = 0.01f;
     private Vector3 m_VerticalReference = Vector3.up;
@@ -52,8 +34,6 @@ public class KartMovement : MonoBehaviour
     private float m_CurrentGrip = 1.0f;
     private float m_DriftTurningPower = 0.0f;
     private float m_PreviousGroundPercent = 1.0f;
-    private readonly List<(GameObject trailRoot, WheelCollider wheel, TrailRenderer trail)> m_DriftTrailInstances = new List<(GameObject, WheelCollider, TrailRenderer)>();
-    private readonly List<(WheelCollider wheel, float horizontalOffset, float rotation, ParticleSystem sparks)> m_DriftSparkInstances = new List<(WheelCollider, float, float, ParticleSystem)>();
 
     private List<AbilityData> _activeAbilities = new List<AbilityData>();
     private bool m_CanMove = true;
@@ -71,43 +51,12 @@ public class KartMovement : MonoBehaviour
     private float _airPercent;
     private float _groundPercent;
 
+    //Events
+    [SerializeField] private UnityEvent<Vector3> _jumpEvent;
+    [SerializeField] private UnityEvent<bool> _changeDriftState;
+
     public void SetCanMove(bool move) => m_CanMove = move;
     public float GetMaxSpeed() => Mathf.Max(_finalMovementStats.TopSpeed, _finalMovementStats.ReverseSpeed);
-
-    private void ActivateDriftVFX(bool active)
-    {
-        foreach (var vfx in m_DriftSparkInstances)
-        {
-            if (active && vfx.wheel.GetGroundHit(out WheelHit hit))
-            {
-                if (!vfx.sparks.isPlaying)
-                    vfx.sparks.Play();
-            }
-            else
-            {
-                if (vfx.sparks.isPlaying)
-                    vfx.sparks.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            }
-        }
-
-        foreach (var trail in m_DriftTrailInstances)
-            trail.Item3.emitting = active && trail.wheel.GetGroundHit(out WheelHit hit);
-    }
-
-    private void UpdateDriftVFXOrientation()
-    {
-        foreach (var vfx in m_DriftSparkInstances)
-        {
-            vfx.sparks.transform.position = vfx.wheel.transform.position - (vfx.wheel.radius * Vector3.up) + (_driftTrailVerticalOffset * Vector3.up) + (transform.right * vfx.horizontalOffset);
-            vfx.sparks.transform.rotation = transform.rotation * Quaternion.Euler(0.0f, 0.0f, vfx.rotation);
-        }
-
-        foreach (var trail in m_DriftTrailInstances)
-        {
-            trail.trailRoot.transform.position = trail.wheel.transform.position - (trail.wheel.radius * Vector3.up) + (_driftTrailVerticalOffset * Vector3.up);
-            trail.trailRoot.transform.rotation = transform.rotation;
-        }
-    }
 
     void UpdateSuspensionParams(WheelCollider wheel)
     {
@@ -132,9 +81,6 @@ public class KartMovement : MonoBehaviour
         UpdateSuspensionParams(_wheelColliderRearRight);
 
         m_CurrentGrip = _movementStats.Value.Grip;
-
-        
-        InitializeParticleEffects();
     }
 
     private void InitializeStats()
@@ -145,45 +91,6 @@ public class KartMovement : MonoBehaviour
         _finalPhysicsStats = new PhysicStats();
 
         UpdateAllStats();
-    }
-
-    private void InitializeParticleEffects()
-    {
-        if (_driftSparkVFX != null)
-        {
-            AddSparkToWheel(_wheelColliderRearLeft, -_driftSparkHorizontalOffset, -_driftSparkRotation);
-            AddSparkToWheel(_wheelColliderRearRight, _driftSparkHorizontalOffset, _driftSparkRotation);
-        }
-
-        if (_driftTrailPrefab != null)
-        {
-            AddTrailToWheel(_wheelColliderRearLeft);
-            AddTrailToWheel(_wheelColliderRearRight);
-        }
-
-        if (_nozzleVFX != null)
-        {
-            foreach (var nozzle in _nozzles)
-            {
-                Instantiate(_nozzleVFX, nozzle, false);
-            }
-        }
-    }
-
-    void AddTrailToWheel(WheelCollider wheel)
-    {
-        GameObject trailRoot = Instantiate(_driftTrailPrefab, gameObject.transform, false);
-        TrailRenderer trail = trailRoot.GetComponentInChildren<TrailRenderer>();
-        trail.emitting = false;
-        m_DriftTrailInstances.Add((trailRoot, wheel, trail));
-    }
-
-    void AddSparkToWheel(WheelCollider wheel, float horizontalOffset, float rotation)
-    {
-        GameObject vfx = Instantiate(_driftSparkVFX.gameObject, wheel.transform, false);
-        ParticleSystem spark = vfx.GetComponent<ParticleSystem>();
-        spark.Stop();
-        m_DriftSparkInstances.Add((wheel, horizontalOffset, -rotation, spark));
     }
 
     void FixedUpdate()
@@ -222,8 +129,6 @@ public class KartMovement : MonoBehaviour
         GroundAirbourne();
 
         m_PreviousGroundPercent = _groundPercent;
-
-        UpdateDriftVFXOrientation();
     }
 
     private void UpdateAllStats()
@@ -373,9 +278,7 @@ public class KartMovement : MonoBehaviour
             if (m_InAir)
             {
                 m_InAir = false;
-
-                if (_enableParticles)
-                    Instantiate(_jumpVFX, transform.position, Quaternion.identity);
+                _jumpEvent.Invoke(transform.position);
             }
 
             // manual angular velocity coefficient
@@ -419,7 +322,7 @@ public class KartMovement : MonoBehaviour
                     m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.Value.DriftAdditionalSteer);
                     m_CurrentGrip = _driftStats.Value.DriftGrip;
 
-                    ActivateDriftVFX(true);
+                    _changeDriftState.Invoke(true);
                 }
             }
 
@@ -490,6 +393,6 @@ public class KartMovement : MonoBehaviour
             m_LastValidRotation.eulerAngles = new Vector3(0.0f, transform.rotation.y, 0.0f);
         }
 
-        ActivateDriftVFX(IsDrifting && _groundPercent > 0.0f);
+        _changeDriftState.Invoke(IsDrifting && _groundPercent > 0.0f);
     }
 }

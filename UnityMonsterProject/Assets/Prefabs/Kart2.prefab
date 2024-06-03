@@ -1629,7 +1629,6 @@ GameObject:
   - component: {fileID: 3180446207861544887}
   - component: {fileID: 8187911284204335228}
   - component: {fileID: 4899419224775459057}
-  - component: {fileID: 8450786951366323574}
   m_Layer: 0
   m_Name: Kart2
   m_TagString: Untagged
@@ -1647,7 +1646,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.6989335, z: 0, w: -0.7151867}
   m_LocalPosition: {x: 355, y: 0.72651, z: 590}
-  m_LocalScale: {x: 1.1454914, y: 1.1454914, z: 1.1454914}
+  m_LocalScale: {x: 1.1454915, y: 1.1454914, z: 1.1454915}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4157817598264018701}
@@ -1677,8 +1676,7 @@ MonoBehaviour:
         IsBraking: 0
         SteerInput: 0
     _isInstance: 0
-    _instanceBaseVariable: {fileID: 0}
-    _instanceScope: {fileID: 0}
+    _instancer: {fileID: 0}
 --- !u!114 &7221716665884278461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1736,16 +1734,36 @@ MonoBehaviour:
   _wheelColliderFrontRight: {fileID: 4023719042651684472}
   _wheelColliderRearLeft: {fileID: 9074628113653667416}
   _wheelColliderRearRight: {fileID: 3904084252918045450}
-  _enableParticles: 0
-  _driftSparkVFX: {fileID: 0}
-  _driftSparkHorizontalOffset: 0.1
-  _driftSparkRotation: 17
-  _driftTrailPrefab: {fileID: 232013462745834363, guid: 04a1911bfbf301c4fbfbf9e4781a2114,
-    type: 3}
-  _driftTrailVerticalOffset: 0
-  _jumpVFX: {fileID: 0}
-  _nozzleVFX: {fileID: 0}
-  _nozzles: []
+  _jumpEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8187911284204335228}
+        m_TargetAssemblyTypeName: KartVFX, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _changeDriftState:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8187911284204335228}
+        m_TargetAssemblyTypeName: KartVFX, Assembly-CSharp
+        m_MethodName: ChangeDriftState
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3180446207861544887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1766,8 +1784,7 @@ MonoBehaviour:
       Duration: 0
       WorldEffects: []
     _isInstance: 0
-    _instanceBaseVariable: {fileID: 0}
-    _instanceScope: {fileID: 0}
+    _instancer: {fileID: 0}
 --- !u!114 &8187911284204335228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1794,20 +1811,26 @@ MonoBehaviour:
   _wheelVisualRearLeft: {fileID: 2756077253146990739}
   _wheelVisualRearRight: {fileID: 2797963782119892542}
   _steeringLimit:
-    _isVariable: 0
-    _variable: {fileID: 0}
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: fbf961dc166a0ec47904a645661d72ec, type: 2}
     _constant: 40
     _isInstance: 0
-    _instanceBaseVariable: {fileID: 0}
-    _instanceScope: {fileID: 0}
+    _instancer: {fileID: 0}
   _steeringSpeed:
-    _isVariable: 0
-    _variable: {fileID: 0}
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: e75a7520dc76fc448827e8b2695b4526, type: 2}
     _constant: 10
-    _isInstance: 1
-    _instanceBaseVariable: {fileID: 11400000, guid: e75a7520dc76fc448827e8b2695b4526,
-      type: 2}
-    _instanceScope: {fileID: 8450786951366323574}
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _driftSparkVFX: {fileID: 0}
+  _driftSparkHorizontalOffset: 0.1
+  _driftSparkRotation: 17
+  _driftTrailPrefab: {fileID: 232013462745834363, guid: 04a1911bfbf301c4fbfbf9e4781a2114,
+    type: 3}
+  _driftTrailVerticalOffset: 0
+  _jumpVFX: {fileID: 0}
+  _nozzleVFX: {fileID: 0}
+  _nozzles: []
 --- !u!54 &4899419224775459057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1835,18 +1858,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8450786951366323574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8270729986525616552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f15ca96c71abb2342bd499f74682579a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8678727875020985089
 GameObject:
   m_ObjectHideFlags: 0

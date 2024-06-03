@@ -2,55 +2,79 @@ using ScriptableArchitecture.Core;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(Instancer<>), true)]
-public class InstancerDrawer : PropertyDrawer
+namespace ScriptableArchitecture.EditorScript
 {
-    private bool _foldoutOpen;
-
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(Instancer<>), true)]
+    public class InstancerDrawer : PropertyDrawer
     {
-        EditorGUI.BeginProperty(position, label, property);
+        private bool _foldoutOpen;
+        private float _height;
 
-        Rect variableRect = new Rect(EditorGUIUtility.labelWidth + position.x / 2f + 10f, position.y, position.width - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
-        EditorGUI.PropertyField(variableRect, property, GUIContent.none);
-
-        Rect foldoutRect = new Rect(position.x + 15f, position.y, 15f, EditorGUIUtility.singleLineHeight);
-
-        _foldoutOpen = EditorGUI.Foldout(foldoutRect, _foldoutOpen, label);
-        if (_foldoutOpen && property.objectReferenceValue != null)
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            Rect valueRect = new Rect(position.x / 2f + 10f, position.y + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + 1f, EditorGUIUtility.currentViewWidth - 22f, EditorGUIUtility.singleLineHeight);
-            EditorGUI.indentLevel++;
+            if (property.objectReferenceValue != null)
+            {
+                var valueVariable = property.objectReferenceValue as Instancer;
+                SerializedObject serializedObject = new SerializedObject(valueVariable);
 
-            var valueVariable = property.objectReferenceValue as Instancer;
-            SerializedObject serializedObject = new SerializedObject(valueVariable);
+                SerializedProperty instanceScopeProperty = serializedObject.FindProperty("_instanceScope");
 
-            //Types
-            SerializedProperty instanceScopeProperty = serializedObject.FindProperty("_instanceScope");
-            SerializedProperty baseVariableProperty = serializedObject.FindProperty("_baseVariable");
-            SerializedProperty instancedVariableProperty = serializedObject.FindProperty("_instancedVariable");
+                EditorGUI.BeginProperty(position, label, property);
+                EditorGUI.BeginChangeCheck();
 
-            EditorGUI.BeginChangeCheck();
+                Rect variableRect = new Rect(EditorGUIUtility.labelWidth + position.x / 2f + 3f, position.y, position.width - EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight);
+                EditorGUI.PropertyField(variableRect, instanceScopeProperty, GUIContent.none);
 
-            EditorGUI.PropertyField(valueRect, baseVariableProperty, true);
-            valueRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + 1f;
-            EditorGUI.PropertyField(valueRect, instanceScopeProperty, true);
+                Rect foldoutRect = new Rect(position.x, position.y, 15f, EditorGUIUtility.singleLineHeight);
 
+                _height = 0;
 
-            if (EditorGUI.EndChangeCheck())
-                serializedObject.ApplyModifiedProperties();
+                _foldoutOpen = EditorGUI.Foldout(foldoutRect, _foldoutOpen, label);
+                if (_foldoutOpen && property.objectReferenceValue != null)
+                {
+                    EditorGUI.indentLevel++;
+                    Rect valueRect = new Rect(position.x - 15, position.y + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing, EditorGUIUtility.currentViewWidth - 22f, EditorGUIUtility.singleLineHeight);
 
-            EditorGUI.indentLevel--;
+                    //Types
+                    SerializedProperty baseVariableProperty = serializedObject.FindProperty("_baseVariable");
+                    SerializedProperty instancedVariableProperty = serializedObject.FindProperty("_instancedVariable");
+
+                    if (EditorApplication.isPlaying)
+                    {
+                        EditorGUI.PropertyField(valueRect, instancedVariableProperty, true);
+                        _height = EditorGUI.GetPropertyHeight(instancedVariableProperty) + EditorGUIUtility.standardVerticalSpacing;
+                    }
+                    else
+                    {
+                        if (baseVariableProperty.objectReferenceValue == null)
+                            valueRect.x += 15;
+
+                        EditorGUI.PropertyField(valueRect, baseVariableProperty, true);
+                        _height = EditorGUI.GetPropertyHeight(baseVariableProperty) + EditorGUIUtility.standardVerticalSpacing;
+                    }
+
+                    Rect propertyRect = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + _height, EditorGUIUtility.currentViewWidth - 20, EditorGUIUtility.singleLineHeight);
+                    EditorGUI.PropertyField(propertyRect, property, true);
+
+                    EditorGUI.indentLevel--;
+                    _height += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + 3f;
+                }
+
+                if (EditorGUI.EndChangeCheck())
+                    serializedObject.ApplyModifiedProperties();
+
+                EditorGUI.EndProperty();
+            }
         }
-    }
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        float baseHeight = base.GetPropertyHeight(property, label);
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            float baseHeight = base.GetPropertyHeight(property, label);
 
-        if (_foldoutOpen)
-            return baseHeight + 3 * (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing + 1f);
+            if (_foldoutOpen)
+                return baseHeight + _height;
 
-        return baseHeight;
+            return baseHeight;
+        }
     }
 }
