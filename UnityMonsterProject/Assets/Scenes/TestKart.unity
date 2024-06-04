@@ -876,6 +876,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &336975227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6875169139190906839, guid: 78fb69e8d97fb584f96503a689306d32,
+    type: 3}
+  m_PrefabInstance: {fileID: 1657056205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &336975230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336975227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NotificationBehavior: 3
+  m_MaxPlayerCount: -1
+  m_AllowJoining: 1
+  m_JoinBehavior: 1
+  m_PlayerJoinedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_PlayerLeftEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_JoinAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Join
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 90ecd22e-a166-4b54-948b-b16769d38dea
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5759389944527076897, guid: 14cdc9e91038aaf418faa9fb061ba9fd,
+      type: 3}
+  m_PlayerPrefab: {fileID: 7934599521826172846, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
+    type: 3}
+  m_SplitScreen: 1
+  m_MaintainAspectRatioInSplitScreen: 0
+  m_FixedNumberOfSplitScreens: -1
+  m_SplitScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0.5
+    height: 1
 --- !u!1 &364507228
 GameObject:
   m_ObjectHideFlags: 0
@@ -8269,7 +8321,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6875169139190906839, guid: 78fb69e8d97fb584f96503a689306d32,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 336975230}
   m_SourcePrefab: {fileID: 100100000, guid: 78fb69e8d97fb584f96503a689306d32, type: 3}
 --- !u!1 &1667009487
 GameObject:
@@ -9407,6 +9463,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 542953159143036001, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
+        type: 3}
+      propertyPath: _finalPhysicsStats.GroundLayers.m_Bits
+      value: 8179
+      objectReference: {fileID: 0}
     - target: {fileID: 7847353076576257121, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9461,6 +9522,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934599521826172846, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
