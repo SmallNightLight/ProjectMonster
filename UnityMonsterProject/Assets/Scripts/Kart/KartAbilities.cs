@@ -43,7 +43,32 @@ public class KartAbilities : MonoBehaviour
         _activeAbilities.Add(new ActiveAbility(effect, 0));
         _kartMovement.AddAbility(effect);
 
+        foreach (WorldEffect worldEffect in effect.WorldEffects)
+        {
+            if (worldEffect == null) continue;
 
+            //Instantiate the prefab
+            GameObject instance = Instantiate(worldEffect.Prefab);
+
+            //Set the position
+            instance.transform.position = worldEffect.Position;
+
+            //Set the rotation
+            if (worldEffect.UseIdentityRotation)
+            {
+                instance.transform.rotation = Quaternion.identity;
+            }
+            else
+            {
+                instance.transform.rotation = Quaternion.Euler(worldEffect.Rotation);
+            }
+
+            //Set the parent if specified
+            if (worldEffect.KartIsParent)
+            {
+                instance.transform.SetParent(transform);
+            }
+        }
     }
 
     void UpdateAbilities()

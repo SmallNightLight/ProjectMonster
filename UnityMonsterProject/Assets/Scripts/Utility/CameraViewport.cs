@@ -4,14 +4,14 @@ using UnityEngine;
 [RequireComponent (typeof(Camera))]
 public class CameraViewport : MonoBehaviour
 {
-    private Camera _camera;
+    private Camera[] _cameras;
     [SerializeField] private IntReference _playerCount;
 
     [SerializeField] private KartBase _kartBase;
 
     private void Start()
     {
-        _camera = GetComponent<Camera>();
+        _cameras = GetComponentsInChildren<Camera>();
 
         if (_kartBase == null || _playerCount.Value == 0)
         {
@@ -24,11 +24,13 @@ public class CameraViewport : MonoBehaviour
         {
             case 1:
                 //Full screen
-                _camera.rect = new Rect(0f, 0f, 1f, 1f);
+                for(int i = 0; i < _cameras.Length; i++)
+                    _cameras[i].rect = new Rect(0f, 0f, 1f, 1f);
                 break;
             case 2:
                 //Split screen horizontally
-                _camera.rect = new Rect(playerNumber * 0.5f, 0f, 0.5f, 1f);
+                for (int i = 0; i < _cameras.Length; i++)
+                    _cameras[i].rect = new Rect(playerNumber * 0.5f, 0f, 0.5f, 1f);
                 break;
             default:
                 Debug.LogWarning("Player count greater than 4 is not supported in this script.");

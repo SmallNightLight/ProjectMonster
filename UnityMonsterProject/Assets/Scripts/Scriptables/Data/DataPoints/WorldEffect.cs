@@ -10,8 +10,7 @@ namespace ScriptableArchitecture.Data
 
         public Vector3 Position;
 
-        public bool HasParent;
-        public GameObject Parent;
+        public bool KartIsParent;
 
         public bool UseIdentityRotation;
         public Vector3 Rotation;
