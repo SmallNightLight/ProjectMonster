@@ -96,6 +96,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""61c7c831-359d-406e-af02-527b967eac2d"",
+                    ""path"": ""<WiiDevice>/{Back}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accelerate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e1c4bebf-b74f-4015-95ed-417b5baed475"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",

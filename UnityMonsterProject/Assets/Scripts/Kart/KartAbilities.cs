@@ -6,13 +6,16 @@ using UnityEngine;
 public class KartAbilities : MonoBehaviour
 {
     [Header("Abilities")]
+    [SerializeField] private AbilityDataReference _boostAbility;
     [SerializeField] private AbilityDataReference _mainAbility;
+    
 
     [Header("Components")]
     private KartBase _base;
     private KartMovement _kartMovement;
 
     private List<ActiveAbility> _activeAbilities = new List<ActiveAbility>();
+
 
     private void Start()
     {
@@ -24,7 +27,12 @@ public class KartAbilities : MonoBehaviour
     {
         UpdateAbilities();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_base.Input.AbilityBoost)
+        {
+            AddAbility(_boostAbility.Value);
+        }
+
+        if (_base.Input.Ability1)
         {
             AddAbility(_mainAbility.Value);
         }

@@ -3,7 +3,42 @@ guid: f3ff7febc081ce74394cebe39d43e0b7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface2
+    second: {fileID: 2100000, guid: 355b0e25bf04da5429c1170c66b46a02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: surfacematerial1
+    second: {fileID: 2100000, guid: 860e2f2d3458fbf448ebf407d9985ec4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: surfacematerial2
+    second: {fileID: 2100000, guid: 67ae8333afeb2604fb96ef2626a361e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: surfacematerial3
+    second: {fileID: 2100000, guid: 6d6c4c13b1a1ecc4baa710cf22f64cfd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: surfacematerial4
+    second: {fileID: 2100000, guid: c9ffbd8d749267c4aaac8f58c07daefc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: surfacematerial5
+    second: {fileID: 2100000, guid: 95ce24a53883265469fc98adde246801, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: surfacematerial6
+    second: {fileID: 2100000, guid: a4b0a7f5a218e5f468785a504be7db33, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +125,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 100
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
