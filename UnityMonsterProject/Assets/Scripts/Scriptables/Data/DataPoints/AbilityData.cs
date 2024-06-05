@@ -8,6 +8,7 @@ namespace ScriptableArchitecture.Data
     {
         public List<KartStatsVariable> AdditionalStats;
         public float Duration;
+        public float CoolDown;
         public List<WorldEffect> WorldEffects;
     }
 }

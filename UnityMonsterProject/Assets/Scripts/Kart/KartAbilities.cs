@@ -7,7 +7,7 @@ public class KartAbilities : MonoBehaviour
 {
     [Header("Abilities")]
     [SerializeField] private AbilityDataReference _boostAbility;
-    [SerializeField] private AbilityDataReference _mainAbility;
+    [SerializeField] private AbilityDataReference _ability1;
     
 
     [Header("Components")]
@@ -16,25 +16,64 @@ public class KartAbilities : MonoBehaviour
 
     private List<ActiveAbility> _activeAbilities = new List<ActiveAbility>();
 
+    private float _boostCoolDownTimer;
+    private float _ability1CoolDownTimer;
+
+    private bool _canDoBoost;
+    private bool _canDoAbility1;
 
     private void Start()
     {
         _base = GetComponent<KartBase>();
         _kartMovement = GetComponent<KartMovement>();
+
+        _canDoBoost = true;
+        _canDoAbility1 = true;
+
+        _boostCoolDownTimer = 0f;
+        _ability1CoolDownTimer = 0f;
     }
 
     private void Update()
     {
         UpdateAbilities();
+        UpdateCoolDown();
 
-        if (_base.Input.AbilityBoost)
+        if (_base.Input.AbilityBoost && _canDoBoost)
         {
             AddAbility(_boostAbility.Value);
+            _canDoBoost = false;
         }
 
-        if (_base.Input.Ability1)
+        if (_base.Input.Ability1 && _canDoAbility1)
         {
-            AddAbility(_mainAbility.Value);
+            AddAbility(_ability1.Value);
+            _canDoAbility1 = false;
+        }
+    }
+
+    private void UpdateCoolDown()
+    {
+        if (!_canDoBoost)
+        {
+            _boostCoolDownTimer += Time.deltaTime;
+
+            if (_boostCoolDownTimer > _boostAbility.Value.CoolDown)
+            {
+                _canDoBoost = true;
+                _boostCoolDownTimer = 0f;
+            }
+        }
+
+        if (!_canDoAbility1)
+        {
+            _ability1CoolDownTimer += Time.deltaTime;
+
+            if (_ability1CoolDownTimer > _ability1.Value.CoolDown)
+            {
+                _canDoAbility1 = true;
+                _ability1CoolDownTimer = 0f;
+            }
         }
     }
 
@@ -50,23 +89,23 @@ public class KartAbilities : MonoBehaviour
             //Instantiate the prefab
             GameObject instance = Instantiate(worldEffect.Prefab);
 
-            //Set the position
-            instance.transform.position = worldEffect.Position;
-
-            //Set the rotation
-            if (worldEffect.UseIdentityRotation)
-            {
-                instance.transform.rotation = Quaternion.identity;
-            }
-            else
-            {
-                instance.transform.rotation = Quaternion.Euler(worldEffect.Rotation);
-            }
-
             //Set the parent if specified
             if (worldEffect.KartIsParent)
             {
                 instance.transform.SetParent(transform);
+            }
+
+            //Set the position
+            instance.transform.localPosition = worldEffect.Position;
+
+            //Set the rotation
+            if (worldEffect.UseIdentityRotation)
+            {
+                instance.transform.localRotation = Quaternion.identity;
+            }
+            else
+            {
+                instance.transform.localRotation = Quaternion.Euler(worldEffect.Rotation);
             }
         }
     }

@@ -111,10 +111,17 @@ public class KartVFX : MonoBehaviour
         _wheelColliderFrontLeft.GetWorldPose(out pos, out Quaternion speedRearLeft);
         _wheelColliderFrontLeft.GetWorldPose(out pos, out Quaternion speedRearRight);
 
-        _wheelVisualFrontLeft.localRotation = Quaternion.Euler(new Vector3(speedFrontLeft.eulerAngles.x, _currentSteering, 0));
-        _wheelVisualFrontRight.localRotation = Quaternion.Euler(new Vector3(speedFrontRight.eulerAngles.x, _currentSteering, 0));
-        _wheelVisualRearRight.localRotation = Quaternion.Euler(new Vector3(speedRearLeft.eulerAngles.x, 0, 0));
-        _wheelVisualRearLeft.localRotation = Quaternion.Euler(new Vector3(speedRearRight.eulerAngles.x, 0, 0));
+        if (_wheelVisualFrontLeft)
+            _wheelVisualFrontLeft.localRotation = Quaternion.Euler(speedFrontLeft.eulerAngles.x, _currentSteering, 0);
+
+        if (_wheelVisualFrontRight)
+            _wheelVisualFrontRight.localRotation = Quaternion.Euler(new Vector3(speedFrontRight.eulerAngles.x, _currentSteering, 0));
+
+        if (_wheelVisualRearRight)
+            _wheelVisualRearRight.localRotation = Quaternion.Euler(new Vector3(speedRearLeft.eulerAngles.x, 0, 0));
+
+        if (_wheelVisualRearLeft)
+            _wheelVisualRearLeft.localRotation = Quaternion.Euler(new Vector3(speedRearRight.eulerAngles.x, 0, 0));
     }
 
     public void ChangeDriftState(bool active)
