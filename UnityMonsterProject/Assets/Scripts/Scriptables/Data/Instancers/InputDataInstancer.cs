@@ -1,5 +1,3 @@
-using UnityEditorInternal;
-
 using ScriptableArchitecture.Core;
 
 namespace ScriptableArchitecture.Data

@@ -1100,6 +1100,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3154102666353765851, guid: 9bb985ce643abd74f96af42cb23345df,
+        type: 3}
+      propertyPath: m_FollowOffset.y
+      value: 3.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154102666353765851, guid: 9bb985ce643abd74f96af42cb23345df,
+        type: 3}
+      propertyPath: m_FollowOffset.z
+      value: -7.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5305414139330770465, guid: 9bb985ce643abd74f96af42cb23345df,
+        type: 3}
+      propertyPath: m_TrackedObjectOffset.y
+      value: 1.48
+      objectReference: {fileID: 0}
     - target: {fileID: 6418172852528189085, guid: 9bb985ce643abd74f96af42cb23345df,
         type: 3}
       propertyPath: m_Follow

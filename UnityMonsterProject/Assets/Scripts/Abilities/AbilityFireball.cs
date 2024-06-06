@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -12,6 +13,8 @@ public class AbilityFireball : MonoBehaviour
 
     [SerializeField] private GameObject _impactPrefab;
     [SerializeField] private float _checkoffset = 1;
+
+    [SerializeField] private CinemachineImpulseSource _impulseSource;
 
     private bool _isExploded;
 
@@ -44,5 +47,8 @@ public class AbilityFireball : MonoBehaviour
         _isExploded = true;
         GameObject impactEffect = Instantiate(_impactPrefab, impactPosition, Quaternion.identity);
         Destroy(impactEffect, 2);
+
+        if (_impulseSource != null)
+            _impulseSource.GenerateImpulseAt(transform.position, Vector3.up);
     }
 }
