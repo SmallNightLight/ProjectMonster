@@ -95,11 +95,21 @@ public class KartAbilities : MonoBehaviour
                 instance.transform.SetParent(transform);
             }
 
-            //Set the position
-            instance.transform.localPosition = worldEffect.Position;
+            if (worldEffect.UseKartPosition)
+            {
+                instance.transform.position = transform.position + worldEffect.Position;
+            }
+            else
+            {
+                //Set the position
+                instance.transform.localPosition = worldEffect.Position;
+            }
 
-            //Set the rotation
-            if (worldEffect.UseIdentityRotation)
+            if (worldEffect.UseKartRotation)
+            {
+                instance.transform.rotation = transform.rotation * Quaternion.Euler(worldEffect.Rotation);
+            }
+            else if (worldEffect.UseIdentityRotation)
             {
                 instance.transform.localRotation = Quaternion.identity;
             }
