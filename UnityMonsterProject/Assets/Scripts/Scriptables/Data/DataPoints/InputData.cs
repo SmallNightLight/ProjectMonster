@@ -8,5 +8,8 @@ namespace ScriptableArchitecture.Data
         public bool IsAccelerating;
         public bool IsBraking;
         public float SteerInput;
+        public bool IsTricking;
+        public bool AbilityBoost;
+        public bool Ability1;
     }
 }

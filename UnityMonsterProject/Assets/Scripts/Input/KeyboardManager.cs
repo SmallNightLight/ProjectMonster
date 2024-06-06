@@ -1,6 +1,7 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class KeyboardManager : MonoBehaviour, IInputManager
 {
@@ -26,33 +27,43 @@ public class KeyboardManager : MonoBehaviour, IInputManager
         if (PlayerCount() == 0) return;
 
         //1. player - WASD
-        if (PlayerCount() == 1)
+        for(int i = 0; i < PlayerCount(); i++)
         {
-            InputData playerInput = new InputData
-            {
-                IsAccelerating = Input.GetKey(KeyCode.W),
-                IsBraking = Input.GetKey(KeyCode.S),
-                SteerInput = Input.GetAxis("Horizontal"), 
-            };
+            InputData input;
 
-            SetPlayerInput(_inputs[0], playerInput);
-        }
-        else if (PlayerCount() == 2)
-        {
-            //Player 1 and 2 have the same input for testing
-            InputData playerInput = new InputData
+            switch (i)
             {
-                IsAccelerating = Input.GetKey(KeyCode.W),
-                IsBraking = Input.GetKey(KeyCode.S),
-                SteerInput = Input.GetAxis("Horizontal"),
-            };
+                case 0:
+                    input = new InputData
+                    {
+                        IsAccelerating = Input.GetKey(KeyCode.W),
+                        IsBraking = Input.GetKey(KeyCode.S),
+                        SteerInput = Input.GetAxis("HorizontalAD"),
+                        IsTricking = Input.GetKey(KeyCode.Q),
+                        AbilityBoost = Input.GetKey(KeyCode.Space),
+                        Ability1 = Input.GetKey(KeyCode.E)
+                    };
+                    break;
 
-            SetPlayerInput(_inputs[0], playerInput);
-            SetPlayerInput(_inputs[1], playerInput);
-        }
-        else
-        {
-            Debug.Log($"Input manager not active - More then {_maxKeyboardPlayers} keyboard players");
+                case 1:
+                    input = new InputData
+                    {
+                        IsAccelerating = Input.GetKey(KeyCode.UpArrow),
+                        IsBraking = Input.GetKey(KeyCode.DownArrow),
+                        SteerInput = Input.GetAxis("HorizontalArrows"),
+                        IsTricking = Input.GetKey(KeyCode.Backspace),
+                        AbilityBoost = Input.GetKey(KeyCode.Return),
+                        Ability1 = Input.GetKey(KeyCode.RightShift)
+                    };
+                    break;
+
+                default:
+                    input = new InputData();
+                    Debug.Log($"Input manager not active - More then {_maxKeyboardPlayers} keyboard players");
+                    break;
+            }
+
+            SetPlayerInput(_inputs[i], input);
         }
     }
 
@@ -66,5 +77,10 @@ public class KeyboardManager : MonoBehaviour, IInputManager
     public int GetAvailablePlayerSlots()
     {
         return _maxKeyboardPlayers - PlayerCount();
+    }
+
+    public bool IsConnected(InputAsset inputAsset)
+    {
+        return true;
     }
 }
