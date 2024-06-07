@@ -395,4 +395,12 @@ public class KartMovement : MonoBehaviour
 
         _changeDriftState.Invoke(IsDrifting && _groundPercent > 0.0f);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Hit")
+        {
+            Debug.Log("Hit");
+        }
+    }
 }

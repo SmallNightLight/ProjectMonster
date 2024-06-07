@@ -821,7 +821,7 @@ GameObject:
   - component: {fileID: 3180446207861544887}
   - component: {fileID: 8187911284204335228}
   - component: {fileID: 4899419224775459057}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Kart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

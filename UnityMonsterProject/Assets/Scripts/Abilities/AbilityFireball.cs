@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -7,6 +8,15 @@ public class AbilityFireball : MonoBehaviour
 
     [SerializeField] private float _power;
     [SerializeField] private float _gravity;
+
+    [SerializeField] private string _hitTag;
+
+    [SerializeField] private GameObject _impactPrefab;
+    [SerializeField] private float _checkoffset = 1;
+
+    [SerializeField] private CinemachineImpulseSource _impulseSource;
+
+    private bool _isExploded;
 
     private void Start()
     {
@@ -18,5 +28,27 @@ public class AbilityFireball : MonoBehaviour
     {
         _rigidbody.AddForce(new Vector3(0, _gravity , 0) * _rigidbody.mass);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == _hitTag && !_isExploded)
+        {
+            Vector3 rayStartPoint = transform.position + new Vector3(0, _checkoffset, 0);
 
+            RaycastHit hit;
+            if (Physics.Raycast(rayStartPoint, Vector3.down, out hit))
+            {
+                Explode(hit.point);
+            }
+        }
+    }
+
+    private void Explode(Vector3 impactPosition)
+    {
+        _isExploded = true;
+        GameObject impactEffect = Instantiate(_impactPrefab, impactPosition, Quaternion.identity);
+        Destroy(impactEffect, 2);
+
+        if (_impulseSource != null)
+            _impulseSource.GenerateImpulseAt(transform.position, Vector3.up);
+    }
 }

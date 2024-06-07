@@ -41,7 +41,7 @@ Material:
     - _ActualThick: 1.5
     - _CrossMultiplier: 38.2
     - _DepthThreshold: 25
-    - _DistanceMultiplier: 20
+    - _DistanceMultiplier: 4
     - _Mul: 2708.2
     - _NormalThreshold: 0.46
     - _NormalsThreshold: 0.46

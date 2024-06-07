@@ -39,9 +39,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Samples: 32
-    - _T1: 0.02
-    - _T2: 0.5
+    - _T1: 0.03
+    - _T2: 0.6
     - _Threshold: 0.02
-    - _Velocity_scale: 18
+    - _Velocity_scale: 6
     m_Colors: []
   m_BuildTextureStacks: []

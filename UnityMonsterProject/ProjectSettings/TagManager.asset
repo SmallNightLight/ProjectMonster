@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ability
+  - TrackObject
+  - Hit
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Obstacles
   - ImageEffect
   - 
-  - 
+  - Kart
   - 
   - Camera1
   - Camera2

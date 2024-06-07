@@ -88,6 +88,7 @@ public class KartAbilities : MonoBehaviour
 
             //Instantiate the prefab
             GameObject instance = Instantiate(worldEffect.Prefab);
+            Destroy(instance, effect.Duration);
 
             //Set the parent if specified
             if (worldEffect.KartIsParent)
