@@ -102,6 +102,20 @@
             },
             "m_InputSlot": {
                 "m_Node": {
+                    "m_Id": "07d5fd8e54114993b594feffbca4149d"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "1294b4ee4349484bbe3733b574ca83e5"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
                     "m_Id": "82248cd8d13f4864b1390470af4716c7"
                 },
                 "m_SlotId": 1
@@ -203,20 +217,6 @@
                     "m_Id": "4740b4ad55664382acd0ab498fc9de45"
                 },
                 "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "8dfc8ce0cfd645f491b02889c955cf63"
-                },
-                "m_SlotId": 4
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "07d5fd8e54114993b594feffbca4149d"
-                },
-                "m_SlotId": 0
             }
         },
         {
@@ -927,7 +927,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "AngleOffset",
     "m_StageCapability": 3,
-    "m_Value": 2.0,
+    "m_Value": 8.5600004196167,
     "m_DefaultValue": 2.0,
     "m_Labels": []
 }
