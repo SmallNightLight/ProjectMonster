@@ -3,7 +3,6 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Splines;
-using UnityEngine.UIElements;
 
 [ExecuteInEditMode()]
 [RequireComponent(typeof(SplineContainer))]
@@ -36,7 +35,7 @@ public class RoadGenerator : MonoBehaviour
 
         float step = 1f / _resolution;
 
-        if (_splineContainer.Spline == null)
+        if (_splineContainer == null)
             return;
 
         for (int i = 0; i < _splineContainer.Splines.Count; i++)
@@ -138,6 +137,7 @@ public class RoadGenerator : MonoBehaviour
 #endif
 
     //Debug
+#if UNITY_EDITOR
     private void OnEnable()
     {
         Spline.Changed += OnSplineChanged;
@@ -167,4 +167,5 @@ public class RoadGenerator : MonoBehaviour
             Gizmos.DrawSphere(_positions2[i], 1);
         }
     }
+#endif
 }
