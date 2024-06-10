@@ -2,6 +2,7 @@ using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Profiling;
 using UnityEngine.Splines;
 
 [RequireComponent(typeof(SplineContainer))]
@@ -16,24 +17,9 @@ public class RoadSplines : MonoBehaviour
     [SerializeField] private float _lookAheadDistance = 5f;
     [SerializeField] private float _modifier = 0.7f;
 
-    private Vector3 _point1, _point2;
-
-    private int _lastSpline;
-    private float _lastT;
-
-    private void Start()
+    private void Awake()
     {
         _splineContainer = GetComponent<SplineContainer>();
-
-        _lastSpline = 0;
-        _lastT = 0;
-    }
-
-    private void Update()
-    {
-        CalculateCurrentSplinePoint(_target.position, ref _lastSpline, ref _lastT);
-        CalculateNextSplinePoint(_lastSpline, _lastT, out int nextSpline, out float nextStep);
-        GetPosition(nextSpline, nextStep, out _point1, out _point2);
     }
 
     public void GetNextSidePositions(Vector3 position, ref int lastSpline, ref float lastStep, out Vector3 side1, out Vector3 side2)
@@ -54,14 +40,18 @@ public class RoadSplines : MonoBehaviour
 
     public void CalculateCurrentSplinePoint(Vector3 position, ref int lastSpline, ref float lastStep)
     {
+        Profiler.BeginSample("Bot AI");
+
         float currentDistance = GetCurrentDistance(lastSpline, lastStep);
         int newSpline = 0;
         float newStep = 0;
         float difference = float.MaxValue;
-        
-        for(int i = 0; i < _splineContainer.Splines.Count; i++)
+
+        Vector3 localPosition = transform.InverseTransformPoint(position);
+
+        for (int i = 0; i < _splineContainer.Splines.Count; i++)
         {
-            float distance = SplineUtility.GetNearestPoint(_splineContainer.Splines[i], transform.InverseTransformPoint(position), out float3 nearestPoint, out float step);
+            float distance = SplineUtility.GetNearestPoint(_splineContainer.Splines[i], localPosition, out float3 nearestPoint, out float step);
             float splineDistance = GetCurrentDistance(i, step);
             float splineDifference = Mathf.Abs(splineDistance - currentDistance);
             float value = distance + splineDifference * _modifier;
@@ -76,6 +66,8 @@ public class RoadSplines : MonoBehaviour
 
         lastSpline = newSpline;
         lastStep = newStep;
+
+        Profiler.EndSample();
     }
 
     public float GetCurrentDistance(int spline, float t)
@@ -160,17 +152,9 @@ public class RoadSplines : MonoBehaviour
 
 
     //Debug
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(_point1, 2);
-        Gizmos.DrawSphere(_point2, 2);
-    }
-}
-
-[System.Serializable]
-public class SplineConnection
-{
-    public Spline _spline;
-
-    public List<SplineConnection> _nextSplines;
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawSphere(_point1, 2);
+    //    Gizmos.DrawSphere(_point2, 2);
+    //}
 }
