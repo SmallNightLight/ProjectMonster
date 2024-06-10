@@ -27,7 +27,7 @@ MonoBehaviour:
     Steer: 4
     AddedGravity: 3
   _startValue:
-    TopSpeed: 45
+    TopSpeed: 37
     Acceleration: 15
     ReverseSpeed: 10
     ReverseAcceleration: 5

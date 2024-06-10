@@ -39,7 +39,6 @@ public class WiiManager : MonoBehaviour, IInputManager
 
         int accel = mote.Accel.accel[0];
         bool isTricking = Mathf.Abs(accel - _lastAccelInput[key]) > 10;
-        Debug.Log(isTricking);
 
         input = new InputData
         {

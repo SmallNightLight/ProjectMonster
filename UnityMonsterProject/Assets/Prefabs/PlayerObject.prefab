@@ -110,6 +110,11 @@ PrefabInstance:
       propertyPath: m_FocalLength
       value: 20.78461
       objectReference: {fileID: 0}
+    - target: {fileID: 1250001665648592876, guid: 8f35e3789fdeae343b1dc8aaf9f393ae,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 84471
+      objectReference: {fileID: 0}
     - target: {fileID: 4098264676338526330, guid: 8f35e3789fdeae343b1dc8aaf9f393ae,
         type: 3}
       propertyPath: m_RenderPostProcessing
@@ -484,26 +489,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
-        type: 3}
-      propertyPath: _wheelVisualRearLeft
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
-        type: 3}
-      propertyPath: _wheelVisualFrontLeft
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
-        type: 3}
-      propertyPath: _wheelVisualRearRight
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
-        type: 3}
-      propertyPath: _wheelVisualFrontRight
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8254955225676903529, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}

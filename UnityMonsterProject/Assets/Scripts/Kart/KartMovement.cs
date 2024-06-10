@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using ScriptableArchitecture.Data;
 using UnityEngine.Events;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -37,11 +39,21 @@ public class KartMovement : MonoBehaviour
     private Vector3 m_VerticalReference = Vector3.up;
 
     //Drifting
+    [SerializeField] private float _minSteerForDrift = 0.1f;
+    [SerializeField] private float _minDriftSteer  = 0.1f;
+    [SerializeField] private float _driftTurnPower = 10f;
+    [SerializeField] private AnimationCurve _driftCurve;
+
+    [SerializeField] private Vector2 _curveValues;
+    [SerializeField] private float _curveSpeed;
+
     private bool _wantsToDrift = false;
     private bool IsDrifting = false;
     private float m_CurrentGrip = 1.0f;
+    private int _driftDirection = 0;
     private float m_DriftTurningPower = 0.0f;
     private float m_PreviousGroundPercent = 1.0f;
+    private float _curveValue = 0f;
 
     private List<AbilityData> _activeAbilities = new List<AbilityData>();
     private bool m_CanMove = true;
@@ -110,9 +122,8 @@ public class KartMovement : MonoBehaviour
         UpdateSuspensionParams(_wheelColliderRearLeft);
         UpdateSuspensionParams(_wheelColliderRearRight);
 
-        _wantsToDrift = _base.Input.IsAccelerating && _base.Input.IsBraking;// && Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f;
+        _wantsToDrift = _base.Input.IsAccelerating && _base.Input.IsBraking && Mathf.Abs(_base.Input.SteerInput) > _minSteerForDrift;// && Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f;
 
-        // apply our physics properties
         _rigidbody.centerOfMass = transform.InverseTransformPoint(_centerOfMass.position);
 
         int groundedCount = 0;
@@ -132,7 +143,7 @@ public class KartMovement : MonoBehaviour
         //Apply vehicle physics
         if (m_CanMove)
         {
-            MoveVehicle(_base.Input.IsAccelerating, _base.Input.IsBraking, _base.Input.SteerInput);
+            MoveVehicle(_base.Input.IsAccelerating, _base.Input.IsBraking && !_wantsToDrift, _base.Input.SteerInput);
         }
         GroundAirbourne();
 
@@ -335,6 +346,8 @@ public class KartMovement : MonoBehaviour
                     IsDrifting = true;
                     m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.Value.DriftAdditionalSteer);
                     m_CurrentGrip = _driftStats.Value.DriftGrip;
+                    _driftDirection = turnInput > 0f ? 1 : -1;
+                    _curveValue = _curveValues.x;
 
                     _changeDriftState.Invoke(true);
                 }
@@ -342,31 +355,31 @@ public class KartMovement : MonoBehaviour
 
             if (IsDrifting)
             {
-                float turnInputAbs = Mathf.Abs(turnInput);
-                if (turnInputAbs < k_NullInput)
-                    m_DriftTurningPower = Mathf.MoveTowards(m_DriftTurningPower, 0.0f, Mathf.Clamp01(_driftStats.Value.DriftDampening * Time.fixedDeltaTime));
+                if (_curveValue < _curveValues.y)
+                    _curveValue += Time.fixedDeltaTime * _curveSpeed;
 
-                // Update the turning power based on input
-                float driftMaxSteerValue = _finalMovementStats.Steer + _driftStats.Value.DriftAdditionalSteer;
-                m_DriftTurningPower = Mathf.Clamp(m_DriftTurningPower + (turnInput * Mathf.Clamp01(_driftStats.Value.DriftControl * Time.fixedDeltaTime)), -driftMaxSteerValue, driftMaxSteerValue);
+                float driftTurn;
 
-                bool facingVelocity = Vector3.Dot(_rigidbody.velocity.normalized, transform.forward * Mathf.Sign(accelInput)) > Mathf.Cos(_driftStats.Value.MinAngleToFinishDrift * Mathf.Deg2Rad);
-
-                bool canEndDrift = true;
-                if (isBraking)
-                    canEndDrift = false;
-                else if (!facingVelocity)
-                    canEndDrift = false;
-                else if (turnInputAbs >= k_NullInput && currentSpeed > maxSpeed * _driftStats.Value.MinSpeedPercentToFinishDrift)
-                    canEndDrift = false;
-
-                if (canEndDrift || currentSpeed < k_NullSpeed)
+                if (_driftDirection == 1)
                 {
-                    // No Input, and car aligned with speed direction => Stop the drift
+                    driftTurn = math.remap(-1, 1, 0, 1, turnInput);
+                    driftTurn = _curveValue * (Mathf.Pow(driftTurn - _minDriftSteer, 2));
+                }
+                else
+                {
+                    driftTurn = math.remap(-1, 1, -1, 0, turnInput);
+                    driftTurn *= -1;
+                    driftTurn = _curveValue * (Mathf.Pow(driftTurn - _minDriftSteer, 2));
+                    driftTurn *= -1;
+                }
+
+                m_DriftTurningPower = driftTurn * _driftTurnPower;
+
+                if (!_base.Input.IsBraking)
+                {
                     IsDrifting = false;
                     m_CurrentGrip = _finalMovementStats.Grip;
                 }
-
             }
 
             // rotate our velocity based on current steer value
@@ -456,3 +469,8 @@ public class KartMovement : MonoBehaviour
         }
     }
 }
+
+//Drift to do
+//jump before drift
+//Start drift after jump
+//rotate car in drift direction
