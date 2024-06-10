@@ -443,17 +443,17 @@ PrefabInstance:
     - target: {fileID: 8092969437097380443, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8092969437097380443, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8092969437097380443, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8092969437097380443, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
@@ -463,12 +463,12 @@ PrefabInstance:
     - target: {fileID: 8092969437097380443, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8092969437097380443, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 8092969437097380443, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
@@ -494,6 +494,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _wheelVisualRearLeft
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _wheelVisualFrontLeft
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _wheelVisualRearRight
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187911284204335228, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _wheelVisualFrontRight
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8254955225676903529, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
@@ -522,7 +542,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4991756260814227449, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
+    - {fileID: 7633075195791932319, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3202044277383443655, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
@@ -566,13 +588,52 @@ MonoBehaviour:
         Ability1: 0
     _isInstance: 0
     _instancer: {fileID: 0}
+  _kartData:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      ModelPrefab: {fileID: 0}
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _kartVisualParent: {fileID: 2766365666398180754}
+  _possiblekartDatas:
+  - _isVariable: 1
+    _variable: {fileID: 11400000, guid: 45c8046bf6eadb948a2f6fa55890c7d1, type: 2}
+    _constant:
+      ModelPrefab: {fileID: 0}
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  - _isVariable: 1
+    _variable: {fileID: 11400000, guid: 45ff62b134d763f42975f058e1a5751e, type: 2}
+    _constant:
+      ModelPrefab: {fileID: 0}
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  - _isVariable: 1
+    _variable: {fileID: 11400000, guid: ef24b6f25d44cb8428e9cd299af89acb, type: 2}
+    _constant:
+      ModelPrefab: {fileID: 0}
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  - _isVariable: 1
+    _variable: {fileID: 11400000, guid: 4ce43d3c93bd3ce42b01497ad5b340e3, type: 2}
+    _constant:
+      ModelPrefab: {fileID: 0}
+    _isInstance: 0
+    _instancer: {fileID: 0}
   _targetThreshold: 3
   _overshotValue: 10
   _reverseDistance: 5
   _steeringSensitivity: 0.1
   _changeTime: {x: 1, y: 5}
-  _updateTime: 0.5
+  _updateTime: 0.2
   _trackSplines: {fileID: 0}
+--- !u!1 &2766365666398180754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6520960141823539995, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8942741870537043593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5797524803679967822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3202044277383443655, guid: 8be989ebaa4f8db4698fa75b4de51c8e,

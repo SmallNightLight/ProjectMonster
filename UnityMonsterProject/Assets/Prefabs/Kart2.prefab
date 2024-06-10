@@ -5426,6 +5426,14 @@ MonoBehaviour:
         Ability1: 0
     _isInstance: 0
     _instancer: {fileID: 0}
+  _kartData:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      ModelPrefab: {fileID: 0}
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _kartVisualParent: {fileID: 0}
 --- !u!114 &7221716665884278461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5622,9 +5630,9 @@ MonoBehaviour:
     _constant: 10
     _isInstance: 0
     _instancer: {fileID: 0}
-  _driftSparkVFX: {fileID: 0}
+  _driftSparkVFX: {fileID: 7927006915291090399, guid: 1ad8cbbfb9ea3e848839467a1298abde,
+    type: 3}
   _driftSparkHorizontalOffset: 0.1
-  _driftSparkRotation: 17
   _driftTrailPrefab: {fileID: 232013462745834363, guid: 04a1911bfbf301c4fbfbf9e4781a2114,
     type: 3}
   _driftTrailVerticalOffset: 0

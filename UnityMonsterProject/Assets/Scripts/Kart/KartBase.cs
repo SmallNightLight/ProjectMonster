@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 public class KartBase : MonoBehaviour
 {
     [SerializeField] protected InputAssetReference _input;
+    [SerializeField] protected KartDataReference _kartData;
+
+    [Header("Components")]
+    [SerializeField] private GameObject _kartVisualParent;
 
     //private PlayerInput _inputActions;
     //private InputData _inputData;
@@ -14,6 +18,24 @@ public class KartBase : MonoBehaviour
 
     //public delegate void Ability1Input();
     //public Ability1Input Ability1;
+
+    private void Start()
+    {
+        UpdateKartVisuals();
+    }
+
+    [ContextMenu("Update Kart Visuals")]
+    public void UpdateKartVisuals()
+    {
+        if (!_kartVisualParent) return;
+
+        foreach (Transform child in _kartVisualParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        Instantiate(_kartData.Value.ModelPrefab, _kartVisualParent.transform);
+    }
 
     //private void Awake()
     //{

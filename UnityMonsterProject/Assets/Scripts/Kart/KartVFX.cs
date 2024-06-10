@@ -1,6 +1,8 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
+using static VisualWheel;
 
 [RequireComponent(typeof(KartBase))]
 public class KartVFX : MonoBehaviour
@@ -25,11 +27,9 @@ public class KartVFX : MonoBehaviour
 
     [Header("VFX")]
     [Tooltip("VFX that will be placed on the wheels when drifting.")]
-    [SerializeField] private ParticleSystem _driftSparkVFX;
+    [SerializeField] private GameObject _driftSparkVFX;
     [Range(0.0f, 0.2f), Tooltip("Offset to displace the VFX to the side.")]
     [SerializeField] private float _driftSparkHorizontalOffset = 0.1f;
-    [Range(0.0f, 90.0f), Tooltip("Angle to rotate the VFX.")]
-    [SerializeField] private float _driftSparkRotation = 17.0f;
     [Tooltip("VFX that will be placed on the wheels when drifting.")]
     [SerializeField] private GameObject _driftTrailPrefab;
     [Range(-0.1f, 0.1f), Tooltip("Vertical to move the trails up or down and ensure they are above the ground.")]
@@ -42,7 +42,7 @@ public class KartVFX : MonoBehaviour
     [SerializeField] private List<Transform> _nozzles;
 
     private List<(GameObject trailRoot, WheelCollider wheel, TrailRenderer trail)> m_DriftTrailInstances = new List<(GameObject, WheelCollider, TrailRenderer)>();
-    private List<(WheelCollider wheel, float horizontalOffset, float rotation, ParticleSystem sparks)> m_DriftSparkInstances = new List<(WheelCollider, float, float, ParticleSystem)>();
+    private List<(WheelCollider wheel, float horizontalOffset, float rotation, VisualEffect sparks)> m_DriftSparkInstances = new List<(WheelCollider, float, float, VisualEffect)>();
 
     private KartBase _base;
 
@@ -53,15 +53,39 @@ public class KartVFX : MonoBehaviour
     {
         _base = GetComponent<KartBase>();
 
+        InitializeComponents();
         InitializeParticleEffects();
+    }
+
+    [ContextMenu("Update components")]
+    public void InitializeComponents()
+    {
+        foreach(var visualWheel in GetComponentsInChildren<VisualWheel>())
+        {
+            switch(visualWheel.WheelSide)
+            {
+                case VisualWheelSide.FrontLeft:
+                    _wheelVisualFrontLeft = visualWheel.transform; 
+                    break;
+                case VisualWheelSide.FrontRight:
+                    _wheelVisualFrontRight = visualWheel.transform;
+                    break;
+                case VisualWheelSide.RearLeft:
+                    _wheelVisualRearLeft = visualWheel.transform;
+                    break;
+                case VisualWheelSide.RearRight:
+                    _wheelVisualRearRight = visualWheel.transform;
+                    break;
+            }
+        }
     }
 
     private void InitializeParticleEffects()
     {
         if (_driftSparkVFX != null)
         {
-            AddSparkToWheel(_wheelColliderRearLeft, -_driftSparkHorizontalOffset, -_driftSparkRotation);
-            AddSparkToWheel(_wheelColliderRearRight, _driftSparkHorizontalOffset, _driftSparkRotation);
+            AddSparkToWheel(_wheelColliderRearLeft, -_driftSparkHorizontalOffset, 0);
+            AddSparkToWheel(_wheelColliderRearRight, _driftSparkHorizontalOffset, 180);
         }
 
         if (_driftTrailPrefab != null)
@@ -89,8 +113,8 @@ public class KartVFX : MonoBehaviour
 
     void AddSparkToWheel(WheelCollider wheel, float horizontalOffset, float rotation)
     {
-        GameObject vfx = Instantiate(_driftSparkVFX.gameObject, wheel.transform, false);
-        ParticleSystem spark = vfx.GetComponent<ParticleSystem>();
+        GameObject vfx = Instantiate(_driftSparkVFX, wheel.transform, false);
+        VisualEffect spark = vfx.GetComponent<VisualEffect>();
         spark.Stop();
         m_DriftSparkInstances.Add((wheel, horizontalOffset, -rotation, spark));
     }
@@ -130,13 +154,11 @@ public class KartVFX : MonoBehaviour
         {
             if (active && vfx.wheel.GetGroundHit(out WheelHit hit))
             {
-                if (!vfx.sparks.isPlaying)
-                    vfx.sparks.Play();
+                vfx.sparks.Play();
             }
             else
             {
-                if (vfx.sparks.isPlaying)
-                    vfx.sparks.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                vfx.sparks.Stop();
             }
         }
 
@@ -149,7 +171,7 @@ public class KartVFX : MonoBehaviour
         foreach (var vfx in m_DriftSparkInstances)
         {
             vfx.sparks.transform.position = vfx.wheel.transform.position - (vfx.wheel.radius * Vector3.up) + (_driftTrailVerticalOffset * Vector3.up) + (transform.right * vfx.horizontalOffset);
-            vfx.sparks.transform.rotation = transform.rotation * Quaternion.Euler(0.0f, 0.0f, vfx.rotation);
+            vfx.sparks.transform.rotation = transform.rotation * Quaternion.Euler(0.0f, vfx.rotation, 0.0f);
         }
 
         foreach (var trail in m_DriftTrailInstances)

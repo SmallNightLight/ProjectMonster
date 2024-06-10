@@ -1,11 +1,13 @@
 using ScriptableArchitecture.Data;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 [RequireComponent(typeof(KartMovement))]
 public class KartBaseBot : KartBase
 {
+    [SerializeField] protected List<KartDataReference> _possiblekartDatas;
+
     private Vector3 _targetPosition;
 
     [SerializeField] private float _targetThreshold = 1f;
@@ -24,8 +26,18 @@ public class KartBaseBot : KartBase
     [SerializeField] protected RoadSplines _trackSplines;
     private KartMovement _movement;
 
+    private void Awake()
+    {
+
+    }
+
     private void Start()
     {
+        if (_possiblekartDatas != null)
+            _kartData = _possiblekartDatas[Random.Range(0, _possiblekartDatas.Count - 1)];
+
+        UpdateKartVisuals();
+
         _movement = GetComponent<KartMovement>();
         _input.Value.InputData = new InputData();
 

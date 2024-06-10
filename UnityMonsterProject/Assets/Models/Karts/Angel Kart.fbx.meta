@@ -1,9 +1,54 @@
 fileFormatVersion: 2
-guid: 9e28911e1778884489f9b829f8498667
+guid: 4217a61703763314db52f6142e75f448
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Backseat
+    second: {fileID: 2100000, guid: 5dc08453de08b254cbedacdf8619191e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: JetsEM
+    second: {fileID: 2100000, guid: b5fb0f41cdf7cbd4591a4965e29d369c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KartsBase
+    second: {fileID: 2100000, guid: 8867664fdd411a148bb6e3bc65e41598, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KartsBody
+    second: {fileID: 2100000, guid: 5028bd03a0fc0a1478ba5bae67d419a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_Parts
+    second: {fileID: 2100000, guid: 8ef2d365a0c758e43b40c649951ff083, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seats
+    second: {fileID: 2100000, guid: b8dbc60d212ebb742ae19650be250488, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelEM
+    second: {fileID: 2100000, guid: 3bff73fb1d9bdc74ea01b4809cdc0751, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheels
+    second: {fileID: 2100000, guid: 1dcd2531ae2c9d1459b02e6de34cd804, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wings
+    second: {fileID: 2100000, guid: d4cba08e61ca26a41a5a4452bf4cb6e1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +80,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
