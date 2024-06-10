@@ -96,7 +96,6 @@ public class RoadSplines : MonoBehaviour
 
             if (nextSpline >= _splineContainer.Splines.Count)
             {
-                Debug.Log("Reached end of track");
                 nextSpline = 0;
             }
 

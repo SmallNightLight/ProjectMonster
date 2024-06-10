@@ -21,6 +21,14 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private WheelCollider _wheelColliderRearLeft;
     [SerializeField] private WheelCollider _wheelColliderRearRight;
 
+    [SerializeField] private Transform _smartRayRight;
+    [SerializeField] private Transform _smartRayLeft;
+
+    [SerializeField] private float _smartRayDistance;
+    [SerializeField] private LayerMask _smartSteeringLayers;
+    [Range(0, 10), SerializeField] private float _smartSteeringAmount = 6f;
+    [SerializeField] private float _distancePower = 1.5f;
+
     private KartBase _base;
     private Rigidbody _rigidbody;
 
@@ -215,6 +223,12 @@ public class KartMovement : MonoBehaviour
 
     void MoveVehicle(bool accelerate, bool brake, float turnInput)
     {
+        float smartSteering = SmartSteering();
+        smartSteering *= 2;
+        smartSteering *= _smartSteeringAmount;
+        //if (_smartRayLeft != null) Debug.Log(smartSteering);
+        turnInput = Mathf.Clamp(turnInput + smartSteering, -1f, 1f);
+
         float accelInput = (accelerate ? 1.0f : 0.0f) - (brake ? 1.0f : 0.0f);
 
         // manual acceleration curve coefficient scalar
@@ -394,6 +408,44 @@ public class KartMovement : MonoBehaviour
         }
 
         _changeDriftState.Invoke(IsDrifting && _groundPercent > 0.0f);
+    }
+
+    private float SmartSteering()
+    {
+        if (_smartRayLeft == null || _smartRayRight == null) return 0f;
+
+        float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower));
+
+        bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers);
+        bool left = Physics.Raycast(_smartRayRight.position, _smartRayRight.forward, out var hitLeft, speedDistance, _smartSteeringLayers);
+
+        Debug.DrawRay(_smartRayLeft.position, _smartRayLeft.forward * speedDistance, left ? Color.yellow : Color.green);
+        Debug.DrawRay(_smartRayRight.position, _smartRayRight.forward * speedDistance, right ? Color.yellow : Color.green);
+
+        if (!right && !left) return 0f;
+
+        float middleDistance = (hitRight.distance + hitLeft.distance) / 2f;
+        float distancePercentage = middleDistance / speedDistance;
+
+        if (right && left)
+        {
+            if (hitRight.distance > hitLeft.distance)
+                return -(hitLeft.distance / hitRight.distance * distancePercentage);
+            else
+                return hitRight.distance / hitLeft.distance * distancePercentage;  
+        }
+
+        if (right)
+        {
+            return distancePercentage;
+        }
+
+        if (left)
+        {
+            return -distancePercentage;
+        }
+
+        return 0f;
     }
 
     private void OnTriggerEnter(Collider other)
