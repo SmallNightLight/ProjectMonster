@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-15)]
 public class KartBase : MonoBehaviour
 {
-    [SerializeField] private InputAssetReference _input;
+    [SerializeField] protected InputAssetReference _input;
 
     //private PlayerInput _inputActions;
-    private InputData _inputData;
+    //private InputData _inputData;
 
     //private InputAction _steeringInput;
 
