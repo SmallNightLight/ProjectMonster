@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using ScriptableArchitecture.Data;
 using UnityEngine.Events;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -54,6 +54,14 @@ public class KartMovement : MonoBehaviour
     private float m_DriftTurningPower = 0.0f;
     private float m_PreviousGroundPercent = 1.0f;
     private float _curveValue = 0f;
+
+    //Hop
+    private bool _wantsToHop = false;
+    bool _doHop = false;
+    [SerializeField] private float _hopPower;
+    [SerializeField] private float _hopDuration;
+    private bool _isHopping;
+    [SerializeField] private float _hopDownAir;
 
     private List<AbilityData> _activeAbilities = new List<AbilityData>();
     private bool m_CanMove = true;
@@ -122,7 +130,8 @@ public class KartMovement : MonoBehaviour
         UpdateSuspensionParams(_wheelColliderRearLeft);
         UpdateSuspensionParams(_wheelColliderRearRight);
 
-        _wantsToDrift = _base.Input.IsAccelerating && _base.Input.IsBraking && Mathf.Abs(_base.Input.SteerInput) > _minSteerForDrift;// && Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f;
+        _wantsToHop = _base.Input.IsAccelerating && _base.Input.IsBraking && !IsDrifting;
+        _wantsToDrift = _wantsToHop && Mathf.Abs(_base.Input.SteerInput) > _minSteerForDrift;
 
         _rigidbody.centerOfMass = transform.InverseTransformPoint(_centerOfMass.position);
 
@@ -143,7 +152,7 @@ public class KartMovement : MonoBehaviour
         //Apply vehicle physics
         if (m_CanMove)
         {
-            MoveVehicle(_base.Input.IsAccelerating, _base.Input.IsBraking && !_wantsToDrift, _base.Input.SteerInput);
+            MoveVehicle(_base.Input.IsAccelerating, _base.Input.IsBraking && !_base.Input.IsAccelerating, _base.Input.SteerInput);
         }
         GroundAirbourne();
 
@@ -186,7 +195,7 @@ public class KartMovement : MonoBehaviour
         // while in the air, fall faster
         if (_airPercent >= 1)
         {
-            _rigidbody.velocity += Physics.gravity * Time.fixedDeltaTime * _finalMovementStats.AddedGravity;
+            _rigidbody.velocity += Physics.gravity * Time.fixedDeltaTime * (_isHopping ? _hopDownAir : _finalMovementStats.AddedGravity);
         }
     }
 
@@ -237,7 +246,6 @@ public class KartMovement : MonoBehaviour
         float smartSteering = SmartSteering();
         smartSteering *= 2;
         smartSteering *= _smartSteeringAmount;
-        //if (_smartRayLeft != null) Debug.Log(smartSteering);
         turnInput = Mathf.Clamp(turnInput + smartSteering, -1f, 1f);
 
         float accelInput = (accelerate ? 1.0f : 0.0f) - (brake ? 1.0f : 0.0f);
@@ -275,13 +283,15 @@ public class KartMovement : MonoBehaviour
 
         // forward movement
         bool wasOverMaxSpeed = currentSpeed >= maxSpeed;
-
+        
         // if over max speed, cannot accelerate faster.
         if (wasOverMaxSpeed && !isBraking)
             movement *= 0.0f;
 
         Vector3 newVelocity = _rigidbody.velocity + movement * Time.fixedDeltaTime;
-        newVelocity.y = _rigidbody.velocity.y;
+        newVelocity.y = _rigidbody.velocity.y + (_doHop ? _hopPower : 0f);
+
+        if (_doHop) _doHop = false;
 
         //  clamp max speed if we are on ground
         if (_groundPercent > 0.0f && !wasOverMaxSpeed)
@@ -326,32 +336,9 @@ public class KartMovement : MonoBehaviour
             // manual velocity steering coefficient
             float velocitySteering = 25f;
 
-            // If the karts lands with a forward not in the velocity direction, we start the drift
-            //if (_groundPercent >= 0.0f && m_PreviousGroundPercent < 0.1f)
-            //{
-            //    Vector3 flattenVelocity = Vector3.ProjectOnPlane(_rigidbody.velocity, m_VerticalReference).normalized;
-            //    if (Vector3.Dot(flattenVelocity, transform.forward * Mathf.Sign(accelInput)) < Mathf.Cos(_driftStats.MinAngleToFinishDrift * Mathf.Deg2Rad))
-            //    {
-            //        IsDrifting = true;
-            //        m_CurrentGrip = _driftStats.DriftGrip;
-            //        m_DriftTurningPower = 0.0f;
-            //    }
-            //}
-
-            // Drift Management
-            if (!IsDrifting)
-            {
-                if (_wantsToDrift && currentSpeed > maxSpeed * _driftStats.Value.MinSpeedPercentToFinishDrift)
-                {
-                    IsDrifting = true;
-                    m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.Value.DriftAdditionalSteer);
-                    m_CurrentGrip = _driftStats.Value.DriftGrip;
-                    _driftDirection = turnInput > 0f ? 1 : -1;
-                    _curveValue = _curveValues.x;
-
-                    _changeDriftState.Invoke(true);
-                }
-            }
+            //Drift Management
+            if (!IsDrifting && _wantsToHop)
+                StartCoroutine(Hop());
 
             if (IsDrifting)
             {
@@ -459,6 +446,28 @@ public class KartMovement : MonoBehaviour
         }
 
         return 0f;
+    }
+
+    private IEnumerator Hop()
+    {
+        _doHop = true;
+        _isHopping = true;
+        yield return new WaitForSeconds(_hopDuration);
+        _isHopping = false;
+
+        //Start drift if possible
+        float turnInput = _base.Input.SteerInput;
+        float turningPower = IsDrifting ? m_DriftTurningPower : turnInput * _finalMovementStats.Steer;
+
+        if (Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f && _rigidbody.velocity.magnitude > _finalMovementStats.TopSpeed * _driftStats.Value.MinSpeedPercentToFinishDrift && _wantsToDrift)
+        {
+            IsDrifting = true;
+            m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.Value.DriftAdditionalSteer);
+            m_CurrentGrip = _driftStats.Value.DriftGrip;
+            _driftDirection = turnInput > 0f ? 1 : -1;
+            _curveValue = _curveValues.x;
+            _changeDriftState.Invoke(true);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
