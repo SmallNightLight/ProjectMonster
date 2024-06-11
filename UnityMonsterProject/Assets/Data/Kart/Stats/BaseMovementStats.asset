@@ -36,7 +36,7 @@ MonoBehaviour:
     CoastingDrag: 7
     Grip: 0.95
     Steer: 5
-    AddedGravity: 3
+    AddedGravity: 5
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:

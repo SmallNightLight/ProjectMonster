@@ -1028,7 +1028,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 74d1baa03d848fe4ca12b7d9bb029b87, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -2452,7 +2452,7 @@ MonoBehaviour:
   m_Script: {fileID: 561528938, guid: f56d46228aee4734f9114056c53bb57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadScr: {fileID: 6451539475622413311}
+  roadScr: {fileID: 0}
   prefabScr: {fileID: 0}
   markers: 03000000
   startEnd: 0
@@ -9907,7 +9907,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OCOODCCOQO
       value: 
-      objectReference: {fileID: 6451539475622413311}
+      objectReference: {fileID: 0}
     - target: {fileID: 7458853932264463876, guid: 95b2c31d00f8a134e96c33de09dd5c97,
         type: 3}
       propertyPath: OCQOCDCDOD
@@ -9917,7 +9917,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OQCQDDDODD
       value: 
-      objectReference: {fileID: 6451539475622413311}
+      objectReference: {fileID: 0}
     - target: {fileID: 7458853932264463876, guid: 95b2c31d00f8a134e96c33de09dd5c97,
         type: 3}
       propertyPath: toolbarInt
@@ -10013,18 +10013,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95b2c31d00f8a134e96c33de09dd5c97, type: 3}
---- !u!114 &6451539475622413311 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6717149282714111372, guid: 95b2c31d00f8a134e96c33de09dd5c97,
-    type: 3}
-  m_PrefabInstance: {fileID: 6451539475622413310}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -216737829, guid: f56d46228aee4734f9114056c53bb57e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
