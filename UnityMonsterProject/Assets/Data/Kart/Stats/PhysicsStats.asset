@@ -21,7 +21,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
   _startValue:
-    AirborneReorientationCoefficient: 1
+    AirborneReorientationCoefficient: 0.1
     GroundLayers:
       serializedVersion: 2
       m_Bits: 449

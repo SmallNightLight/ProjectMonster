@@ -23,12 +23,12 @@ MonoBehaviour:
     DriftControl: 10
     DriftDampening: 10
   _startValue:
-    DriftGrip: 0.8
+    DriftGrip: 0.942
     DriftAdditionalSteer: 3
-    MinAngleToFinishDrift: 10
-    MinSpeedPercentToFinishDrift: 0.8
+    MinAngleToFinishDrift: 22.5
+    MinSpeedPercentToFinishDrift: 0.098
     DriftControl: 10
-    DriftDampening: 10
+    DriftDampening: 15.3
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:

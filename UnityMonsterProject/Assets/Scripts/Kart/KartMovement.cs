@@ -1,8 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using ScriptableArchitecture.Data;
 using UnityEngine.Events;
+using Unity.Mathematics;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -21,6 +23,14 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private WheelCollider _wheelColliderRearLeft;
     [SerializeField] private WheelCollider _wheelColliderRearRight;
 
+    [SerializeField] private Transform _smartRayRight;
+    [SerializeField] private Transform _smartRayLeft;
+
+    [SerializeField] private float _smartRayDistance;
+    [SerializeField] private LayerMask _smartSteeringLayers;
+    [Range(0, 10), SerializeField] private float _smartSteeringAmount = 6f;
+    [SerializeField] private float _distancePower = 1.5f;
+
     private KartBase _base;
     private Rigidbody _rigidbody;
 
@@ -29,11 +39,31 @@ public class KartMovement : MonoBehaviour
     private Vector3 m_VerticalReference = Vector3.up;
 
     //Drifting
+    [SerializeField] private float _minSteerForDrift = 0.1f;
+    [SerializeField] private float _minDriftSteer  = 0.1f;
+    [SerializeField] private float _driftTurnPower = 10f;
+    [SerializeField] private AnimationCurve _driftCurve;
+
+    [SerializeField] private Vector2 _curveValues;
+    [SerializeField] private float _curveSpeed;
+
+    [SerializeField] private float _driftRotation;
+
     private bool _wantsToDrift = false;
     private bool IsDrifting = false;
     private float m_CurrentGrip = 1.0f;
+    private int _driftDirection = 0;
     private float m_DriftTurningPower = 0.0f;
     private float m_PreviousGroundPercent = 1.0f;
+    private float _curveValue = 0f;
+
+    //Hop
+    private bool _wantsToHop = false;
+    bool _doHop = false;
+    [SerializeField] private float _hopPower;
+    [SerializeField] private float _hopDuration;
+    private bool _isHopping;
+    [SerializeField] private float _hopDownAir;
 
     private List<AbilityData> _activeAbilities = new List<AbilityData>();
     private bool m_CanMove = true;
@@ -102,9 +132,9 @@ public class KartMovement : MonoBehaviour
         UpdateSuspensionParams(_wheelColliderRearLeft);
         UpdateSuspensionParams(_wheelColliderRearRight);
 
-        _wantsToDrift = _base.Input.IsAccelerating && _base.Input.IsBraking;// && Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f;
+        _wantsToHop = _base.Input.IsAccelerating && _base.Input.IsBraking && !IsDrifting;
+        _wantsToDrift = _wantsToHop && Mathf.Abs(_base.Input.SteerInput) > _minSteerForDrift;
 
-        // apply our physics properties
         _rigidbody.centerOfMass = transform.InverseTransformPoint(_centerOfMass.position);
 
         int groundedCount = 0;
@@ -124,7 +154,7 @@ public class KartMovement : MonoBehaviour
         //Apply vehicle physics
         if (m_CanMove)
         {
-            MoveVehicle(_base.Input.IsAccelerating, _base.Input.IsBraking, _base.Input.SteerInput);
+            MoveVehicle(_base.Input.IsAccelerating, _base.Input.IsBraking && !_base.Input.IsAccelerating, _base.Input.SteerInput);
         }
         GroundAirbourne();
 
@@ -167,7 +197,7 @@ public class KartMovement : MonoBehaviour
         // while in the air, fall faster
         if (_airPercent >= 1)
         {
-            _rigidbody.velocity += Physics.gravity * Time.fixedDeltaTime * _finalMovementStats.AddedGravity;
+            _rigidbody.velocity += Physics.gravity * Time.fixedDeltaTime * (_isHopping ? _hopDownAir : _finalMovementStats.AddedGravity);
         }
     }
 
@@ -215,6 +245,11 @@ public class KartMovement : MonoBehaviour
 
     void MoveVehicle(bool accelerate, bool brake, float turnInput)
     {
+        float smartSteering = SmartSteering();
+        smartSteering *= 2;
+        smartSteering *= _smartSteeringAmount;
+        turnInput = Mathf.Clamp(turnInput + smartSteering, -1f, 1f);
+
         float accelInput = (accelerate ? 1.0f : 0.0f) - (brake ? 1.0f : 0.0f);
 
         // manual acceleration curve coefficient scalar
@@ -250,13 +285,15 @@ public class KartMovement : MonoBehaviour
 
         // forward movement
         bool wasOverMaxSpeed = currentSpeed >= maxSpeed;
-
+        
         // if over max speed, cannot accelerate faster.
         if (wasOverMaxSpeed && !isBraking)
             movement *= 0.0f;
 
         Vector3 newVelocity = _rigidbody.velocity + movement * Time.fixedDeltaTime;
-        newVelocity.y = _rigidbody.velocity.y;
+        newVelocity.y = _rigidbody.velocity.y + (_doHop ? _hopPower : 0f);
+
+        if (_doHop) _doHop = false;
 
         //  clamp max speed if we are on ground
         if (_groundPercent > 0.0f && !wasOverMaxSpeed)
@@ -301,58 +338,37 @@ public class KartMovement : MonoBehaviour
             // manual velocity steering coefficient
             float velocitySteering = 25f;
 
-            // If the karts lands with a forward not in the velocity direction, we start the drift
-            //if (_groundPercent >= 0.0f && m_PreviousGroundPercent < 0.1f)
-            //{
-            //    Vector3 flattenVelocity = Vector3.ProjectOnPlane(_rigidbody.velocity, m_VerticalReference).normalized;
-            //    if (Vector3.Dot(flattenVelocity, transform.forward * Mathf.Sign(accelInput)) < Mathf.Cos(_driftStats.MinAngleToFinishDrift * Mathf.Deg2Rad))
-            //    {
-            //        IsDrifting = true;
-            //        m_CurrentGrip = _driftStats.DriftGrip;
-            //        m_DriftTurningPower = 0.0f;
-            //    }
-            //}
-
-            // Drift Management
-            if (!IsDrifting)
-            {
-                if (_wantsToDrift && currentSpeed > maxSpeed * _driftStats.Value.MinSpeedPercentToFinishDrift)
-                {
-                    IsDrifting = true;
-                    m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.Value.DriftAdditionalSteer);
-                    m_CurrentGrip = _driftStats.Value.DriftGrip;
-
-                    _changeDriftState.Invoke(true);
-                }
-            }
+            //Drift Management
+            if (!IsDrifting && _wantsToHop)
+                StartCoroutine(Hop());
 
             if (IsDrifting)
             {
-                float turnInputAbs = Mathf.Abs(turnInput);
-                if (turnInputAbs < k_NullInput)
-                    m_DriftTurningPower = Mathf.MoveTowards(m_DriftTurningPower, 0.0f, Mathf.Clamp01(_driftStats.Value.DriftDampening * Time.fixedDeltaTime));
+                if (_curveValue < _curveValues.y)
+                    _curveValue += Time.fixedDeltaTime * _curveSpeed;
 
-                // Update the turning power based on input
-                float driftMaxSteerValue = _finalMovementStats.Steer + _driftStats.Value.DriftAdditionalSteer;
-                m_DriftTurningPower = Mathf.Clamp(m_DriftTurningPower + (turnInput * Mathf.Clamp01(_driftStats.Value.DriftControl * Time.fixedDeltaTime)), -driftMaxSteerValue, driftMaxSteerValue);
+                float driftTurn;
 
-                bool facingVelocity = Vector3.Dot(_rigidbody.velocity.normalized, transform.forward * Mathf.Sign(accelInput)) > Mathf.Cos(_driftStats.Value.MinAngleToFinishDrift * Mathf.Deg2Rad);
-
-                bool canEndDrift = true;
-                if (isBraking)
-                    canEndDrift = false;
-                else if (!facingVelocity)
-                    canEndDrift = false;
-                else if (turnInputAbs >= k_NullInput && currentSpeed > maxSpeed * _driftStats.Value.MinSpeedPercentToFinishDrift)
-                    canEndDrift = false;
-
-                if (canEndDrift || currentSpeed < k_NullSpeed)
+                if (_driftDirection == 1)
                 {
-                    // No Input, and car aligned with speed direction => Stop the drift
+                    driftTurn = math.remap(-1, 1, 0, 1, turnInput);
+                    driftTurn = _curveValue * (Mathf.Pow(driftTurn - _minDriftSteer, 2));
+                }
+                else
+                {
+                    driftTurn = math.remap(-1, 1, -1, 0, turnInput);
+                    driftTurn *= -1;
+                    driftTurn = _curveValue * (Mathf.Pow(driftTurn - _minDriftSteer, 2));
+                    driftTurn *= -1;
+                }
+
+                m_DriftTurningPower = driftTurn * _driftTurnPower;
+
+                if (!_base.Input.IsBraking)
+                {
                     IsDrifting = false;
                     m_CurrentGrip = _finalMovementStats.Grip;
                 }
-
             }
 
             // rotate our velocity based on current steer value
@@ -394,6 +410,70 @@ public class KartMovement : MonoBehaviour
         }
 
         _changeDriftState.Invoke(IsDrifting && _groundPercent > 0.0f);
+    }
+
+    private float SmartSteering()
+    {
+        if (_smartRayLeft == null || _smartRayRight == null) return 0f;
+
+        float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower));
+
+        bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers);
+        bool left = Physics.Raycast(_smartRayRight.position, _smartRayRight.forward, out var hitLeft, speedDistance, _smartSteeringLayers);
+
+        Debug.DrawRay(_smartRayLeft.position, _smartRayLeft.forward * speedDistance, left ? Color.yellow : Color.green);
+        Debug.DrawRay(_smartRayRight.position, _smartRayRight.forward * speedDistance, right ? Color.yellow : Color.green);
+
+        if (!right && !left) return 0f;
+
+        float middleDistance = (hitRight.distance + hitLeft.distance) / 2f;
+        float distancePercentage = middleDistance / speedDistance;
+
+        if (right && left)
+        {
+            if (hitRight.distance > hitLeft.distance)
+                return -(hitLeft.distance / hitRight.distance * distancePercentage);
+            else
+                return hitRight.distance / hitLeft.distance * distancePercentage;  
+        }
+
+        if (right)
+        {
+            return distancePercentage;
+        }
+
+        if (left)
+        {
+            return -distancePercentage;
+        }
+
+        return 0f;
+    }
+
+    private IEnumerator Hop()
+    {
+        _doHop = true;
+        _isHopping = true;
+        yield return new WaitForSeconds(_hopDuration);
+        _isHopping = false;
+
+        //Start drift if possible
+        float turnInput = _base.Input.SteerInput;
+        float turningPower = IsDrifting ? m_DriftTurningPower : turnInput * _finalMovementStats.Steer;
+
+        if (Vector3.Dot(_rigidbody.velocity, transform.forward) > 0.0f && _rigidbody.velocity.magnitude > _finalMovementStats.TopSpeed * _driftStats.Value.MinSpeedPercentToFinishDrift && _wantsToDrift)
+        {
+            IsDrifting = true;
+            m_DriftTurningPower = turningPower + (Mathf.Sign(turningPower) * _driftStats.Value.DriftAdditionalSteer);
+            m_CurrentGrip = _driftStats.Value.DriftGrip;
+            _driftDirection = turnInput > 0f ? 1 : -1;
+            _curveValue = _curveValues.x;
+            _changeDriftState.Invoke(true);
+
+
+            //Rotate kart here
+            //_everything.transform.Rotate(0, _driftRotation, 0);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

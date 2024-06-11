@@ -1,10 +1,13 @@
 using ScriptableArchitecture.Data;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(KartMovement))]
 public class KartBaseBot : KartBase
 {
+    [SerializeField] protected List<KartDataReference> _possiblekartDatas;
+
     private Vector3 _targetPosition;
 
     [SerializeField] private float _targetThreshold = 1f;
@@ -13,18 +16,28 @@ public class KartBaseBot : KartBase
     [SerializeField] private float _steeringSensitivity = 0.1f;
 
     [SerializeField] private Vector2 _changeTime;
+    [SerializeField] private float _updateTime = 0.5f;
 
     private int _lastSpline;
     private float _lastStep;
     private float _currentPercentage;
 
-
     [Header("Components")]
     [SerializeField] protected RoadSplines _trackSplines;
     private KartMovement _movement;
 
+    private void Awake()
+    {
+
+    }
+
     private void Start()
     {
+        if (_possiblekartDatas != null)
+            _kartData = _possiblekartDatas[Random.Range(0, _possiblekartDatas.Count - 1)];
+
+        UpdateKartVisuals();
+
         _movement = GetComponent<KartMovement>();
         _input.Value.InputData = new InputData();
 
@@ -32,15 +45,13 @@ public class KartBaseBot : KartBase
         _lastStep = 0;
 
         StartCoroutine(ChangePercentage());
+        UpdateTarget();
+        StartCoroutine(WaitForUpdateTarget());
     }
 
     private void Update()
     {
         if (_trackSplines == null) return;
-
-        _trackSplines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
-
-        _targetPosition = Vector3.Lerp(side1, side2, _currentPercentage);
 
         float forwardAmount = 0f;
         float turnAmount = 0f;
@@ -87,11 +98,29 @@ public class KartBaseBot : KartBase
         _input.Value.InputData.SteerInput = turnAmount;
     }
 
+    private IEnumerator WaitForUpdateTarget()
+    {
+        while (true)
+        {
+            UpdateTarget();
+
+            yield return null;
+            yield return new WaitForSeconds(_updateTime);
+        }
+    }
+
+    private void UpdateTarget()
+    {
+        _trackSplines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
+        _targetPosition = Vector3.Lerp(side1, side2, _currentPercentage);
+    }
+
     private IEnumerator ChangePercentage()
     {
         while (true)
         {
-            _currentPercentage = Random.Range(0f, 1f);
+            _currentPercentage += Random.Range(-0.4f, 0.4f);
+            _currentPercentage = Mathf.Clamp01(_currentPercentage);
 
             yield return null;
             yield return new WaitForSeconds(Random.Range(_changeTime.x, _changeTime.y));
