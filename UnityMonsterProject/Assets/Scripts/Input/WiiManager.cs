@@ -11,6 +11,8 @@ public class WiiManager : MonoBehaviour, IInputManager
 
     [SerializeField] private float _maxNoInputTime = 5.0f;
 
+    public float ChangeSteering = 0f;
+
     public bool TryGetInput(Wiimote mote, InputAsset key, out InputData input)
     {
         if (mote == null)
