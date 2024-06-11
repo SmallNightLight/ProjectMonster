@@ -47,6 +47,8 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private Vector2 _curveValues;
     [SerializeField] private float _curveSpeed;
 
+    [SerializeField] private float _driftRotation;
+
     private bool _wantsToDrift = false;
     private bool IsDrifting = false;
     private float m_CurrentGrip = 1.0f;
@@ -467,6 +469,10 @@ public class KartMovement : MonoBehaviour
             _driftDirection = turnInput > 0f ? 1 : -1;
             _curveValue = _curveValues.x;
             _changeDriftState.Invoke(true);
+
+
+            //Rotate kart here
+            //_everything.transform.Rotate(0, _driftRotation, 0);
         }
     }
 
@@ -478,8 +484,3 @@ public class KartMovement : MonoBehaviour
         }
     }
 }
-
-//Drift to do
-//jump before drift
-//Start drift after jump
-//rotate car in drift direction
