@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using ScriptableArchitecture.Data;
 using UnityEngine.Events;
 using Unity.Mathematics;
+using static UnityEngine.InputSystem.Controls.AxisControl;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -24,12 +25,22 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private WheelCollider _wheelColliderRearRight;
 
     [SerializeField] private Transform _smartRayRight;
+    [SerializeField] private Transform _smartRayMiddle;
     [SerializeField] private Transform _smartRayLeft;
 
     [SerializeField] private float _smartRayDistance;
     [SerializeField] private LayerMask _smartSteeringLayers;
     [Range(0, 10), SerializeField] private float _smartSteeringAmount = 6f;
     [SerializeField] private float _distancePower = 1.5f;
+
+    [Header("Smart track")]
+    [SerializeField] private float _updateTime = 0.5f;
+    [SerializeField] protected RoadSplines _trackSplines;
+    [SerializeField] private float _smartTrackInfluence = 1f;
+    private Vector3 _targetPosition;
+
+    private int _lastSpline;
+    private float _lastStep;
 
     private KartBase _base;
     private Rigidbody _rigidbody;
@@ -48,6 +59,7 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private float _curveSpeed;
 
     [SerializeField] private float _driftRotation;
+    [SerializeField] private float _smartExtra = 1f;
 
     private bool _wantsToDrift = false;
     private bool IsDrifting = false;
@@ -111,6 +123,9 @@ public class KartMovement : MonoBehaviour
         UpdateSuspensionParams(_wheelColliderRearRight);
 
         m_CurrentGrip = _movementStats.Value.Grip;
+
+        UpdateTarget();
+        StartCoroutine(WaitForUpdateTarget());
     }
 
     private void InitializeStats()
@@ -248,7 +263,9 @@ public class KartMovement : MonoBehaviour
         float smartSteering = SmartSteering();
         smartSteering *= 2;
         smartSteering *= _smartSteeringAmount;
-        turnInput = Mathf.Clamp(turnInput + smartSteering, -1f, 1f);
+
+        float clamp = 1f + Mathf.Abs(smartSteering) * LocalSpeed() * _smartExtra;
+        turnInput = Mathf.Clamp(turnInput + smartSteering, -clamp, clamp);
 
         float accelInput = (accelerate ? 1.0f : 0.0f) - (brake ? 1.0f : 0.0f);
 
@@ -412,42 +429,93 @@ public class KartMovement : MonoBehaviour
         _changeDriftState.Invoke(IsDrifting && _groundPercent > 0.0f);
     }
 
+    [SerializeField] private float _smartRaycastExtra;
+
     private float SmartSteering()
     {
-        if (_smartRayLeft == null || _smartRayRight == null) return 0f;
+        if (_smartRayLeft == null || _smartRayRight == null || _smartRayMiddle == null) return 0f;
 
-        float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower));
+        float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower)) + _smartRaycastExtra;
 
         bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers);
         bool left = Physics.Raycast(_smartRayRight.position, _smartRayRight.forward, out var hitLeft, speedDistance, _smartSteeringLayers);
+        bool center = Physics.Raycast(_smartRayMiddle.position, _smartRayMiddle.forward, out var hitCenter, speedDistance, _smartSteeringLayers);
 
         Debug.DrawRay(_smartRayLeft.position, _smartRayLeft.forward * speedDistance, left ? Color.yellow : Color.green);
         Debug.DrawRay(_smartRayRight.position, _smartRayRight.forward * speedDistance, right ? Color.yellow : Color.green);
+        Debug.DrawRay(_smartRayMiddle.position, _smartRayMiddle.forward * speedDistance, center ? Color.yellow : Color.green);
 
-        if (!right && !left) return 0f;
+        if (!right && !left && !center) return 0f;
 
         float middleDistance = (hitRight.distance + hitLeft.distance) / 2f;
         float distancePercentage = middleDistance / speedDistance;
 
+        float steeringAdjustment = 0f;
+
         if (right && left)
         {
             if (hitRight.distance > hitLeft.distance)
-                return -(hitLeft.distance / hitRight.distance * distancePercentage);
+                steeringAdjustment = -(hitLeft.distance / hitRight.distance * distancePercentage);
             else
-                return hitRight.distance / hitLeft.distance * distancePercentage;  
+                steeringAdjustment = hitRight.distance / hitLeft.distance * distancePercentage;
         }
-
-        if (right)
+        else if (right)
         {
-            return distancePercentage;
+            steeringAdjustment = distancePercentage;
         }
-
-        if (left)
+        else if (left)
         {
-            return -distancePercentage;
+            steeringAdjustment = -distancePercentage;
         }
 
-        return 0f;
+        // Handle the case where there's a small object in front
+        if (center)
+        {
+            if (!left && !right)
+            {
+                // No objects on either side, choose a random direction to avoid the small object
+                steeringAdjustment = UnityEngine.Random.Range(0f, 1f) > 0.5f ? distancePercentage : -distancePercentage;
+            }
+            else if (left && !right)
+            {
+                steeringAdjustment = distancePercentage;
+            }
+            else if (right && !left)
+            {
+                steeringAdjustment = -distancePercentage;
+            }
+        }
+
+        // Calculate the track direction influence
+        Vector3 directionToTarget = (_targetPosition - transform.position).normalized;
+        Vector3 kartForward = transform.forward;
+        float angleToTarget = Vector3.SignedAngle(kartForward, directionToTarget, Vector3.up);
+        float normalizedAngle = angleToTarget / 180f;
+        float finalSteering = steeringAdjustment + normalizedAngle * _smartTrackInfluence;
+
+        return Mathf.Clamp(finalSteering, -1f, 1f);
+    }
+
+    private IEnumerator WaitForUpdateTarget()
+    {
+        while (true)
+        {
+            UpdateTarget();
+
+            yield return null;
+            yield return new WaitForSeconds(_updateTime);
+        }
+    }
+
+    private void UpdateTarget()
+    {
+        _trackSplines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
+        _targetPosition = (side1 + side2) / 2;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(_targetPosition, 2);
     }
 
     private IEnumerator Hop()

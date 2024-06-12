@@ -1485,6 +1485,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2468811300190971919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3281040893943063804}
+  m_Layer: 14
+  m_Name: SmartMiddle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3281040893943063804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2468811300190971919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.358, z: 0.829}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5963167512563114503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2536529863329669606
 GameObject:
   m_ObjectHideFlags: 0
@@ -5398,6 +5429,7 @@ Transform:
   - {fileID: 5347395898893514231}
   - {fileID: 8244541729484868782}
   - {fileID: 5529978524146536646}
+  - {fileID: 3281040893943063804}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -271.31702, z: 0}
 --- !u!114 &6757994081088227423
@@ -5492,13 +5524,17 @@ MonoBehaviour:
   _wheelColliderRearLeft: {fileID: 9074628113653667416}
   _wheelColliderRearRight: {fileID: 3904084252918045450}
   _smartRayRight: {fileID: 5529978524146536646}
+  _smartRayMiddle: {fileID: 3281040893943063804}
   _smartRayLeft: {fileID: 8244541729484868782}
-  _smartRayDistance: 13
+  _smartRayDistance: 10
   _smartSteeringLayers:
     serializedVersion: 2
     m_Bits: 2048
   _smartSteeringAmount: 8
   _distancePower: 2
+  _updateTime: 0.2
+  _trackSplines: {fileID: 0}
+  _smartTrackInfluence: 2
   _minSteerForDrift: 0.1
   _minDriftSteer: 0.1
   _driftTurnPower: 11
@@ -5528,6 +5564,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   _curveValues: {x: 0.4, y: 1.2}
   _curveSpeed: 1.7
+  _driftRotation: 0
+  _smartExtra: 0.03
   _hopPower: 5
   _hopDuration: 0.2
   _hopDownAir: 10
@@ -5561,6 +5599,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _smartRaycastExtra: 2
 --- !u!114 &3180446207861544887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5665,7 +5704,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &8408921784184116184
 GameObject:
   m_ObjectHideFlags: 0
