@@ -2379,6 +2379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8559627651720343782}
+  - component: {fileID: 297427285235774993}
   m_Layer: 14
   m_Name: Visual
   m_TagString: Untagged
@@ -2402,7 +2403,23 @@ Transform:
   - {fileID: 8092969437097380443}
   - {fileID: 3202044277383443655}
   m_Father: {fileID: 5963167512563114503}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 118.11729, z: 0}
+--- !u!111 &297427285235774993
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188646632768486093}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6620008c70078f94190765e0fb7ce96a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6620008c70078f94190765e0fb7ce96a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &4360537014579065065
 GameObject:
   m_ObjectHideFlags: 0
@@ -5632,6 +5649,31 @@ MonoBehaviour:
       WorldEffects: []
     _isInstance: 0
     _instancer: {fileID: 0}
+  _hitAbiity:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 7a59e0ee1c9e5424aae6e01ba2b26077, type: 2}
+    _constant:
+      AdditionalStats: []
+      Duration: 0
+      CoolDown: 0
+      WorldEffects: []
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _hitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8187911284204335228}
+        m_TargetAssemblyTypeName: KartVFX, Assembly-CSharp
+        m_MethodName: Hit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8187911284204335228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5678,6 +5720,7 @@ MonoBehaviour:
   _jumpVFX: {fileID: 0}
   _nozzleVFX: {fileID: 0}
   _nozzles: []
+  _hitAnimation: {fileID: 297427285235774993}
 --- !u!54 &4899419224775459057
 Rigidbody:
   m_ObjectHideFlags: 0

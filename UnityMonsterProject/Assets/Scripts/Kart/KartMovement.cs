@@ -319,7 +319,7 @@ public class KartMovement : MonoBehaviour
         }
 
         // coasting is when we aren't touching accelerate
-        if (Mathf.Abs(accelInput) < k_NullInput && _groundPercent > 0.0f)
+        if ((Mathf.Abs(accelInput) < k_NullInput || Mathf.Abs(finalAcceleration) < k_NullInput) && _groundPercent > 0.0f)
         {
             newVelocity = Vector3.MoveTowards(newVelocity, new Vector3(0, _rigidbody.velocity.y, 0), Time.fixedDeltaTime * _finalMovementStats.CoastingDrag);
         }
@@ -435,6 +435,10 @@ public class KartMovement : MonoBehaviour
     {
         if (_smartRayLeft == null || _smartRayRight == null || _smartRayMiddle == null) return 0f;
 
+        //Dont enable smart steering when is hit
+        if (_finalMovementStats.Acceleration < 0)
+            return 0f;
+
         float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower)) + _smartRaycastExtra;
 
         bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers);
@@ -513,11 +517,6 @@ public class KartMovement : MonoBehaviour
         _targetPosition = (side1 + side2) / 2;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(_targetPosition, 2);
-    }
-
     private IEnumerator Hop()
     {
         _doHop = true;
@@ -537,18 +536,6 @@ public class KartMovement : MonoBehaviour
             _driftDirection = turnInput > 0f ? 1 : -1;
             _curveValue = _curveValues.x;
             _changeDriftState.Invoke(true);
-
-
-            //Rotate kart here
-            //_everything.transform.Rotate(0, _driftRotation, 0);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Hit")
-        {
-            Debug.Log("Hit");
         }
     }
 }

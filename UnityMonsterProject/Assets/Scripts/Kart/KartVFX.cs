@@ -41,6 +41,8 @@ public class KartVFX : MonoBehaviour
     [Tooltip("List of the kart's nozzles.")]
     [SerializeField] private List<Transform> _nozzles;
 
+    [SerializeField] private Animation _hitAnimation;
+
     private List<(GameObject trailRoot, WheelCollider wheel, TrailRenderer trail)> m_DriftTrailInstances = new List<(GameObject, WheelCollider, TrailRenderer)>();
     private List<(WheelCollider wheel, float horizontalOffset, float rotation, VisualEffect sparks)> m_DriftSparkInstances = new List<(WheelCollider, float, float, VisualEffect)>();
 
@@ -188,6 +190,11 @@ public class KartVFX : MonoBehaviour
         Instantiate(_jumpVFX, position, Quaternion.identity);
     }
 
+    public void Hit()
+    {
+        if (_hitAnimation != null)
+            _hitAnimation.Play();
+    }
 
     //Overlay Boom effect
 

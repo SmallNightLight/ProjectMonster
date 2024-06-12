@@ -1,6 +1,7 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(KartBase), typeof(KartMovement))]
 public class KartAbilities : MonoBehaviour
@@ -8,7 +9,11 @@ public class KartAbilities : MonoBehaviour
     [Header("Abilities")]
     [SerializeField] private AbilityDataReference _boostAbility;
     [SerializeField] private AbilityDataReference _ability1;
-    
+    [SerializeField] private AbilityDataReference _hitAbiity;
+
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent _hitEvent;
 
     [Header("Components")]
     private KartBase _base;
@@ -88,6 +93,13 @@ public class KartAbilities : MonoBehaviour
 
             //Instantiate the prefab
             GameObject instance = Instantiate(worldEffect.Prefab);
+
+            if (instance.TryGetComponent(out BaseEffect baseEffect))
+            {
+                //Set some values
+                baseEffect.KartSpeed = _kartMovement.LocalSpeed();
+            }
+
             Destroy(instance, effect.Duration);
 
             //Set the parent if specified
@@ -132,6 +144,16 @@ public class KartAbilities : MonoBehaviour
                 _kartMovement.RemoveAbility(_activeAbilities[i].AbilityData);
                 _activeAbilities.RemoveAt(i);
             }   
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Hit")
+        {
+            AddAbility(_hitAbiity.Value);
+
+            _hitEvent.Invoke();
         }
     }
 }
