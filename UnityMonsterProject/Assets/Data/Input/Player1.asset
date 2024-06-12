@@ -18,17 +18,29 @@ MonoBehaviour:
   _value:
     Player: 1
     InputData:
-      AccelerateInput: 0
-      SteerInput: 0
+      IsAccelerating: 0
+      IsBraking: 0
+      SteerInput: 1
+      IsTricking: 0
+      AbilityBoost: 0
+      Ability1: 0
   _startValue:
     Player: 1
     InputData:
-      AccelerateInput: 0
-      SteerInput: 0
+      IsAccelerating: 0
+      IsBraking: 0
+      SteerInput: 1
+      IsTricking: 0
+      AbilityBoost: 0
+      Ability1: 0
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:
     Player: 0
     InputData:
-      AccelerateInput: 0
+      IsAccelerating: 0
+      IsBraking: 0
       SteerInput: 0
+      IsTricking: 0
+      AbilityBoost: 0
+      Ability1: 0
