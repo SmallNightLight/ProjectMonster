@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 using static VisualWheel;
 
-[RequireComponent(typeof(KartBase))]
+[RequireComponent(typeof(KartBase), typeof(KartMovement))]
 public class KartVFX : MonoBehaviour
 {
     [SerializeField] private GameObject _effectBoom;
@@ -43,10 +43,13 @@ public class KartVFX : MonoBehaviour
 
     [SerializeField] private Animation _hitAnimation;
 
+    [SerializeField] private Animator _characterAnimator;
+
     private List<(GameObject trailRoot, WheelCollider wheel, TrailRenderer trail)> m_DriftTrailInstances = new List<(GameObject, WheelCollider, TrailRenderer)>();
     private List<(WheelCollider wheel, float horizontalOffset, float rotation, VisualEffect sparks)> m_DriftSparkInstances = new List<(WheelCollider, float, float, VisualEffect)>();
 
     private KartBase _base;
+    private KartMovement _kartMovement;
 
     private float _currentSteering;
 
@@ -54,6 +57,7 @@ public class KartVFX : MonoBehaviour
     private void Start()
     {
         _base = GetComponent<KartBase>();
+        _kartMovement = GetComponent<KartMovement>();
 
         InitializeComponents();
         InitializeParticleEffects();
@@ -125,6 +129,7 @@ public class KartVFX : MonoBehaviour
     {
         UpdateWheels();
         UpdateDriftVFXOrientation();
+        UpdateAnimations();
     }
 
     private void UpdateWheels()
@@ -148,6 +153,24 @@ public class KartVFX : MonoBehaviour
 
         if (_wheelVisualRearLeft)
             _wheelVisualRearLeft.localRotation = Quaternion.Euler(new Vector3(speedRearRight.eulerAngles.x, 0, 0));
+    }
+
+    public void UpdateAnimations()
+    {
+        if (_characterAnimator)
+            _characterAnimator.SetFloat("Steer", _kartMovement.Steering());
+    }
+
+    public void Hop()
+    {
+        if (_characterAnimator)
+            _characterAnimator.SetTrigger("Hop");
+    }
+
+    public void Ability()
+    {
+        if (_characterAnimator)
+            _characterAnimator.SetTrigger("Ability");
     }
 
     public void ChangeDriftState(bool active)
@@ -194,6 +217,9 @@ public class KartVFX : MonoBehaviour
     {
         if (_hitAnimation != null)
             _hitAnimation.Play();
+
+        if (_characterAnimator)
+            _characterAnimator.SetTrigger("Hit");
     }
 
     //Overlay Boom effect

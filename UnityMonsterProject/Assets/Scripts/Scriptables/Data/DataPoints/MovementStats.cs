@@ -85,7 +85,7 @@ namespace ScriptableArchitecture.Data
 
         public void ClampStats()
         {
-            TopSpeed = Mathf.Max(TopSpeed, 0f);
+            TopSpeed = Mathf.Max(TopSpeed, 0.001f);
             ReverseSpeed = Mathf.Max(TopSpeed, 0f);
             AccelerationCurve = Mathf.Clamp(AccelerationCurve, 0.2f, 1);
             Grip = Mathf.Clamp(Grip, 0.0f, 1.0f);

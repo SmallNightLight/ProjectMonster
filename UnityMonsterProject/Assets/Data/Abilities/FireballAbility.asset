@@ -27,7 +27,7 @@ MonoBehaviour:
     WorldEffects:
     - Prefab: {fileID: 3259550474009428215, guid: 4f1de8a389b6ddf41b76892958d64c25,
         type: 3}
-      Position: {x: 0.5, y: 1, z: -0.3}
+      Position: {x: -0.5, y: 1, z: 0.3}
       KartIsParent: 0
       UseKartPosition: 1
       UseKartRotation: 1

@@ -6,6 +6,7 @@ using ScriptableArchitecture.Data;
 using UnityEngine.Events;
 using Unity.Mathematics;
 using static UnityEngine.InputSystem.Controls.AxisControl;
+using Cinemachine.Utility;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -92,10 +93,12 @@ public class KartMovement : MonoBehaviour
     private bool m_InAir = false;
     private float _airPercent;
     private float _groundPercent;
+    private float _steering;
 
     //Events
     [SerializeField] private UnityEvent<Vector3> _jumpEvent;
     [SerializeField] private UnityEvent<bool> _changeDriftState;
+    [SerializeField] private UnityEvent _hopEvent;
 
     public void SetCanMove(bool move) => m_CanMove = move;
     public float GetMaxSpeed() => Mathf.Max(_finalMovementStats.TopSpeed, _finalMovementStats.ReverseSpeed);
@@ -242,6 +245,11 @@ public class KartMovement : MonoBehaviour
         }
     }
 
+    public float Steering()
+    {
+        return _steering;
+    }
+
     void OnCollisionEnter(Collision collision) => m_HasCollision = true;
     void OnCollisionExit(Collision collision) => m_HasCollision = false;
 
@@ -264,8 +272,14 @@ public class KartMovement : MonoBehaviour
         smartSteering *= 2;
         smartSteering *= _smartSteeringAmount;
 
-        float clamp = 1f + Mathf.Abs(smartSteering) * LocalSpeed() * _smartExtra;
+        float localSpeed = LocalSpeed();
+
+        if (localSpeed > 999999f || localSpeed < -999999)
+            Debug.Log(LocalSpeed());
+
+        float clamp = 1f + Mathf.Abs(smartSteering) * localSpeed * _smartExtra;
         turnInput = Mathf.Clamp(turnInput + smartSteering, -clamp, clamp);
+        _steering = Mathf.Clamp(turnInput, -1, 1);
 
         float accelInput = (accelerate ? 1.0f : 0.0f) - (brake ? 1.0f : 0.0f);
 
@@ -356,7 +370,7 @@ public class KartMovement : MonoBehaviour
             float velocitySteering = 25f;
 
             //Drift Management
-            if (!IsDrifting && _wantsToHop)
+            if (!IsDrifting && _wantsToHop && !_isHopping)
                 StartCoroutine(Hop());
 
             if (IsDrifting)
@@ -388,7 +402,6 @@ public class KartMovement : MonoBehaviour
                 }
             }
 
-            // rotate our velocity based on current steer value
             _rigidbody.velocity = Quaternion.AngleAxis(turningPower * Mathf.Sign(localVel.z) * velocitySteering * m_CurrentGrip * Time.fixedDeltaTime, transform.up) * _rigidbody.velocity;
         }
         else
@@ -521,6 +534,7 @@ public class KartMovement : MonoBehaviour
     {
         _doHop = true;
         _isHopping = true;
+        _hopEvent.Invoke();
         yield return new WaitForSeconds(_hopDuration);
         _isHopping = false;
 

@@ -27,13 +27,13 @@ MonoBehaviour:
     Steer: 0
     AddedGravity: 0
   _startValue:
-    TopSpeed: -35
-    Acceleration: -40
+    TopSpeed: -81.8
+    Acceleration: -103.8
     ReverseSpeed: 0
     ReverseAcceleration: 0
     AccelerationCurve: 0
     Braking: 0
-    CoastingDrag: 50
+    CoastingDrag: 70
     Grip: 0
     Steer: 0
     AddedGravity: 0

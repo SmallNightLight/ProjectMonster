@@ -14,6 +14,7 @@ public class KartAbilities : MonoBehaviour
 
     [Header("Events")]
     [SerializeField] private UnityEvent _hitEvent;
+    [SerializeField] private UnityEvent _abilityEvent;
 
     [Header("Components")]
     private KartBase _base;
@@ -53,6 +54,7 @@ public class KartAbilities : MonoBehaviour
         if (_base.Input.Ability1 && _canDoAbility1)
         {
             AddAbility(_ability1.Value);
+            _abilityEvent.Invoke();
             _canDoAbility1 = false;
         }
     }
@@ -110,7 +112,7 @@ public class KartAbilities : MonoBehaviour
 
             if (worldEffect.UseKartPosition)
             {
-                instance.transform.position = transform.position + worldEffect.Position;
+                instance.transform.position = transform.position + transform.rotation * worldEffect.Position;
             }
             else
             {
