@@ -20,7 +20,7 @@ public class KartBaseBot : KartBase
 
     private int _lastSpline;
     private float _lastStep;
-    private float _currentPercentage;
+    [SerializeField] private float _currentPercentage;
 
     [Header("Components")]
     [SerializeField] protected RoadSplines _trackSplines;
@@ -114,11 +114,29 @@ public class KartBaseBot : KartBase
     {
         while (true)
         {
-            _currentPercentage += Random.Range(-0.4f, 0.4f);
-            _currentPercentage = Mathf.Clamp01(_currentPercentage);
-
             yield return null;
             yield return new WaitForSeconds(Random.Range(_changeTime.x, _changeTime.y));
+
+            _currentPercentage += Random.Range(-0.4f, 0.4f);
+            _currentPercentage = Mathf.Clamp01(_currentPercentage);
         }
     }
+
+    //Visualizing bot behavior
+    //private void OnDrawGizmos()
+    //{
+    //    _trackSplines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
+
+    //    Gizmos.DrawSphere(side1 , 1);
+    //    Gizmos.DrawSphere(side2, 1);
+    //    Gizmos.DrawLine(side1, side2);
+
+    //    Gizmos.color = Color.blue;
+
+    //    Vector3 target = Vector3.Lerp(side1, side2, _currentPercentage);
+    //    Gizmos.DrawSphere(target, 2);
+
+    //    Gizmos.color = Color.black;
+    //    Gizmos.DrawLine(transform.position, target);
+    //}
 }

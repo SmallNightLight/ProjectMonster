@@ -52,7 +52,7 @@ public class KartVFX : MonoBehaviour
     private KartMovement _kartMovement;
 
     private float _currentSteering;
-
+    private float currentSteerValue = 0f;
 
     private void Start()
     {
@@ -159,7 +159,7 @@ public class KartVFX : MonoBehaviour
     public void UpdateAnimations()
     {
         if (_characterAnimator)
-            _characterAnimator.SetFloat("Steer", _kartMovement.Steering());
+            _characterAnimator.SetFloat("Steer", _currentSteering / _steeringLimit.Value);
     }
 
     public void Hop()

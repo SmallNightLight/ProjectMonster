@@ -600,6 +600,7 @@ MonoBehaviour:
   _steeringSensitivity: 0.1
   _changeTime: {x: 1, y: 5}
   _updateTime: 0.2
+  _currentPercentage: 0
   _trackSplines: {fileID: 0}
 --- !u!1 &1695086347385608611 stripped
 GameObject:
