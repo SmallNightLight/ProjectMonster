@@ -6,10 +6,11 @@ using UnityEngine.InputSystem;
 public class KartBase : MonoBehaviour
 {
     [SerializeField] protected InputAssetReference _input;
-    [SerializeField] protected KartDataReference _kartData;
+    [SerializeField] protected CharacterDataReference _characterData;
 
     [Header("Components")]
     [SerializeField] private GameObject _kartVisualParent;
+    [SerializeField] private GameObject _characterVisualParent;
 
     //private PlayerInput _inputActions;
     //private InputData _inputData;
@@ -21,20 +22,33 @@ public class KartBase : MonoBehaviour
 
     private void Start()
     {
-        UpdateKartVisuals();
+        UpdateVisuals();
     }
 
-    [ContextMenu("Update Kart Visuals")]
-    public void UpdateKartVisuals()
+    [ContextMenu("Update Visuals")]
+    public void UpdateVisuals()
     {
-        if (!_kartVisualParent) return;
-
-        foreach (Transform child in _kartVisualParent.transform)
+        if (_kartVisualParent)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in _kartVisualParent.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            if (_characterData.Value.KartPrefab)
+                Instantiate(_characterData.Value.KartPrefab, _kartVisualParent.transform);
         }
 
-        Instantiate(_kartData.Value.ModelPrefab, _kartVisualParent.transform);
+        if (_characterVisualParent)
+        {
+            foreach (Transform child in _characterVisualParent.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            if (_characterData.Value.CharacterPrefab)
+                Instantiate(_characterData.Value.CharacterPrefab, _characterVisualParent.transform);
+        }
     }
 
     //private void Awake()
@@ -81,4 +95,9 @@ public class KartBase : MonoBehaviour
 
     public InputData Input => _input.Value.InputData;
     public int Player => _input.Value.Player;
+
+    public CharacterData CharacterData => _characterData.Value;
+
+    public GameObject KartVisualParent => _kartVisualParent;
+    public GameObject CharacterVisualParent => _characterVisualParent;
 }

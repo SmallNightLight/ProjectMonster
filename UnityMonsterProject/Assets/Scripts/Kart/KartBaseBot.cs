@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(KartMovement))]
 public class KartBaseBot : KartBase
 {
-    [SerializeField] protected List<KartDataReference> _possiblekartDatas;
+    [SerializeField] protected List<CharacterDataReference> _possiblekartDatas;
 
     private Vector3 _targetPosition;
 
@@ -26,17 +26,12 @@ public class KartBaseBot : KartBase
     [SerializeField] protected RoadSplines _trackSplines;
     private KartMovement _movement;
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
         if (_possiblekartDatas != null)
-            _kartData = _possiblekartDatas[Random.Range(0, _possiblekartDatas.Count - 1)];
+            _characterData = _possiblekartDatas[Random.Range(0, _possiblekartDatas.Count)];
 
-        UpdateKartVisuals();
+        UpdateVisuals();
 
         _movement = GetComponent<KartMovement>();
         _input.Value.InputData = new InputData();

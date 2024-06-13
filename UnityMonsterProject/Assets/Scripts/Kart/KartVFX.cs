@@ -43,7 +43,7 @@ public class KartVFX : MonoBehaviour
 
     [SerializeField] private Animation _hitAnimation;
 
-    [SerializeField] private Animator _characterAnimator;
+    private Animator _characterAnimator;
 
     private List<(GameObject trailRoot, WheelCollider wheel, TrailRenderer trail)> m_DriftTrailInstances = new List<(GameObject, WheelCollider, TrailRenderer)>();
     private List<(WheelCollider wheel, float horizontalOffset, float rotation, VisualEffect sparks)> m_DriftSparkInstances = new List<(WheelCollider, float, float, VisualEffect)>();
@@ -58,6 +58,7 @@ public class KartVFX : MonoBehaviour
     {
         _base = GetComponent<KartBase>();
         _kartMovement = GetComponent<KartMovement>();
+        _characterAnimator = _base.CharacterVisualParent?.GetComponentInChildren<Animator>();
 
         InitializeComponents();
         InitializeParticleEffects();
