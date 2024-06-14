@@ -148,12 +148,12 @@ PrefabInstance:
     - target: {fileID: 4478668330210925106, guid: 8f35e3789fdeae343b1dc8aaf9f393ae,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017370896
+      value: -0.000000017329942
       objectReference: {fileID: 0}
     - target: {fileID: 4478668330210925106, guid: 8f35e3789fdeae343b1dc8aaf9f393ae,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.0021343e-10
+      value: 5.987983e-10
       objectReference: {fileID: 0}
     - target: {fileID: 4478668330210925106, guid: 8f35e3789fdeae343b1dc8aaf9f393ae,
         type: 3}
@@ -703,12 +703,12 @@ PrefabInstance:
     - target: {fileID: 2267881144332959805, guid: 9bb985ce643abd74f96af42cb23345df,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017370896
+      value: -0.000000017329942
       objectReference: {fileID: 0}
     - target: {fileID: 2267881144332959805, guid: 9bb985ce643abd74f96af42cb23345df,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.0021343e-10
+      value: 5.987983e-10
       objectReference: {fileID: 0}
     - target: {fileID: 2267881144332959805, guid: 9bb985ce643abd74f96af42cb23345df,
         type: 3}
@@ -725,36 +725,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3922296824057546554, guid: 9bb985ce643abd74f96af42cb23345df,
-        type: 3}
-      propertyPath: m_ReactionSettings.m_NoiseOffsets.x
-      value: -281.2201
-      objectReference: {fileID: 0}
-    - target: {fileID: 3922296824057546554, guid: 9bb985ce643abd74f96af42cb23345df,
-        type: 3}
-      propertyPath: m_ReactionSettings.m_NoiseOffsets.y
-      value: 289.6733
-      objectReference: {fileID: 0}
-    - target: {fileID: 3922296824057546554, guid: 9bb985ce643abd74f96af42cb23345df,
-        type: 3}
-      propertyPath: m_ReactionSettings.m_NoiseOffsets.z
-      value: -208.42136
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052498101895291029, guid: 9bb985ce643abd74f96af42cb23345df,
-        type: 3}
-      propertyPath: mNoiseOffsets.x
-      value: 104.15759
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052498101895291029, guid: 9bb985ce643abd74f96af42cb23345df,
-        type: 3}
-      propertyPath: mNoiseOffsets.y
-      value: -164.75452
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052498101895291029, guid: 9bb985ce643abd74f96af42cb23345df,
-        type: 3}
-      propertyPath: mNoiseOffsets.z
-      value: 288.32196
-      objectReference: {fileID: 0}
     - target: {fileID: 6418172852528189085, guid: 9bb985ce643abd74f96af42cb23345df,
         type: 3}
       propertyPath: m_Follow
@@ -770,11 +740,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Virtual Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 7788026884640119042, guid: 9bb985ce643abd74f96af42cb23345df,
+    - target: {fileID: 8295501461685207993, guid: 9bb985ce643abd74f96af42cb23345df,
         type: 3}
-      propertyPath: m_Layer
-      value: 16
-      objectReference: {fileID: 0}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 3562674187502880987}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
