@@ -2,7 +2,6 @@ using Cinemachine;
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class PlayerManager : MonoBehaviour, ISetupManager
 {
@@ -63,11 +62,11 @@ public class PlayerManager : MonoBehaviour, ISetupManager
 
             CinemachineVirtualCamera vm = player.GetComponentInChildren<CinemachineVirtualCamera>();
             Transform cameraT = player.GetComponentInChildren<CameraViewport>().gameObject.transform;
-            
-            vm.ForceCameraPosition(_gameData.Value.Map.PlayerSpawnPositions[i], Quaternion.identity);
+
+            //vm.ForceCameraPosition(_gameData.Value.Map.PlayerSpawnPositions[i], Quaternion.identity);
             //vm.PreviousStateIsValid = true;
-            vm.transform.position = _gameData.Value.Map.PlayerSpawnPositions[i];
-            Debug.Log(vm.gameObject.transform.position);
+            //vm.transform.position = cameraT.position; // _gameData.Value.Map.PlayerSpawnPositions[i];
+            //Debug.Log(vm.gameObject.transform.position);
         }
 
         //Setup bots
