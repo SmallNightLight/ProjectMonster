@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraViewport : MonoBehaviour
 {
     private Camera[] _cameras;
-    [SerializeField] private IntReference _playerCount;
+    [SerializeField] private GameDataReference _gameData;
 
     [SerializeField] private KartBase _kartBase;
 
@@ -13,14 +13,14 @@ public class CameraViewport : MonoBehaviour
     {
         _cameras = GetComponentsInChildren<Camera>();
 
-        if (_kartBase == null || _playerCount.Value == 0)
+        if (_kartBase == null || _gameData.Value.PlayerCount == 0)
         {
-            Debug.LogWarning("Coukd not set camera viewport");
+            Debug.LogWarning("Could not set camera viewport");
         }
 
         int playerNumber = _kartBase.Player - 1;
 
-        switch (_playerCount.Value)
+        switch (_gameData.Value.PlayerCount)
         {
             case 1:
                 //Full screen

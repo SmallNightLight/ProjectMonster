@@ -24,8 +24,6 @@ public class RoadGenerator : MonoBehaviour
     private void Start()
     {
         _splineContainer = GetComponent<SplineContainer>();
-
-        UpdateSplines();
     }
 
     private void UpdateSplines()
@@ -59,6 +57,9 @@ public class RoadGenerator : MonoBehaviour
 
     public void GenerateMesh()
     {
+        if (_splineContainer == null)
+            _splineContainer = GetComponent<SplineContainer>();
+
         UpdateSplines();
 
         if (_positions1.Count == 0 || _positions2.Count == 0) return;

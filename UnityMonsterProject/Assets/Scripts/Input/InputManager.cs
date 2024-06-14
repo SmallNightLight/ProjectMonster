@@ -3,16 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : MonoBehaviour, ISetupManager, IUpdateManager
 {
     [SerializeField] private List<InputAssetReference> _playerInput = new List<InputAssetReference>();
-    [SerializeField] private IntReference _playerCount;
 
     private IInputManager[] _inputManagers;
 
     private Dictionary<InputAsset, IInputManager> _assets = new Dictionary<InputAsset, IInputManager>();
 
-    private void Start()
+    public void Setup()
     {
         _inputManagers = GetComponentsInChildren<IInputManager>();
         AddPlayers();
@@ -51,7 +50,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void UpdateManager()
     {
         ProcessConnection();
         UpdateInput();

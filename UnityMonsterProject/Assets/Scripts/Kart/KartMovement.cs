@@ -36,7 +36,6 @@ public class KartMovement : MonoBehaviour
 
     [Header("Smart track")]
     [SerializeField] private float _updateTime = 0.5f;
-    [SerializeField] protected RoadSplines _trackSplines;
     [SerializeField] private float _smartTrackInfluence = 1f;
     private Vector3 _targetPosition;
 
@@ -273,9 +272,6 @@ public class KartMovement : MonoBehaviour
         smartSteering *= _smartSteeringAmount;
 
         float localSpeed = LocalSpeed();
-
-        if (localSpeed > 999999f || localSpeed < -999999)
-            Debug.Log(LocalSpeed());
 
         float clamp = 1f + Mathf.Abs(smartSteering) * localSpeed * _smartExtra;
         turnInput = Mathf.Clamp(turnInput + smartSteering, -clamp, clamp);
@@ -526,7 +522,7 @@ public class KartMovement : MonoBehaviour
 
     private void UpdateTarget()
     {
-        _trackSplines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
+        _base.Splines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
         _targetPosition = (side1 + side2) / 2;
     }
 

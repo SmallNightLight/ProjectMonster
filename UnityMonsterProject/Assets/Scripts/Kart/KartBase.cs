@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 public class KartBase : MonoBehaviour
 {
     [SerializeField] protected InputAssetReference _input;
-    [SerializeField] protected CharacterDataReference _characterData;
 
     [Header("Components")]
     [SerializeField] private GameObject _kartVisualParent;
     [SerializeField] private GameObject _characterVisualParent;
+
+    public RoadSplines Splines;
+    public CharacterData CharacterData;
 
     //private PlayerInput _inputActions;
     //private InputData _inputData;
@@ -35,8 +37,8 @@ public class KartBase : MonoBehaviour
                 Destroy(child.gameObject);
             }
 
-            if (_characterData.Value.KartPrefab)
-                Instantiate(_characterData.Value.KartPrefab, _kartVisualParent.transform);
+            if (CharacterData.KartPrefab)
+                Instantiate(CharacterData.KartPrefab, _kartVisualParent.transform);
         }
 
         if (_characterVisualParent)
@@ -46,8 +48,8 @@ public class KartBase : MonoBehaviour
                 Destroy(child.gameObject);
             }
 
-            if (_characterData.Value.CharacterPrefab)
-                Instantiate(_characterData.Value.CharacterPrefab, _characterVisualParent.transform);
+            if (CharacterData.CharacterPrefab)
+                Instantiate(CharacterData.CharacterPrefab, _characterVisualParent.transform);
         }
     }
 
@@ -95,8 +97,6 @@ public class KartBase : MonoBehaviour
 
     public InputData Input => _input.Value.InputData;
     public int Player => _input.Value.Player;
-
-    public CharacterData CharacterData => _characterData.Value;
 
     public GameObject KartVisualParent => _kartVisualParent;
     public GameObject CharacterVisualParent => _characterVisualParent;

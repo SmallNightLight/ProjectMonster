@@ -23,13 +23,12 @@ public class KartBaseBot : KartBase
     [SerializeField] private float _currentPercentage;
 
     [Header("Components")]
-    [SerializeField] protected RoadSplines _trackSplines;
     private KartMovement _movement;
 
     private void Start()
     {
         if (_possiblekartDatas != null)
-            _characterData = _possiblekartDatas[Random.Range(0, _possiblekartDatas.Count)];
+            CharacterData = _possiblekartDatas[Random.Range(0, _possiblekartDatas.Count)].Value;
 
         UpdateVisuals();
 
@@ -46,7 +45,7 @@ public class KartBaseBot : KartBase
 
     private void Update()
     {
-        if (_trackSplines == null) return;
+        if (Splines == null) return;
 
         float forwardAmount = 0f;
         float turnAmount = 0f;
@@ -106,7 +105,9 @@ public class KartBaseBot : KartBase
 
     private void UpdateTarget()
     {
-        _trackSplines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
+        if (Splines == null) return;
+
+        Splines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
         _targetPosition = Vector3.Lerp(side1, side2, _currentPercentage);
     }
 

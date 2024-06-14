@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         {
             if (updateManager == null) continue;
 
-            updateManager.Update();
+            updateManager.UpdateManager();
         }
     }
 }
@@ -71,5 +71,5 @@ public interface ISetupManager
 /// </summary>
 public interface IUpdateManager
 {
-    public void Update();
+    public void UpdateManager();
 }
