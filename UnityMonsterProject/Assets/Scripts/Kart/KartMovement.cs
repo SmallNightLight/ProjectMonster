@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using ScriptableArchitecture.Data;
 using UnityEngine.Events;
 using Unity.Mathematics;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -24,12 +25,23 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private WheelCollider _wheelColliderRearRight;
 
     [SerializeField] private Transform _smartRayRight;
+    [SerializeField] private Transform _smartRayMiddle;
     [SerializeField] private Transform _smartRayLeft;
 
     [SerializeField] private float _smartRayDistance;
     [SerializeField] private LayerMask _smartSteeringLayers;
     [Range(0, 10), SerializeField] private float _smartSteeringAmount = 6f;
     [SerializeField] private float _distancePower = 1.5f;
+
+    private int _lastGoAround; //0 = no random last frame, 1 = right, -1 = left
+
+    [Header("Smart track")]
+    [SerializeField] private float _updateTime = 0.5f;
+    [SerializeField] private float _smartTrackInfluence = 1f;
+    private Vector3 _targetPosition;
+
+    private int _lastSpline;
+    private float _lastStep;
 
     private KartBase _base;
     private Rigidbody _rigidbody;
@@ -48,6 +60,7 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private float _curveSpeed;
 
     [SerializeField] private float _driftRotation;
+    [SerializeField] private float _smartExtra = 1f;
 
     private bool _wantsToDrift = false;
     private bool IsDrifting = false;
@@ -66,7 +79,6 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private float _hopDownAir;
 
     private List<AbilityData> _activeAbilities = new List<AbilityData>();
-    private bool m_CanMove = true;
 
     //Final stats
     private MovementStats _finalMovementStats;
@@ -80,12 +92,13 @@ public class KartMovement : MonoBehaviour
     private bool m_InAir = false;
     private float _airPercent;
     private float _groundPercent;
+    private float _steering;
 
     //Events
     [SerializeField] private UnityEvent<Vector3> _jumpEvent;
     [SerializeField] private UnityEvent<bool> _changeDriftState;
+    [SerializeField] private UnityEvent _hopEvent;
 
-    public void SetCanMove(bool move) => m_CanMove = move;
     public float GetMaxSpeed() => Mathf.Max(_finalMovementStats.TopSpeed, _finalMovementStats.ReverseSpeed);
 
     void UpdateSuspensionParams(WheelCollider wheel)
@@ -111,6 +124,9 @@ public class KartMovement : MonoBehaviour
         UpdateSuspensionParams(_wheelColliderRearRight);
 
         m_CurrentGrip = _movementStats.Value.Grip;
+
+        UpdateTarget();
+        StartCoroutine(WaitForUpdateTarget());
     }
 
     private void InitializeStats()
@@ -152,7 +168,7 @@ public class KartMovement : MonoBehaviour
         _airPercent = 1 - _groundPercent;
 
         //Apply vehicle physics
-        if (m_CanMove)
+        if (_base.IsActive)
         {
             MoveVehicle(_base.Input.IsAccelerating, _base.Input.IsBraking && !_base.Input.IsAccelerating, _base.Input.SteerInput);
         }
@@ -210,7 +226,7 @@ public class KartMovement : MonoBehaviour
 
     public float LocalSpeed()
     {
-        if (m_CanMove)
+        if (_base.IsActive)
         {
             float dot = Vector3.Dot(transform.forward, _rigidbody.velocity);
             if (Mathf.Abs(dot) > 0.1f)
@@ -225,6 +241,11 @@ public class KartMovement : MonoBehaviour
             // use this value to play kart sound when it is waiting the race start countdown.
             return _base.Input.IsAccelerating ? 1 : 0;
         }
+    }
+
+    public float Steering()
+    {
+        return _steering;
     }
 
     void OnCollisionEnter(Collision collision) => m_HasCollision = true;
@@ -248,7 +269,12 @@ public class KartMovement : MonoBehaviour
         float smartSteering = SmartSteering();
         smartSteering *= 2;
         smartSteering *= _smartSteeringAmount;
-        turnInput = Mathf.Clamp(turnInput + smartSteering, -1f, 1f);
+
+        float localSpeed = LocalSpeed();
+
+        float clamp = 1f + Mathf.Abs(smartSteering) * localSpeed * _smartExtra;
+        turnInput = Mathf.Clamp(turnInput + smartSteering, -clamp, clamp);
+        _steering = Mathf.Clamp(turnInput, -1, 1);
 
         float accelInput = (accelerate ? 1.0f : 0.0f) - (brake ? 1.0f : 0.0f);
 
@@ -302,7 +328,7 @@ public class KartMovement : MonoBehaviour
         }
 
         // coasting is when we aren't touching accelerate
-        if (Mathf.Abs(accelInput) < k_NullInput && _groundPercent > 0.0f)
+        if ((Mathf.Abs(accelInput) < k_NullInput || Mathf.Abs(finalAcceleration) < k_NullInput) && _groundPercent > 0.0f)
         {
             newVelocity = Vector3.MoveTowards(newVelocity, new Vector3(0, _rigidbody.velocity.y, 0), Time.fixedDeltaTime * _finalMovementStats.CoastingDrag);
         }
@@ -339,7 +365,7 @@ public class KartMovement : MonoBehaviour
             float velocitySteering = 25f;
 
             //Drift Management
-            if (!IsDrifting && _wantsToHop)
+            if (!IsDrifting && _wantsToHop && !_isHopping)
                 StartCoroutine(Hop());
 
             if (IsDrifting)
@@ -371,7 +397,6 @@ public class KartMovement : MonoBehaviour
                 }
             }
 
-            // rotate our velocity based on current steer value
             _rigidbody.velocity = Quaternion.AngleAxis(turningPower * Mathf.Sign(localVel.z) * velocitySteering * m_CurrentGrip * Time.fixedDeltaTime, transform.up) * _rigidbody.velocity;
         }
         else
@@ -412,48 +437,120 @@ public class KartMovement : MonoBehaviour
         _changeDriftState.Invoke(IsDrifting && _groundPercent > 0.0f);
     }
 
+    [SerializeField] private float _smartRaycastExtra;
+
     private float SmartSteering()
     {
-        if (_smartRayLeft == null || _smartRayRight == null) return 0f;
+        if (_smartRayLeft == null || _smartRayRight == null || _smartRayMiddle == null) return 0f;
 
-        float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower));
+        //Dont enable smart steering when is hit
+        if (_finalMovementStats.Acceleration < 0)
+            return 0f;
+
+        bool useTrackInfluence = true;
+        bool doRandomGoAround = false;
+        float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower)) + _smartRaycastExtra;
 
         bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers);
         bool left = Physics.Raycast(_smartRayRight.position, _smartRayRight.forward, out var hitLeft, speedDistance, _smartSteeringLayers);
+        bool center = Physics.Raycast(_smartRayMiddle.position, _smartRayMiddle.forward, out var hitCenter, speedDistance, _smartSteeringLayers);
 
         Debug.DrawRay(_smartRayLeft.position, _smartRayLeft.forward * speedDistance, left ? Color.yellow : Color.green);
         Debug.DrawRay(_smartRayRight.position, _smartRayRight.forward * speedDistance, right ? Color.yellow : Color.green);
+        Debug.DrawRay(_smartRayMiddle.position, _smartRayMiddle.forward * speedDistance, center ? Color.yellow : Color.green);
 
-        if (!right && !left) return 0f;
+        if (!right && !left && !center) return 0f;
 
         float middleDistance = (hitRight.distance + hitLeft.distance) / 2f;
         float distancePercentage = middleDistance / speedDistance;
 
+        float steeringAdjustment = 0f;
+
         if (right && left)
         {
             if (hitRight.distance > hitLeft.distance)
-                return -(hitLeft.distance / hitRight.distance * distancePercentage);
+                steeringAdjustment = -(hitLeft.distance / hitRight.distance * distancePercentage);
             else
-                return hitRight.distance / hitLeft.distance * distancePercentage;  
+                steeringAdjustment = hitRight.distance / hitLeft.distance * distancePercentage;
         }
-
-        if (right)
+        else if (right)
         {
-            return distancePercentage;
+            steeringAdjustment = distancePercentage;
         }
-
-        if (left)
+        else if (left)
         {
-            return -distancePercentage;
+            steeringAdjustment = -distancePercentage;
         }
 
-        return 0f;
+        // Handle the case where there's a small object in front
+        if (center)
+        {
+            if (!left && !right)
+            {
+                //No objects on either side, choose a random direction to avoid the small object
+                int goAroundDirection;
+
+                if (_lastGoAround == 0)
+                    goAroundDirection = Random.Range(0, 2) * 2 - 1;
+                else
+                    goAroundDirection = _lastGoAround;
+
+                steeringAdjustment = goAroundDirection * distancePercentage;
+                doRandomGoAround = true;
+                useTrackInfluence = false;
+                _lastGoAround = goAroundDirection;
+            }
+            else if (left && !right)
+            {
+                steeringAdjustment = distancePercentage;
+            }
+            else if (right && !left)
+            {
+                steeringAdjustment = -distancePercentage;
+            }
+        }
+
+        if (!doRandomGoAround)
+            _lastGoAround = 0;
+
+        if (useTrackInfluence)
+        {
+            //Calculate the track direction influence
+            Vector3 directionToTarget = (_targetPosition - transform.position).normalized;
+            Vector3 kartForward = transform.forward;
+            float angleToTarget = Vector3.SignedAngle(kartForward, directionToTarget, Vector3.up);
+            float normalizedAngle = angleToTarget / 180f;
+            float finalSteering = steeringAdjustment + normalizedAngle * _smartTrackInfluence;
+            return Mathf.Clamp(finalSteering, -1f, 1f);
+        }
+        else
+        {
+            return Mathf.Clamp(steeringAdjustment, -1f, 1f);
+        }
+    }
+
+    private IEnumerator WaitForUpdateTarget()
+    {
+        while (true)
+        {
+            UpdateTarget();
+
+            yield return null;
+            yield return new WaitForSeconds(_updateTime);
+        }
+    }
+
+    private void UpdateTarget()
+    {
+        _base.Splines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
+        _targetPosition = (side1 + side2) / 2;
     }
 
     private IEnumerator Hop()
     {
         _doHop = true;
         _isHopping = true;
+        _hopEvent.Invoke();
         yield return new WaitForSeconds(_hopDuration);
         _isHopping = false;
 
@@ -469,18 +566,6 @@ public class KartMovement : MonoBehaviour
             _driftDirection = turnInput > 0f ? 1 : -1;
             _curveValue = _curveValues.x;
             _changeDriftState.Invoke(true);
-
-
-            //Rotate kart here
-            //_everything.transform.Rotate(0, _driftRotation, 0);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Hit")
-        {
-            Debug.Log("Hit");
         }
     }
 }

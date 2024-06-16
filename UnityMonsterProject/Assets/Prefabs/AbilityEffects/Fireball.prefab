@@ -168,6 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4918475022546992950}
   - component: {fileID: 6019638022265476083}
+  - component: {fileID: 2663959048551099645}
   - component: {fileID: 8140628022823323733}
   - component: {fileID: 1039626621735960611}
   - component: {fileID: 5970286654456130932}
@@ -190,7 +191,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3973839643260250343}
@@ -217,6 +218,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2663959048551099645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3259550474009428215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e479175575bdc74298f2f9e87097f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KartSpeed: 0
 --- !u!114 &8140628022823323733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,11 +244,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _power: 80
+  _distancePower: 40
   _gravity: -270
   _hitTag: TrackObject
   _impactPrefab: {fileID: 8980159109604465134, guid: 8142689ad4c4a6041b3d0b08463126ba,
     type: 3}
-  _checkoffset: 2
+  _checkoffset: 3.5
   _impulseSource: {fileID: 3756149611148921033}
 --- !u!54 &1039626621735960611
 Rigidbody:
@@ -262,7 +277,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!2083052967 &5970286654456130932
 VisualEffect:
   m_ObjectHideFlags: 0

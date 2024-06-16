@@ -1,6 +1,7 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(KartBase), typeof(KartMovement))]
 public class KartAbilities : MonoBehaviour
@@ -8,7 +9,12 @@ public class KartAbilities : MonoBehaviour
     [Header("Abilities")]
     [SerializeField] private AbilityDataReference _boostAbility;
     [SerializeField] private AbilityDataReference _ability1;
-    
+    [SerializeField] private AbilityDataReference _hitAbiity;
+
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent _hitEvent;
+    [SerializeField] private UnityEvent _abilityEvent;
 
     [Header("Components")]
     private KartBase _base;
@@ -48,6 +54,7 @@ public class KartAbilities : MonoBehaviour
         if (_base.Input.Ability1 && _canDoAbility1)
         {
             AddAbility(_ability1.Value);
+            _abilityEvent.Invoke();
             _canDoAbility1 = false;
         }
     }
@@ -88,6 +95,13 @@ public class KartAbilities : MonoBehaviour
 
             //Instantiate the prefab
             GameObject instance = Instantiate(worldEffect.Prefab);
+
+            if (instance.TryGetComponent(out BaseEffect baseEffect))
+            {
+                //Set some values
+                baseEffect.KartSpeed = _kartMovement.LocalSpeed();
+            }
+
             Destroy(instance, effect.Duration);
 
             //Set the parent if specified
@@ -98,7 +112,7 @@ public class KartAbilities : MonoBehaviour
 
             if (worldEffect.UseKartPosition)
             {
-                instance.transform.position = transform.position + worldEffect.Position;
+                instance.transform.position = transform.position + transform.rotation * worldEffect.Position;
             }
             else
             {
@@ -132,6 +146,16 @@ public class KartAbilities : MonoBehaviour
                 _kartMovement.RemoveAbility(_activeAbilities[i].AbilityData);
                 _activeAbilities.RemoveAt(i);
             }   
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Hit")
+        {
+            AddAbility(_hitAbiity.Value);
+
+            _hitEvent.Invoke();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ScriptableArchitecture.Data
     [System.Serializable]
     public class MovementStats : IDataPoint, IStats
     {
-        [Min(0.001f), Tooltip("Top speed when moving forward")]
+        [Tooltip("Top speed when moving forward")]
         public float TopSpeed;
 
         [Tooltip("How quickly the kart reaches top speed")]
@@ -86,9 +86,10 @@ namespace ScriptableArchitecture.Data
         public void ClampStats()
         {
             TopSpeed = Mathf.Max(TopSpeed, 0.001f);
-            ReverseSpeed = Mathf.Max(TopSpeed, 0.001f);
+            ReverseSpeed = Mathf.Max(TopSpeed, 0f);
             AccelerationCurve = Mathf.Clamp(AccelerationCurve, 0.2f, 1);
             Grip = Mathf.Clamp(Grip, 0.0f, 1.0f);
+            Acceleration = Mathf.Clamp(Acceleration, 0, 1000);
         }
     }
 }

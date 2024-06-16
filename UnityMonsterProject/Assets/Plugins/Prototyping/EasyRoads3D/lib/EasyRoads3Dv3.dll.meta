@@ -4,7 +4,9 @@ PluginImporter:
   externalObjects: {}
   serializedVersion: 2
   iconMap: {}
-  executionOrder: {}
+  executionOrder:
+    EasyRoads3Dv3.ERLocalGrid: 300
+    EasyRoads3Dv3.ERMarkerExt: 400
   defineConstraints: []
   isPreloaded: 0
   isOverridable: 0

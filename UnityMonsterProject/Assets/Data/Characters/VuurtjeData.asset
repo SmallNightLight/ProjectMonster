@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbe0dd19f80d4040a7239fdf2e0e173, type: 3}
+  m_Name: VuurtjeData
+  m_EditorClassIdentifier: 
+  VariableType: 0
+  InitializeTypeVariable: 2
+  InitializeTypeRuntimeSet: 0
+  _value:
+    CharacterPrefab: {fileID: 0}
+    KartPrefab: {fileID: 0}
+    PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+    SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+    MainAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}
+  _startValue:
+    CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
+      type: 3}
+    KartPrefab: {fileID: 7735282559823904699, guid: 7bd70e3d2b837f645a76c78205d624d9,
+      type: 3}
+    PrimaryColor: {r: 0.8962264, g: 0, b: 0.04572261, a: 1}
+    SecondaryColor: {r: 1, g: 0.5851397, b: 0, a: 1}
+    MainAbility:
+      _isVariable: 1
+      _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}
+  _runtimeSet: []
+  _startRuntimeSet: []
+  DebugValue:
+    CharacterPrefab: {fileID: 0}
+    KartPrefab: {fileID: 0}
+    PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+    SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+    MainAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}

@@ -1,94 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2302940308963060973
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5797524803679967822}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.107
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 4930b726346115e4494c31eab95ad21f,
-        type: 3}
-      propertyPath: m_Name
-      value: Jay_In_Car
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4930b726346115e4494c31eab95ad21f, type: 3}
---- !u!4 &1765140020287933190 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4930b726346115e4494c31eab95ad21f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2302940308963060973}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8942741870537043593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -405,6 +316,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 7144109712897016896, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1588231782208210678}
+    - target: {fileID: 7144109712897016896, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeGameState
+      objectReference: {fileID: 0}
     - target: {fileID: 7169130965953454261, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_Layer
@@ -542,14 +463,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
+    - {fileID: 5423698683656983662, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4991756260814227449, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
     - {fileID: 7633075195791932319, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3202044277383443655, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1765140020287933190}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8270729986525616552, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
@@ -588,37 +506,99 @@ MonoBehaviour:
         Ability1: 0
     _isInstance: 0
     _instancer: {fileID: 0}
-  _kartData:
-    _isVariable: 0
-    _variable: {fileID: 0}
-    _constant:
-      ModelPrefab: {fileID: 0}
-    _isInstance: 0
-    _instancer: {fileID: 0}
   _kartVisualParent: {fileID: 2766365666398180754}
+  _characterVisualParent: {fileID: 1695086347385608611}
+  Splines: {fileID: 0}
+  CharacterData:
+    CharacterPrefab: {fileID: 0}
+    KartPrefab: {fileID: 0}
+    PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+    SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+    MainAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}
   _possiblekartDatas:
   - _isVariable: 1
-    _variable: {fileID: 11400000, guid: 45c8046bf6eadb948a2f6fa55890c7d1, type: 2}
+    _variable: {fileID: 11400000, guid: 4667eb27412f71b40a8fcead4e489d1c, type: 2}
     _constant:
-      ModelPrefab: {fileID: 0}
+      CharacterPrefab: {fileID: 0}
+      KartPrefab: {fileID: 0}
+      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+      MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+        _isInstance: 0
+        _instancer: {fileID: 0}
     _isInstance: 0
     _instancer: {fileID: 0}
   - _isVariable: 1
-    _variable: {fileID: 11400000, guid: 45ff62b134d763f42975f058e1a5751e, type: 2}
+    _variable: {fileID: 11400000, guid: fb18cf5b14e42af4291336062173405b, type: 2}
     _constant:
-      ModelPrefab: {fileID: 0}
+      CharacterPrefab: {fileID: 0}
+      KartPrefab: {fileID: 0}
+      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+      MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+        _isInstance: 0
+        _instancer: {fileID: 0}
     _isInstance: 0
     _instancer: {fileID: 0}
   - _isVariable: 1
-    _variable: {fileID: 11400000, guid: ef24b6f25d44cb8428e9cd299af89acb, type: 2}
+    _variable: {fileID: 11400000, guid: d91c21cb4fc5e8d4ab62c004ba0a4d8d, type: 2}
     _constant:
-      ModelPrefab: {fileID: 0}
+      CharacterPrefab: {fileID: 0}
+      KartPrefab: {fileID: 0}
+      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+      MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+        _isInstance: 0
+        _instancer: {fileID: 0}
     _isInstance: 0
     _instancer: {fileID: 0}
   - _isVariable: 1
-    _variable: {fileID: 11400000, guid: 4ce43d3c93bd3ce42b01497ad5b340e3, type: 2}
+    _variable: {fileID: 11400000, guid: fd603dfa1dba7b6489bd165951993bf9, type: 2}
     _constant:
-      ModelPrefab: {fileID: 0}
+      CharacterPrefab: {fileID: 0}
+      KartPrefab: {fileID: 0}
+      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+      MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+        _isInstance: 0
+        _instancer: {fileID: 0}
     _isInstance: 0
     _instancer: {fileID: 0}
   _targetThreshold: 3
@@ -627,16 +607,16 @@ MonoBehaviour:
   _steeringSensitivity: 0.1
   _changeTime: {x: 1, y: 5}
   _updateTime: 0.2
-  _trackSplines: {fileID: 0}
---- !u!1 &2766365666398180754 stripped
+  _currentPercentage: 0
+--- !u!1 &1695086347385608611 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6520960141823539995, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+  m_CorrespondingSourceObject: {fileID: 7754398478684911402, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
     type: 3}
   m_PrefabInstance: {fileID: 8942741870537043593}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5797524803679967822 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3202044277383443655, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+--- !u!1 &2766365666398180754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6520960141823539995, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
     type: 3}
   m_PrefabInstance: {fileID: 8942741870537043593}
   m_PrefabAsset: {fileID: 0}

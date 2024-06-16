@@ -6,10 +6,15 @@ using UnityEngine.InputSystem;
 public class KartBase : MonoBehaviour
 {
     [SerializeField] protected InputAssetReference _input;
-    [SerializeField] protected KartDataReference _kartData;
 
     [Header("Components")]
     [SerializeField] private GameObject _kartVisualParent;
+    [SerializeField] private GameObject _characterVisualParent;
+
+    public RoadSplines Splines;
+    public CharacterData CharacterData;
+
+    public bool IsActive { get; private set; }
 
     //private PlayerInput _inputActions;
     //private InputData _inputData;
@@ -21,20 +26,52 @@ public class KartBase : MonoBehaviour
 
     private void Start()
     {
-        UpdateKartVisuals();
+        UpdateVisuals();
     }
 
-    [ContextMenu("Update Kart Visuals")]
-    public void UpdateKartVisuals()
+    [ContextMenu("Update Visuals")]
+    public void UpdateVisuals()
     {
-        if (!_kartVisualParent) return;
-
-        foreach (Transform child in _kartVisualParent.transform)
+        if (_kartVisualParent)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in _kartVisualParent.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            if (CharacterData.KartPrefab)
+                Instantiate(CharacterData.KartPrefab, _kartVisualParent.transform);
         }
 
-        Instantiate(_kartData.Value.ModelPrefab, _kartVisualParent.transform);
+        if (_characterVisualParent)
+        {
+            foreach (Transform child in _characterVisualParent.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            if (CharacterData.CharacterPrefab)
+                Instantiate(CharacterData.CharacterPrefab, _characterVisualParent.transform);
+        }
+    }
+
+    public void ChangeGameState(GameData gameData)
+    {
+        switch (gameData.State)
+        {
+            case GameState.StartCinematic:
+                IsActive = false;
+                break;
+            case GameState.CountDown:
+                IsActive = false;
+                break;
+            case GameState.Gameplay:
+                IsActive = true;
+                break;
+            case GameState.EndCinematic:
+                IsActive = false;
+                break;
+        }
     }
 
     //private void Awake()
@@ -81,4 +118,7 @@ public class KartBase : MonoBehaviour
 
     public InputData Input => _input.Value.InputData;
     public int Player => _input.Value.Player;
+
+    public GameObject KartVisualParent => _kartVisualParent;
+    public GameObject CharacterVisualParent => _characterVisualParent;
 }

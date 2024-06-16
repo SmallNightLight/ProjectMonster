@@ -23,7 +23,7 @@ MonoBehaviour:
     DriftControl: 10
     DriftDampening: 10
   _startValue:
-    DriftGrip: 0.942
+    DriftGrip: 0.7
     DriftAdditionalSteer: 3
     MinAngleToFinishDrift: 22.5
     MinSpeedPercentToFinishDrift: 0.098

@@ -1,12 +1,13 @@
 using Cinemachine;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody), typeof(BaseEffect))]
 public class AbilityFireball : MonoBehaviour
 {
     private Rigidbody _rigidbody;
 
     [SerializeField] private float _power;
+    [SerializeField] private float _distancePower;
     [SerializeField] private float _gravity;
 
     [SerializeField] private string _hitTag;
@@ -18,10 +19,15 @@ public class AbilityFireball : MonoBehaviour
 
     private bool _isExploded;
 
+    private BaseEffect _baseEffect;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.AddForce(transform.forward * _power, ForceMode.Impulse);
+        _baseEffect = GetComponent<BaseEffect>();
+
+        float firePower = _power + _distancePower * _baseEffect.KartSpeed;
+        _rigidbody.AddForce(transform.forward * firePower, ForceMode.Impulse);
     }
 
     void FixedUpdate()
