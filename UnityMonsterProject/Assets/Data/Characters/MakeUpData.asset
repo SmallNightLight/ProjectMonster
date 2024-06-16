@@ -30,6 +30,16 @@ MonoBehaviour:
         WorldEffects: []
       _isInstance: 0
       _instancer: {fileID: 0}
+    BoostAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}
   _startValue:
     CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
       type: 3}
@@ -39,7 +49,17 @@ MonoBehaviour:
     SecondaryColor: {r: 0.477481, g: 0.035288375, b: 0.5754717, a: 1}
     MainAbility:
       _isVariable: 1
-      _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
+      _variable: {fileID: 11400000, guid: dbfda347c97af764fbe958a82cf4d50c, type: 2}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    BoostAbility:
+      _isVariable: 1
+      _variable: {fileID: 11400000, guid: 3120cea0eef10814b90c69bb8c1c1c68, type: 2}
       _constant:
         AdditionalStats: []
         Duration: 0
@@ -55,6 +75,16 @@ MonoBehaviour:
     PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
     SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
     MainAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    BoostAbility:
       _isVariable: 0
       _variable: {fileID: 0}
       _constant:

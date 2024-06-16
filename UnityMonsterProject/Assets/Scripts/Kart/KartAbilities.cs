@@ -6,11 +6,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(KartBase), typeof(KartMovement))]
 public class KartAbilities : MonoBehaviour
 {
-    [Header("Abilities")]
-    [SerializeField] private AbilityDataReference _boostAbility;
-    [SerializeField] private AbilityDataReference _ability1;
+    [Header("Ability")]
     [SerializeField] private AbilityDataReference _hitAbiity;
-
 
     [Header("Events")]
     [SerializeField] private UnityEvent _hitEvent;
@@ -47,13 +44,13 @@ public class KartAbilities : MonoBehaviour
 
         if (_base.Input.AbilityBoost && _canDoBoost)
         {
-            AddAbility(_boostAbility.Value);
+            AddAbility(_base.CharacterData.BoostAbility.Value);
             _canDoBoost = false;
         }
 
         if (_base.Input.Ability1 && _canDoAbility1)
         {
-            AddAbility(_ability1.Value);
+            AddAbility(_base.CharacterData.MainAbility.Value);
             _abilityEvent.Invoke();
             _canDoAbility1 = false;
         }
@@ -65,7 +62,7 @@ public class KartAbilities : MonoBehaviour
         {
             _boostCoolDownTimer += Time.deltaTime;
 
-            if (_boostCoolDownTimer > _boostAbility.Value.CoolDown)
+            if (_boostCoolDownTimer > _base.CharacterData.BoostAbility.Value.CoolDown)
             {
                 _canDoBoost = true;
                 _boostCoolDownTimer = 0f;
@@ -76,7 +73,7 @@ public class KartAbilities : MonoBehaviour
         {
             _ability1CoolDownTimer += Time.deltaTime;
 
-            if (_ability1CoolDownTimer > _ability1.Value.CoolDown)
+            if (_ability1CoolDownTimer > _base.CharacterData.MainAbility.Value.CoolDown)
             {
                 _canDoAbility1 = true;
                 _ability1CoolDownTimer = 0f;
@@ -114,6 +111,10 @@ public class KartAbilities : MonoBehaviour
             {
                 instance.transform.position = transform.position + transform.rotation * worldEffect.Position;
             }
+            else if (worldEffect.UseKartPositionXZ)
+            {
+                instance.transform.position = new Vector3(transform.position.x, 0, transform.position.z) + transform.rotation * worldEffect.Position;
+            }
             else
             {
                 //Set the position
@@ -123,6 +124,10 @@ public class KartAbilities : MonoBehaviour
             if (worldEffect.UseKartRotation)
             {
                 instance.transform.rotation = transform.rotation * Quaternion.Euler(worldEffect.Rotation);
+            }
+            else if (worldEffect.UseKartRotationY)
+            {
+                instance.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0)) * Quaternion.Euler(new Vector3(0, worldEffect.Rotation.y, 0));
             }
             else if (worldEffect.UseIdentityRotation)
             {

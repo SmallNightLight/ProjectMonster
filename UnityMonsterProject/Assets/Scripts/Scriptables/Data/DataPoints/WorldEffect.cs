@@ -13,6 +13,8 @@ namespace ScriptableArchitecture.Data
         public bool KartIsParent;
         public bool UseKartPosition;
         public bool UseKartRotation;
+        public bool UseKartPositionXZ;
+        public bool UseKartRotationY;
 
         public bool UseIdentityRotation;
         public Vector3 Rotation;

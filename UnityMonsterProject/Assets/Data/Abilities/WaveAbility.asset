@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b23dd65d9bf2cc4cb9cc2c166d653b6, type: 3}
-  m_Name: SpeedAbility
+  m_Name: WaveAbility
   m_EditorClassIdentifier: 
   VariableType: 0
   InitializeTypeVariable: 2
@@ -22,14 +22,18 @@ MonoBehaviour:
     WorldEffects: []
   _startValue:
     AdditionalStats:
-    - {fileID: 11400000, guid: e42a8693f131f134294686b770d4f813, type: 2}
-    Duration: 1.5
-    CoolDown: 2
+    - {fileID: 11400000, guid: 07204c1c4881f6145aa9c5507ddc1b03, type: 2}
+    Duration: 1
+    CoolDown: 0.5
     WorldEffects:
-    - Prefab: {fileID: 5319465585205615715, guid: 2b64cd75fa7442b4f991409164eb233a,
+    - Prefab: {fileID: 8511215126266384469, guid: f492c229b7c72034c9c54d8557902db7,
         type: 3}
       Position: {x: 0, y: 0, z: 0}
-      KartIsParent: 1
+      KartIsParent: 0
+      UseKartPosition: 0
+      UseKartRotation: 0
+      UseKartPositionXZ: 1
+      UseKartRotationY: 1
       UseIdentityRotation: 0
       Rotation: {x: 0, y: 0, z: 0}
   _runtimeSet: []
