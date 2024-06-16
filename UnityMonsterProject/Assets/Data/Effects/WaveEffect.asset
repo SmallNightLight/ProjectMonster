@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88d5343e3212fed4c9e6fc1179855638, type: 3}
-  m_Name: HitEffect
+  m_Name: WaveEffect
   m_EditorClassIdentifier: 
   VariableType: 0
   InitializeTypeVariable: 2
@@ -31,19 +31,19 @@ MonoBehaviour:
     OverrideSteer: 0
     OverrideSteerValue: 0
   _startValue:
-    TopSpeed: -81.8
-    Acceleration: -103.8
+    TopSpeed: 10
+    Acceleration: 20
     ReverseSpeed: 0
     ReverseAcceleration: 0
     AccelerationCurve: 0
     Braking: 0
-    CoastingDrag: 70
+    CoastingDrag: 0
     Grip: 0
     Steer: 0
     AddedGravity: 0
     OverrideAcceleration: 1
-    OverrideAccelerationValue: 0
-    OverrideSteer: 0
+    OverrideAccelerationValue: 1
+    OverrideSteer: 1
     OverrideSteerValue: 0
   _runtimeSet: []
   _startRuntimeSet: []

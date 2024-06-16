@@ -13,5 +13,6 @@ namespace ScriptableArchitecture.Data
         public Color SecondaryColor;
 
         public AbilityDataReference MainAbility;
+        public AbilityDataReference BoostAbility;
     }
 }

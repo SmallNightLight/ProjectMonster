@@ -36,6 +36,18 @@ namespace ScriptableArchitecture.Data
         [Tooltip("Additional gravity for when the kart is in the air")]
         public float AddedGravity;
 
+        [Tooltip("Override the current input for the player acceleration")]
+        public bool OverrideAcceleration;
+
+        [Tooltip("Override the current input for the player acceleration - value")]
+        public float OverrideAccelerationValue;
+
+        [Tooltip("Override the current input for the player steering")]
+        public bool OverrideSteer;
+
+        [Tooltip("Override the current input for the player steering - value")]
+        public float OverrideSteerValue;
+
 
         public void SetStats(IStats newStats)
         {
@@ -53,6 +65,10 @@ namespace ScriptableArchitecture.Data
                 Grip = stats.Grip;
                 Steer = stats.Steer;
                 AddedGravity = stats.AddedGravity;
+                OverrideAcceleration = stats.OverrideAcceleration;
+                OverrideAccelerationValue = stats.OverrideAccelerationValue;
+                OverrideSteer = stats.OverrideSteer;
+                OverrideSteerValue = stats.OverrideSteerValue;
 
                 return;
             }
@@ -76,7 +92,11 @@ namespace ScriptableArchitecture.Data
                 Grip += stats.Grip;
                 Steer += stats.Steer;
                 AddedGravity += stats.AddedGravity;
-                
+                OverrideAcceleration |= stats.OverrideAcceleration;
+                OverrideAccelerationValue += stats.OverrideAccelerationValue;
+                OverrideSteer |= stats.OverrideSteer;
+                OverrideSteerValue += stats.OverrideSteerValue;
+
                 return;
             }
 
@@ -88,8 +108,10 @@ namespace ScriptableArchitecture.Data
             TopSpeed = Mathf.Max(TopSpeed, 0.001f);
             ReverseSpeed = Mathf.Max(TopSpeed, 0f);
             AccelerationCurve = Mathf.Clamp(AccelerationCurve, 0.2f, 1);
-            Grip = Mathf.Clamp(Grip, 0.0f, 1.0f);
+            Grip = Mathf.Clamp01(Grip);
             Acceleration = Mathf.Clamp(Acceleration, 0, 1000);
+            OverrideAccelerationValue = Mathf.Clamp01(OverrideAccelerationValue);
+            OverrideSteerValue = Mathf.Clamp01(OverrideSteerValue);
         }
     }
 }

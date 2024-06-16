@@ -266,6 +266,17 @@ public class KartMovement : MonoBehaviour
 
     void MoveVehicle(bool accelerate, bool brake, float turnInput)
     {
+        if (_finalMovementStats.OverrideAcceleration)
+        {
+            accelerate = _finalMovementStats.OverrideAccelerationValue > 0.1f;
+            brake = _finalMovementStats.OverrideAccelerationValue < -0.1f;
+        }
+
+        if (_finalMovementStats.OverrideSteer)
+        {
+            turnInput = _finalMovementStats.OverrideSteerValue;
+        }
+
         float smartSteering = SmartSteering();
         smartSteering *= 2;
         smartSteering *= _smartSteeringAmount;
