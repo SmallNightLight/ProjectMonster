@@ -11,5 +11,6 @@ namespace ScriptableArchitecture.Data
         public List<Vector3> PlayerSpawnRotations;
         public GameObject MapPrefab;
         public GameObject SplinePrefab;
+        public int TotalLaps;
     }
 }

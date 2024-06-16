@@ -17,15 +17,6 @@ namespace ScriptableArchitecture.Data
         public MapDataReference DefaultMap;
         public List<CharacterDataReference> DefaultCharacterDatas;
 
-        public enum GameState 
-        {
-            StartCinematic,
-            CountDown,
-            Gameplay,
-            EndCinematic,
-            Score
-        }
-
         public void Reset()
         {
             PlayerCount = 2;
@@ -51,5 +42,15 @@ namespace ScriptableArchitecture.Data
             characterData = CharacterDatas[index];
             return true;
         }
+    }
+
+    public enum GameState
+    {
+        UI,
+        StartCinematic,
+        CountDown,
+        Gameplay,
+        EndCinematic,
+        Score
     }
 }

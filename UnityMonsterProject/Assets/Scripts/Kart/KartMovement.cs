@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using ScriptableArchitecture.Data;
 using UnityEngine.Events;
 using Unity.Mathematics;
-using static UnityEngine.InputSystem.Controls.AxisControl;
-using Cinemachine.Utility;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -33,6 +32,8 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private LayerMask _smartSteeringLayers;
     [Range(0, 10), SerializeField] private float _smartSteeringAmount = 6f;
     [SerializeField] private float _distancePower = 1.5f;
+
+    private int _lastGoAround; //0 = no random last frame, 1 = right, -1 = left
 
     [Header("Smart track")]
     [SerializeField] private float _updateTime = 0.5f;
@@ -78,7 +79,6 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private float _hopDownAir;
 
     private List<AbilityData> _activeAbilities = new List<AbilityData>();
-    private bool m_CanMove = true;
 
     //Final stats
     private MovementStats _finalMovementStats;
@@ -99,7 +99,6 @@ public class KartMovement : MonoBehaviour
     [SerializeField] private UnityEvent<bool> _changeDriftState;
     [SerializeField] private UnityEvent _hopEvent;
 
-    public void SetCanMove(bool move) => m_CanMove = move;
     public float GetMaxSpeed() => Mathf.Max(_finalMovementStats.TopSpeed, _finalMovementStats.ReverseSpeed);
 
     void UpdateSuspensionParams(WheelCollider wheel)
@@ -169,7 +168,7 @@ public class KartMovement : MonoBehaviour
         _airPercent = 1 - _groundPercent;
 
         //Apply vehicle physics
-        if (m_CanMove)
+        if (_base.IsActive)
         {
             MoveVehicle(_base.Input.IsAccelerating, _base.Input.IsBraking && !_base.Input.IsAccelerating, _base.Input.SteerInput);
         }
@@ -227,7 +226,7 @@ public class KartMovement : MonoBehaviour
 
     public float LocalSpeed()
     {
-        if (m_CanMove)
+        if (_base.IsActive)
         {
             float dot = Vector3.Dot(transform.forward, _rigidbody.velocity);
             if (Mathf.Abs(dot) > 0.1f)
@@ -448,6 +447,8 @@ public class KartMovement : MonoBehaviour
         if (_finalMovementStats.Acceleration < 0)
             return 0f;
 
+        bool useTrackInfluence = true;
+        bool doRandomGoAround = false;
         float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower)) + _smartRaycastExtra;
 
         bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers);
@@ -486,8 +487,18 @@ public class KartMovement : MonoBehaviour
         {
             if (!left && !right)
             {
-                // No objects on either side, choose a random direction to avoid the small object
-                steeringAdjustment = UnityEngine.Random.Range(0f, 1f) > 0.5f ? distancePercentage : -distancePercentage;
+                //No objects on either side, choose a random direction to avoid the small object
+                int goAroundDirection;
+
+                if (_lastGoAround == 0)
+                    goAroundDirection = Random.Range(0, 2) * 2 - 1;
+                else
+                    goAroundDirection = _lastGoAround;
+
+                steeringAdjustment = goAroundDirection * distancePercentage;
+                doRandomGoAround = true;
+                useTrackInfluence = false;
+                _lastGoAround = goAroundDirection;
             }
             else if (left && !right)
             {
@@ -499,14 +510,23 @@ public class KartMovement : MonoBehaviour
             }
         }
 
-        // Calculate the track direction influence
-        Vector3 directionToTarget = (_targetPosition - transform.position).normalized;
-        Vector3 kartForward = transform.forward;
-        float angleToTarget = Vector3.SignedAngle(kartForward, directionToTarget, Vector3.up);
-        float normalizedAngle = angleToTarget / 180f;
-        float finalSteering = steeringAdjustment + normalizedAngle * _smartTrackInfluence;
+        if (!doRandomGoAround)
+            _lastGoAround = 0;
 
-        return Mathf.Clamp(finalSteering, -1f, 1f);
+        if (useTrackInfluence)
+        {
+            //Calculate the track direction influence
+            Vector3 directionToTarget = (_targetPosition - transform.position).normalized;
+            Vector3 kartForward = transform.forward;
+            float angleToTarget = Vector3.SignedAngle(kartForward, directionToTarget, Vector3.up);
+            float normalizedAngle = angleToTarget / 180f;
+            float finalSteering = steeringAdjustment + normalizedAngle * _smartTrackInfluence;
+            return Mathf.Clamp(finalSteering, -1f, 1f);
+        }
+        else
+        {
+            return Mathf.Clamp(steeringAdjustment, -1f, 1f);
+        }
     }
 
     private IEnumerator WaitForUpdateTarget()

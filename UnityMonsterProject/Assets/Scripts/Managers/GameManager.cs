@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     ISetupManager[] _setupManagers;
     IUpdateManager[] _updateManagers;
+    IFirstFrameManager[] _firstFrameManagers;
+
+    private bool _isFirstFrame;
 
     /// <summary>
     /// Gets the active managers from the children and starts them
@@ -15,7 +18,9 @@ public class GameManager : MonoBehaviour
     {
         _setupManagers = GetComponentsInChildren<ISetupManager>();
         _updateManagers = GetComponentsInChildren<IUpdateManager>();
+        _firstFrameManagers = GetComponentsInChildren<IFirstFrameManager>();
 
+        _isFirstFrame = true;
         StartManagers();
     }
 
@@ -24,6 +29,12 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if (_isFirstFrame)
+        {
+            _isFirstFrame = false;
+            FirstFrameManagers();
+        }
+
         UpdateManagers();
     }
 
@@ -56,6 +67,18 @@ public class GameManager : MonoBehaviour
             updateManager.UpdateManager();
         }
     }
+
+    private void FirstFrameManagers()
+    {
+        if (_firstFrameManagers == null) return;
+
+        foreach (IFirstFrameManager firstFrameManager in _firstFrameManagers)
+        {
+            if (firstFrameManager == null) continue;
+
+            firstFrameManager.FirstFrame();
+        }
+    }
 }
 
 /// <summary>
@@ -72,4 +95,9 @@ public interface ISetupManager
 public interface IUpdateManager
 {
     public void UpdateManager();
+}
+
+public interface IFirstFrameManager
+{
+    public void FirstFrame();
 }

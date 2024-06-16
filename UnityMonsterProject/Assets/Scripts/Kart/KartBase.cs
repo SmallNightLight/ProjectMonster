@@ -14,6 +14,8 @@ public class KartBase : MonoBehaviour
     public RoadSplines Splines;
     public CharacterData CharacterData;
 
+    public bool IsActive { get; private set; }
+
     //private PlayerInput _inputActions;
     //private InputData _inputData;
 
@@ -50,6 +52,25 @@ public class KartBase : MonoBehaviour
 
             if (CharacterData.CharacterPrefab)
                 Instantiate(CharacterData.CharacterPrefab, _characterVisualParent.transform);
+        }
+    }
+
+    public void ChangeGameState(GameData gameData)
+    {
+        switch (gameData.State)
+        {
+            case GameState.StartCinematic:
+                IsActive = false;
+                break;
+            case GameState.CountDown:
+                IsActive = false;
+                break;
+            case GameState.Gameplay:
+                IsActive = true;
+                break;
+            case GameState.EndCinematic:
+                IsActive = false;
+                break;
         }
     }
 

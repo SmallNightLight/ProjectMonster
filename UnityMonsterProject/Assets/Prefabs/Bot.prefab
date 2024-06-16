@@ -316,6 +316,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 7144109712897016896, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1588231782208210678}
+    - target: {fileID: 7144109712897016896, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeGameState
+      objectReference: {fileID: 0}
     - target: {fileID: 7169130965953454261, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_Layer
@@ -453,6 +463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
+    - {fileID: 5423698683656983662, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4991756260814227449, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
     - {fileID: 7633075195791932319, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
@@ -495,28 +506,24 @@ MonoBehaviour:
         Ability1: 0
     _isInstance: 0
     _instancer: {fileID: 0}
-  _characterData:
-    _isVariable: 0
-    _variable: {fileID: 0}
-    _constant:
-      CharacterPrefab: {fileID: 0}
-      KartPrefab: {fileID: 0}
-      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
-      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
-      MainAbility:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-    _isInstance: 0
-    _instancer: {fileID: 0}
   _kartVisualParent: {fileID: 2766365666398180754}
   _characterVisualParent: {fileID: 1695086347385608611}
+  Splines: {fileID: 0}
+  CharacterData:
+    CharacterPrefab: {fileID: 0}
+    KartPrefab: {fileID: 0}
+    PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+    SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+    MainAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}
   _possiblekartDatas:
   - _isVariable: 1
     _variable: {fileID: 11400000, guid: 4667eb27412f71b40a8fcead4e489d1c, type: 2}
@@ -601,7 +608,6 @@ MonoBehaviour:
   _changeTime: {x: 1, y: 5}
   _updateTime: 0.2
   _currentPercentage: 0
-  _trackSplines: {fileID: 0}
 --- !u!1 &1695086347385608611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7754398478684911402, guid: 8be989ebaa4f8db4698fa75b4de51c8e,

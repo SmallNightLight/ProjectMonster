@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0669bc372d26ceb45a4a4c43a68cdc31, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  VariableType: 0
+  VariableType: 1
   InitializeTypeVariable: 2
   InitializeTypeRuntimeSet: 0
   _value:
@@ -21,6 +21,7 @@ MonoBehaviour:
       PlayerSpawnRotations: []
       MapPrefab: {fileID: 0}
       SplinePrefab: {fileID: 0}
+      TotalLaps: 0
     PlayerCount: 0
     CharacterDatas: []
     State: 0
@@ -32,6 +33,7 @@ MonoBehaviour:
         PlayerSpawnRotations: []
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
+        TotalLaps: 0
       _isInstance: 0
       _instancer: {fileID: 0}
     DefaultCharacterDatas: []
@@ -47,6 +49,7 @@ MonoBehaviour:
         type: 3}
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
+      TotalLaps: 3
     PlayerCount: 2
     CharacterDatas:
     - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
@@ -67,7 +70,7 @@ MonoBehaviour:
         _instancer: {fileID: 0}
     - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
         type: 3}
-      KartPrefab: {fileID: 919132149155446097, guid: 4217a61703763314db52f6142e75f448,
+      KartPrefab: {fileID: 1137002362718511134, guid: 07b21a97575408b4d8837424ff609c8d,
         type: 3}
       PrimaryColor: {r: 0.9811321, g: 0, b: 0.4366933, a: 1}
       SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
@@ -81,7 +84,7 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    State: 0
+    State: 3
     DefaultMap:
       _isVariable: 1
       _variable: {fileID: 11400000, guid: 553db23b923ad8f449e607b2b7eade0b, type: 2}
@@ -90,6 +93,7 @@ MonoBehaviour:
         PlayerSpawnRotations: []
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
+        TotalLaps: 0
       _isInstance: 0
       _instancer: {fileID: 0}
     DefaultCharacterDatas:
@@ -139,6 +143,7 @@ MonoBehaviour:
       PlayerSpawnRotations: []
       MapPrefab: {fileID: 0}
       SplinePrefab: {fileID: 0}
+      TotalLaps: 0
     PlayerCount: 0
     CharacterDatas: []
     State: 0
@@ -150,6 +155,7 @@ MonoBehaviour:
         PlayerSpawnRotations: []
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
+        TotalLaps: 0
       _isInstance: 0
       _instancer: {fileID: 0}
     DefaultCharacterDatas: []

@@ -20,6 +20,7 @@ MonoBehaviour:
     PlayerSpawnRotations: []
     MapPrefab: {fileID: 0}
     SplinePrefab: {fileID: 0}
+    TotalLaps: 0
   _startValue:
     PlayerSpawnPositions:
     - {x: 307, y: 0.43, z: 533}
@@ -31,6 +32,7 @@ MonoBehaviour:
       type: 3}
     SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
       type: 3}
+    TotalLaps: 3
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:
@@ -38,3 +40,4 @@ MonoBehaviour:
     PlayerSpawnRotations: []
     MapPrefab: {fileID: 0}
     SplinePrefab: {fileID: 0}
+    TotalLaps: 0
