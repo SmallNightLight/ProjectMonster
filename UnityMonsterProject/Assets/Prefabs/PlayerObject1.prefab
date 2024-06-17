@@ -451,7 +451,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -806,6 +806,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7847353076576257121}
     m_Modifications:
+    - target: {fileID: 4071663744207297543, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: ChangedLabCount.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2702158046542800}
     - target: {fileID: 5423698683656983662, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: _lapCountText
@@ -874,8 +879,72 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8270729986525616552, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 2702158046542800}
   m_SourcePrefab: {fileID: 100100000, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
+--- !u!1 &1258700108249084788 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8270729986525616552, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7183316233094785756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2702158046542800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258700108249084788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2fd51d88493b242b5fa11f428ec429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameData:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: cf507093d93250b47af842dae5a13e9e, type: 2}
+    _constant:
+      Map:
+        PlayerSpawnPositions: []
+        PlayerSpawnRotations: []
+        MapPrefab: {fileID: 0}
+        SplinePrefab: {fileID: 0}
+        TotalLaps: 0
+      PlayerCount: 0
+      CharacterDatas: []
+      State: 0
+      DefaultMap:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          PlayerSpawnPositions: []
+          PlayerSpawnRotations: []
+          MapPrefab: {fileID: 0}
+          SplinePrefab: {fileID: 0}
+          TotalLaps: 0
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      DefaultCharacterDatas: []
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _countDownTimer:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: e7a495d3ee0cdac4eb2b0e4dca6ef4d0, type: 2}
+    _constant: 0
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _lapCountText: {fileID: 1465401319202105534}
+  _placementText: {fileID: 3838974936185693240}
+  _placementReference:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: b98076cda959a254d9a1d632b31506d9, type: 2}
+    _constant:
+      PlayerPlacement: 
+    _isInstance: 0
+    _instancer: {fileID: 0}
 --- !u!4 &3562674187502880987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5963167512563114503, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
@@ -888,7 +957,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7183316233094785756}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1258700108249084788}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11c823f0b72190445a2b9cc41d5f8aa3, type: 3}

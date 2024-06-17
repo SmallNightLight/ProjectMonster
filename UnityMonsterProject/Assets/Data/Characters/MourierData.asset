@@ -41,7 +41,7 @@ MonoBehaviour:
       _isInstance: 0
       _instancer: {fileID: 0}
   _startValue:
-    CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
+    CharacterPrefab: {fileID: 8136835367777448765, guid: 141a0042a72ca14409deb8af84af43b6,
       type: 3}
     KartPrefab: {fileID: 1479381347116942242, guid: 54554aabe038db44eaafddf34e86d923,
       type: 3}

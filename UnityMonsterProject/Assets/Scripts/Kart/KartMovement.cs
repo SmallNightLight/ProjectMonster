@@ -94,6 +94,9 @@ public class KartMovement : MonoBehaviour
     private float _groundPercent;
     private float _steering;
 
+    [SerializeField] private PlacementReference _placementReference;
+    private KartLabs _kartLabs;
+
     //Events
     [SerializeField] private UnityEvent<Vector3> _jumpEvent;
     [SerializeField] private UnityEvent<bool> _changeDriftState;
@@ -115,6 +118,7 @@ public class KartMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _base = GetComponent<KartBase>();
+        _kartLabs = GetComponent<KartLabs>();
 
         InitializeStats();
 
@@ -555,6 +559,11 @@ public class KartMovement : MonoBehaviour
     {
         _base.Splines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
         _targetPosition = (side1 + side2) / 2;
+        int currentLab = 1;
+        if (_kartLabs)
+            currentLab = _kartLabs.GetCurrentLab();
+
+        _placementReference.Value.UpdatePlayer(_base.Player, currentLab, _lastSpline, _lastStep);
     }
 
     private IEnumerator Hop()

@@ -21,10 +21,10 @@ MonoBehaviour:
     SuspensionDamp: 500
     WheelsPositionVerticalOffset: 0
   _startValue:
-    SuspensionHeight: 0.279
+    SuspensionHeight: 0.334
     SuspensionSpring: 53340
     SuspensionDamp: 2960
-    WheelsPositionVerticalOffset: 0.05
+    WheelsPositionVerticalOffset: 0.2
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:

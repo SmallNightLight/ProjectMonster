@@ -1,5 +1,6 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, ISetupManager, IFirstFrameManager
@@ -12,7 +13,7 @@ public class PlayerManager : MonoBehaviour, ISetupManager, IFirstFrameManager
     [SerializeField] private bool _spawnSplines;
     [SerializeField] private GameState _startGameState = GameState.StartCinematic;
 
-    [SerializeField] private FloatReference _countDownTimer;
+    [SerializeField] private FloatReference _countDownTime;
 
     public void Setup()
     {
@@ -91,14 +92,21 @@ public class PlayerManager : MonoBehaviour, ISetupManager, IFirstFrameManager
                 kartBase.Splines = roadSplines;
             }
         }
-
-        _countDownTimer.Value = 3f;
     }
 
     public void FirstFrame()
     {
         //Set gamestate
         _gameData.Value.State = _startGameState;
+        _gameData.Raise();
+
+        StartCoroutine(CountDown());
+    }
+
+    IEnumerator CountDown()
+    {
+        yield return new WaitForSeconds(_countDownTime.Value);
+        _gameData.Value.State = GameState.Gameplay;
         _gameData.Raise();
     }
 }
