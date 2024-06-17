@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   VariableType: 1
-  InitializeTypeVariable: 0
+  InitializeTypeVariable: 1
   InitializeTypeRuntimeSet: 0
   _value:
     Map:
@@ -56,7 +56,7 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    - CharacterPrefab: {fileID: 8136835367777448765, guid: 141a0042a72ca14409deb8af84af43b6,
+    - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
         type: 3}
       KartPrefab: {fileID: 1479381347116942242, guid: 54554aabe038db44eaafddf34e86d923,
         type: 3}
@@ -82,7 +82,7 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    State: 1
+    State: 3
     DefaultMap:
       _isVariable: 1
       _variable: {fileID: 11400000, guid: 553db23b923ad8f449e607b2b7eade0b, type: 2}
@@ -220,7 +220,7 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    State: 2
+    State: 3
     DefaultMap:
       _isVariable: 1
       _variable: {fileID: 11400000, guid: 553db23b923ad8f449e607b2b7eade0b, type: 2}

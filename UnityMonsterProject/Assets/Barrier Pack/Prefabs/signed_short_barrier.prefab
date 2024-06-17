@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 417148}
   - component: {fileID: 3360184}
   - component: {fileID: 2328554}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 442014}
   - component: {fileID: 6512128}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: signed_short_barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,5 +135,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.79223174, y: 1.2157184, z: 4.7534895}
-  m_Center: {x: -0.00004370697, y: 0.60510427, z: 0.0011326913}
+  m_Size: {x: 0.79223174, y: 3.899869, z: 4.7534895}
+  m_Center: {x: -0.000043720007, y: 1.9471796, z: 0.0011327267}

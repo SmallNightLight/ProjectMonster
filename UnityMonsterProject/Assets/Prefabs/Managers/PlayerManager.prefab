@@ -48,15 +48,37 @@ MonoBehaviour:
     _isVariable: 0
     _variable: {fileID: 0}
     _constant:
-      Map: 0
+      Map:
+        PlayerSpawnPositions: []
+        PlayerSpawnRotations: []
+        MapPrefab: {fileID: 0}
+        SplinePrefab: {fileID: 0}
+        TotalLaps: 0
       PlayerCount: 0
+      CharacterDatas: []
       State: 0
-    _isInstance: 0
-    _instancer: {fileID: 0}
-  _playerCount:
-    _isVariable: 1
-    _variable: {fileID: 11400000, guid: d3197d83264652747910fafbb11f9b51, type: 2}
-    _constant: 0
+      DefaultMap:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          PlayerSpawnPositions: []
+          PlayerSpawnRotations: []
+          MapPrefab: {fileID: 0}
+          SplinePrefab: {fileID: 0}
+          TotalLaps: 0
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      DefaultCharacterDatas: []
     _isInstance: 0
     _instancer: {fileID: 0}
   _playerPrefabs: []
+  _spawnPlayers: 0
+  _spawnMap: 0
+  _spawnSplines: 0
+  _startGameState: 1
+  _countDownTime:
+    _isVariable: 0
+    _variable: {fileID: 11400000, guid: e7a495d3ee0cdac4eb2b0e4dca6ef4d0, type: 2}
+    _constant: 0
+    _isInstance: 0
+    _instancer: {fileID: 0}

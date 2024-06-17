@@ -26,6 +26,10 @@ MonoBehaviour:
     Grip: 0.95
     Steer: 4
     AddedGravity: 3
+    OverrideAcceleration: 0
+    OverrideAccelerationValue: 0
+    OverrideSteer: 0
+    OverrideSteerValue: 0
   _startValue:
     TopSpeed: 37
     Acceleration: 15
@@ -34,9 +38,13 @@ MonoBehaviour:
     AccelerationCurve: 0.5
     Braking: 16
     CoastingDrag: 7
-    Grip: 0.95
+    Grip: 0.972
     Steer: 5
-    AddedGravity: 5
+    AddedGravity: 4
+    OverrideAcceleration: 0
+    OverrideAccelerationValue: 0
+    OverrideSteer: 0
+    OverrideSteerValue: 0
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:
@@ -50,3 +58,7 @@ MonoBehaviour:
     Grip: 0.95
     Steer: 4
     AddedGravity: 3
+    OverrideAcceleration: 0
+    OverrideAccelerationValue: 0
+    OverrideSteer: 0
+    OverrideSteerValue: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 420576}
   - component: {fileID: 6511588}
   - component: {fileID: 6589296}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: warning_sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 443402}
   - component: {fileID: 3301466}
   - component: {fileID: 2387516}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

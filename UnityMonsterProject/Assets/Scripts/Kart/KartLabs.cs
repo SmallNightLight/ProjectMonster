@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(KartBase))]
 public class KartLabs : MonoBehaviour
 {
     private int _currentLab = 1;
@@ -8,11 +9,20 @@ public class KartLabs : MonoBehaviour
 
     public UnityEvent<int> ChangedLabCount;
 
+    private KartBase _base;
+
+    private void Start()
+    {
+        _base = GetComponent<KartBase>();
+    }
+
     private void NextCheckpoint()
     {
         if (_reachedLabCheckpoint)
+        {
             _currentLab++;
-
+        }
+        
         _reachedLabCheckpoint = !_reachedLabCheckpoint;
 
         ChangedLabCount.Invoke(_currentLab);

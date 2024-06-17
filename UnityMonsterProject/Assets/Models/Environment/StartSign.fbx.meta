@@ -3,7 +3,32 @@ guid: 31f124cb71fd06b4fa7569789b36df72
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CubesColor
+    second: {fileID: 2100000, guid: b5a9f1f4eb11f3240bff9df770ce0721, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RingsColor
+    second: {fileID: 2100000, guid: f3dbadf6e9a3261488f724d758bb0a21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SignBase
+    second: {fileID: 2100000, guid: 536cf55d52370d8468fa802dc85ebd2d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SignBodyColor
+    second: {fileID: 2100000, guid: 5f9155e8de1bc0146a686c4af027b39d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SignColor
+    second: {fileID: 2100000, guid: b7bb485a1170dfc4b86a650db32d9ce8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +60,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4053396113723301936}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FencePost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5961332537136803872}
   - component: {fileID: 3931968142734478870}
   - component: {fileID: 3979531648177794551}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
