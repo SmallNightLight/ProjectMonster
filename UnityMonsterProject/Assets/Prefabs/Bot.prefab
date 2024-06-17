@@ -165,6 +165,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 4071663744207297543, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: ChangedLabCount.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4188646632768486093, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_Layer
@@ -524,6 +529,16 @@ MonoBehaviour:
         WorldEffects: []
       _isInstance: 0
       _instancer: {fileID: 0}
+    BoostAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}
   _possiblekartDatas:
   - _isVariable: 1
     _variable: {fileID: 11400000, guid: 4667eb27412f71b40a8fcead4e489d1c, type: 2}
@@ -533,6 +548,16 @@ MonoBehaviour:
       PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
       SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
       MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      BoostAbility:
         _isVariable: 0
         _variable: {fileID: 0}
         _constant:
@@ -561,6 +586,16 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
+      BoostAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+        _isInstance: 0
+        _instancer: {fileID: 0}
     _isInstance: 0
     _instancer: {fileID: 0}
   - _isVariable: 1
@@ -580,6 +615,16 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
+      BoostAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+        _isInstance: 0
+        _instancer: {fileID: 0}
     _isInstance: 0
     _instancer: {fileID: 0}
   - _isVariable: 1
@@ -590,6 +635,16 @@ MonoBehaviour:
       PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
       SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
       MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      BoostAbility:
         _isVariable: 0
         _variable: {fileID: 0}
         _constant:

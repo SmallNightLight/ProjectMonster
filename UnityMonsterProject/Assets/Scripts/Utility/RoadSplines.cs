@@ -40,7 +40,7 @@ public class RoadSplines : MonoBehaviour
 
     public void CalculateCurrentSplinePoint(Vector3 position, ref int lastSpline, ref float lastStep)
     {
-        Profiler.BeginSample("Bot AI");
+        //Profiler.BeginSample("Bot AI");
 
         float currentDistance = GetCurrentDistance(lastSpline, lastStep);
         int newSpline = 0;
@@ -67,7 +67,7 @@ public class RoadSplines : MonoBehaviour
         lastSpline = newSpline;
         lastStep = newStep;
 
-        Profiler.EndSample();
+        //Profiler.EndSample();
     }
 
     public float GetCurrentDistance(int spline, float t)

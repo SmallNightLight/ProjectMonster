@@ -12,26 +12,29 @@ public class KartUI : MonoBehaviour
     [Header("Components")]
     [SerializeField] private TMP_Text _lapCountText;
     [SerializeField] private TMP_Text _placementText;
+    [SerializeField] private PlacementReference _placementReference;
     private KartBase _base;
-
-    int _lapCount;
 
     private void Start()
     {
         _base = GetComponent<KartBase>();
-        _lapCount = 0;
-        IncreaseLapCounter();
+        UpdateLapCounter(1);
     }
 
-    private void Update()
+    public void Update()
     {
-        
+        UpdatePlace(_placementReference.Value.GetPlace(_base.Player));
     }
 
-    private void IncreaseLapCounter()
+    public void UpdateLapCounter(int labCount)
     {
-        _lapCount++;
         if (_lapCountText)
-            _lapCountText.text = _lapCount.ToString() + "/" + _gameData.Value.Map.TotalLaps;
+            _lapCountText.text = labCount.ToString() + "/" + _gameData.Value.Map.TotalLaps;
+    }
+
+    public void UpdatePlace(int place)
+    {
+        if (_placementText)
+            _placementText.text = place.ToString();
     }
 }

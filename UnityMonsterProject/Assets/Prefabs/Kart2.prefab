@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 7221716665884278461}
   - component: {fileID: 3180446207861544887}
   - component: {fileID: 8187911284204335228}
-  - component: {fileID: 5423698683656983662}
+  - component: {fileID: 4071663744207297543}
   - component: {fileID: 4899419224775459057}
   - component: {fileID: 7144109712897016896}
   m_Layer: 14
@@ -636,6 +636,16 @@ MonoBehaviour:
         WorldEffects: []
       _isInstance: 0
       _instancer: {fileID: 0}
+    BoostAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+      _isInstance: 0
+      _instancer: {fileID: 0}
 --- !u!114 &7221716665884278461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,6 +672,10 @@ MonoBehaviour:
       Grip: 0
       Steer: 0
       AddedGravity: 0
+      OverrideAcceleration: 0
+      OverrideAccelerationValue: 0
+      OverrideSteer: 0
+      OverrideSteerValue: 0
   _driftStats:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: 848176bc011049545bc5ff59e9cf1fae, type: 2}
@@ -738,6 +752,13 @@ MonoBehaviour:
   _hopPower: 12
   _hopDuration: 0.2
   _hopDownAir: 10
+  _placementReference:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: b98076cda959a254d9a1d632b31506d9, type: 2}
+    _constant:
+      PlayerPlacement: 
+    _isInstance: 0
+    _instancer: {fileID: 0}
   _jumpEvent:
     m_PersistentCalls:
       m_Calls:
@@ -796,26 +817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f596732f8544b0446b3dfa3d3fe7037e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boostAbility:
-    _isVariable: 1
-    _variable: {fileID: 11400000, guid: 3120cea0eef10814b90c69bb8c1c1c68, type: 2}
-    _constant:
-      AdditionalStats: []
-      Duration: 0
-      CoolDown: 0
-      WorldEffects: []
-    _isInstance: 0
-    _instancer: {fileID: 0}
-  _ability1:
-    _isVariable: 1
-    _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
-    _constant:
-      AdditionalStats: []
-      Duration: 0
-      CoolDown: 0
-      WorldEffects: []
-    _isInstance: 0
-    _instancer: {fileID: 0}
   _hitAbiity:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: 7a59e0ee1c9e5424aae6e01ba2b26077, type: 2}
@@ -903,7 +904,7 @@ MonoBehaviour:
   _nozzleVFX: {fileID: 0}
   _nozzles: []
   _hitAnimation: {fileID: 297427285235774993}
---- !u!114 &5423698683656983662
+--- !u!114 &4071663744207297543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -912,44 +913,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8270729986525616552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2fd51d88493b242b5fa11f428ec429, type: 3}
+  m_Script: {fileID: 11500000, guid: 105533700b8f64841b1fd3ae0195841d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameData:
-    _isVariable: 1
-    _variable: {fileID: 11400000, guid: cf507093d93250b47af842dae5a13e9e, type: 2}
-    _constant:
-      Map:
-        PlayerSpawnPositions: []
-        PlayerSpawnRotations: []
-        MapPrefab: {fileID: 0}
-        SplinePrefab: {fileID: 0}
-        TotalLaps: 0
-      PlayerCount: 0
-      CharacterDatas: []
-      State: 0
-      DefaultMap:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          PlayerSpawnPositions: []
-          PlayerSpawnRotations: []
-          MapPrefab: {fileID: 0}
-          SplinePrefab: {fileID: 0}
-          TotalLaps: 0
-        _isInstance: 0
-        _instancer: {fileID: 0}
-      DefaultCharacterDatas: []
-    _isInstance: 0
-    _instancer: {fileID: 0}
-  _countDownTimer:
-    _isVariable: 1
-    _variable: {fileID: 11400000, guid: e7a495d3ee0cdac4eb2b0e4dca6ef4d0, type: 2}
-    _constant: 0
-    _isInstance: 0
-    _instancer: {fileID: 0}
-  _lapCountText: {fileID: 0}
-  _placementText: {fileID: 0}
+  ChangedLabCount:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: KartUI, Assembly-CSharp
+        m_MethodName: UpdateLapCounter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &4899419224775459057
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,14 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6e67aff961b5e42bc2d1a7a219fc3b, type: 3}
-  m_Name: CountDownTimer
+  m_Script: {fileID: 11500000, guid: daf465686c4bb2645aab556c726a2f8b, type: 3}
+  m_Name: PlacementReference
   m_EditorClassIdentifier: 
   VariableType: 0
-  InitializeTypeVariable: 0
+  InitializeTypeVariable: 1
   InitializeTypeRuntimeSet: 0
-  _value: 0
-  _startValue: 0
+  _value:
+    PlayerPlacement: 
+  _startValue:
+    PlayerPlacement: 
   _runtimeSet: []
   _startRuntimeSet: []
-  DebugValue: 0
+  DebugValue:
+    PlayerPlacement: 
