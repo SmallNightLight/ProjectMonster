@@ -20,7 +20,7 @@ MonoBehaviour:
     InputData:
       IsAccelerating: 0
       IsBraking: 0
-      SteerInput: 1
+      SteerInput: 0.42437088
       IsTricking: 0
       AbilityBoost: 0
       Ability1: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
     InputData:
       IsAccelerating: 0
       IsBraking: 0
-      SteerInput: 1
+      SteerInput: 0.42437088
       IsTricking: 0
       AbilityBoost: 0
       Ability1: 0

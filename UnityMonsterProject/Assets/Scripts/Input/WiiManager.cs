@@ -11,7 +11,8 @@ public class WiiManager : MonoBehaviour, IInputManager
 
     [SerializeField] private float _maxNoInputTime = 5.0f;
 
-    public float ChangeSteering = 0f;
+    public float ChangeSteering = -0.75f;
+    public float SteeringMultiplier = 3f;
 
     public bool TryGetInput(Wiimote mote, InputAsset key, out InputData input)
     {
@@ -33,9 +34,19 @@ public class WiiManager : MonoBehaviour, IInputManager
             _lastPlayerInput[key] += Time.deltaTime;
         }
 
+        
+
+
         //Calculate steering input
         float[] motion = mote.Accel.GetCalibratedAccelData();
-        float steering = -Mathf.Clamp((motion[1] - 0.75f) * 3f, -1, 1);
+        Debug.Log(motion[1]);
+        if (mote.Button.home)
+        {
+            Calibrate(motion[1]);
+            //CalibrateWiimote(mote, key.Player);
+        }
+
+        float steering = -Mathf.Clamp((motion[1] + ChangeSteering) * SteeringMultiplier, -1, 1);
         //Debug.Log(steering);
         Debug.DrawLine(transform.position, transform.position + new Vector3(motion[0], 0, motion[1]));
 
@@ -62,6 +73,11 @@ public class WiiManager : MonoBehaviour, IInputManager
         mote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL_EXT16);
         mote.Accel.CalibrateAccel(AccelCalibrationStep.A_BUTTON_UP);
         mote.SendPlayerLED(player == 1, player == 2, player == 3, player == 4);
+    }
+
+    private void Calibrate(float y)
+    {
+        ChangeSteering = -y;
     }
 
     public bool TryAddPlayer(InputAsset playerInputAsset)
