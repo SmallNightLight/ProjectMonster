@@ -564,6 +564,7 @@ GameObject:
   - component: {fileID: 4071663744207297543}
   - component: {fileID: 4899419224775459057}
   - component: {fileID: 7144109712897016896}
+  - component: {fileID: 8028698658678278782}
   m_Layer: 14
   m_Name: Kart2
   m_TagString: Untagged
@@ -805,6 +806,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _smartRaycastExtra: 2
+  rot: 20
 --- !u!114 &3180446207861544887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,6 +988,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _event: {fileID: 11400000, guid: cf507093d93250b47af842dae5a13e9e, type: 2}
+--- !u!114 &8028698658678278782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270729986525616552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4150bdae78eaf1948939a5c69f59662c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _receiver: {fileID: 11400000, guid: feb642650b2c1644781bde1bf0e4a28c, type: 2}
+  _value: {fileID: 6757994081088227423}
+  _activateOnStart: 1
+  _priority: 0
 --- !u!1 &8966513363707928491
 GameObject:
   m_ObjectHideFlags: 0

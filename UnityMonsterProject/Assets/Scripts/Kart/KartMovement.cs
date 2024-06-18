@@ -446,7 +446,7 @@ public class KartMovement : MonoBehaviour
         }
         else if (validPosition)
         {
-            m_LastValidRotation.eulerAngles = new Vector3(0.0f, transform.rotation.y, 0.0f);
+            m_LastValidRotation.eulerAngles = new Vector3(0f, transform.rotation.y, 0.0f);
         }
 
         _changeDriftState.Invoke(IsDrifting && _groundPercent > 0.0f);

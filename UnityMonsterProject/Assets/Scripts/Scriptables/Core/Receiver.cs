@@ -28,6 +28,22 @@ namespace ScriptableArchitecture.Core
         }
 
         /// <summary>
+        /// Gets all values from the emitters of the specified type
+        /// </summary>
+        public List<T> GetAllValues<T>() where T : Object
+        {
+            List<T> valuesOfType = new List<T>();
+            foreach (Emitter emitter in _emitters)
+            {
+                if (emitter.TryGetValue<T>(out T value) && value != null)
+                    valuesOfType.Add(value);   
+            }
+
+            return valuesOfType;
+        }
+
+
+        /// <summary>
         /// Registers an emitter on this receiver
         /// </summary>
         public void RegisterEmitter(Emitter emitter)
