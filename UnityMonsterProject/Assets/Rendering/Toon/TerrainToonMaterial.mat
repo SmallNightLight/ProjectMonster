@@ -56,6 +56,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Add_Lines: 1
+    - _BlendSharpness: 81.1
+    - _BlendSharpnessTop: 0.79
     - _Clamp_Falloff: 0.65
     - _Edge_Falloff: 0.2
     - _Falloff: 4

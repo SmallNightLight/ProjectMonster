@@ -23,7 +23,7 @@ MonoBehaviour:
   _startValue:
     AdditionalStats: []
     Duration: 1
-    CoolDown: 0.5
+    CoolDown: 10
     WorldEffects:
     - Prefab: {fileID: 3259550474009428215, guid: 4f1de8a389b6ddf41b76892958d64c25,
         type: 3}
@@ -31,6 +31,8 @@ MonoBehaviour:
       KartIsParent: 0
       UseKartPosition: 1
       UseKartRotation: 1
+      UseKartPositionXZ: 0
+      UseKartRotationY: 0
       UseIdentityRotation: 0
       Rotation: {x: -45, y: 0, z: 0}
   _runtimeSet: []
