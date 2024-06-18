@@ -51,7 +51,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 5
+      - m_Value: 10
         m_Name: Speed
         m_Overridden: 1
       - m_Value: 1.2
@@ -62,10 +62,10 @@ VisualEffect:
         m_Overridden: 1
     m_Vector2f:
       m_Array:
-      - m_Value: {x: 1.5, y: 1.8}
+      - m_Value: {x: 0.75, y: 0.9}
         m_Name: LifeTime
         m_Overridden: 1
-      - m_Value: {x: 0.33, y: 4}
+      - m_Value: {x: 0.33, y: 6}
         m_Name: Spread
         m_Overridden: 1
     m_Vector3f:
@@ -87,18 +87,18 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 7.478855, b: 0.21777867, a: 1}
-          key1: {r: 0.094117485, g: 5.9921575, b: 0.41604078, a: 1}
-          key2: {r: 0.07644717, g: 4.867145, b: 2.0953572, a: 0}
-          key3: {r: 0.68318534, g: 4.5412054, b: 0, a: 0}
+          key0: {r: 0, g: 5.216475, b: 0.15189987, a: 1}
+          key1: {r: 0.06209438, g: 3.9533494, b: 0.44895026, a: 1}
+          key2: {r: 0, g: 3.6886053, b: 1.569619, a: 0}
+          key3: {r: 0, g: 2.4905663, b: 1.0598153, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
           ctime0: 25443
-          ctime1: 37779
-          ctime2: 62258
-          ctime3: 65535
+          ctime1: 45606
+          ctime2: 62277
+          ctime3: 63427
           ctime4: 0
           ctime5: 0
           ctime6: 0
