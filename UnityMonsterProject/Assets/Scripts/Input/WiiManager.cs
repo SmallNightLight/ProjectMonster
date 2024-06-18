@@ -39,7 +39,7 @@ public class WiiManager : MonoBehaviour, IInputManager
 
         //Calculate steering input
         float[] motion = mote.Accel.GetCalibratedAccelData();
-        Debug.Log(motion[1]);
+
         if (mote.Button.home)
         {
             Calibrate(motion[1]);
