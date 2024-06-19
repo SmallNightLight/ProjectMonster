@@ -6,6 +6,7 @@ using ScriptableArchitecture.Data;
 using UnityEngine.Events;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -36,12 +37,7 @@ public class KartMovement : MonoBehaviour
     private int _lastGoAround; //0 = no random last frame, 1 = right, -1 = left
 
     [Header("Smart track")]
-    [SerializeField] private float _updateTime = 0.5f;
     [SerializeField] private float _smartTrackInfluence = 1f;
-    private Vector3 _targetPosition;
-
-    private int _lastSpline;
-    private float _lastStep;
 
     private KartBase _base;
     private Rigidbody _rigidbody;
@@ -94,9 +90,6 @@ public class KartMovement : MonoBehaviour
     private float _groundPercent;
     private float _steering;
 
-    [SerializeField] private PlacementReference _placementReference;
-    private KartLabs _kartLabs;
-
     //Events
     [SerializeField] private UnityEvent<Vector3> _jumpEvent;
     [SerializeField] private UnityEvent<bool> _changeDriftState;
@@ -118,7 +111,6 @@ public class KartMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _base = GetComponent<KartBase>();
-        _kartLabs = GetComponent<KartLabs>();
 
         InitializeStats();
 
@@ -128,9 +120,6 @@ public class KartMovement : MonoBehaviour
         UpdateSuspensionParams(_wheelColliderRearRight);
 
         m_CurrentGrip = _movementStats.Value.Grip;
-
-        UpdateTarget();
-        StartCoroutine(WaitForUpdateTarget());
     }
 
     private void InitializeStats()
@@ -531,7 +520,7 @@ public class KartMovement : MonoBehaviour
         if (useTrackInfluence)
         {
             //Calculate the track direction influence
-            Vector3 directionToTarget = (_targetPosition - transform.position).normalized;
+            Vector3 directionToTarget = (_base.SplinesTargetPosition - transform.position).normalized;
             Vector3 kartForward = transform.forward;
             float angleToTarget = Vector3.SignedAngle(kartForward, directionToTarget, Vector3.up);
             float normalizedAngle = angleToTarget / 180f;
@@ -542,28 +531,6 @@ public class KartMovement : MonoBehaviour
         {
             return Mathf.Clamp(steeringAdjustment, -1f, 1f);
         }
-    }
-
-    private IEnumerator WaitForUpdateTarget()
-    {
-        while (true)
-        {
-            UpdateTarget();
-
-            yield return null;
-            yield return new WaitForSeconds(_updateTime);
-        }
-    }
-
-    private void UpdateTarget()
-    {
-        _base.Splines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
-        _targetPosition = (side1 + side2) / 2;
-        int currentLab = 1;
-        if (_kartLabs)
-            currentLab = _kartLabs.GetCurrentLab();
-
-        _placementReference.Value.UpdatePlayer(_base.Player, currentLab, _lastSpline, _lastStep);
     }
 
     private IEnumerator Hop()

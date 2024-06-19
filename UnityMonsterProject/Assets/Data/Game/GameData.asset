@@ -56,15 +56,15 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
+    - CharacterPrefab: {fileID: 8136835367777448765, guid: 141a0042a72ca14409deb8af84af43b6,
         type: 3}
-      KartPrefab: {fileID: 7735282559823904699, guid: 7bd70e3d2b837f645a76c78205d624d9,
+      KartPrefab: {fileID: 1479381347116942242, guid: 54554aabe038db44eaafddf34e86d923,
         type: 3}
-      PrimaryColor: {r: 0.8962264, g: 0, b: 0.04572261, a: 1}
-      SecondaryColor: {r: 1, g: 0.5851397, b: 0, a: 1}
+      PrimaryColor: {r: 0.21621382, g: 0.5566038, b: 0, a: 1}
+      SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
+        _variable: {fileID: 11400000, guid: 3b1904168d6fbbb43a45db28f29ecb1f, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
         _instancer: {fileID: 0}
       BoostAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 6d1a3e0131db05a46b7853e4937abe32, type: 2}
+        _variable: {fileID: 11400000, guid: 60299e8eb54b4d44fb6ff47346e439b0, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
       _isInstance: 0
       _instancer: {fileID: 0}
     - _isVariable: 1
-      _variable: {fileID: 11400000, guid: fd603dfa1dba7b6489bd165951993bf9, type: 2}
+      _variable: {fileID: 11400000, guid: d91c21cb4fc5e8d4ab62c004ba0a4d8d, type: 2}
       _constant:
         CharacterPrefab: {fileID: 0}
         KartPrefab: {fileID: 0}
@@ -194,15 +194,15 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
+    - CharacterPrefab: {fileID: 8136835367777448765, guid: 141a0042a72ca14409deb8af84af43b6,
         type: 3}
-      KartPrefab: {fileID: 7735282559823904699, guid: 7bd70e3d2b837f645a76c78205d624d9,
+      KartPrefab: {fileID: 1479381347116942242, guid: 54554aabe038db44eaafddf34e86d923,
         type: 3}
-      PrimaryColor: {r: 0.8962264, g: 0, b: 0.04572261, a: 1}
-      SecondaryColor: {r: 1, g: 0.5851397, b: 0, a: 1}
+      PrimaryColor: {r: 0.21621382, g: 0.5566038, b: 0, a: 1}
+      SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
+        _variable: {fileID: 11400000, guid: 3b1904168d6fbbb43a45db28f29ecb1f, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
         _instancer: {fileID: 0}
       BoostAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 6d1a3e0131db05a46b7853e4937abe32, type: 2}
+        _variable: {fileID: 11400000, guid: 60299e8eb54b4d44fb6ff47346e439b0, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
       _isInstance: 0
       _instancer: {fileID: 0}
     - _isVariable: 1
-      _variable: {fileID: 11400000, guid: fd603dfa1dba7b6489bd165951993bf9, type: 2}
+      _variable: {fileID: 11400000, guid: d91c21cb4fc5e8d4ab62c004ba0a4d8d, type: 2}
       _constant:
         CharacterPrefab: {fileID: 0}
         KartPrefab: {fileID: 0}

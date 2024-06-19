@@ -8,25 +8,19 @@ public class KartBaseBot : KartBase
 {
     [SerializeField] protected List<CharacterDataReference> _possiblekartDatas;
 
-    private Vector3 _targetPosition;
-
     [SerializeField] private float _targetThreshold = 1f;
     [SerializeField] private float _overshotValue = 15f;
     [SerializeField] private float _reverseDistance = 5f;
     [SerializeField] private float _steeringSensitivity = 0.1f;
-
     [SerializeField] private Vector2 _changeTime;
-    [SerializeField] private float _updateTime = 0.5f;
-
-    private int _lastSpline;
-    private float _lastStep;
-    [SerializeField] private float _currentPercentage;
 
     [Header("Components")]
     private KartMovement _movement;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
+
         if (_possiblekartDatas != null)
             CharacterData = _possiblekartDatas[Random.Range(0, _possiblekartDatas.Count)].Value;
 
@@ -35,12 +29,7 @@ public class KartBaseBot : KartBase
         _movement = GetComponent<KartMovement>();
         _input.Value.InputData = new InputData();
 
-        _lastSpline = 0;
-        _lastStep = 0;
-
         StartCoroutine(ChangePercentage());
-        UpdateTarget();
-        StartCoroutine(WaitForUpdateTarget());
     }
 
     private void Update()
@@ -50,10 +39,10 @@ public class KartBaseBot : KartBase
         float forwardAmount = 0f;
         float turnAmount = 0f;
 
-        float distanceToTarget = Vector3.Distance(transform.position, _targetPosition);
+        float distanceToTarget = Vector3.Distance(transform.position, SplinesTargetPosition);
         if (distanceToTarget > _targetThreshold)
         {
-            Vector3 directionToPosition = (_targetPosition - transform.position).normalized;
+            Vector3 directionToPosition = (SplinesTargetPosition - transform.position).normalized;
             float dot = Vector3.Dot(transform.forward, directionToPosition);
 
             if (dot > 0)
@@ -92,52 +81,27 @@ public class KartBaseBot : KartBase
         _input.Value.InputData.SteerInput = turnAmount;
     }
 
-    private IEnumerator WaitForUpdateTarget()
-    {
-        while (true)
-        {
-            UpdateTarget();
-
-            yield return null;
-            yield return new WaitForSeconds(_updateTime);
-        }
-    }
-
-    private void UpdateTarget()
-    {
-        if (Splines == null) return;
-
-        Splines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
-        _targetPosition = Vector3.Lerp(side1, side2, _currentPercentage);
-    }
-
     private IEnumerator ChangePercentage()
     {
+        yield return new WaitForSeconds(3);
         while (true)
         {
             yield return null;
             yield return new WaitForSeconds(Random.Range(_changeTime.x, _changeTime.y));
 
-            _currentPercentage += Random.Range(-0.4f, 0.4f);
-            _currentPercentage = Mathf.Clamp01(_currentPercentage);
+            SplinesPercentage += Random.Range(-0.4f, 0.4f);
+            SplinesPercentage = Mathf.Clamp01(SplinesPercentage);
         }
     }
 
     //Visualizing bot behavior
     //private void OnDrawGizmos()
     //{
-    //    _trackSplines.GetNextSidePositions(transform.position, ref _lastSpline, ref _lastStep, out Vector3 side1, out Vector3 side2);
-
-    //    Gizmos.DrawSphere(side1 , 1);
-    //    Gizmos.DrawSphere(side2, 1);
-    //    Gizmos.DrawLine(side1, side2);
-
     //    Gizmos.color = Color.blue;
 
-    //    Vector3 target = Vector3.Lerp(side1, side2, _currentPercentage);
-    //    Gizmos.DrawSphere(target, 2);
+    //    Gizmos.DrawSphere(SplinesTargetPosition, 2);
 
     //    Gizmos.color = Color.black;
-    //    Gizmos.DrawLine(transform.position, target);
+    //    Gizmos.DrawLine(transform.position, SplinesTargetPosition);
     //}
 }

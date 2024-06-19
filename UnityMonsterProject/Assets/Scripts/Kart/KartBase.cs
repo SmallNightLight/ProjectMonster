@@ -1,4 +1,5 @@
 using ScriptableArchitecture.Data;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,7 +15,32 @@ public class KartBase : MonoBehaviour
     public RoadSplines Splines;
     public CharacterData CharacterData;
 
-    public bool IsActive { get; private set; }
+    private bool _isActive;
+
+    public bool IsActive 
+    {
+        get
+        {
+            return _isActive;
+        }
+        set
+        {
+            _isActive = value;
+
+            if (IsActive)
+                StartCoroutine(WaitForUpdateTarget());
+            else
+                StopCoroutine(WaitForUpdateTarget());
+        }
+    }
+
+    [SerializeField] private PlacementReference _placements;
+    [HideInInspector] public Vector3 SplinesTargetPosition { get; private set; }
+    [HideInInspector] public int SplinesSpline;
+    [HideInInspector] public float SplinesStep;
+    public float SplinesPercentage = 0.5f;
+
+    private KartLabs _kartLabs;
 
     //private PlayerInput _inputActions;
     //private InputData _inputData;
@@ -24,9 +50,15 @@ public class KartBase : MonoBehaviour
     //public delegate void Ability1Input();
     //public Ability1Input Ability1;
 
-    private void Start()
+    public virtual void Start()
     {
         UpdateVisuals();
+        TryGetComponent(out _kartLabs);
+        
+        SplinesSpline = 0;
+        SplinesStep = 0;
+
+        UpdateTarget();
     }
 
     [ContextMenu("Update Visuals")]
@@ -72,6 +104,40 @@ public class KartBase : MonoBehaviour
                 IsActive = false;
                 break;
         }
+    }
+
+    public void DisablePlayer()
+    {
+        IsActive = false;
+    }
+
+    private IEnumerator WaitForUpdateTarget()
+    {
+        UpdateTarget();
+
+        yield return new WaitForSeconds(Random.Range(0f, 0.2f));
+
+        while (true)
+        {
+            if (IsActive)
+                UpdateTarget();
+
+            yield return null;
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    public void UpdateTarget(bool reachedFinish = false)
+    {
+        Splines.GetNextSidePositions(transform.position, ref SplinesSpline, ref SplinesStep, out Vector3 side1, out Vector3 side2);
+        SplinesTargetPosition = Vector3.Lerp(side1, side2, SplinesPercentage);
+
+        int currentLab = 1;
+        if (_kartLabs)
+            currentLab = _kartLabs.GetCurrentLab();
+
+        Debug.Log(Player);
+        _placements.Value.UpdatePlayer(Player, currentLab, SplinesSpline, SplinesStep, reachedFinish);
     }
 
     //private void Awake()

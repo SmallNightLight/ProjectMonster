@@ -647,6 +647,16 @@ MonoBehaviour:
         WorldEffects: []
       _isInstance: 0
       _instancer: {fileID: 0}
+  _placements:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: b98076cda959a254d9a1d632b31506d9, type: 2}
+    _constant:
+      PlayerPlacement: 
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  SplinesSpline: 0
+  SplinesStep: 0
+  SplinesPercentage: 0.5
 --- !u!114 &7221716665884278461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,7 +727,6 @@ MonoBehaviour:
     m_Bits: 2048
   _smartSteeringAmount: 8
   _distancePower: 2
-  _updateTime: 0.2
   _smartTrackInfluence: 2
   _minSteerForDrift: 0.1
   _minDriftSteer: 0.1
@@ -753,13 +762,6 @@ MonoBehaviour:
   _hopPower: 12
   _hopDuration: 0.2
   _hopDownAir: 10
-  _placementReference:
-    _isVariable: 1
-    _variable: {fileID: 11400000, guid: b98076cda959a254d9a1d632b31506d9, type: 2}
-    _constant:
-      PlayerPlacement: 
-    _isInstance: 0
-    _instancer: {fileID: 0}
   _jumpEvent:
     m_PersistentCalls:
       m_Calls:
@@ -806,7 +808,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _smartRaycastExtra: 2
-  rot: 20
 --- !u!114 &3180446207861544887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,6 +933,48 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+  _gameData:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: cf507093d93250b47af842dae5a13e9e, type: 2}
+    _constant:
+      Map:
+        PlayerSpawnPositions: []
+        PlayerSpawnRotations: []
+        MapPrefab: {fileID: 0}
+        SplinePrefab: {fileID: 0}
+        TotalLaps: 0
+      PlayerCount: 0
+      CharacterDatas: []
+      State: 0
+      DefaultMap:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          PlayerSpawnPositions: []
+          PlayerSpawnRotations: []
+          MapPrefab: {fileID: 0}
+          SplinePrefab: {fileID: 0}
+          TotalLaps: 0
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      DefaultCharacterDatas: []
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _reachedEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6757994081088227423}
+        m_TargetAssemblyTypeName: KartBase, Assembly-CSharp
+        m_MethodName: UpdateTarget
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!54 &4899419224775459057
 Rigidbody:

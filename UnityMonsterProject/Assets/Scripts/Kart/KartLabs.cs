@@ -1,3 +1,4 @@
+using ScriptableArchitecture.Data;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +12,9 @@ public class KartLabs : MonoBehaviour
 
     private KartBase _base;
 
+    [SerializeField] private GameDataReference _gameData;
+    [SerializeField] private UnityEvent _reachedEnd;
+
     private void Start()
     {
         _base = GetComponent<KartBase>();
@@ -20,7 +24,16 @@ public class KartLabs : MonoBehaviour
     {
         if (_reachedLabCheckpoint)
         {
-            _currentLab++;
+            if (_currentLab >= _gameData.Value.Map.TotalLaps)
+            {
+                //Reached end
+                _base.DisablePlayer();
+                _reachedEnd.Invoke();
+            }
+            else
+            {
+                _currentLab++;
+            }
         }
         
         _reachedLabCheckpoint = !_reachedLabCheckpoint;
