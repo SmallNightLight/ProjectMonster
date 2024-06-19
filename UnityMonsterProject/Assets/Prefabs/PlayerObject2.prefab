@@ -55,12 +55,32 @@ PrefabInstance:
       propertyPath: m_VolumeLayerMask.m_Bits
       value: 131072
       objectReference: {fileID: 0}
+    - target: {fileID: 4167202722966477424, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000017365297
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167202722966477424, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -6.0002e-10
+      objectReference: {fileID: 0}
     - target: {fileID: 4501756578178638467, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
         type: 3}
       propertyPath: _input._variable
       value: 
       objectReference: {fileID: 11400000, guid: 1985589f17704164cbf51bca256682aa,
         type: 2}
+    - target: {fileID: 5384440515516842831, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602151928759921797, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 5868384104264008158, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
         type: 3}
       propertyPath: m_FocalLength
@@ -194,12 +214,12 @@ PrefabInstance:
     - target: {fileID: 8805869945938405572, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017329942
+      value: 0.000000017329938
       objectReference: {fileID: 0}
     - target: {fileID: 8805869945938405572, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 5.987983e-10
+      value: -5.987981e-10
       objectReference: {fileID: 0}
     - target: {fileID: 9083541346498026496, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
         type: 3}
@@ -229,12 +249,12 @@ PrefabInstance:
     - target: {fileID: 9083541346498026496, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017329942
+      value: 0.000000017329938
       objectReference: {fileID: 0}
     - target: {fileID: 9083541346498026496, guid: 00e1b9e91ea4f0f42824cda7b3bbd943,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 5.987983e-10
+      value: -5.987981e-10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2648975295796317132, guid: 00e1b9e91ea4f0f42824cda7b3bbd943, type: 3}

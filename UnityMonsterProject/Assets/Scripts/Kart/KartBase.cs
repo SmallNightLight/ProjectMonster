@@ -136,7 +136,6 @@ public class KartBase : MonoBehaviour
         if (_kartLabs)
             currentLab = _kartLabs.GetCurrentLab();
 
-        Debug.Log(Player);
         _placements.Value.UpdatePlayer(Player, currentLab, SplinesSpline, SplinesStep, reachedFinish);
     }
 
