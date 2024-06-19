@@ -657,6 +657,13 @@ MonoBehaviour:
   SplinesSpline: 0
   SplinesStep: 0
   SplinesPercentage: 0.5
+  IsBot: 0
+  _possiblekartDatas: []
+  _targetThreshold: 3.7
+  _overshotValue: 20
+  _reverseDistance: 5
+  _steeringSensitivity: 0.04
+  _changeTime: {x: 1, y: 5}
 --- !u!114 &7221716665884278461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,6 +902,12 @@ MonoBehaviour:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: e75a7520dc76fc448827e8b2695b4526, type: 2}
     _constant: 10
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _animationSteerSpeed:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 340e484e838276e438142a160f5e862c, type: 2}
+    _constant: 0
     _isInstance: 0
     _instancer: {fileID: 0}
   _driftSparkVFX: {fileID: 7927006915291090399, guid: 1ad8cbbfb9ea3e848839467a1298abde,

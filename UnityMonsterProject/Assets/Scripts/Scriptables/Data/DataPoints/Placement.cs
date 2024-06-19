@@ -5,7 +5,7 @@ using System.Linq;
 namespace ScriptableArchitecture.Data
 {
     [System.Serializable]
-    public class Placement : IDataPoint
+    public class Placement : IAssignment<Placement>
     {
         public Dictionary<int, Place> Places = new Dictionary<int, Place>();
         public List<int> PlayerPlacement;
@@ -44,6 +44,16 @@ namespace ScriptableArchitecture.Data
         {
             return Players[player];
         }
+
+        public Placement Copy()
+        {
+            return new Placement
+            {
+                Places = Places.ToDictionary(entry => entry.Key, entry => entry.Value.Clone()),
+                PlayerPlacement = new List<int>(PlayerPlacement),
+                Players = new Dictionary<int, int>(Players)
+            };
+        }
     }
 
     public class Place 
@@ -52,5 +62,16 @@ namespace ScriptableArchitecture.Data
         public int Spline;
         public float Step;
         public int AddedPlace;
+
+        public Place Clone()
+        {
+            return new Place
+            {
+                Lap = Lap,
+                Spline = Spline,
+                Step = Step,
+                AddedPlace = AddedPlace
+            };
+        }
     }
 }

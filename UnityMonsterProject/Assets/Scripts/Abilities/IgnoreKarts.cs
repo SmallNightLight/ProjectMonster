@@ -21,13 +21,5 @@ public class IgnoreKarts : MonoBehaviour
                 Physics.IgnoreCollision(_collider, other);
             }
         }
-
-        foreach (KartBaseBot kartBase in _allKarts.GetAllValues<KartBaseBot>())
-        {
-            foreach (Collider other in kartBase.gameObject.GetComponentsInChildren<Collider>())
-            {
-                Physics.IgnoreCollision(_collider, other);
-            }
-        }
     }
 }

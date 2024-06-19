@@ -27,7 +27,6 @@ public class KartLabs : MonoBehaviour
             if (_currentLab >= _gameData.Value.Map.TotalLaps)
             {
                 //Reached end
-                _base.DisablePlayer();
                 _reachedEnd.Invoke();
             }
             else

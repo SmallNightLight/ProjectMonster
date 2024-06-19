@@ -170,6 +170,11 @@ PrefabInstance:
       propertyPath: ChangedLabCount.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4071663744207297543, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _reachedEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2437071465916114646}
     - target: {fileID: 4188646632768486093, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_Layer
@@ -297,10 +302,98 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
+      propertyPath: IsBot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _changeTime.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _changeTime.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _overshotValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
       propertyPath: _input._variable
       value: 
-      objectReference: {fileID: 11400000, guid: 1985589f17704164cbf51bca256682aa,
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _targetThreshold
+      value: 3.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _input._isVariable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _steeringSensitivity
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _input._constant.Player
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _possiblekartDatas.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _possiblekartDatas.Array.data[0]._variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 4667eb27412f71b40a8fcead4e489d1c,
         type: 2}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _possiblekartDatas.Array.data[1]._variable
+      value: 
+      objectReference: {fileID: 11400000, guid: fb18cf5b14e42af4291336062173405b,
+        type: 2}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _possiblekartDatas.Array.data[2]._variable
+      value: 
+      objectReference: {fileID: 11400000, guid: d91c21cb4fc5e8d4ab62c004ba0a4d8d,
+        type: 2}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _possiblekartDatas.Array.data[3]._variable
+      value: 
+      objectReference: {fileID: 11400000, guid: fd603dfa1dba7b6489bd165951993bf9,
+        type: 2}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _possiblekartDatas.Array.data[0]._isVariable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _possiblekartDatas.Array.data[1]._isVariable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _possiblekartDatas.Array.data[2]._isVariable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _possiblekartDatas.Array.data[3]._isVariable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6780882979750851542, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_Layer
@@ -325,7 +418,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1588231782208210678}
+      objectReference: {fileID: 2437071465916114646}
     - target: {fileID: 7144109712897016896, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -361,6 +454,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 8028698658678278782, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _value
+      value: 
+      objectReference: {fileID: 2437071465916114646}
     - target: {fileID: 8061015940833853342, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: m_Layer
@@ -467,211 +565,22 @@ PrefabInstance:
       value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
-    - {fileID: 5423698683656983662, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects:
     - {fileID: 4991756260814227449, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
     - {fileID: 7633075195791932319, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8270729986525616552, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
-        type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1588231782208210678}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
---- !u!1 &1070881736547153697 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8270729986525616552, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+--- !u!114 &2437071465916114646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
     type: 3}
   m_PrefabInstance: {fileID: 8942741870537043593}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1588231782208210678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070881736547153697}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8760a28594a2bcb48aae182ef7ee6da9, type: 3}
+  m_Script: {fileID: 11500000, guid: 11c823f0b72190445a2b9cc41d5f8aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input:
-    _isVariable: 0
-    _variable: {fileID: 0}
-    _constant:
-      Player: -1
-      InputData:
-        IsAccelerating: 0
-        IsBraking: 0
-        SteerInput: 0
-        IsTricking: 0
-        AbilityBoost: 0
-        Ability1: 0
-    _isInstance: 0
-    _instancer: {fileID: 0}
-  _kartVisualParent: {fileID: 2766365666398180754}
-  _characterVisualParent: {fileID: 1695086347385608611}
-  Splines: {fileID: 0}
-  CharacterData:
-    CharacterPrefab: {fileID: 0}
-    KartPrefab: {fileID: 0}
-    PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
-    SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
-    MainAbility:
-      _isVariable: 0
-      _variable: {fileID: 0}
-      _constant:
-        AdditionalStats: []
-        Duration: 0
-        CoolDown: 0
-        WorldEffects: []
-      _isInstance: 0
-      _instancer: {fileID: 0}
-    BoostAbility:
-      _isVariable: 0
-      _variable: {fileID: 0}
-      _constant:
-        AdditionalStats: []
-        Duration: 0
-        CoolDown: 0
-        WorldEffects: []
-      _isInstance: 0
-      _instancer: {fileID: 0}
-  _possiblekartDatas:
-  - _isVariable: 1
-    _variable: {fileID: 11400000, guid: 4667eb27412f71b40a8fcead4e489d1c, type: 2}
-    _constant:
-      CharacterPrefab: {fileID: 0}
-      KartPrefab: {fileID: 0}
-      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
-      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
-      MainAbility:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-      BoostAbility:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-    _isInstance: 0
-    _instancer: {fileID: 0}
-  - _isVariable: 1
-    _variable: {fileID: 11400000, guid: fb18cf5b14e42af4291336062173405b, type: 2}
-    _constant:
-      CharacterPrefab: {fileID: 0}
-      KartPrefab: {fileID: 0}
-      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
-      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
-      MainAbility:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-      BoostAbility:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-    _isInstance: 0
-    _instancer: {fileID: 0}
-  - _isVariable: 1
-    _variable: {fileID: 11400000, guid: d91c21cb4fc5e8d4ab62c004ba0a4d8d, type: 2}
-    _constant:
-      CharacterPrefab: {fileID: 0}
-      KartPrefab: {fileID: 0}
-      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
-      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
-      MainAbility:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-      BoostAbility:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-    _isInstance: 0
-    _instancer: {fileID: 0}
-  - _isVariable: 1
-    _variable: {fileID: 11400000, guid: fd603dfa1dba7b6489bd165951993bf9, type: 2}
-    _constant:
-      CharacterPrefab: {fileID: 0}
-      KartPrefab: {fileID: 0}
-      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
-      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
-      MainAbility:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-      BoostAbility:
-        _isVariable: 0
-        _variable: {fileID: 0}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-    _isInstance: 0
-    _instancer: {fileID: 0}
-  _targetThreshold: 3
-  _overshotValue: 10
-  _reverseDistance: 5
-  _steeringSensitivity: 0.1
-  _changeTime: {x: 1, y: 5}
-  _updateTime: 0.2
-  _currentPercentage: 0
---- !u!1 &1695086347385608611 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7754398478684911402, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
-    type: 3}
-  m_PrefabInstance: {fileID: 8942741870537043593}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2766365666398180754 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6520960141823539995, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
-    type: 3}
-  m_PrefabInstance: {fileID: 8942741870537043593}
-  m_PrefabAsset: {fileID: 0}
