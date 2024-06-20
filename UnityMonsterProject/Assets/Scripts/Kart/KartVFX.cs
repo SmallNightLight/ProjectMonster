@@ -213,6 +213,10 @@ public class KartVFX : MonoBehaviour
 
     public void Jump(Vector3 position)
     {
+        Debug.Log("JUMO");
+        if (_characterAnimator)
+            _characterAnimator.SetTrigger("Jump");
+
         if (_jumpVFX == null) return;
         
         Instantiate(_jumpVFX, position, Quaternion.identity);
