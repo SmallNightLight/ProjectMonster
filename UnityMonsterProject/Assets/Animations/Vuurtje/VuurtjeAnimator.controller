@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VuurtjeAirTime
+  m_Name: VuurtjeHit
   m_Speed: 2.3
   m_CycleOffset: 0
   m_Transitions:
@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 0a835e4954de9da4c85ffefda51f213e,
+  m_Motion: {fileID: 1827226128182048838, guid: 12f1c77820f6b234ca0e8b775e18656f,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

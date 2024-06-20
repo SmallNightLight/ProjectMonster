@@ -48,6 +48,21 @@ namespace ScriptableArchitecture.Core
         }
 
         /// <summary>
+        /// Tries to get the value of the specified type and returns whether the conversion was successfull
+        /// </summary>
+        public bool TryGetValue<T>(out T value) where T : Object
+        {
+            if (_value is T)
+            {
+                value = _value as T;
+                return true;
+            }
+
+            value = null;
+            return false;
+        }
+
+        /// <summary>
         /// Sets the value to the given value
         /// </summary>
         public void SetValue<T>(T value)

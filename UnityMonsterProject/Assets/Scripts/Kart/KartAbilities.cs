@@ -1,5 +1,6 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -137,6 +138,11 @@ public class KartAbilities : MonoBehaviour
             {
                 instance.transform.localRotation = Quaternion.Euler(worldEffect.Rotation);
             }
+
+            //Set player to hittrigger
+            HitTrigger hitTriger = instance.GetComponentInChildren<HitTrigger>();
+            if (hitTriger != null)
+                hitTriger.FromPlayer = _base.Player;
         }
     }
 
@@ -158,8 +164,10 @@ public class KartAbilities : MonoBehaviour
     {
         if (other.gameObject.tag == "Hit")
         {
-            AddAbility(_hitAbiity.Value);
+            HitTrigger hitTriger = other.gameObject.GetComponentInChildren<HitTrigger>();
+            if (hitTriger != null && hitTriger.FromPlayer == _base.Player) return;
 
+            AddAbility(_hitAbiity.Value);
             _hitEvent.Invoke();
         }
     }

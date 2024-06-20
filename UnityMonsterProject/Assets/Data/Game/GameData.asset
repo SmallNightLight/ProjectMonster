@@ -27,18 +27,18 @@ MonoBehaviour:
         type: 3}
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
-      TotalLaps: 3
+      TotalLaps: 1
     PlayerCount: 1
     CharacterDatas:
-    - CharacterPrefab: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
+    - CharacterPrefab: {fileID: 3400777995575427491, guid: 0df3b65a3d56b064d8c565a0ede1afa2,
         type: 3}
-      KartPrefab: {fileID: 5459790529940896605, guid: 6e721c57ba44f274eb016d15f3edb4df,
+      KartPrefab: {fileID: 1137002362718511134, guid: 07b21a97575408b4d8837424ff609c8d,
         type: 3}
-      PrimaryColor: {r: 0.6886792, g: 0.054962054, b: 0, a: 1}
-      SecondaryColor: {r: 0.477481, g: 0.035288375, b: 0.5754717, a: 1}
+      PrimaryColor: {r: 0.9811321, g: 0, b: 0.4366933, a: 1}
+      SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: dbfda347c97af764fbe958a82cf4d50c, type: 2}
+        _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
       _instancer: {fileID: 0}
     DefaultCharacterDatas:
     - _isVariable: 1
-      _variable: {fileID: 11400000, guid: fb18cf5b14e42af4291336062173405b, type: 2}
+      _variable: {fileID: 11400000, guid: 4667eb27412f71b40a8fcead4e489d1c, type: 2}
       _constant:
         CharacterPrefab: {fileID: 0}
         KartPrefab: {fileID: 0}
@@ -165,18 +165,18 @@ MonoBehaviour:
         type: 3}
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
-      TotalLaps: 3
+      TotalLaps: 1
     PlayerCount: 1
     CharacterDatas:
-    - CharacterPrefab: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
+    - CharacterPrefab: {fileID: 3400777995575427491, guid: 0df3b65a3d56b064d8c565a0ede1afa2,
         type: 3}
-      KartPrefab: {fileID: 5459790529940896605, guid: 6e721c57ba44f274eb016d15f3edb4df,
+      KartPrefab: {fileID: 1137002362718511134, guid: 07b21a97575408b4d8837424ff609c8d,
         type: 3}
-      PrimaryColor: {r: 0.6886792, g: 0.054962054, b: 0, a: 1}
-      SecondaryColor: {r: 0.477481, g: 0.035288375, b: 0.5754717, a: 1}
+      PrimaryColor: {r: 0.9811321, g: 0, b: 0.4366933, a: 1}
+      SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: dbfda347c97af764fbe958a82cf4d50c, type: 2}
+        _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
       _instancer: {fileID: 0}
     DefaultCharacterDatas:
     - _isVariable: 1
-      _variable: {fileID: 11400000, guid: fb18cf5b14e42af4291336062173405b, type: 2}
+      _variable: {fileID: 11400000, guid: 4667eb27412f71b40a8fcead4e489d1c, type: 2}
       _constant:
         CharacterPrefab: {fileID: 0}
         KartPrefab: {fileID: 0}
