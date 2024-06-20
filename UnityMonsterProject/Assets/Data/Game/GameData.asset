@@ -38,7 +38,7 @@ MonoBehaviour:
       SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
+        _variable: {fileID: 11400000, guid: 9bca8fa3149e5724bb98208529403ff4, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    State: 1
+    State: 3
     DefaultMap:
       _isVariable: 1
       _variable: {fileID: 11400000, guid: 553db23b923ad8f449e607b2b7eade0b, type: 2}
@@ -176,7 +176,7 @@ MonoBehaviour:
       SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
+        _variable: {fileID: 11400000, guid: 9bca8fa3149e5724bb98208529403ff4, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    State: 1
+    State: 3
     DefaultMap:
       _isVariable: 1
       _variable: {fileID: 11400000, guid: 553db23b923ad8f449e607b2b7eade0b, type: 2}
