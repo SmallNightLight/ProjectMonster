@@ -92,6 +92,8 @@ public class KartBase : MonoBehaviour
         {
             SetupBot();
         }
+
+        _placements.Value.AddCharacterData(Player, CharacterData);
     }
 
     public void SetupBot()

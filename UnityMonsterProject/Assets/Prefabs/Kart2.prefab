@@ -647,6 +647,7 @@ MonoBehaviour:
         WorldEffects: []
       _isInstance: 0
       _instancer: {fileID: 0}
+    CharacterIcon: {fileID: 0}
   _placements:
     _isVariable: 1
     _variable: {fileID: 11400000, guid: b98076cda959a254d9a1d632b31506d9, type: 2}
@@ -867,6 +868,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _boostCoolDown:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 0
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _abilityCoolDown:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant: 0
+    _isInstance: 0
+    _instancer: {fileID: 0}
 --- !u!114 &8187911284204335228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,6 +1002,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  _playerReachedEnd:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: b322247bc036e5c41845f55bc458e22b, type: 2}
+    _constant: 0
+    _isInstance: 0
+    _instancer: {fileID: 0}
 --- !u!54 &4899419224775459057
 Rigidbody:
   m_ObjectHideFlags: 0

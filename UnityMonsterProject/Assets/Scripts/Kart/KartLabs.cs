@@ -14,6 +14,7 @@ public class KartLabs : MonoBehaviour
 
     [SerializeField] private GameDataReference _gameData;
     [SerializeField] private UnityEvent _reachedEnd;
+    [SerializeField] private IntReference _playerReachedEnd;
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class KartLabs : MonoBehaviour
             {
                 //Reached end
                 _reachedEnd.Invoke();
+                _playerReachedEnd.Raise(_base.Player);
             }
             else
             {
