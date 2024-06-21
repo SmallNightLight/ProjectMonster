@@ -125,10 +125,8 @@ public class PlayerManager : MonoBehaviour, ISetupManager, IFirstFrameManager
         int endedPlayers = 0;
         for(int i = 1; i < _gameData.Value.PlayerCount + 1; i++)
         {
-            if (!_endedPlayers.Contains(i))
-            {
+            if (_endedPlayers.Contains(i))
                 endedPlayers++;
-            }
         }
 
         if (endedPlayers == 1)
