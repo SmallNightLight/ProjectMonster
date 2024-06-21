@@ -43,11 +43,12 @@ Material:
     - _DepthThreshold: 25
     - _DistanceMultiplier: 4
     - _Mul: 2708.2
+    - _NearPlane: 0.03
     - _NormalThreshold: 0.46
     - _NormalsThreshold: 0.46
     - _StepAngleMultiplier: 10.21
     - _StepAngleThreshold: 0.52
-    - _Thickness: 1.48
+    - _Thickness: 1
     - _ThicknessThreshold: 2.3
     - _Threshhold: 10
     m_Colors:

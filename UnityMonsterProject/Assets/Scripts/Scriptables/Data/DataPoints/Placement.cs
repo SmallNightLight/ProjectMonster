@@ -26,6 +26,7 @@ namespace ScriptableArchitecture.Data
             if (lockPlayer)
             {
                 place.AddedPlace = 100 - GetPlace(player);
+                UpdatePlacements();
             }
         }
 

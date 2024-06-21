@@ -24,6 +24,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _ToonRamp:
+        m_Texture: {fileID: 2800000, guid: d32255d732aa75e4884b091614dadd53, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -43,11 +47,13 @@ Material:
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
     - _Noise: 12
-    - _NormalStrength: 0.22
+    - _NormalStrength: 0.79
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Sharpness: 0.2
     - _Size: 0.22
+    - _Smoothness: 16.27
+    - _USENORMALMAP: 0
     m_Colors:
     - _Color: {r: 0.38957277, g: 0.5283019, b: 0.12709147, a: 1}
   m_BuildTextureStacks: []

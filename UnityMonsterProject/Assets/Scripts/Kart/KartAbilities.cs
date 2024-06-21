@@ -1,6 +1,5 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,6 +24,9 @@ public class KartAbilities : MonoBehaviour
 
     private bool _canDoBoost;
     private bool _canDoAbility1;
+
+    [SerializeField] private FloatReference _boostCoolDown;
+    [SerializeField] private FloatReference _abilityCoolDown;
 
     private void Start()
     {
@@ -62,6 +64,7 @@ public class KartAbilities : MonoBehaviour
         if (!_canDoBoost)
         {
             _boostCoolDownTimer += Time.deltaTime;
+            _boostCoolDown.Value = 1 - _boostCoolDownTimer / _base.CharacterData.BoostAbility.Value.CoolDown;
 
             if (_boostCoolDownTimer > _base.CharacterData.BoostAbility.Value.CoolDown)
             {
@@ -73,6 +76,7 @@ public class KartAbilities : MonoBehaviour
         if (!_canDoAbility1)
         {
             _ability1CoolDownTimer += Time.deltaTime;
+            _abilityCoolDown.Value = 1 - _ability1CoolDownTimer / _base.CharacterData.MainAbility.Value.CoolDown;
 
             if (_ability1CoolDownTimer > _base.CharacterData.MainAbility.Value.CoolDown)
             {
