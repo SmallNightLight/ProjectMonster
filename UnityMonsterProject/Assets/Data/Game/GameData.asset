@@ -38,7 +38,7 @@ MonoBehaviour:
       SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
+        _variable: {fileID: 11400000, guid: 9bca8fa3149e5724bb98208529403ff4, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
       SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
+        _variable: {fileID: 11400000, guid: 9bca8fa3149e5724bb98208529403ff4, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0

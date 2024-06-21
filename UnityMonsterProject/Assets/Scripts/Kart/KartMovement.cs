@@ -345,7 +345,6 @@ public class KartMovement : MonoBehaviour
             if (m_InAir)
             {
                 m_InAir = false;
-                _jumpEvent.Invoke(transform.position);
             }
 
             // manual angular velocity coefficient
@@ -405,8 +404,15 @@ public class KartMovement : MonoBehaviour
         }
         else
         {
+            if (_airPercent > 0.99f && !m_InAir && !_isHopping && !_doHop)
+            {
+                _jumpEvent.Invoke(transform.position);
+            }
+
             m_InAir = true;
         }
+
+       
 
         bool validPosition = false;
         if (Physics.Raycast(transform.position + (transform.up * 0.1f), -transform.up, out RaycastHit hit, 3.0f, 1 << 9 | 1 << 10 | 1 << 11)) // Layer: ground (9) / Environment(10) / Track (11)
