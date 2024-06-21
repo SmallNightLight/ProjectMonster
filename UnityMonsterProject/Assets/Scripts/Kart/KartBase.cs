@@ -244,7 +244,7 @@ public class KartBase : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(_changeTime.x, _changeTime.y));
 
             SplinesPercentage += Random.Range(-0.4f, 0.4f);
-            SplinesPercentage = Mathf.Clamp01(SplinesPercentage);
+            SplinesPercentage = Mathf.Clamp(SplinesPercentage, 0.15f, 0.85f);
         }
     }
 
