@@ -49,7 +49,7 @@ MonoBehaviour:
     SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
     MainAbility:
       _isVariable: 1
-      _variable: {fileID: 11400000, guid: 9f8e766df00c01e4aa626f85e8783f10, type: 2}
+      _variable: {fileID: 11400000, guid: 3b1904168d6fbbb43a45db28f29ecb1f, type: 2}
       _constant:
         AdditionalStats: []
         Duration: 0

@@ -24,6 +24,7 @@ public class KartVFX : MonoBehaviour
     [SerializeField] private FloatReference _steeringLimit;
     [SerializeField] private FloatReference _steeringSpeed;
 
+    [SerializeField] private FloatReference _animationSteerSpeed;
 
     [Header("VFX")]
     [Tooltip("VFX that will be placed on the wheels when drifting.")]
@@ -52,7 +53,7 @@ public class KartVFX : MonoBehaviour
     private KartMovement _kartMovement;
 
     private float _currentSteering;
-    private float currentSteerValue = 0f;
+    private float _currentAnimationSteering;
 
     private void Start()
     {
@@ -158,8 +159,11 @@ public class KartVFX : MonoBehaviour
 
     public void UpdateAnimations()
     {
+        float targetSteering = _base.Input.SteerInput * _steeringLimit.Value;
+        _currentAnimationSteering = Mathf.Lerp(_currentAnimationSteering, targetSteering, Time.deltaTime * _animationSteerSpeed.Value);
+
         if (_characterAnimator)
-            _characterAnimator.SetFloat("Steer", _currentSteering / _steeringLimit.Value);
+            _characterAnimator.SetFloat("Steer", _currentAnimationSteering / _steeringLimit.Value);
     }
 
     public void Hop()
@@ -209,6 +213,10 @@ public class KartVFX : MonoBehaviour
 
     public void Jump(Vector3 position)
     {
+        Debug.Log("JUMO");
+        if (_characterAnimator)
+            _characterAnimator.SetTrigger("Jump");
+
         if (_jumpVFX == null) return;
         
         Instantiate(_jumpVFX, position, Quaternion.identity);

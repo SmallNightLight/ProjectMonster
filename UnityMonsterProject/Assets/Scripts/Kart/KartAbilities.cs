@@ -25,6 +25,9 @@ public class KartAbilities : MonoBehaviour
     private bool _canDoBoost;
     private bool _canDoAbility1;
 
+    [SerializeField] private FloatReference _boostCoolDown;
+    [SerializeField] private FloatReference _abilityCoolDown;
+
     private void Start()
     {
         _base = GetComponent<KartBase>();
@@ -61,6 +64,7 @@ public class KartAbilities : MonoBehaviour
         if (!_canDoBoost)
         {
             _boostCoolDownTimer += Time.deltaTime;
+            _boostCoolDown.Value = 1 - _boostCoolDownTimer / _base.CharacterData.BoostAbility.Value.CoolDown;
 
             if (_boostCoolDownTimer > _base.CharacterData.BoostAbility.Value.CoolDown)
             {
@@ -72,6 +76,7 @@ public class KartAbilities : MonoBehaviour
         if (!_canDoAbility1)
         {
             _ability1CoolDownTimer += Time.deltaTime;
+            _abilityCoolDown.Value = 1 - _ability1CoolDownTimer / _base.CharacterData.MainAbility.Value.CoolDown;
 
             if (_ability1CoolDownTimer > _base.CharacterData.MainAbility.Value.CoolDown)
             {
@@ -137,6 +142,11 @@ public class KartAbilities : MonoBehaviour
             {
                 instance.transform.localRotation = Quaternion.Euler(worldEffect.Rotation);
             }
+
+            //Set player to hittrigger
+            HitTrigger hitTriger = instance.GetComponentInChildren<HitTrigger>();
+            if (hitTriger != null)
+                hitTriger.FromPlayer = _base.Player;
         }
     }
 
@@ -158,8 +168,10 @@ public class KartAbilities : MonoBehaviour
     {
         if (other.gameObject.tag == "Hit")
         {
-            AddAbility(_hitAbiity.Value);
+            HitTrigger hitTriger = other.gameObject.GetComponentInChildren<HitTrigger>();
+            if (hitTriger != null && hitTriger.FromPlayer == _base.Player) return;
 
+            AddAbility(_hitAbiity.Value);
             _hitEvent.Invoke();
         }
     }

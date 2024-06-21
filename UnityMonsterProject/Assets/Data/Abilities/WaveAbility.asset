@@ -24,7 +24,7 @@ MonoBehaviour:
     AdditionalStats:
     - {fileID: 11400000, guid: 07204c1c4881f6145aa9c5507ddc1b03, type: 2}
     Duration: 1
-    CoolDown: 10
+    CoolDown: 2
     WorldEffects:
     - Prefab: {fileID: 8511215126266384469, guid: f492c229b7c72034c9c54d8557902db7,
         type: 3}

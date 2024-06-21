@@ -7,7 +7,6 @@ public class KartUI : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private GameDataReference _gameData;
-    [SerializeField] private FloatReference _countDownTimer;
 
     [Header("Components")]
     [SerializeField] private TMP_Text _lapCountText;

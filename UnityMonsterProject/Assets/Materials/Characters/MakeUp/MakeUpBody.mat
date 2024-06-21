@@ -81,6 +81,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 5384cac1d773bec4e9ab1b5f71bdac4a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: f70c16f1f4a8e2a43afb86bcf37fcd50, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -150,6 +154,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _USENORMALMAP: 0
     - _UVSec: 0
     - _UseAoMap: 0
     - _UseColorMap: 1
