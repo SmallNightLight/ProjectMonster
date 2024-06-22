@@ -28,6 +28,8 @@ MonoBehaviour:
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
       TotalLaps: 1
+      MiniMapPrefab: {fileID: 2865074153960755094, guid: f64d6e550a1f80d478b60166e76e981f,
+        type: 3}
     PlayerCount: 2
     CharacterDatas:
     - CharacterPrefab: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
@@ -94,6 +96,7 @@ MonoBehaviour:
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
         TotalLaps: 0
+        MiniMapPrefab: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     DefaultCharacterDatas:
@@ -170,6 +173,8 @@ MonoBehaviour:
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
       TotalLaps: 1
+      MiniMapPrefab: {fileID: 2865074153960755094, guid: f64d6e550a1f80d478b60166e76e981f,
+        type: 3}
     PlayerCount: 2
     CharacterDatas:
     - CharacterPrefab: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
@@ -236,6 +241,7 @@ MonoBehaviour:
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
         TotalLaps: 0
+        MiniMapPrefab: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     DefaultCharacterDatas:
@@ -308,6 +314,7 @@ MonoBehaviour:
       MapPrefab: {fileID: 0}
       SplinePrefab: {fileID: 0}
       TotalLaps: 0
+      MiniMapPrefab: {fileID: 0}
     PlayerCount: 0
     CharacterDatas: []
     State: 0
@@ -320,6 +327,7 @@ MonoBehaviour:
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
         TotalLaps: 0
+        MiniMapPrefab: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     DefaultCharacterDatas: []
