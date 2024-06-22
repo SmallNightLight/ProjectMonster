@@ -131,8 +131,12 @@ public class RoadGenerator : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void OnValidate()
+    private void OnValidate() => UnityEditor.EditorApplication.delayCall += _OnValidate;
+
+    private void _OnValidate()
     {
+        UnityEditor.EditorApplication.delayCall -= _OnValidate;
+        if (this == null) return;
         GenerateMesh();
     }
 #endif
