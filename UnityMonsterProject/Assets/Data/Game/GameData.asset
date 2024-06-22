@@ -30,15 +30,15 @@ MonoBehaviour:
       TotalLaps: 1
     PlayerCount: 2
     CharacterDatas:
-    - CharacterPrefab: {fileID: 3400777995575427491, guid: 0df3b65a3d56b064d8c565a0ede1afa2,
+    - CharacterPrefab: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
         type: 3}
-      KartPrefab: {fileID: 1137002362718511134, guid: 07b21a97575408b4d8837424ff609c8d,
+      KartPrefab: {fileID: 5459790529940896605, guid: 6e721c57ba44f274eb016d15f3edb4df,
         type: 3}
-      PrimaryColor: {r: 0.9811321, g: 0, b: 0.4366933, a: 1}
-      SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
+      PrimaryColor: {r: 0.6886792, g: 0.054962054, b: 0, a: 1}
+      SecondaryColor: {r: 0.477481, g: 0.035288375, b: 0.5754717, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 9bca8fa3149e5724bb98208529403ff4, type: 2}
+        _variable: {fileID: 11400000, guid: dbfda347c97af764fbe958a82cf4d50c, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -56,6 +56,7 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
+      CharacterIcon: {fileID: 0}
     - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
         type: 3}
       KartPrefab: {fileID: 7735282559823904699, guid: 7bd70e3d2b837f645a76c78205d624d9,
@@ -82,7 +83,8 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    State: 3
+      CharacterIcon: {fileID: 0}
+    State: 1
     DefaultMap:
       _isVariable: 1
       _variable: {fileID: 11400000, guid: 553db23b923ad8f449e607b2b7eade0b, type: 2}
@@ -96,7 +98,7 @@ MonoBehaviour:
       _instancer: {fileID: 0}
     DefaultCharacterDatas:
     - _isVariable: 1
-      _variable: {fileID: 11400000, guid: 4667eb27412f71b40a8fcead4e489d1c, type: 2}
+      _variable: {fileID: 11400000, guid: fb18cf5b14e42af4291336062173405b, type: 2}
       _constant:
         CharacterPrefab: {fileID: 0}
         KartPrefab: {fileID: 0}
@@ -122,6 +124,7 @@ MonoBehaviour:
             WorldEffects: []
           _isInstance: 0
           _instancer: {fileID: 0}
+        CharacterIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     - _isVariable: 1
@@ -151,6 +154,7 @@ MonoBehaviour:
             WorldEffects: []
           _isInstance: 0
           _instancer: {fileID: 0}
+        CharacterIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
   _startValue:
@@ -168,15 +172,15 @@ MonoBehaviour:
       TotalLaps: 1
     PlayerCount: 2
     CharacterDatas:
-    - CharacterPrefab: {fileID: 3400777995575427491, guid: 0df3b65a3d56b064d8c565a0ede1afa2,
+    - CharacterPrefab: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
         type: 3}
-      KartPrefab: {fileID: 1137002362718511134, guid: 07b21a97575408b4d8837424ff609c8d,
+      KartPrefab: {fileID: 5459790529940896605, guid: 6e721c57ba44f274eb016d15f3edb4df,
         type: 3}
-      PrimaryColor: {r: 0.9811321, g: 0, b: 0.4366933, a: 1}
-      SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
+      PrimaryColor: {r: 0.6886792, g: 0.054962054, b: 0, a: 1}
+      SecondaryColor: {r: 0.477481, g: 0.035288375, b: 0.5754717, a: 1}
       MainAbility:
         _isVariable: 1
-        _variable: {fileID: 11400000, guid: 9bca8fa3149e5724bb98208529403ff4, type: 2}
+        _variable: {fileID: 11400000, guid: dbfda347c97af764fbe958a82cf4d50c, type: 2}
         _constant:
           AdditionalStats: []
           Duration: 0
@@ -194,6 +198,7 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
+      CharacterIcon: {fileID: 0}
     - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
         type: 3}
       KartPrefab: {fileID: 7735282559823904699, guid: 7bd70e3d2b837f645a76c78205d624d9,
@@ -220,7 +225,8 @@ MonoBehaviour:
           WorldEffects: []
         _isInstance: 0
         _instancer: {fileID: 0}
-    State: 3
+      CharacterIcon: {fileID: 0}
+    State: 1
     DefaultMap:
       _isVariable: 1
       _variable: {fileID: 11400000, guid: 553db23b923ad8f449e607b2b7eade0b, type: 2}
@@ -234,7 +240,7 @@ MonoBehaviour:
       _instancer: {fileID: 0}
     DefaultCharacterDatas:
     - _isVariable: 1
-      _variable: {fileID: 11400000, guid: 4667eb27412f71b40a8fcead4e489d1c, type: 2}
+      _variable: {fileID: 11400000, guid: fb18cf5b14e42af4291336062173405b, type: 2}
       _constant:
         CharacterPrefab: {fileID: 0}
         KartPrefab: {fileID: 0}
@@ -260,6 +266,7 @@ MonoBehaviour:
             WorldEffects: []
           _isInstance: 0
           _instancer: {fileID: 0}
+        CharacterIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     - _isVariable: 1
@@ -289,6 +296,7 @@ MonoBehaviour:
             WorldEffects: []
           _isInstance: 0
           _instancer: {fileID: 0}
+        CharacterIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
   _runtimeSet: []

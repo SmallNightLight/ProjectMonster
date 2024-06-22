@@ -454,7 +454,7 @@ public class KartMovement : MonoBehaviour
         if (_smartRayLeft == null || _smartRayRight == null || _smartRayMiddle == null) return 0f;
 
         //Dont enable smart steering when is hit
-        if (_finalMovementStats.Acceleration < 0)
+        if (_finalMovementStats.Acceleration <= 0 || _finalMovementStats.TopSpeed < 1f)
             return 0f;
 
         bool useTrackInfluence = true;
