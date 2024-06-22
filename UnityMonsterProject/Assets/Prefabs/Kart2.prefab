@@ -838,6 +838,16 @@ MonoBehaviour:
       WorldEffects: []
     _isInstance: 0
     _instancer: {fileID: 0}
+  _slowAbiity:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: be53e3fd0debefb46832eaf80e92d207, type: 2}
+    _constant:
+      AdditionalStats: []
+      Duration: 0
+      CoolDown: 0
+      WorldEffects: []
+    _isInstance: 0
+    _instancer: {fileID: 0}
   _hitEvent:
     m_PersistentCalls:
       m_Calls:
@@ -853,6 +863,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _slowEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _abilityEvent:
     m_PersistentCalls:
       m_Calls:
@@ -994,6 +1007,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: KartBase, Assembly-CSharp
         m_MethodName: UpdateTarget
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 6757994081088227423}
+        m_TargetAssemblyTypeName: KartBase, Assembly-CSharp
+        m_MethodName: EndPlayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

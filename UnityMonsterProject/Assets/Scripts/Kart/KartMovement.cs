@@ -461,9 +461,9 @@ public class KartMovement : MonoBehaviour
         bool doRandomGoAround = false;
         float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower)) + _smartRaycastExtra;
 
-        bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers);
-        bool left = Physics.Raycast(_smartRayRight.position, _smartRayRight.forward, out var hitLeft, speedDistance, _smartSteeringLayers);
-        bool center = Physics.Raycast(_smartRayMiddle.position, _smartRayMiddle.forward, out var hitCenter, speedDistance, _smartSteeringLayers);
+        bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers, QueryTriggerInteraction.Ignore);
+        bool left = Physics.Raycast(_smartRayRight.position, _smartRayRight.forward, out var hitLeft, speedDistance, _smartSteeringLayers, QueryTriggerInteraction.Ignore);
+        bool center = Physics.Raycast(_smartRayMiddle.position, _smartRayMiddle.forward, out var hitCenter, speedDistance, _smartSteeringLayers, QueryTriggerInteraction.Ignore);
 
         Debug.DrawRay(_smartRayLeft.position, _smartRayLeft.forward * speedDistance, left ? Color.yellow : Color.green);
         Debug.DrawRay(_smartRayRight.position, _smartRayRight.forward * speedDistance, right ? Color.yellow : Color.green);
