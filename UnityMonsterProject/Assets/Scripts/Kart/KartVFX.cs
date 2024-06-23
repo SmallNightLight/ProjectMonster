@@ -232,15 +232,15 @@ public class KartVFX : MonoBehaviour
 
     //Overlay Boom effect
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if ((_obstacleLayers & (1 << collision.gameObject.layer)) != 0)
-        {
-            //Hit obstacle
-            ContactPoint impactPoint = collision.GetContact(0);
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if ((_obstacleLayers & (1 << collision.gameObject.layer)) != 0)
+    //    {
+    //        //Hit obstacle
+    //        ContactPoint impactPoint = collision.GetContact(0);
 
-            GameObject g = Instantiate(_effectBoom, impactPoint.point, Quaternion.identity);
-            Destroy(g, 2);
-        }
-    }
+    //        GameObject g = Instantiate(_effectBoom, impactPoint.point, Quaternion.identity);
+    //        Destroy(g, 2);
+    //    }
+    //}
 }

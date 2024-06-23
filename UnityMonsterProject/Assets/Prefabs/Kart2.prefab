@@ -935,8 +935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c4d2ec9bbc88c4bbb2eea7d14b89fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectBoom: {fileID: 6251822943576028894, guid: 53383e9e01046e44d91fd028aa695cf3,
-    type: 3}
+  _effectBoom: {fileID: 0}
   _obstacleLayers:
     serializedVersion: 2
     m_Bits: 2048

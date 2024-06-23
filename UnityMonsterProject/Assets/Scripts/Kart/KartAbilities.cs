@@ -54,17 +54,20 @@ public class KartAbilities : MonoBehaviour
         UpdateAbilities();
         UpdateCoolDown();
 
-        if (_base.Input.AbilityBoost && _canDoBoost)
+        if (_base.IsActive)
         {
-            AddAbility(_base.CharacterData.BoostAbility.Value);
-            _canDoBoost = false;
-        }
+            if (_base.Input.AbilityBoost && _canDoBoost)
+            {
+                AddAbility(_base.CharacterData.BoostAbility.Value);
+                _canDoBoost = false;
+            }
 
-        if (_base.Input.Ability1 && _canDoAbility1)
-        {
-            AddAbility(_base.CharacterData.MainAbility.Value);
-            _abilityEvent.Invoke();
-            _canDoAbility1 = false;
+            if (_base.Input.Ability1 && _canDoAbility1)
+            {
+                AddAbility(_base.CharacterData.MainAbility.Value);
+                _abilityEvent.Invoke();
+                _canDoAbility1 = false;
+            }
         }
     }
 
