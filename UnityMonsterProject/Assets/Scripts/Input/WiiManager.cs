@@ -57,7 +57,15 @@ public class WiiManager : MonoBehaviour, IInputManager
             SteerInput = steering,
             IsTricking = isTricking,
             AbilityBoost = mote.Button.b,
-            Ability1 = mote.Button.d_down | mote.Button.d_up | mote.Button.d_left | mote.Button.d_right
+            Ability1 = mote.Button.d_down | mote.Button.d_up | mote.Button.d_left | mote.Button.d_right,
+
+            //UI input
+            Press = mote.Button.two,
+            Back = mote.Button.one,
+            MoveUp = mote.Button.d_up,
+            MoveDown = mote.Button.d_down,
+            MoveRight = mote.Button.d_right,
+            MoveLeft = mote.Button.d_left
         };
 
         _lastAccelInput[key] = accel;
