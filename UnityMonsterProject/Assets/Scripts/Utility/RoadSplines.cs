@@ -29,6 +29,15 @@ public class RoadSplines : MonoBehaviour
         GetPosition(nextSpline, nextStep, out side1, out side2);
     }
 
+    public void GetCurrentPositionAndRotation(Vector3 position, int lastSpline, float lastStep, out Vector3 targetPosition, out Quaternion targetRotation)
+    {
+        CalculateCurrentSplinePoint(position, ref lastSpline, ref lastStep);
+        _splineContainer.Evaluate(lastSpline, lastStep, out float3 splinePosition, out float3 forward, out float3 up);
+
+        targetPosition = splinePosition;
+        targetRotation = Quaternion.LookRotation(forward, up);
+    }
+
     public void GetPosition(int splineIndex, float step, out Vector3 side1, out Vector3 side2)
     {
         _splineContainer.Evaluate(splineIndex, step, out float3 position, out float3 forward, out float3 up);

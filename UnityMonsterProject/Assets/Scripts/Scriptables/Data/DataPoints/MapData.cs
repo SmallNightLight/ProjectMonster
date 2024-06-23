@@ -12,5 +12,6 @@ namespace ScriptableArchitecture.Data
         public GameObject MapPrefab;
         public GameObject SplinePrefab;
         public int TotalLaps;
+        public GameObject MiniMapPrefab;
     }
 }

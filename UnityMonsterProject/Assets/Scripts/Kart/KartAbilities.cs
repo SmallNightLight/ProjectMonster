@@ -1,5 +1,6 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,10 +9,16 @@ public class KartAbilities : MonoBehaviour
 {
     [Header("Ability")]
     [SerializeField] private AbilityDataReference _hitAbiity;
+    [SerializeField] private AbilityDataReference _slowAbiity;
 
     [Header("Events")]
     [SerializeField] private UnityEvent _hitEvent;
+    [SerializeField] private UnityEvent _slowEvent;
     [SerializeField] private UnityEvent _abilityEvent;
+
+    [Header("Tags")]
+    [SerializeField] private StringReference _hitTagName;
+    [SerializeField] private StringReference _slowTagName;
 
     [Header("Components")]
     private KartBase _base;
@@ -27,6 +34,8 @@ public class KartAbilities : MonoBehaviour
 
     [SerializeField] private FloatReference _boostCoolDown;
     [SerializeField] private FloatReference _abilityCoolDown;
+
+    private bool _isSlowed;
 
     private void Start()
     {
@@ -45,17 +54,20 @@ public class KartAbilities : MonoBehaviour
         UpdateAbilities();
         UpdateCoolDown();
 
-        if (_base.Input.AbilityBoost && _canDoBoost)
+        if (_base.IsActive)
         {
-            AddAbility(_base.CharacterData.BoostAbility.Value);
-            _canDoBoost = false;
-        }
+            if (_base.Input.AbilityBoost && _canDoBoost)
+            {
+                AddAbility(_base.CharacterData.BoostAbility.Value);
+                _canDoBoost = false;
+            }
 
-        if (_base.Input.Ability1 && _canDoAbility1)
-        {
-            AddAbility(_base.CharacterData.MainAbility.Value);
-            _abilityEvent.Invoke();
-            _canDoAbility1 = false;
+            if (_base.Input.Ability1 && _canDoAbility1)
+            {
+                AddAbility(_base.CharacterData.MainAbility.Value);
+                _abilityEvent.Invoke();
+                _canDoAbility1 = false;
+            }
         }
     }
 
@@ -102,6 +114,7 @@ public class KartAbilities : MonoBehaviour
             {
                 //Set some values
                 baseEffect.KartSpeed = _kartMovement.LocalSpeed();
+                baseEffect.FromPlayer = _base.Player;
             }
 
             Destroy(instance, effect.Duration);
@@ -166,7 +179,7 @@ public class KartAbilities : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Hit")
+        if (other.gameObject.tag == _hitTagName.Value)
         {
             HitTrigger hitTriger = other.gameObject.GetComponentInChildren<HitTrigger>();
             if (hitTriger != null && hitTriger.FromPlayer == _base.Player) return;
@@ -174,5 +187,21 @@ public class KartAbilities : MonoBehaviour
             AddAbility(_hitAbiity.Value);
             _hitEvent.Invoke();
         }
+        else if (other.gameObject.tag == _slowTagName.Value && !_isSlowed)
+        {
+            HitTrigger hitTriger = other.gameObject.GetComponentInChildren<HitTrigger>();
+            if (hitTriger != null && hitTriger.FromPlayer == _base.Player) return;
+
+            _isSlowed = true;
+            StartCoroutine(EndSlow());
+            AddAbility(_slowAbiity.Value);
+            _slowEvent.Invoke();
+        }
+    }
+
+    private IEnumerator EndSlow()
+    {
+        yield return new WaitForSeconds(_slowAbiity.Value.CoolDown);
+        _isSlowed = false;
     }
 }

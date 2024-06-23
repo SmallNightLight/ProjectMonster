@@ -7,6 +7,10 @@ TagManager:
   - Ability
   - TrackObject
   - Hit
+  - Slow
+  - Ground
+  - Shortcut
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX
@@ -20,10 +24,10 @@ TagManager:
   - Lights
   - Particles
   - Obstacles
-  - ImageEffect
+  - 
   - 
   - Kart
-  - 
+  - MiniMap
   - Camera1
   - Camera2
   - 

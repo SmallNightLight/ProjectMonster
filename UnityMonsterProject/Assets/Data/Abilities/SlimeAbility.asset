@@ -21,13 +21,14 @@ MonoBehaviour:
     CoolDown: 0
     WorldEffects: []
   _startValue:
-    AdditionalStats: []
-    Duration: 3
-    CoolDown: 2
+    AdditionalStats:
+    - {fileID: 11400000, guid: b2dd4f1d7f8d0d447bf6ce603135f741, type: 2}
+    Duration: 2
+    CoolDown: 10
     WorldEffects:
-    - Prefab: {fileID: 3259550474009428215, guid: 73c9faf82dc444649a2ae9692911d397,
+    - Prefab: {fileID: 5699317051346816436, guid: ab522eebcce11744ebb3651a394e8fcd,
         type: 3}
-      Position: {x: -0.5, y: 1, z: 0.3}
+      Position: {x: 0, y: 1.263, z: 1.03}
       KartIsParent: 1
       UseKartPosition: 0
       UseKartRotation: 0

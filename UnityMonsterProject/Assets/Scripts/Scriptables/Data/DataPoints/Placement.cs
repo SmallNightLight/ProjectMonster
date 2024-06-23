@@ -10,6 +10,26 @@ namespace ScriptableArchitecture.Data
         public Dictionary<int, Place> Places = new Dictionary<int, Place>();
         public List<int> PlayerPlacement;
         public Dictionary<int, int> Players = new Dictionary<int, int>();
+        public Dictionary<int, CharacterData> PlayerCharacters = new Dictionary<int, CharacterData>();
+        public HashSet<int> FinishedPlayers = new HashSet<int>();
+
+        public void AddCharacterData(int player, CharacterData characterData)
+        {
+            PlayerCharacters.Add(player, characterData);
+        }
+
+        public bool GetCharacter(int player, out CharacterData data)
+        { 
+            if (PlayerCharacters.ContainsKey(player))
+            {
+                data = PlayerCharacters[player];
+                return true;
+            }
+
+            data = null;
+            return false;
+        }
+
 
         public void UpdatePlayer(int player, int lap, int spline, float step, bool lockPlayer = false)
         {
@@ -25,6 +45,7 @@ namespace ScriptableArchitecture.Data
 
             if (lockPlayer)
             {
+                FinishedPlayers.Add(player);
                 place.AddedPlace = 100 - GetPlace(player);
                 UpdatePlacements();
             }

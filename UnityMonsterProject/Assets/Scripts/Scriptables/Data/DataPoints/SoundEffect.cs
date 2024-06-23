@@ -13,11 +13,11 @@ namespace ScriptableArchitecture.Data
         public AudioMixerGroup audioMixerSnapshot;
 
         public AudioClip AudioClip;
-        [Range(0, 5)]
-        public float Volume;
+        [Range(0, 1)]
+        public float Volume = 0.5f;
         [Range(0, 3)]
-        public float Pitch;
+        public float Pitch = 1f;
 
-        public bool Loop;
+        public bool Loop = false;
     }
 }

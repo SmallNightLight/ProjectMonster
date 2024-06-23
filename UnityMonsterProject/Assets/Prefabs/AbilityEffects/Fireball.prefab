@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e479175575bdc74298f2f9e87097f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FromPlayer: 0
   KartSpeed: 0
 --- !u!114 &8140628022823323733
 MonoBehaviour:
@@ -246,10 +247,20 @@ MonoBehaviour:
   _power: 80
   _distancePower: 40
   _gravity: -270
-  _hitTag: TrackObject
+  _groundTagName:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 7999b83d58b409a4aaf88ae7a00e827e, type: 2}
+    _constant: 
+    _isInstance: 0
+    _instancer: {fileID: 0}
   _impactPrefab: {fileID: 8980159109604465134, guid: 8142689ad4c4a6041b3d0b08463126ba,
     type: 3}
+  _impactDuration: 2
   _checkoffset: 3.5
+  _hitMask:
+    serializedVersion: 2
+    m_Bits: 215489
+  _impactOffset: {x: 0, y: 0, z: 0}
   _impulseSource: {fileID: 3756149611148921033}
 --- !u!54 &1039626621735960611
 Rigidbody:

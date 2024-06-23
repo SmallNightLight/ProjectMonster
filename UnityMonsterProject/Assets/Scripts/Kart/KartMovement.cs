@@ -7,6 +7,7 @@ using UnityEngine.Events;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
 using Unity.VisualScripting;
+using UnityEngine.Experimental.AI;
 
 [RequireComponent(typeof(KartBase), typeof(Rigidbody))]
 public class KartMovement : MonoBehaviour
@@ -36,8 +37,15 @@ public class KartMovement : MonoBehaviour
 
     private int _lastGoAround; //0 = no random last frame, 1 = right, -1 = left
 
+    [Header("Tags")]
+    [SerializeField] private StringReference _outOfBoundTagName;
+    [SerializeField] private StringReference _shortcutTagName;
+
     [Header("Smart track")]
     [SerializeField] private float _smartTrackInfluence = 1f;
+
+    private int _shortcutTriggers = 0;
+    private bool _inShortcut;
 
     private KartBase _base;
     private Rigidbody _rigidbody;
@@ -90,12 +98,20 @@ public class KartMovement : MonoBehaviour
     private float _groundPercent;
     private float _steering;
 
+    [Header("Respawn")]
+    [SerializeField] private float _respawnDelay;
+    [SerializeField] private float _totalRespawnTime;
+    [SerializeField] private Vector3 _respawnOffset;
+
     //Events
+    [SerializeField] private UnityEvent _respawnEvent;
     [SerializeField] private UnityEvent<Vector3> _jumpEvent;
     [SerializeField] private UnityEvent<bool> _changeDriftState;
     [SerializeField] private UnityEvent _hopEvent;
 
     public float GetMaxSpeed() => Mathf.Max(_finalMovementStats.TopSpeed, _finalMovementStats.ReverseSpeed);
+
+    public bool InShortcut() => _inShortcut;
 
     void UpdateSuspensionParams(WheelCollider wheel)
     {
@@ -200,6 +216,8 @@ public class KartMovement : MonoBehaviour
     public void AddAbility(AbilityData ability) => _activeAbilities.Add(ability);
 
     public void RemoveAbility(AbilityData ability) => _activeAbilities.Remove(ability);
+
+    public void CleanAbilities() => _activeAbilities.Clear();
 
     void GroundAirbourne()
     {
@@ -454,16 +472,16 @@ public class KartMovement : MonoBehaviour
         if (_smartRayLeft == null || _smartRayRight == null || _smartRayMiddle == null) return 0f;
 
         //Dont enable smart steering when is hit
-        if (_finalMovementStats.Acceleration < 0)
+        if (_finalMovementStats.Acceleration <= 0 || _finalMovementStats.TopSpeed < 1f)
             return 0f;
 
-        bool useTrackInfluence = true;
+        bool useTrackInfluence = !_inShortcut;
         bool doRandomGoAround = false;
         float speedDistance = _smartRayDistance * (Mathf.Pow(LocalSpeed(), _distancePower)) + _smartRaycastExtra;
 
-        bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers);
-        bool left = Physics.Raycast(_smartRayRight.position, _smartRayRight.forward, out var hitLeft, speedDistance, _smartSteeringLayers);
-        bool center = Physics.Raycast(_smartRayMiddle.position, _smartRayMiddle.forward, out var hitCenter, speedDistance, _smartSteeringLayers);
+        bool right = Physics.Raycast(_smartRayLeft.position, _smartRayLeft.forward, out var hitRight, speedDistance, _smartSteeringLayers, QueryTriggerInteraction.Ignore);
+        bool left = Physics.Raycast(_smartRayRight.position, _smartRayRight.forward, out var hitLeft, speedDistance, _smartSteeringLayers, QueryTriggerInteraction.Ignore);
+        bool center = Physics.Raycast(_smartRayMiddle.position, _smartRayMiddle.forward, out var hitCenter, speedDistance, _smartSteeringLayers, QueryTriggerInteraction.Ignore);
 
         Debug.DrawRay(_smartRayLeft.position, _smartRayLeft.forward * speedDistance, left ? Color.yellow : Color.green);
         Debug.DrawRay(_smartRayRight.position, _smartRayRight.forward * speedDistance, right ? Color.yellow : Color.green);
@@ -560,5 +578,48 @@ public class KartMovement : MonoBehaviour
             _curveValue = _curveValues.x;
             _changeDriftState.Invoke(true);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == _shortcutTagName.Value)
+        {
+            _shortcutTriggers++;
+
+            if (_shortcutTriggers > 0)
+                _inShortcut = true;
+        }
+        else if (other.gameObject.tag == _outOfBoundTagName.Value)
+        {
+            StartCoroutine(Respawn());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == _shortcutTagName.Value)
+        {
+            _shortcutTriggers--;
+
+            if (_shortcutTriggers < 1)
+                _inShortcut = false;
+        }
+    }
+
+    private IEnumerator Respawn()
+    {
+        _base.IsActive = false;
+        _respawnEvent.Invoke();
+
+        yield return new WaitForSeconds(_respawnDelay);
+
+        //Reset kart
+        _rigidbody.velocity = Vector3.zero;
+        CleanAbilities();
+        _base.Splines.GetCurrentPositionAndRotation(transform.position, _base.SplinesSpline, _base.SplinesStep, out Vector3 targetPosition, out Quaternion targetRotation);
+        _rigidbody.Move(targetPosition + _respawnOffset, targetRotation);
+
+        yield return new WaitForSeconds(_totalRespawnTime - _respawnDelay);
+        _base.IsActive = true;
     }
 }

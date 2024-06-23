@@ -62,7 +62,7 @@ VisualEffect:
       - m_Value: {x: 6, y: 12}
         m_Name: LifeTime
         m_Overridden: 1
-      - m_Value: {x: 0.5, y: 0.5}
+      - m_Value: {x: 0.3, y: 0.3}
         m_Name: SpawnArea
         m_Overridden: 1
     m_Vector3f:
@@ -84,9 +84,9 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 6.4980197, g: 0.84, b: 0.20385955, a: 1}
-          key1: {r: 4.867145, g: 0.2803833, b: 0.025482483, a: 1}
-          key2: {r: 5.87, g: 0, b: 0, a: 0}
+          key0: {r: 0.30818483, g: 3.2490098, b: 0.10206314, a: 1}
+          key1: {r: 0, g: 2.145573, b: 0.21953851, a: 1}
+          key2: {r: 0, g: 2.439793, b: 0.07396039, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
@@ -171,9 +171,7 @@ GameObject:
   - component: {fileID: 2663959048551099645}
   - component: {fileID: 8140628022823323733}
   - component: {fileID: 1039626621735960611}
-  - component: {fileID: 5970286654456130932}
   - component: {fileID: 3756149611148921033}
-  - component: {fileID: 431684416553028036}
   m_Layer: 9
   m_Name: SlimeBall
   m_TagString: Untagged
@@ -191,7 +189,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3973839643260250343}
@@ -230,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e479175575bdc74298f2f9e87097f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FromPlayer: 0
   KartSpeed: 0
 --- !u!114 &8140628022823323733
 MonoBehaviour:
@@ -243,13 +242,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2c8e5f2c80e9445afe834e484dd019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _power: 80
+  _power: 50
   _distancePower: 40
-  _gravity: -270
-  _hitTag: TrackObject
+  _gravity: -95.1
+  _groundTagName:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 7999b83d58b409a4aaf88ae7a00e827e, type: 2}
+    _constant: 
+    _isInstance: 0
+    _instancer: {fileID: 0}
   _impactPrefab: {fileID: 4975647300422434164, guid: a6ef868fbfa553b4baea28e51dad6319,
     type: 3}
+  _impactDuration: 5
   _checkoffset: 3.5
+  _hitMask:
+    serializedVersion: 2
+    m_Bits: 215489
+  _impactOffset: {x: 0, y: 0.04, z: 0}
   _impulseSource: {fileID: 3756149611148921033}
 --- !u!54 &1039626621735960611
 Rigidbody:
@@ -278,44 +287,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!2083052967 &5970286654456130932
-VisualEffect:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3259550474009428215}
-  m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: b28193cee8c6e3341b84bac6beaf5a17, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
-  m_StartSeed: 0
-  m_ResetSeedOnPlay: 1
-  m_AllowInstancing: 1
-  m_ResourceVersion: 1
-  m_PropertySheet:
-    m_Float:
-      m_Array: []
-    m_Vector2f:
-      m_Array: []
-    m_Vector3f:
-      m_Array: []
-    m_Vector4f:
-      m_Array: []
-    m_Uint:
-      m_Array: []
-    m_Int:
-      m_Array: []
-    m_Matrix4x4f:
-      m_Array: []
-    m_AnimationCurve:
-      m_Array: []
-    m_Gradient:
-      m_Array: []
-    m_NamedObject:
-      m_Array: []
-    m_Bool:
-      m_Array: []
 --- !u!114 &3756149611148921033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,43 +340,3 @@ MonoBehaviour:
     m_DissipationDistance: 50
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -0.3, z: 0}
---- !u!73398921 &431684416553028036
-VFXRenderer:
-  serializedVersion: 1
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3259550474009428215}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0

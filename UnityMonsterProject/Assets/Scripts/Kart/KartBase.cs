@@ -34,6 +34,8 @@ public class KartBase : MonoBehaviour
         }
     }
 
+    private bool _inEnd;
+
     [SerializeField] private PlacementReference _placements;
     [HideInInspector] public Vector3 SplinesTargetPosition { get; private set; }
     [HideInInspector] public int SplinesSpline;
@@ -91,7 +93,11 @@ public class KartBase : MonoBehaviour
         if (IsBot)
         {
             SetupBot();
+            StartCoroutine(RandomAbilities());
+            StartCoroutine(RandomBoosts());
         }
+
+        _placements.Value.AddCharacterData(Player, CharacterData);
     }
 
     public void SetupBot()
@@ -146,9 +152,9 @@ public class KartBase : MonoBehaviour
         }
     }
 
-    public void DisablePlayer()
+    public void EndPlayer()
     {
-        IsActive = false;
+        _inEnd = true;
     }
 
     private IEnumerator WaitForUpdateTarget()
@@ -233,6 +239,42 @@ public class KartBase : MonoBehaviour
         _botInput.IsAccelerating = forwardAmount > 0;
         _botInput.IsBraking = forwardAmount < 0;
         _botInput.SteerInput = turnAmount;
+    }
+
+    private IEnumerator RandomAbilities()
+    {
+        float abilityCoolDown = CharacterData.MainAbility.Value.CoolDown;
+
+        while (!_inEnd)
+        {
+            yield return new WaitForSeconds(Random.Range(abilityCoolDown, abilityCoolDown * 2));
+
+            if (_isActive && !_inEnd)
+            {
+                _botInput.Ability1 = true;
+            }
+
+            yield return null;
+            _botInput.Ability1 = false;
+        }
+    }
+
+    private IEnumerator RandomBoosts()
+    {
+        float boostCoolDown = CharacterData.BoostAbility.Value.CoolDown;
+
+        while (!_inEnd)
+        {
+            yield return new WaitForSeconds(Random.Range(boostCoolDown, boostCoolDown * 2));
+
+            if (_isActive && !_inEnd)
+            {
+                _botInput.AbilityBoost = true;
+            }
+
+            yield return null;
+            _botInput.AbilityBoost = false;
+        }
     }
 
     private IEnumerator ChangePercentage()

@@ -46,12 +46,12 @@ Material:
     - _DecalMeshDepthBias: 0
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
-    - _Noise: 12
-    - _NormalStrength: 0.79
+    - _Noise: 23.01
+    - _NormalStrength: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Sharpness: 0.2
-    - _Size: 0.22
+    - _Size: 0.3
     - _Smoothness: 16.27
     - _USENORMALMAP: 0
     m_Colors:

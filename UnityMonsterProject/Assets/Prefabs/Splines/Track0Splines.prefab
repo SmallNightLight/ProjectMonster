@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 269078772085254489}
   - component: {fileID: 8514029583954507761}
   - component: {fileID: 4759231492119486826}
+  - component: {fileID: 7278134439800544633}
   m_Layer: 0
   m_Name: Track0Splines
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3321,3 +3322,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!111 &7278134439800544633
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415530105328318594}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d57f844b866c30542acd926f068263ab, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d57f844b866c30542acd926f068263ab, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

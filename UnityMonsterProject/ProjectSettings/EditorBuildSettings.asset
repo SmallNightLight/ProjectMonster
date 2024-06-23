@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SelectGame.unity
     guid: e206595ca7580dc4090f679f7d2811d9
+  - enabled: 1
+    path: Assets/Scenes/Podium.unity
+    guid: 01bf9e54c333ead45b1dd79f2a03a4de
   m_configObjects: {}

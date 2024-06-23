@@ -14,5 +14,7 @@ namespace ScriptableArchitecture.Data
 
         public AbilityDataReference MainAbility;
         public AbilityDataReference BoostAbility;
+
+        public Sprite CharacterIcon;
     }
 }

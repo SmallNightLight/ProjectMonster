@@ -2,6 +2,7 @@ using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour, ISetupManager, IFirstFrameManager
 {
@@ -14,6 +15,13 @@ public class PlayerManager : MonoBehaviour, ISetupManager, IFirstFrameManager
     [SerializeField] private GameState _startGameState = GameState.StartCinematic;
 
     [SerializeField] private FloatReference _countDownTime;
+
+    private List<int> _endedPlayers = new List<int>();
+
+    [SerializeField] private float _endTime = 3f;
+    [SerializeField] private float _maxEndTime = 30f;
+
+    [SerializeField] private string _podiumSceneName = "Podium";
 
     public void Setup()
     {
@@ -108,5 +116,37 @@ public class PlayerManager : MonoBehaviour, ISetupManager, IFirstFrameManager
         yield return new WaitForSeconds(_countDownTime.Value);
         _gameData.Value.State = GameState.Gameplay;
         _gameData.Raise();
+    }
+
+    public void PlayerReachedEnd(int player)
+    {
+        _endedPlayers.Add(player);
+
+        int endedPlayers = 0;
+        for(int i = 1; i < _gameData.Value.PlayerCount + 1; i++)
+        {
+            if (_endedPlayers.Contains(i))
+                endedPlayers++;
+        }
+
+        if (endedPlayers == 1)
+        {
+            StartCoroutine(End(_maxEndTime));
+        }
+        else if (endedPlayers >= 2)
+        {
+            if (endRoutine != null)
+                StopCoroutine(endRoutine);
+
+            StartCoroutine(End(_endTime));
+        }
+    }
+
+    Coroutine endRoutine;
+    private IEnumerator End(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        SceneManager.LoadSceneAsync(_podiumSceneName);
     }
 }
