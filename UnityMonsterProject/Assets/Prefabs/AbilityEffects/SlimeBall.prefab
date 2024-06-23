@@ -245,7 +245,12 @@ MonoBehaviour:
   _power: 50
   _distancePower: 40
   _gravity: -95.1
-  _hitTag: TrackObject
+  _groundTagName:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: 7999b83d58b409a4aaf88ae7a00e827e, type: 2}
+    _constant: 
+    _isInstance: 0
+    _instancer: {fileID: 0}
   _impactPrefab: {fileID: 4975647300422434164, guid: a6ef868fbfa553b4baea28e51dad6319,
     type: 3}
   _impactDuration: 5

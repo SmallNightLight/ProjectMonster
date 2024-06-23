@@ -16,6 +16,10 @@ public class KartAbilities : MonoBehaviour
     [SerializeField] private UnityEvent _slowEvent;
     [SerializeField] private UnityEvent _abilityEvent;
 
+    [Header("Tags")]
+    [SerializeField] private StringReference _hitTagName;
+    [SerializeField] private StringReference _slowTagName;
+
     [Header("Components")]
     private KartBase _base;
     private KartMovement _kartMovement;
@@ -172,7 +176,7 @@ public class KartAbilities : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Hit")
+        if (other.gameObject.tag == _hitTagName.Value)
         {
             HitTrigger hitTriger = other.gameObject.GetComponentInChildren<HitTrigger>();
             if (hitTriger != null && hitTriger.FromPlayer == _base.Player) return;
@@ -180,7 +184,7 @@ public class KartAbilities : MonoBehaviour
             AddAbility(_hitAbiity.Value);
             _hitEvent.Invoke();
         }
-        else if (other.gameObject.tag == "Slow" && !_isSlowed)
+        else if (other.gameObject.tag == _slowTagName.Value && !_isSlowed)
         {
             HitTrigger hitTriger = other.gameObject.GetComponentInChildren<HitTrigger>();
             if (hitTriger != null && hitTriger.FromPlayer == _base.Player) return;

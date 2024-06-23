@@ -1,4 +1,5 @@
 using Cinemachine;
+using ScriptableArchitecture.Data;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(BaseEffect))]
@@ -10,7 +11,7 @@ public class AbilityFireball : MonoBehaviour
     [SerializeField] private float _distancePower;
     [SerializeField] private float _gravity;
 
-    [SerializeField] private string _hitTag;
+    [SerializeField] private StringReference _groundTagName;
 
     [SerializeField] private GameObject _impactPrefab;
     [SerializeField] private float _impactDuration = 2f;
@@ -39,7 +40,7 @@ public class AbilityFireball : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == _hitTag && !_isExploded)
+        if (other.gameObject.tag == _groundTagName.Value && !_isExploded)
         {
             Vector3 rayStartPoint = transform.position + new Vector3(0, _checkoffset, 0);
 

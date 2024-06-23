@@ -8,6 +8,9 @@ TagManager:
   - TrackObject
   - Hit
   - Slow
+  - Ground
+  - Shortcut
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX
