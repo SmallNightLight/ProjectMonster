@@ -12,6 +12,12 @@ public class GameDataModifier : MonoBehaviour
             case 1:
                 _gameData.Value.PlayerCount = 1;
                 break;
+            case 2:
+                _gameData.Value.PlayerCount = 2;
+                break;
+            case 3:
+                Debug.Log("No practive mode made");
+                break;
         }
     }
 
