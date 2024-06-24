@@ -1,3 +1,4 @@
+using EasyRoads3Dv3;
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,11 +53,15 @@ public class NavigationInjector : MonoBehaviour
     public void Press()
     {
         GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+       
         if (selectedObject != null)
-        {
-            PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-            ExecuteEvents.Execute(selectedObject, pointerEventData, ExecuteEvents.submitHandler);
-        }
+            SelectObject(selectedObject);
+    }
+
+    public void SelectObject(GameObject target)
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        ExecuteEvents.Execute(target, pointerEventData, ExecuteEvents.submitHandler);
     }
 
     private MoveDirection GetMoveDirection(bool up, bool down, bool right, bool left)

@@ -8,6 +8,7 @@ public class WiiManager : MonoBehaviour, IInputManager
     private Dictionary<InputAsset, Wiimote> _players = new Dictionary<InputAsset, Wiimote>();
     private Dictionary<InputAsset, float> _lastPlayerInput = new Dictionary<InputAsset, float>();
     private Dictionary<InputAsset, int> _lastAccelInput = new Dictionary<InputAsset, int>();
+    private Dictionary<InputAsset, InputData> _lastInput = new Dictionary<InputAsset, InputData>();
 
     [SerializeField] private float _maxNoInputTime = 5.0f;
 
@@ -60,13 +61,24 @@ public class WiiManager : MonoBehaviour, IInputManager
             Ability1 = mote.Button.d_down | mote.Button.d_up | mote.Button.d_left | mote.Button.d_right,
 
             //UI input
-            Press = mote.Button.two,
-            Back = mote.Button.one,
-            MoveUp = mote.Button.d_up,
-            MoveDown = mote.Button.d_down,
-            MoveRight = mote.Button.d_right,
-            MoveLeft = mote.Button.d_left
+            Press = mote.Button.two && !_lastInput[key].Press,
+            Back = mote.Button.one && !_lastInput[key].Back,
+            MoveUp = mote.Button.d_right && !_lastInput[key].MoveUp,
+            MoveDown = mote.Button.d_left && !_lastInput[key].MoveDown,
+            MoveRight = mote.Button.d_down && !_lastInput[key].MoveRight,
+            MoveLeft = mote.Button.d_up && !_lastInput[key].MoveLeft
         };
+
+
+        InputData lastInput = input.Copy();
+        lastInput.Press |= mote.Button.two;
+        lastInput.Back |= mote.Button.one;
+        lastInput.MoveUp |= mote.Button.d_right;
+        lastInput.MoveDown |= mote.Button.d_left;
+        lastInput.MoveRight |= mote.Button.d_down;
+        lastInput.MoveLeft |= mote.Button.d_up;
+
+        _lastInput[key] = lastInput;
 
         _lastAccelInput[key] = accel;
 
@@ -104,6 +116,7 @@ public class WiiManager : MonoBehaviour, IInputManager
 
         Wiimote playerMote = WiimoteManager.Wiimotes[PlayerCount()];
         _players.Add(playerInputAsset, playerMote);
+        _lastInput.Add(playerInputAsset, new InputData());
         _lastPlayerInput[playerInputAsset] = 0;
         _lastAccelInput[playerInputAsset] = 0;
         CalibrateWiimote(playerMote, playerInputAsset.Player);

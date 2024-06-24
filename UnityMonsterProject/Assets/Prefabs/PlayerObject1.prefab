@@ -277,6 +277,8 @@ GameObject:
   - component: {fileID: 4628928709371947918}
   - component: {fileID: 2275758942431143471}
   - component: {fileID: 8358843221253022218}
+  - component: {fileID: 4474720301184970117}
+  - component: {fileID: 862978539942927834}
   m_Layer: 5
   m_Name: BoostCoolDown
   m_TagString: Untagged
@@ -332,7 +334,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bc124a54a1ae682418f69d49ef8ff91d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -342,6 +344,70 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4474720301184970117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399231503176044871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f77e636af0a25a43921efd26737f7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterData:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      CharacterPrefab: {fileID: 0}
+      KartPrefab: {fileID: 0}
+      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+      MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      BoostAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      CharacterIcon: {fileID: 0}
+    _isInstance: 1
+    _instancer: {fileID: 862978539942927834}
+  _images:
+  - {fileID: 8358843221253022218}
+  - {fileID: 6261877804423158121}
+  _isBoost: 1
+--- !u!114 &862978539942927834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399231503176044871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccec805b28622f14786fcb8e70e19c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _instanceScope: {fileID: 5196579204354044018}
+  _baseVariable: {fileID: 11400000, guid: e0be96a552fca7341877e9440d44a0a9, type: 2}
+  _instancedVariable: {fileID: 0}
 --- !u!1 &2008696433656003452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1233,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8dd2cef36123cae48a45892344162453, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1278,7 +1344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bc124a54a1ae682418f69d49ef8ff91d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1332,6 +1398,8 @@ GameObject:
   - component: {fileID: 1737275515747680145}
   - component: {fileID: 1030892980748542738}
   - component: {fileID: 5063916416652110152}
+  - component: {fileID: 8885126174867561704}
+  - component: {fileID: 7600042603666389595}
   m_Layer: 5
   m_Name: AbilityCoolDown
   m_TagString: Untagged
@@ -1387,7 +1455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8dd2cef36123cae48a45892344162453, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1397,6 +1465,70 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8885126174867561704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866720857241192161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f77e636af0a25a43921efd26737f7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterData:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      CharacterPrefab: {fileID: 0}
+      KartPrefab: {fileID: 0}
+      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+      MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      BoostAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      CharacterIcon: {fileID: 0}
+    _isInstance: 1
+    _instancer: {fileID: 7600042603666389595}
+  _images:
+  - {fileID: 5063916416652110152}
+  - {fileID: 3868338940127251184}
+  _isBoost: 0
+--- !u!114 &7600042603666389595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866720857241192161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccec805b28622f14786fcb8e70e19c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _instanceScope: {fileID: 5196579204354044018}
+  _baseVariable: {fileID: 11400000, guid: e0be96a552fca7341877e9440d44a0a9, type: 2}
+  _instancedVariable: {fileID: 0}
 --- !u!1 &5914005102920795921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,21 +2026,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3562674187502880987}
     m_Modifications:
-    - target: {fileID: 2470691383270067935, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.22467959
-      objectReference: {fileID: 0}
-    - target: {fileID: 2470691383270067935, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.60933983
-      objectReference: {fileID: 0}
-    - target: {fileID: 2470691383270067935, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.9339623
-      objectReference: {fileID: 0}
     - target: {fileID: 6681952961905223361, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
         type: 3}
       propertyPath: m_Name
@@ -1979,10 +2096,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7082256871546980554, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
+        type: 3}
+      propertyPath: _characterData._instancer
+      value: 
+      objectReference: {fileID: 649942888446032624}
+    - target: {fileID: 7082256871546980554, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
+        type: 3}
+      propertyPath: _characterData._isInstance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7082256871546980554, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
+        type: 3}
+      propertyPath: _characterData._isVariable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6681952961905223361, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 649942888446032624}
   m_SourcePrefab: {fileID: 100100000, guid: d1c7aadbd2a433447a9c5f28a0a2a09e, type: 3}
 --- !u!4 &5233793771944670852 stripped
 Transform:
@@ -1990,6 +2126,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1628085940882372531}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5342130459900055922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6681952961905223361, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1628085940882372531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &649942888446032624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342130459900055922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccec805b28622f14786fcb8e70e19c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _instanceScope: {fileID: 5196579204354044018}
+  _baseVariable: {fileID: 11400000, guid: e0be96a552fca7341877e9440d44a0a9, type: 2}
+  _instancedVariable: {fileID: 0}
 --- !u!1001 &4623039181794641458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2533,6 +2690,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
         type: 3}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _instanceCharacterData._instancer
+      value: 
+      objectReference: {fileID: 5397507508774819476}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _instanceCharacterData._isInstance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757994081088227423, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      propertyPath: _instanceCharacterData._isVariable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7221716665884278461, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
         type: 3}
       propertyPath: _finalPhysicsStats.GroundLayers.m_Bits
@@ -2603,6 +2775,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3476649634169918550}
+    - targetCorrespondingSourceObject: {fileID: 8270729986525616552, guid: 8be989ebaa4f8db4698fa75b4de51c8e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5397507508774819476}
   m_SourcePrefab: {fileID: 100100000, guid: 8be989ebaa4f8db4698fa75b4de51c8e, type: 3}
 --- !u!1 &1258700108249084788 stripped
 GameObject:
@@ -2651,6 +2827,39 @@ MonoBehaviour:
       DefaultCharacterDatas: []
     _isInstance: 0
     _instancer: {fileID: 0}
+  _instanceCharacterData:
+    _isVariable: 0
+    _variable: {fileID: 0}
+    _constant:
+      CharacterPrefab: {fileID: 0}
+      KartPrefab: {fileID: 0}
+      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+      MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      BoostAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      CharacterIcon: {fileID: 0}
+    _isInstance: 0
+    _instancer: {fileID: 0}
   _lapCountText: {fileID: 1465401319202105534}
   _placementText: {fileID: 3838974936185693240}
   _placementReference:
@@ -2689,6 +2898,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _instanceScope: {fileID: 5196579204354044018}
   _baseVariable: {fileID: 11400000, guid: 86b62a41448b6a94fa87c1f6d0946af8, type: 2}
+  _instancedVariable: {fileID: 0}
+--- !u!114 &5397507508774819476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258700108249084788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccec805b28622f14786fcb8e70e19c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _instanceScope: {fileID: 5196579204354044018}
+  _baseVariable: {fileID: 11400000, guid: e0be96a552fca7341877e9440d44a0a9, type: 2}
   _instancedVariable: {fileID: 0}
 --- !u!4 &3562674187502880987 stripped
 Transform:

@@ -20,6 +20,7 @@ MonoBehaviour:
     Duration: 0
     CoolDown: 0
     WorldEffects: []
+    AbilityIcon: {fileID: 0}
   _startValue:
     AdditionalStats:
     - {fileID: 11400000, guid: 07204c1c4881f6145aa9c5507ddc1b03, type: 2}
@@ -36,6 +37,7 @@ MonoBehaviour:
       UseKartRotationY: 1
       UseIdentityRotation: 0
       Rotation: {x: 0, y: 0, z: 0}
+    AbilityIcon: {fileID: 21300000, guid: 13c908ed464f269409fcc53e9a64cd8c, type: 3}
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:
@@ -43,3 +45,4 @@ MonoBehaviour:
     Duration: 0
     CoolDown: 0
     WorldEffects: []
+    AbilityIcon: {fileID: 0}
