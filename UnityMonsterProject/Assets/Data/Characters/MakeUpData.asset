@@ -40,6 +40,7 @@ MonoBehaviour:
         WorldEffects: []
       _isInstance: 0
       _instancer: {fileID: 0}
+    CharacterIcon: {fileID: 0}
   _startValue:
     CharacterPrefab: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
       type: 3}
@@ -67,6 +68,7 @@ MonoBehaviour:
         WorldEffects: []
       _isInstance: 0
       _instancer: {fileID: 0}
+    CharacterIcon: {fileID: 21300000, guid: 5e7cae2e491fac84cb277bd45bc65459, type: 3}
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:
@@ -94,3 +96,4 @@ MonoBehaviour:
         WorldEffects: []
       _isInstance: 0
       _instancer: {fileID: 0}
+    CharacterIcon: {fileID: 0}

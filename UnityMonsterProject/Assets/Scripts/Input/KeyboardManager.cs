@@ -41,7 +41,10 @@ public class KeyboardManager : MonoBehaviour, IInputManager
                         SteerInput = Input.GetAxis("HorizontalAD"),
                         IsTricking = Input.GetKey(KeyCode.Q),
                         AbilityBoost = Input.GetKey(KeyCode.Space),
-                        Ability1 = Input.GetKey(KeyCode.E)
+                        Ability1 = Input.GetKey(KeyCode.E),
+
+                        //UI input
+                        Back = Input.GetKeyDown(KeyCode.Escape)
                     };
                     break;
 
@@ -53,7 +56,10 @@ public class KeyboardManager : MonoBehaviour, IInputManager
                         SteerInput = Input.GetAxis("HorizontalArrows"),
                         IsTricking = Input.GetKey(KeyCode.Backspace),
                         AbilityBoost = Input.GetKey(KeyCode.Return),
-                        Ability1 = Input.GetKey(KeyCode.RightShift)
+                        Ability1 = Input.GetKey(KeyCode.RightShift),
+
+                        //UI input
+                        Back = Input.GetKeyDown(KeyCode.Escape)
                     };
                     break;
 

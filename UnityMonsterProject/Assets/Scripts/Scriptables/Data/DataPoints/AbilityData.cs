@@ -1,5 +1,6 @@
 using ScriptableArchitecture.Core;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ScriptableArchitecture.Data
 {
@@ -10,5 +11,6 @@ namespace ScriptableArchitecture.Data
         public float Duration;
         public float CoolDown;
         public List<WorldEffect> WorldEffects;
+        public Sprite AbilityIcon;
     }
 }

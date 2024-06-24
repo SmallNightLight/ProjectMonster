@@ -28,37 +28,9 @@ MonoBehaviour:
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
       TotalLaps: 1
-      MiniMapPrefab: {fileID: 2865074153960755094, guid: f64d6e550a1f80d478b60166e76e981f,
-        type: 3}
+      MiniMapRotation: 270
     PlayerCount: 2
     CharacterDatas:
-    - CharacterPrefab: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
-        type: 3}
-      KartPrefab: {fileID: 5459790529940896605, guid: 6e721c57ba44f274eb016d15f3edb4df,
-        type: 3}
-      PrimaryColor: {r: 0.6886792, g: 0.054962054, b: 0, a: 1}
-      SecondaryColor: {r: 0.477481, g: 0.035288375, b: 0.5754717, a: 1}
-      MainAbility:
-        _isVariable: 1
-        _variable: {fileID: 11400000, guid: dbfda347c97af764fbe958a82cf4d50c, type: 2}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-      BoostAbility:
-        _isVariable: 1
-        _variable: {fileID: 11400000, guid: 3120cea0eef10814b90c69bb8c1c1c68, type: 2}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-      CharacterIcon: {fileID: 0}
     - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
         type: 3}
       KartPrefab: {fileID: 7735282559823904699, guid: 7bd70e3d2b837f645a76c78205d624d9,
@@ -73,6 +45,7 @@ MonoBehaviour:
           Duration: 0
           CoolDown: 0
           WorldEffects: []
+          AbilityIcon: {fileID: 0}
         _isInstance: 0
         _instancer: {fileID: 0}
       BoostAbility:
@@ -83,9 +56,39 @@ MonoBehaviour:
           Duration: 0
           CoolDown: 0
           WorldEffects: []
+          AbilityIcon: {fileID: 0}
         _isInstance: 0
         _instancer: {fileID: 0}
-      CharacterIcon: {fileID: 0}
+      CharacterIcon: {fileID: 21300000, guid: 39427457242a7d24bb45a92079054e5d, type: 3}
+    - CharacterPrefab: {fileID: 8136835367777448765, guid: 141a0042a72ca14409deb8af84af43b6,
+        type: 3}
+      KartPrefab: {fileID: 1479381347116942242, guid: 54554aabe038db44eaafddf34e86d923,
+        type: 3}
+      PrimaryColor: {r: 0.21621382, g: 0.5566038, b: 0, a: 1}
+      SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
+      MainAbility:
+        _isVariable: 1
+        _variable: {fileID: 11400000, guid: 3b1904168d6fbbb43a45db28f29ecb1f, type: 2}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      BoostAbility:
+        _isVariable: 1
+        _variable: {fileID: 11400000, guid: 60299e8eb54b4d44fb6ff47346e439b0, type: 2}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      CharacterIcon: {fileID: 21300000, guid: 00a11ea26997fbe43ba81823beb87f2b, type: 3}
     State: 1
     DefaultMap:
       _isVariable: 1
@@ -96,40 +99,10 @@ MonoBehaviour:
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
         TotalLaps: 0
-        MiniMapPrefab: {fileID: 0}
+        MiniMapRotation: 0
       _isInstance: 0
       _instancer: {fileID: 0}
     DefaultCharacterDatas:
-    - _isVariable: 1
-      _variable: {fileID: 11400000, guid: fb18cf5b14e42af4291336062173405b, type: 2}
-      _constant:
-        CharacterPrefab: {fileID: 0}
-        KartPrefab: {fileID: 0}
-        PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
-        SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
-        MainAbility:
-          _isVariable: 0
-          _variable: {fileID: 0}
-          _constant:
-            AdditionalStats: []
-            Duration: 0
-            CoolDown: 0
-            WorldEffects: []
-          _isInstance: 0
-          _instancer: {fileID: 0}
-        BoostAbility:
-          _isVariable: 0
-          _variable: {fileID: 0}
-          _constant:
-            AdditionalStats: []
-            Duration: 0
-            CoolDown: 0
-            WorldEffects: []
-          _isInstance: 0
-          _instancer: {fileID: 0}
-        CharacterIcon: {fileID: 0}
-      _isInstance: 0
-      _instancer: {fileID: 0}
     - _isVariable: 1
       _variable: {fileID: 11400000, guid: fd603dfa1dba7b6489bd165951993bf9, type: 2}
       _constant:
@@ -145,6 +118,7 @@ MonoBehaviour:
             Duration: 0
             CoolDown: 0
             WorldEffects: []
+            AbilityIcon: {fileID: 0}
           _isInstance: 0
           _instancer: {fileID: 0}
         BoostAbility:
@@ -155,6 +129,39 @@ MonoBehaviour:
             Duration: 0
             CoolDown: 0
             WorldEffects: []
+            AbilityIcon: {fileID: 0}
+          _isInstance: 0
+          _instancer: {fileID: 0}
+        CharacterIcon: {fileID: 0}
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    - _isVariable: 1
+      _variable: {fileID: 11400000, guid: d91c21cb4fc5e8d4ab62c004ba0a4d8d, type: 2}
+      _constant:
+        CharacterPrefab: {fileID: 0}
+        KartPrefab: {fileID: 0}
+        PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+        SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+        MainAbility:
+          _isVariable: 0
+          _variable: {fileID: 0}
+          _constant:
+            AdditionalStats: []
+            Duration: 0
+            CoolDown: 0
+            WorldEffects: []
+            AbilityIcon: {fileID: 0}
+          _isInstance: 0
+          _instancer: {fileID: 0}
+        BoostAbility:
+          _isVariable: 0
+          _variable: {fileID: 0}
+          _constant:
+            AdditionalStats: []
+            Duration: 0
+            CoolDown: 0
+            WorldEffects: []
+            AbilityIcon: {fileID: 0}
           _isInstance: 0
           _instancer: {fileID: 0}
         CharacterIcon: {fileID: 0}
@@ -173,37 +180,9 @@ MonoBehaviour:
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
       TotalLaps: 1
-      MiniMapPrefab: {fileID: 2865074153960755094, guid: f64d6e550a1f80d478b60166e76e981f,
-        type: 3}
+      MiniMapRotation: 270
     PlayerCount: 2
     CharacterDatas:
-    - CharacterPrefab: {fileID: 5870303908972389766, guid: e86427bac99e48947804cbb0ecb00650,
-        type: 3}
-      KartPrefab: {fileID: 5459790529940896605, guid: 6e721c57ba44f274eb016d15f3edb4df,
-        type: 3}
-      PrimaryColor: {r: 0.6886792, g: 0.054962054, b: 0, a: 1}
-      SecondaryColor: {r: 0.477481, g: 0.035288375, b: 0.5754717, a: 1}
-      MainAbility:
-        _isVariable: 1
-        _variable: {fileID: 11400000, guid: dbfda347c97af764fbe958a82cf4d50c, type: 2}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-      BoostAbility:
-        _isVariable: 1
-        _variable: {fileID: 11400000, guid: 3120cea0eef10814b90c69bb8c1c1c68, type: 2}
-        _constant:
-          AdditionalStats: []
-          Duration: 0
-          CoolDown: 0
-          WorldEffects: []
-        _isInstance: 0
-        _instancer: {fileID: 0}
-      CharacterIcon: {fileID: 0}
     - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
         type: 3}
       KartPrefab: {fileID: 7735282559823904699, guid: 7bd70e3d2b837f645a76c78205d624d9,
@@ -218,6 +197,7 @@ MonoBehaviour:
           Duration: 0
           CoolDown: 0
           WorldEffects: []
+          AbilityIcon: {fileID: 0}
         _isInstance: 0
         _instancer: {fileID: 0}
       BoostAbility:
@@ -228,9 +208,39 @@ MonoBehaviour:
           Duration: 0
           CoolDown: 0
           WorldEffects: []
+          AbilityIcon: {fileID: 0}
         _isInstance: 0
         _instancer: {fileID: 0}
-      CharacterIcon: {fileID: 0}
+      CharacterIcon: {fileID: 21300000, guid: 39427457242a7d24bb45a92079054e5d, type: 3}
+    - CharacterPrefab: {fileID: 8136835367777448765, guid: 141a0042a72ca14409deb8af84af43b6,
+        type: 3}
+      KartPrefab: {fileID: 1479381347116942242, guid: 54554aabe038db44eaafddf34e86d923,
+        type: 3}
+      PrimaryColor: {r: 0.21621382, g: 0.5566038, b: 0, a: 1}
+      SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
+      MainAbility:
+        _isVariable: 1
+        _variable: {fileID: 11400000, guid: 3b1904168d6fbbb43a45db28f29ecb1f, type: 2}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      BoostAbility:
+        _isVariable: 1
+        _variable: {fileID: 11400000, guid: 60299e8eb54b4d44fb6ff47346e439b0, type: 2}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      CharacterIcon: {fileID: 21300000, guid: 00a11ea26997fbe43ba81823beb87f2b, type: 3}
     State: 1
     DefaultMap:
       _isVariable: 1
@@ -241,40 +251,10 @@ MonoBehaviour:
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
         TotalLaps: 0
-        MiniMapPrefab: {fileID: 0}
+        MiniMapRotation: 0
       _isInstance: 0
       _instancer: {fileID: 0}
     DefaultCharacterDatas:
-    - _isVariable: 1
-      _variable: {fileID: 11400000, guid: fb18cf5b14e42af4291336062173405b, type: 2}
-      _constant:
-        CharacterPrefab: {fileID: 0}
-        KartPrefab: {fileID: 0}
-        PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
-        SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
-        MainAbility:
-          _isVariable: 0
-          _variable: {fileID: 0}
-          _constant:
-            AdditionalStats: []
-            Duration: 0
-            CoolDown: 0
-            WorldEffects: []
-          _isInstance: 0
-          _instancer: {fileID: 0}
-        BoostAbility:
-          _isVariable: 0
-          _variable: {fileID: 0}
-          _constant:
-            AdditionalStats: []
-            Duration: 0
-            CoolDown: 0
-            WorldEffects: []
-          _isInstance: 0
-          _instancer: {fileID: 0}
-        CharacterIcon: {fileID: 0}
-      _isInstance: 0
-      _instancer: {fileID: 0}
     - _isVariable: 1
       _variable: {fileID: 11400000, guid: fd603dfa1dba7b6489bd165951993bf9, type: 2}
       _constant:
@@ -290,6 +270,7 @@ MonoBehaviour:
             Duration: 0
             CoolDown: 0
             WorldEffects: []
+            AbilityIcon: {fileID: 0}
           _isInstance: 0
           _instancer: {fileID: 0}
         BoostAbility:
@@ -300,6 +281,39 @@ MonoBehaviour:
             Duration: 0
             CoolDown: 0
             WorldEffects: []
+            AbilityIcon: {fileID: 0}
+          _isInstance: 0
+          _instancer: {fileID: 0}
+        CharacterIcon: {fileID: 0}
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    - _isVariable: 1
+      _variable: {fileID: 11400000, guid: d91c21cb4fc5e8d4ab62c004ba0a4d8d, type: 2}
+      _constant:
+        CharacterPrefab: {fileID: 0}
+        KartPrefab: {fileID: 0}
+        PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+        SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+        MainAbility:
+          _isVariable: 0
+          _variable: {fileID: 0}
+          _constant:
+            AdditionalStats: []
+            Duration: 0
+            CoolDown: 0
+            WorldEffects: []
+            AbilityIcon: {fileID: 0}
+          _isInstance: 0
+          _instancer: {fileID: 0}
+        BoostAbility:
+          _isVariable: 0
+          _variable: {fileID: 0}
+          _constant:
+            AdditionalStats: []
+            Duration: 0
+            CoolDown: 0
+            WorldEffects: []
+            AbilityIcon: {fileID: 0}
           _isInstance: 0
           _instancer: {fileID: 0}
         CharacterIcon: {fileID: 0}
@@ -314,7 +328,7 @@ MonoBehaviour:
       MapPrefab: {fileID: 0}
       SplinePrefab: {fileID: 0}
       TotalLaps: 0
-      MiniMapPrefab: {fileID: 0}
+      MiniMapRotation: 0
     PlayerCount: 0
     CharacterDatas: []
     State: 0
@@ -327,7 +341,7 @@ MonoBehaviour:
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
         TotalLaps: 0
-        MiniMapPrefab: {fileID: 0}
+        MiniMapRotation: 0
       _isInstance: 0
       _instancer: {fileID: 0}
     DefaultCharacterDatas: []

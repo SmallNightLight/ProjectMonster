@@ -70,6 +70,9 @@ public class KartBase : MonoBehaviour
     [SerializeField] private float _steeringSensitivity = 0.1f;
     [SerializeField] private Vector2 _changeTime;
 
+    [Header("Instances")]
+    [SerializeField] private CharacterDataReference _instanceCharacterData;
+
     private InputData _botInput;
 
     [Header("Components")]
@@ -98,6 +101,8 @@ public class KartBase : MonoBehaviour
         }
 
         _placements.Value.AddCharacterData(Player, CharacterData);
+
+        _instanceCharacterData.Value = CharacterData;
     }
 
     public void SetupBot()

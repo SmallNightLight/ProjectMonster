@@ -98,4 +98,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d87c92e90074b4489c42466d7a8781a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameData:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: cf507093d93250b47af842dae5a13e9e, type: 2}
+    _constant:
+      Map:
+        PlayerSpawnPositions: []
+        PlayerSpawnRotations: []
+        MapPrefab: {fileID: 0}
+        SplinePrefab: {fileID: 0}
+        TotalLaps: 0
+        MiniMapRotation: 0
+      PlayerCount: 0
+      CharacterDatas: []
+      State: 0
+      DefaultMap:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          PlayerSpawnPositions: []
+          PlayerSpawnRotations: []
+          MapPrefab: {fileID: 0}
+          SplinePrefab: {fileID: 0}
+          TotalLaps: 0
+          MiniMapRotation: 0
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      DefaultCharacterDatas: []
+    _isInstance: 0
+    _instancer: {fileID: 0}
   _faceUp: 1
+  _characterData:
+    _isVariable: 1
+    _variable: {fileID: 0}
+    _constant:
+      CharacterPrefab: {fileID: 0}
+      KartPrefab: {fileID: 0}
+      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+      MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      BoostAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      CharacterIcon: {fileID: 0}
+    _isInstance: 0
+    _instancer: {fileID: 0}

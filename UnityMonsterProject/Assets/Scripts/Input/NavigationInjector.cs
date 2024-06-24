@@ -1,3 +1,4 @@
+using EasyRoads3Dv3;
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class NavigationInjector : MonoBehaviour
 {
-    [SerializeField] private List<InputDataReference> _inputDatas;
+    [SerializeField] private List<InputAssetReference> _inputDatas;
 
     [SerializeField] private GameEvent _backEvent;
 
@@ -16,14 +17,14 @@ public class NavigationInjector : MonoBehaviour
         InputData UIInput = new InputData();
 
         //Allow every player to navigate UI
-        foreach (InputDataReference inputData in _inputDatas)
+        foreach (InputAssetReference inputData in _inputDatas)
         {
-            UIInput.Press |= inputData.Value.Press;
-            UIInput.Back |= inputData.Value.Back;
-            UIInput.MoveUp |= inputData.Value.MoveUp;
-            UIInput.MoveDown |= inputData.Value.MoveDown;
-            UIInput.MoveRight |= inputData.Value.MoveRight;
-            UIInput.MoveLeft |= inputData.Value.MoveLeft;
+            UIInput.Press |= inputData.Value.InputData.Press;
+            UIInput.Back |= inputData.Value.InputData.Back;
+            UIInput.MoveUp |= inputData.Value.InputData.MoveUp;
+            UIInput.MoveDown |= inputData.Value.InputData.MoveDown;
+            UIInput.MoveRight |= inputData.Value.InputData.MoveRight;
+            UIInput.MoveLeft |= inputData.Value.InputData.MoveLeft;
         }
 
         MoveDirection moveDirection = GetMoveDirection(UIInput.MoveUp, UIInput.MoveDown, UIInput.MoveRight, UIInput.MoveLeft);
@@ -52,11 +53,15 @@ public class NavigationInjector : MonoBehaviour
     public void Press()
     {
         GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+       
         if (selectedObject != null)
-        {
-            PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-            ExecuteEvents.Execute(selectedObject, pointerEventData, ExecuteEvents.submitHandler);
-        }
+            SelectObject(selectedObject);
+    }
+
+    public void SelectObject(GameObject target)
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        ExecuteEvents.Execute(target, pointerEventData, ExecuteEvents.submitHandler);
     }
 
     private MoveDirection GetMoveDirection(bool up, bool down, bool right, bool left)
