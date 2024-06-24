@@ -387,6 +387,7 @@ MonoBehaviour:
         _isInstance: 0
         _instancer: {fileID: 0}
       CharacterIcon: {fileID: 0}
+      CharacterIconSquare: {fileID: 0}
     _isInstance: 1
     _instancer: {fileID: 862978539942927834}
   _images:
@@ -1509,6 +1510,7 @@ MonoBehaviour:
         _isInstance: 0
         _instancer: {fileID: 0}
       CharacterIcon: {fileID: 0}
+      CharacterIconSquare: {fileID: 0}
     _isInstance: 1
     _instancer: {fileID: 7600042603666389595}
   _images:
@@ -1948,7 +1950,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7849018524266053254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1956,8 +1958,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 85, y: -85}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchoredPosition: {x: 86.400024, y: -55.600006}
+  m_SizeDelta: {x: 171.99995, y: 236.79996}
   m_Pivot: {x: 0.5, y: 0.49999997}
 --- !u!222 &4411184468273829705
 CanvasRenderer:
@@ -1987,7 +1989,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7ac1ca4f63a99e04e83f26e597044d5b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2040,6 +2042,7 @@ MonoBehaviour:
         _isInstance: 0
         _instancer: {fileID: 0}
       CharacterIcon: {fileID: 0}
+      CharacterIconSquare: {fileID: 0}
     _isInstance: 1
     _instancer: {fileID: 8696840564316754515}
 --- !u!114 &8696840564316754515
@@ -2172,12 +2175,12 @@ PrefabInstance:
     - target: {fileID: 6789796825456967991, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6789796825456967991, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6789796825456967991, guid: d1c7aadbd2a433447a9c5f28a0a2a09e,
         type: 3}
@@ -2996,6 +2999,7 @@ MonoBehaviour:
         _isInstance: 0
         _instancer: {fileID: 0}
       CharacterIcon: {fileID: 0}
+      CharacterIconSquare: {fileID: 0}
     _isInstance: 0
     _instancer: {fileID: 0}
   _lapCountText: {fileID: 1465401319202105534}

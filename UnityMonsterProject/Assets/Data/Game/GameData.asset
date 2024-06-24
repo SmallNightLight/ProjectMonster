@@ -18,8 +18,8 @@ MonoBehaviour:
   _value:
     Map:
       PlayerSpawnPositions:
-      - {x: 307, y: 0.43, z: 533}
-      - {x: 315.6, y: 0.254, z: 526.6}
+      - {x: -392.77, y: 0.43, z: 368.8}
+      - {x: -395.77, y: 0.43, z: 365.8}
       PlayerSpawnRotations:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
@@ -28,7 +28,7 @@ MonoBehaviour:
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
       TotalLaps: 1
-      MiniMapRotation: 270
+      MiniMapRotation: 180
     PlayerCount: 2
     CharacterDatas:
     - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
@@ -60,6 +60,8 @@ MonoBehaviour:
         _isInstance: 0
         _instancer: {fileID: 0}
       CharacterIcon: {fileID: 21300000, guid: 39427457242a7d24bb45a92079054e5d, type: 3}
+      CharacterIconSquare: {fileID: 21300000, guid: 7ac1ca4f63a99e04e83f26e597044d5b,
+        type: 3}
     - CharacterPrefab: {fileID: 8136835367777448765, guid: 141a0042a72ca14409deb8af84af43b6,
         type: 3}
       KartPrefab: {fileID: 1479381347116942242, guid: 54554aabe038db44eaafddf34e86d923,
@@ -89,10 +91,12 @@ MonoBehaviour:
         _isInstance: 0
         _instancer: {fileID: 0}
       CharacterIcon: {fileID: 21300000, guid: 00a11ea26997fbe43ba81823beb87f2b, type: 3}
+      CharacterIconSquare: {fileID: 21300000, guid: 0cd0d0c70bef0cb41a79151493b8dc7c,
+        type: 3}
     State: 1
     DefaultMap:
       _isVariable: 1
-      _variable: {fileID: 11400000, guid: 553db23b923ad8f449e607b2b7eade0b, type: 2}
+      _variable: {fileID: 11400000, guid: 955f7a37014d3ea40907a91a257b473b, type: 2}
       _constant:
         PlayerSpawnPositions: []
         PlayerSpawnRotations: []
@@ -133,6 +137,7 @@ MonoBehaviour:
           _isInstance: 0
           _instancer: {fileID: 0}
         CharacterIcon: {fileID: 0}
+        CharacterIconSquare: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     - _isVariable: 1
@@ -165,13 +170,14 @@ MonoBehaviour:
           _isInstance: 0
           _instancer: {fileID: 0}
         CharacterIcon: {fileID: 0}
+        CharacterIconSquare: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
   _startValue:
     Map:
       PlayerSpawnPositions:
-      - {x: 307, y: 0.43, z: 533}
-      - {x: 315.6, y: 0.254, z: 526.6}
+      - {x: -392.77, y: 0.43, z: 368.8}
+      - {x: -395.77, y: 0.43, z: 365.8}
       PlayerSpawnRotations:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
@@ -180,7 +186,7 @@ MonoBehaviour:
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
       TotalLaps: 1
-      MiniMapRotation: 270
+      MiniMapRotation: 180
     PlayerCount: 2
     CharacterDatas:
     - CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
@@ -212,6 +218,8 @@ MonoBehaviour:
         _isInstance: 0
         _instancer: {fileID: 0}
       CharacterIcon: {fileID: 21300000, guid: 39427457242a7d24bb45a92079054e5d, type: 3}
+      CharacterIconSquare: {fileID: 21300000, guid: 7ac1ca4f63a99e04e83f26e597044d5b,
+        type: 3}
     - CharacterPrefab: {fileID: 8136835367777448765, guid: 141a0042a72ca14409deb8af84af43b6,
         type: 3}
       KartPrefab: {fileID: 1479381347116942242, guid: 54554aabe038db44eaafddf34e86d923,
@@ -241,10 +249,12 @@ MonoBehaviour:
         _isInstance: 0
         _instancer: {fileID: 0}
       CharacterIcon: {fileID: 21300000, guid: 00a11ea26997fbe43ba81823beb87f2b, type: 3}
+      CharacterIconSquare: {fileID: 21300000, guid: 0cd0d0c70bef0cb41a79151493b8dc7c,
+        type: 3}
     State: 1
     DefaultMap:
       _isVariable: 1
-      _variable: {fileID: 11400000, guid: 553db23b923ad8f449e607b2b7eade0b, type: 2}
+      _variable: {fileID: 11400000, guid: 955f7a37014d3ea40907a91a257b473b, type: 2}
       _constant:
         PlayerSpawnPositions: []
         PlayerSpawnRotations: []
@@ -285,6 +295,7 @@ MonoBehaviour:
           _isInstance: 0
           _instancer: {fileID: 0}
         CharacterIcon: {fileID: 0}
+        CharacterIconSquare: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     - _isVariable: 1
@@ -317,6 +328,7 @@ MonoBehaviour:
           _isInstance: 0
           _instancer: {fileID: 0}
         CharacterIcon: {fileID: 0}
+        CharacterIconSquare: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
   _runtimeSet: []

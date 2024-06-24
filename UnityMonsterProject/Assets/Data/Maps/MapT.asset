@@ -24,8 +24,8 @@ MonoBehaviour:
     MiniMapRotation: 0
   _startValue:
     PlayerSpawnPositions:
-    - {x: 307, y: 0.43, z: 533}
-    - {x: 315.6, y: 0.254, z: 526.6}
+    - {x: -392.77, y: 0.43, z: 368.8}
+    - {x: -395.77, y: 0.43, z: 365.8}
     PlayerSpawnRotations:
     - {x: 0, y: 0, z: 0}
     - {x: 0, y: 0, z: 0}
@@ -34,7 +34,7 @@ MonoBehaviour:
     SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
       type: 3}
     TotalLaps: 1
-    MiniMapRotation: 270
+    MiniMapRotation: 180
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:
