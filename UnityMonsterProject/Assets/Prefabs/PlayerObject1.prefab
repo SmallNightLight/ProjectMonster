@@ -303,7 +303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 62, y: -62}
+  m_AnchoredPosition: {x: 220, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2275758942431143471
@@ -648,6 +648,7 @@ RectTransform:
   - {fileID: 4628928709371947918}
   - {fileID: 1737275515747680145}
   - {fileID: 7461692770594447073}
+  - {fileID: 85601924733896727}
   m_Father: {fileID: 7847353076576257121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1424,7 +1425,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 174, y: -62}
+  m_AnchoredPosition: {x: 330, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1030892980748542738
@@ -1919,6 +1920,143 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textObject: {fileID: 5755714541125248953}
+--- !u!1 &7849018524266053254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85601924733896727}
+  - component: {fileID: 4411184468273829705}
+  - component: {fileID: 534998260760774879}
+  - component: {fileID: 7514750411055531824}
+  - component: {fileID: 8696840564316754515}
+  m_Layer: 5
+  m_Name: CharacterImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &85601924733896727
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849018524266053254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5113763812876044548}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 85, y: -85}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 0.49999997}
+--- !u!222 &4411184468273829705
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849018524266053254}
+  m_CullTransparentMesh: 1
+--- !u!114 &534998260760774879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849018524266053254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7514750411055531824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849018524266053254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df03bf8af986aad498a103cb01ae1916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterData:
+    _isVariable: 0
+    _variable: {fileID: 11400000, guid: e0be96a552fca7341877e9440d44a0a9, type: 2}
+    _constant:
+      CharacterPrefab: {fileID: 0}
+      KartPrefab: {fileID: 0}
+      PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+      SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+      MainAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      BoostAbility:
+        _isVariable: 0
+        _variable: {fileID: 0}
+        _constant:
+          AdditionalStats: []
+          Duration: 0
+          CoolDown: 0
+          WorldEffects: []
+          AbilityIcon: {fileID: 0}
+        _isInstance: 0
+        _instancer: {fileID: 0}
+      CharacterIcon: {fileID: 0}
+    _isInstance: 1
+    _instancer: {fileID: 8696840564316754515}
+--- !u!114 &8696840564316754515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849018524266053254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccec805b28622f14786fcb8e70e19c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _instanceScope: {fileID: 5196579204354044018}
+  _baseVariable: {fileID: 11400000, guid: e0be96a552fca7341877e9440d44a0a9, type: 2}
+  _instancedVariable: {fileID: 0}
 --- !u!1 &7934599521826172846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,7 +2431,7 @@ MonoBehaviour:
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
         TotalLaps: 0
-        MiniMapPrefab: {fileID: 0}
+        MiniMapRotation: 0
       PlayerCount: 0
       CharacterDatas: []
       State: 0
@@ -2306,7 +2444,7 @@ MonoBehaviour:
           MapPrefab: {fileID: 0}
           SplinePrefab: {fileID: 0}
           TotalLaps: 0
-          MiniMapPrefab: {fileID: 0}
+          MiniMapRotation: 0
         _isInstance: 0
         _instancer: {fileID: 0}
       DefaultCharacterDatas: []
@@ -2808,7 +2946,7 @@ MonoBehaviour:
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
         TotalLaps: 0
-        MiniMapPrefab: {fileID: 0}
+        MiniMapRotation: 0
       PlayerCount: 0
       CharacterDatas: []
       State: 0
@@ -2821,7 +2959,7 @@ MonoBehaviour:
           MapPrefab: {fileID: 0}
           SplinePrefab: {fileID: 0}
           TotalLaps: 0
-          MiniMapPrefab: {fileID: 0}
+          MiniMapRotation: 0
         _isInstance: 0
         _instancer: {fileID: 0}
       DefaultCharacterDatas: []
