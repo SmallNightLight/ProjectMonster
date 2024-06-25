@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d16037ae7172ca45835c73bde4892bd, type: 3}
+  m_Name: boost bar full
+  m_EditorClassIdentifier: 
+  VariableType: 0
+  InitializeTypeVariable: 2
+  InitializeTypeRuntimeSet: 0
+  _value:
+    audioMixerSnapshot: {fileID: 0}
+    AudioClip: {fileID: 0}
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+  _startValue:
+    audioMixerSnapshot: {fileID: -7627797319376917591, guid: 6ce672a6d64a04b4dac1255c06dbe42b,
+      type: 2}
+    AudioClip: {fileID: 8300000, guid: 6f35c83fdc621e64d873a878f5ccc481, type: 3}
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+  _runtimeSet: []
+  _startRuntimeSet: []
+  DebugValue:
+    audioMixerSnapshot: {fileID: 0}
+    AudioClip: {fileID: 0}
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
