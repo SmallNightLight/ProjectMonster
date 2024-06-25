@@ -24,7 +24,7 @@ MonoBehaviour:
   _startValue:
     AdditionalStats: []
     Duration: 1
-    CoolDown: 1
+    CoolDown: 10
     WorldEffects:
     - Prefab: {fileID: 3259550474009428215, guid: 4f1de8a389b6ddf41b76892958d64c25,
         type: 3}
