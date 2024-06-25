@@ -62,8 +62,6 @@ public class AudioManager : MonoBehaviour
         }
         else if (_soundMode == SoundMode.MixerBased)
         {
-            MultiAudioManager.playaudiocl
-
             AudioMixerGroup audioMixerGroup = soundEffect.audioMixerSnapshot;
             AudioSource audioSource = _audioSources.FirstOrDefault(source => source.outputAudioMixerGroup == audioMixerGroup);
             if (audioMixerGroup.name != "Music" && !soundEffect.Loop)
@@ -78,6 +76,11 @@ public class AudioManager : MonoBehaviour
 
             //to set sound on mixer: Mathf.Log10(soundEffect.Volume * soundCategory.Volume) * 20
         }
+    }
+
+    public void PlayAudioObject(AudioObject audioObject)
+    {
+        MultiAudioManager.PlayAudioObject(audioObject, 0, transform);
     }
 
     public void FadeOutMixer(AudioMixerGroup audioMixerGroup)

@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "ScriptableAssembly.Core",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "MLPAS"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
