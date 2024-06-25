@@ -32,6 +32,14 @@ public class CharacterSelecter : MonoBehaviour
         }
     }
 
+    public void PlayerDeSelected(int player)
+    {
+        if (player == 1)
+            _player1Selected = 0;
+        else if (player == 2)
+            _player2Selected = 0;
+    }
+
     public void LoadScene()
     {
         if (!_loading)
