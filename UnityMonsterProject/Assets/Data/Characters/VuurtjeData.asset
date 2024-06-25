@@ -28,6 +28,7 @@ MonoBehaviour:
         Duration: 0
         CoolDown: 0
         WorldEffects: []
+        AbilityIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     BoostAbility:
@@ -38,9 +39,11 @@ MonoBehaviour:
         Duration: 0
         CoolDown: 0
         WorldEffects: []
+        AbilityIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     CharacterIcon: {fileID: 0}
+    CharacterIconSquare: {fileID: 0}
   _startValue:
     CharacterPrefab: {fileID: 1115759075430938022, guid: 1fa99c1bfddd7be409e0dfa75af02105,
       type: 3}
@@ -56,6 +59,7 @@ MonoBehaviour:
         Duration: 0
         CoolDown: 0
         WorldEffects: []
+        AbilityIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     BoostAbility:
@@ -66,9 +70,12 @@ MonoBehaviour:
         Duration: 0
         CoolDown: 0
         WorldEffects: []
+        AbilityIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     CharacterIcon: {fileID: 21300000, guid: 39427457242a7d24bb45a92079054e5d, type: 3}
+    CharacterIconSquare: {fileID: 21300000, guid: 7ac1ca4f63a99e04e83f26e597044d5b,
+      type: 3}
   _runtimeSet: []
   _startRuntimeSet: []
   DebugValue:
@@ -84,6 +91,7 @@ MonoBehaviour:
         Duration: 0
         CoolDown: 0
         WorldEffects: []
+        AbilityIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     BoostAbility:
@@ -94,6 +102,8 @@ MonoBehaviour:
         Duration: 0
         CoolDown: 0
         WorldEffects: []
+        AbilityIcon: {fileID: 0}
       _isInstance: 0
       _instancer: {fileID: 0}
     CharacterIcon: {fileID: 0}
+    CharacterIconSquare: {fileID: 0}

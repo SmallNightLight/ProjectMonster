@@ -256,7 +256,8 @@ MonoBehaviour:
   _impactPrefab: {fileID: 8980159109604465134, guid: 8142689ad4c4a6041b3d0b08463126ba,
     type: 3}
   _impactDuration: 2
-  _checkoffset: 3.5
+  _checkoffset: 10
+  _hitOffset: 10
   _hitMask:
     serializedVersion: 2
     m_Bits: 215489

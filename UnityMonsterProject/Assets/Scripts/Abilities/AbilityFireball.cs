@@ -16,6 +16,7 @@ public class AbilityFireball : MonoBehaviour
     [SerializeField] private GameObject _impactPrefab;
     [SerializeField] private float _impactDuration = 2f;
     [SerializeField] private float _checkoffset = 1;
+    [SerializeField] private float _hitOffset = 1;
     [SerializeField] private LayerMask _hitMask;
     [SerializeField] private Vector3 _impactOffset;
 
@@ -32,24 +33,33 @@ public class AbilityFireball : MonoBehaviour
 
         float firePower = _power + _distancePower * _baseEffect.KartSpeed;
         _rigidbody.AddForce(transform.forward * firePower, ForceMode.Impulse);
+
+        lastPosition = transform.position;
     }
 
     void FixedUpdate()
     {
         _rigidbody.AddForce(new Vector3(0, _gravity , 0) * _rigidbody.mass);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == _groundTagName.Value && !_isExploded)
-        {
-            Vector3 rayStartPoint = transform.position + new Vector3(0, _checkoffset, 0);
 
-            RaycastHit hit;
-            if (Physics.Raycast(rayStartPoint, Vector3.down, out hit, _checkoffset * 2, _hitMask, QueryTriggerInteraction.Ignore))
+    private Vector3 lastPosition;
+
+    void Update()
+    {
+        Vector3 currentPosition = transform.position;
+        Vector3 direction = (currentPosition - lastPosition).normalized;
+        float distance = Vector3.Distance(currentPosition, lastPosition);
+
+        RaycastHit hit;
+        if (Physics.Raycast(lastPosition, direction, out hit, distance))
+        {
+            if (hit.collider.gameObject.tag == _groundTagName.Value && !_isExploded)
             {
                 Explode(hit.point);
             }
         }
+
+        lastPosition = currentPosition;
     }
 
     private void Explode(Vector3 impactPosition)

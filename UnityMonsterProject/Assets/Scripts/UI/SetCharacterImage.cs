@@ -9,6 +9,6 @@ public class SetCharacterImage : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Image>().sprite = _characterData.Value.CharacterIcon;
+        GetComponent<Image>().sprite = _characterData.Value.CharacterIconSquare;
     }
 }
