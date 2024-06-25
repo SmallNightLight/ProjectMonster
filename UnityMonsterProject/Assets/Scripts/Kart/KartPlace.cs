@@ -9,6 +9,8 @@ public class KartPlace : MonoBehaviour
     [SerializeField] private Transform _kartVisual;
     [SerializeField] private Transform _characterVisual;
 
+    [SerializeField] private CharacterDataReference _fallbackData;
+
     private void Start()
     {
         if (_placements.Value.GetCharacter(_player, out CharacterData characterData))
@@ -16,6 +18,10 @@ public class KartPlace : MonoBehaviour
             Instantiate(characterData.KartPrefab, _kartVisual);
             Instantiate(characterData.CharacterPrefab, _characterVisual);
         }
-        else Debug.Log("Could not find player in placements");
+        else 
+        { 
+            Instantiate(_fallbackData.Value.KartPrefab, _kartVisual);
+            Instantiate(_fallbackData.Value.CharacterPrefab, _characterVisual);
+        }
     }
 }
