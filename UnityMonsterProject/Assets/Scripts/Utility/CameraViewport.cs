@@ -9,16 +9,24 @@ public class CameraViewport : MonoBehaviour
 
     [SerializeField] private KartBase _kartBase;
 
+    [SerializeField] private bool _useCustomNumber;
+    [SerializeField] private int _player;
+
     private void Start()
     {
         _cameras = GetComponentsInChildren<Camera>();
 
-        if (_kartBase == null || _gameData.Value.PlayerCount == 0)
+        if ((_kartBase == null && !_useCustomNumber) || _gameData.Value.PlayerCount == 0)
         {
             Debug.LogWarning("Could not set camera viewport");
         }
 
-        int playerNumber = _kartBase.Player - 1;
+        int playerNumber;
+
+        if (_useCustomNumber)
+            playerNumber = _player - 1;
+        else
+            playerNumber = _kartBase.Player - 1;
 
         switch (_gameData.Value.PlayerCount)
         {
