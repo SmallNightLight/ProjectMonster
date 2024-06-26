@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/TrackT.unity
     guid: 2b51f5837308ae84a965c6c5572ae59b
   - enabled: 1
-    path: Assets/Scenes/Podium.unity
-    guid: 66c748725e306374ead726a01c10ff38
-  - enabled: 1
     path: Assets/Scenes/Track5.unity
     guid: 4b1cd3fee532c2a4d82a24af5977988c
+  - enabled: 1
+    path: Assets/Scenes/TrackV.unity
+    guid: ab048fb353b44374b8deb154f267ac84
+  - enabled: 1
+    path: Assets/Scenes/Podium.unity
+    guid: 66c748725e306374ead726a01c10ff38
   m_configObjects: {}

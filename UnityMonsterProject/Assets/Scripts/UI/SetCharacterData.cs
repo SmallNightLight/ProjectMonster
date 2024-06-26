@@ -2,6 +2,7 @@ using ScriptableArchitecture.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SetCharacterData : MonoBehaviour, ISelectHandler, IPointerEnterHandler
 {
@@ -34,5 +35,11 @@ public class SetCharacterData : MonoBehaviour, ISelectHandler, IPointerEnterHand
     public void Set(CharacterDataVariable characterData)
     {
         _gameData.Value.CharacterDatas[_playerIndex] = characterData.Value;
+    }
+
+    public void ToogleDo(bool d)
+    {
+        if (GetComponent<Toggle>().isOn)
+            Press();
     }
 }
