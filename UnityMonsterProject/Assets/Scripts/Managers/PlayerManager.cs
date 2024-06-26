@@ -129,11 +129,11 @@ public class PlayerManager : MonoBehaviour, ISetupManager, IFirstFrameManager
                 endedPlayers++;
         }
 
-        if (endedPlayers == 1)
+        if (endedPlayers != _gameData.Value.PlayerCount)
         {
             StartCoroutine(End(_maxEndTime));
         }
-        else if (endedPlayers >= 2)
+        else
         {
             if (endRoutine != null)
                 StopCoroutine(endRoutine);
