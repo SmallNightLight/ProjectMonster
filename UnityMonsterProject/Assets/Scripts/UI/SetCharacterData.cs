@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SetCharacterData : MonoBehaviour, ISelectHandler, IPointerEnterHandler
+public class SetCharacterData : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerClickHandler
 {
     [SerializeField] private GameDataReference _gameData;
     [SerializeField] private int _playerIndex;
@@ -37,7 +37,7 @@ public class SetCharacterData : MonoBehaviour, ISelectHandler, IPointerEnterHand
         _gameData.Value.CharacterDatas[_playerIndex] = characterData.Value;
     }
 
-    public void ToogleDo(bool d)
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (GetComponent<Toggle>().isOn)
             Press();

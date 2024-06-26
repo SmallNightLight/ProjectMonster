@@ -18,7 +18,7 @@ public class ToggleGroupController : MonoBehaviour
 
     [SerializeField] private UnityEvent _back;
 
-    private void OnEnable()
+    private void Start()
     {
         if (toggleGroup == null) return;
 
