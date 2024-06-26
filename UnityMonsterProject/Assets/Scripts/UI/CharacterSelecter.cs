@@ -18,6 +18,19 @@ public class CharacterSelecter : MonoBehaviour
         _player1Selected = _player2Selected = 0;
     }
 
+    [SerializeField] private UnityEvent _onEnable;
+    private void OnEnable()
+    {
+        _onEnable.Invoke();
+    }
+
+    [SerializeField] private UnityEvent _onDisable;
+    private void OnDisable()
+    {
+        _onDisable.Invoke();
+    }
+
+
     public void PlayerSelected(int player)
     {
         if (player == 1)

@@ -8,10 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 107866388167214018, guid: 0e3672a38010d234f88db31ba5ea9dba,
+        type: 3}
+      propertyPath: _input._variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 1985589f17704164cbf51bca256682aa,
+        type: 2}
+    - target: {fileID: 107866388167214018, guid: 0e3672a38010d234f88db31ba5ea9dba,
+        type: 3}
+      propertyPath: toggles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1627217064351917422}
     - target: {fileID: 535212035098449322, guid: 0e3672a38010d234f88db31ba5ea9dba,
         type: 3}
       propertyPath: _playerIndex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 535212035098449322, guid: 0e3672a38010d234f88db31ba5ea9dba,
+        type: 3}
+      propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 535212035098449322, guid: 0e3672a38010d234f88db31ba5ea9dba,
         type: 3}
@@ -32,6 +48,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _playerIndex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493690135360143391, guid: 0e3672a38010d234f88db31ba5ea9dba,
+        type: 3}
+      propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2493690135360143391, guid: 0e3672a38010d234f88db31ba5ea9dba,
         type: 3}
@@ -62,6 +83,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _playerIndex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771562485661139897, guid: 0e3672a38010d234f88db31ba5ea9dba,
+        type: 3}
+      propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4771562485661139897, guid: 0e3672a38010d234f88db31ba5ea9dba,
         type: 3}
@@ -141,6 +167,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9147889582514356732, guid: 0e3672a38010d234f88db31ba5ea9dba,
         type: 3}
+      propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147889582514356732, guid: 0e3672a38010d234f88db31ba5ea9dba,
+        type: 3}
       propertyPath: _onSelect.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
       value: 2
       objectReference: {fileID: 0}
@@ -148,27 +179,17 @@ PrefabInstance:
     - {fileID: 1940561993788263352, guid: 0e3672a38010d234f88db31ba5ea9dba, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 743110507661286790, guid: 0e3672a38010d234f88db31ba5ea9dba,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3744466323010832831}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e3672a38010d234f88db31ba5ea9dba, type: 3}
---- !u!1 &6905630125045046795 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 743110507661286790, guid: 0e3672a38010d234f88db31ba5ea9dba,
+--- !u!114 &1627217064351917422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4832569518032119523, guid: 0e3672a38010d234f88db31ba5ea9dba,
     type: 3}
   m_PrefabInstance: {fileID: 6162530758730253197}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3744466323010832831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6905630125045046795}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bcf5dfd53a8e647b95209920581644, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

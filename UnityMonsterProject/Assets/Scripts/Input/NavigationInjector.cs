@@ -1,4 +1,3 @@
-using EasyRoads3Dv3;
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,33 +9,55 @@ public class NavigationInjector : MonoBehaviour
 
     [SerializeField] private GameEvent _backEvent;
 
-    private bool _combineInput = true;
+    public bool _selectObjects = true;
 
     private void Update()
     {
-        InputData UIInput = new InputData();
-
-        //Allow every player to navigate UI
-        foreach (InputAssetReference inputData in _inputDatas)
+        if (_selectObjects)
         {
-            UIInput.Press |= inputData.Value.InputData.Press;
-            UIInput.Back |= inputData.Value.InputData.Back;
-            UIInput.MoveUp |= inputData.Value.InputData.MoveUp;
-            UIInput.MoveDown |= inputData.Value.InputData.MoveDown;
-            UIInput.MoveRight |= inputData.Value.InputData.MoveRight;
-            UIInput.MoveLeft |= inputData.Value.InputData.MoveLeft;
+            InputData UIInput = new InputData();
+
+            //Allow every player to navigate UI
+            foreach (InputAssetReference inputData in _inputDatas)
+            {
+                UIInput.Press |= inputData.Value.InputData.Press;
+                UIInput.Back |= inputData.Value.InputData.Back;
+                UIInput.MoveUp |= inputData.Value.InputData.MoveUp;
+                UIInput.MoveDown |= inputData.Value.InputData.MoveDown;
+                UIInput.MoveRight |= inputData.Value.InputData.MoveRight;
+                UIInput.MoveLeft |= inputData.Value.InputData.MoveLeft;
+            }
+
+            MoveDirection moveDirection = GetMoveDirection(UIInput.MoveUp, UIInput.MoveDown, UIInput.MoveRight, UIInput.MoveLeft);
+
+            if (moveDirection != MoveDirection.None)
+                Move(moveDirection);
+
+            if (UIInput.Press)
+                Press();
+
+            if (UIInput.Back)
+                _backEvent.Raise();
         }
+    }   
 
-        MoveDirection moveDirection = GetMoveDirection(UIInput.MoveUp, UIInput.MoveDown, UIInput.MoveRight, UIInput.MoveLeft);
+    public void Press()
+    {
+        GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+       
+        if (selectedObject != null)
+            ClickObject(selectedObject);
+    }
 
-        if (moveDirection != MoveDirection.None)
-            Move(moveDirection);
+    public void SetSetectObjects(bool value)
+    {
+        _selectObjects = value;
+    }
 
-        if (UIInput.Press)
-            Press();
-
-        if (UIInput.Back)
-            _backEvent.Raise();
+    public void ClickObject(GameObject target)
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        ExecuteEvents.Execute(target, pointerEventData, ExecuteEvents.submitHandler);
     }
 
     public void Move(MoveDirection direction)
@@ -50,20 +71,6 @@ public class NavigationInjector : MonoBehaviour
         ExecuteEvents.Execute(data.selectedObject, data, ExecuteEvents.moveHandler);
     }
 
-    public void Press()
-    {
-        GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
-       
-        if (selectedObject != null)
-            SelectObject(selectedObject);
-    }
-
-    public void SelectObject(GameObject target)
-    {
-        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-        ExecuteEvents.Execute(target, pointerEventData, ExecuteEvents.submitHandler);
-    }
-
     private MoveDirection GetMoveDirection(bool up, bool down, bool right, bool left)
     {
         if (up) return MoveDirection.Up;
@@ -72,10 +79,5 @@ public class NavigationInjector : MonoBehaviour
         if (left) return MoveDirection.Left;
 
         return MoveDirection.None;
-    }
-
-    public void CombineInput(bool state)
-    {
-        _combineInput = state;
     }
 }
