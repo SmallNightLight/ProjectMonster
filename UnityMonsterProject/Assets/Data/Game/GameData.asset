@@ -18,8 +18,8 @@ MonoBehaviour:
   _value:
     Map:
       PlayerSpawnPositions:
-      - {x: -423.52, y: 0.254, z: 393.89}
-      - {x: -426.52, y: 0.254, z: 390.89}
+      - {x: 303.62, y: 0.254, z: 520.92}
+      - {x: 300.62, y: 0.254, z: 517.92}
       PlayerSpawnRotations:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
     State: 1
     DefaultMap:
       _isVariable: 1
-      _variable: {fileID: 11400000, guid: df31829dc050a4f4cb3571885c2e02ca, type: 2}
+      _variable: {fileID: 11400000, guid: 8450e8c3a8b9d09488eef4dfc7f488bc, type: 2}
       _constant:
         PlayerSpawnPositions: []
         PlayerSpawnRotations: []
@@ -176,8 +176,8 @@ MonoBehaviour:
   _startValue:
     Map:
       PlayerSpawnPositions:
-      - {x: -423.52, y: 0.254, z: 393.89}
-      - {x: -426.52, y: 0.254, z: 390.89}
+      - {x: 303.62, y: 0.254, z: 520.92}
+      - {x: 300.62, y: 0.254, z: 517.92}
       PlayerSpawnRotations:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
     State: 1
     DefaultMap:
       _isVariable: 1
-      _variable: {fileID: 11400000, guid: df31829dc050a4f4cb3571885c2e02ca, type: 2}
+      _variable: {fileID: 11400000, guid: 8450e8c3a8b9d09488eef4dfc7f488bc, type: 2}
       _constant:
         PlayerSpawnPositions: []
         PlayerSpawnRotations: []

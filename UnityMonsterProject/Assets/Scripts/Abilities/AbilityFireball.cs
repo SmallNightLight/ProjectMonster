@@ -21,9 +21,10 @@ public class AbilityFireball : MonoBehaviour
     [SerializeField] private Vector3 _impactOffset;
 
     [SerializeField] private CinemachineImpulseSource _impulseSource;
+    [SerializeField] private float _maxFlyTime = 0.2f;
 
+    private float _kartSpeed;
     private bool _isExploded;
-
     private BaseEffect _baseEffect;
 
     private void Start()
@@ -31,10 +32,12 @@ public class AbilityFireball : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _baseEffect = GetComponent<BaseEffect>();
 
+        _kartSpeed = _power + _distancePower * _baseEffect.KartSpeed;
         float firePower = _power + _distancePower * _baseEffect.KartSpeed;
         _rigidbody.AddForce(transform.forward * firePower, ForceMode.Impulse);
 
         lastPosition = transform.position;
+        Invoke(nameof(PositionExplode), _maxFlyTime * _kartSpeed);
     }
 
     void FixedUpdate()
@@ -60,6 +63,14 @@ public class AbilityFireball : MonoBehaviour
         }
 
         lastPosition = currentPosition;
+    }
+
+    private void PositionExplode()
+    {
+        if (!_isExploded)
+        {
+            Explode(transform.position);
+        }
     }
 
     private void Explode(Vector3 impactPosition)

@@ -31,9 +31,9 @@ MonoBehaviour:
         type: 3}
       Position: {x: 0, y: 0, z: 0}
       KartIsParent: 0
-      UseKartPosition: 0
+      UseKartPosition: 1
       UseKartRotation: 0
-      UseKartPositionXZ: 1
+      UseKartPositionXZ: 0
       UseKartRotationY: 1
       UseIdentityRotation: 0
       Rotation: {x: 0, y: 0, z: 0}

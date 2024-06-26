@@ -263,6 +263,7 @@ MonoBehaviour:
     m_Bits: 215489
   _impactOffset: {x: 0, y: 0, z: 0}
   _impulseSource: {fileID: 3756149611148921033}
+  _maxFlyTime: 0.0055
 --- !u!54 &1039626621735960611
 Rigidbody:
   m_ObjectHideFlags: 0
