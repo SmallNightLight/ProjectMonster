@@ -18,8 +18,8 @@ MonoBehaviour:
   _value:
     Map:
       PlayerSpawnPositions:
-      - {x: -392.77, y: 0.43, z: 368.8}
-      - {x: -395.77, y: 0.43, z: 365.8}
+      - {x: -423.52, y: 0.254, z: 393.89}
+      - {x: -426.52, y: 0.254, z: 390.89}
       PlayerSpawnRotations:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
@@ -27,7 +27,7 @@ MonoBehaviour:
         type: 3}
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
-      TotalLaps: 1
+      TotalLaps: 3
       MiniMapRotation: 180
     PlayerCount: 2
     CharacterDatas:
@@ -96,7 +96,7 @@ MonoBehaviour:
     State: 1
     DefaultMap:
       _isVariable: 1
-      _variable: {fileID: 11400000, guid: 955f7a37014d3ea40907a91a257b473b, type: 2}
+      _variable: {fileID: 11400000, guid: df31829dc050a4f4cb3571885c2e02ca, type: 2}
       _constant:
         PlayerSpawnPositions: []
         PlayerSpawnRotations: []
@@ -176,8 +176,8 @@ MonoBehaviour:
   _startValue:
     Map:
       PlayerSpawnPositions:
-      - {x: -392.77, y: 0.43, z: 368.8}
-      - {x: -395.77, y: 0.43, z: 365.8}
+      - {x: -423.52, y: 0.254, z: 393.89}
+      - {x: -426.52, y: 0.254, z: 390.89}
       PlayerSpawnRotations:
       - {x: 0, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
         type: 3}
       SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
         type: 3}
-      TotalLaps: 1
+      TotalLaps: 3
       MiniMapRotation: 180
     PlayerCount: 2
     CharacterDatas:
@@ -254,7 +254,7 @@ MonoBehaviour:
     State: 1
     DefaultMap:
       _isVariable: 1
-      _variable: {fileID: 11400000, guid: 955f7a37014d3ea40907a91a257b473b, type: 2}
+      _variable: {fileID: 11400000, guid: df31829dc050a4f4cb3571885c2e02ca, type: 2}
       _constant:
         PlayerSpawnPositions: []
         PlayerSpawnRotations: []

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour, ISetupManager, IUpdateManager
+public class InputManager : MonoBehaviour
 {
     [SerializeField] private List<InputAssetReference> _playerInput = new List<InputAssetReference>();
 
@@ -11,7 +11,21 @@ public class InputManager : MonoBehaviour, ISetupManager, IUpdateManager
 
     private Dictionary<InputAsset, IInputManager> _assets = new Dictionary<InputAsset, IInputManager>();
 
-    public void Setup()
+    private static InputManager _instance;
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    public void Start()
     {
         _inputManagers = GetComponentsInChildren<IInputManager>();
         AddPlayers();
@@ -50,7 +64,7 @@ public class InputManager : MonoBehaviour, ISetupManager, IUpdateManager
         }
     }
 
-    public void UpdateManager()
+    public void Update()
     {
         ProcessConnection();
         UpdateInput();
