@@ -7,4 +7,9 @@ public class SceneLoading : MonoBehaviour
     {
         SceneManager.LoadScene(scneneName);
     }
+
+    public void LoadSceneAsync(string scneneName)
+    {
+        SceneManager.LoadSceneAsync(scneneName);
+    }
 }
