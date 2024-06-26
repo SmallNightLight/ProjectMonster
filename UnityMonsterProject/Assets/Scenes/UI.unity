@@ -1316,6 +1316,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250354458}
   m_CullTransparentMesh: 1
+--- !u!114 &258865303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9179176307770407321, guid: fdcf9711b9cb1c74d8d5b5e46f15d6c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 601180214732775036}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0cfe8eef71279f42902ec4075579f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &264689143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4721,6 +4733,30 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Track5
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1087808835}
+        m_TargetAssemblyTypeName: CameraViewport, Assembly-CSharp
+        m_MethodName: UpdateViewport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 258865303}
+        m_TargetAssemblyTypeName: CameraViewport, Assembly-CSharp
+        m_MethodName: UpdateViewport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &770917115
@@ -9141,6 +9177,30 @@ MonoBehaviour:
           m_StringArgument: TrackV
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1087808835}
+        m_TargetAssemblyTypeName: CameraViewport, Assembly-CSharp
+        m_MethodName: UpdateViewport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 258865303}
+        m_TargetAssemblyTypeName: CameraViewport, Assembly-CSharp
+        m_MethodName: UpdateViewport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1476217294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10783,6 +10843,30 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: TrackT
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1087808835}
+        m_TargetAssemblyTypeName: CameraViewport, Assembly-CSharp
+        m_MethodName: UpdateViewport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 258865303}
+        m_TargetAssemblyTypeName: CameraViewport, Assembly-CSharp
+        m_MethodName: UpdateViewport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1677624094
