@@ -6404,6 +6404,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 710374078680398264}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1087808835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3091520092020619796, guid: 0e3672a38010d234f88db31ba5ea9dba,
+    type: 3}
+  m_PrefabInstance: {fileID: 710374078680398264}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0cfe8eef71279f42902ec4075579f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1094602376
 GameObject:
   m_ObjectHideFlags: 0
@@ -12377,6 +12389,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: NavigationInjector, Assembly-CSharp
         m_MethodName: SetSetectObjects
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1087808835}
+        m_TargetAssemblyTypeName: CameraViewport, Assembly-CSharp
+        m_MethodName: UpdateViewport
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

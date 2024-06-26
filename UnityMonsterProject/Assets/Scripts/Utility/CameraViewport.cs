@@ -12,7 +12,12 @@ public class CameraViewport : MonoBehaviour
     [SerializeField] private bool _useCustomNumber;
     [SerializeField] private int _player;
 
-    private void Start()
+    private void OnEnable()
+    {
+        UpdateViewport();
+    }
+
+    public void UpdateViewport()
     {
         _cameras = GetComponentsInChildren<Camera>();
 
@@ -32,7 +37,7 @@ public class CameraViewport : MonoBehaviour
         {
             case 1:
                 //Full screen
-                for(int i = 0; i < _cameras.Length; i++)
+                for (int i = 0; i < _cameras.Length; i++)
                     _cameras[i].rect = new Rect(0f, 0f, 1f, 1f);
                 break;
             case 2:
@@ -44,6 +49,5 @@ public class CameraViewport : MonoBehaviour
                 Debug.LogWarning("Player count greater than 4 is not supported in this script.");
                 break;
         }
-
     }
 }
