@@ -9,15 +9,26 @@ public class SetCharacterData : MonoBehaviour, ISelectHandler, IPointerEnterHand
     [SerializeField] private int _playerIndex;
 
     [SerializeField] private UnityEvent _onSelect;
+    [SerializeField] private UnityEvent _onPress;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _onSelect.Invoke();
+        Select();
     }
 
     public void OnSelect(BaseEventData eventData)
     {
+        Select();
+    }
+
+    public void Select()
+    {
         _onSelect.Invoke();
+    }
+
+    public void Press()
+    {
+        _onPress.Invoke();
     }
 
     public void Set(CharacterDataVariable characterData)
