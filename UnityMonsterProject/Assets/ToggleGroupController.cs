@@ -1,6 +1,7 @@
 using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -15,8 +16,9 @@ public class ToggleGroupController : MonoBehaviour
 
     int currentIndex;
 
+    [SerializeField] private UnityEvent _back;
 
-    private void Start()
+    private void OnEnable()
     {
         if (toggleGroup == null) return;
 
@@ -51,6 +53,11 @@ public class ToggleGroupController : MonoBehaviour
         if (_input.Value.InputData.Press)
         {
             PressedObject(toggles[currentIndex]);
+        }        
+        
+        if (_input.Value.InputData.Back)
+        {
+            _back.Invoke();
         }
     }
 

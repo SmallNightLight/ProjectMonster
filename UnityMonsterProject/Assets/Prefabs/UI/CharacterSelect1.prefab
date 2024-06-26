@@ -1894,6 +1894,21 @@ MonoBehaviour:
   - {fileID: 4832569518032119523}
   - {fileID: 9105964200835287913}
   - {fileID: 4468312400067773225}
+  _back:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b766ff9d68ddca54fa261291f3350032, type: 2}
+        m_TargetAssemblyTypeName: ScriptableArchitecture.Core.GameEventBase, ScriptableAssembly.Core
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6006441589530662784
 GameObject:
   m_ObjectHideFlags: 0
