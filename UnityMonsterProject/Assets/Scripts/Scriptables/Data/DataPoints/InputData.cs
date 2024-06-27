@@ -19,6 +19,8 @@ namespace ScriptableArchitecture.Data
         public bool MoveDown;
         public bool MoveRight;
         public bool MoveLeft;
+        public bool IsPS;
+
 
         public InputData Copy()
         {

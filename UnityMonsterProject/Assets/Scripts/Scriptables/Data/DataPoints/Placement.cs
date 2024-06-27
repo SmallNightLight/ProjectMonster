@@ -13,6 +13,8 @@ namespace ScriptableArchitecture.Data
         public Dictionary<int, CharacterData> PlayerCharacters = new Dictionary<int, CharacterData>();
         public HashSet<int> FinishedPlayers = new HashSet<int>();
 
+        private int _finishedCount = 0;
+
         public void AddCharacterData(int player, CharacterData characterData)
         {
             PlayerCharacters.Add(player, characterData);
@@ -23,6 +25,29 @@ namespace ScriptableArchitecture.Data
             if (PlayerCharacters.ContainsKey(player))
             {
                 data = PlayerCharacters[player];
+                return true;
+            }
+
+            data = null;
+            return false;
+        }
+
+        public bool GetCharacterDataFromPlace(int place, out CharacterData data)
+        {
+            int key = 0;
+
+            foreach(var v in Players)
+            {
+                if (v.Value == place)
+                {
+                    key = v.Key;
+                    break;
+                }
+            }
+
+            if (PlayerCharacters.ContainsKey(key))
+            {
+                data = PlayerCharacters[key];
                 return true;
             }
 
@@ -46,7 +71,7 @@ namespace ScriptableArchitecture.Data
             if (lockPlayer)
             {
                 FinishedPlayers.Add(player);
-                place.AddedPlace = 100 - GetPlace(player);
+                place.AddedPlace = 1000 - 50 * _finishedCount++;
                 UpdatePlacements();
             }
         }
@@ -75,6 +100,15 @@ namespace ScriptableArchitecture.Data
                 PlayerPlacement = new List<int>(PlayerPlacement),
                 Players = new Dictionary<int, int>(Players)
             };
+        }
+
+        public void Clear()
+        {
+            Places = new Dictionary<int, Place>();
+            Players = new Dictionary<int, int>();
+            PlayerCharacters = new Dictionary<int, CharacterData>();
+            FinishedPlayers = new HashSet<int>();
+            _finishedCount = 0;
         }
     }
 

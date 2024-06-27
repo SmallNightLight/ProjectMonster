@@ -33,7 +33,7 @@ MonoBehaviour:
       type: 3}
     SplinePrefab: {fileID: 2415530105328318594, guid: 666e1bee251a00c4a88eb29e698beb28,
       type: 3}
-    TotalLaps: 3
+    TotalLaps: 2
     MiniMapRotation: 180
   _runtimeSet: []
   _startRuntimeSet: []

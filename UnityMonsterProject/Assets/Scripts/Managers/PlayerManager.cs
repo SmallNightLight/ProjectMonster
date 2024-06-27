@@ -23,8 +23,12 @@ public class PlayerManager : MonoBehaviour, ISetupManager, IFirstFrameManager
 
     [SerializeField] private string _podiumSceneName = "Podium";
 
+    [SerializeField] private PlacementReference _placements;
+
     public void Setup()
     {
+        _placements.Value.Clear();
+
         //Setup Map
         if (_spawnMap)
             Instantiate(_gameData.Value.Map.MapPrefab);

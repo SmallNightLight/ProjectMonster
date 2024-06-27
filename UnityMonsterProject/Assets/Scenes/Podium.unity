@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 543534685}
   - component: {fileID: 543534687}
   - component: {fileID: 543534686}
+  - component: {fileID: 543534688}
   m_Layer: 5
   m_Name: InputHelper
   m_TagString: Untagged
@@ -826,6 +827,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543534684}
   m_CullTransparentMesh: 1
+--- !u!114 &543534688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543534684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a70417632745a43b64ca1e26eb9fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: ccbc89e3f195ea043b1984abcd7e5c19, type: 2}
+    _constant:
+      Player: 0
+      InputData:
+        IsAccelerating: 0
+        IsBraking: 0
+        SteerInput: 0
+        IsTricking: 0
+        AbilityBoost: 0
+        Ability1: 0
+        Press: 0
+        Back: 0
+        MoveUp: 0
+        MoveDown: 0
+        MoveRight: 0
+        MoveLeft: 0
+        IsPS: 0
+    _isInstance: 0
+    _instancer: {fileID: 0}
+  _nextSprite: {fileID: 21300000, guid: b022800749af5444ba83f70b93fa962f, type: 3}
+  _g: {fileID: 0}
 --- !u!1001 &587543381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2273,6 +2309,7 @@ MonoBehaviour:
         MoveDown: 0
         MoveRight: 0
         MoveLeft: 0
+        IsPS: 0
     _isInstance: 0
     _instancer: {fileID: 0}
   - _isVariable: 1
@@ -2292,6 +2329,7 @@ MonoBehaviour:
         MoveDown: 0
         MoveRight: 0
         MoveLeft: 0
+        IsPS: 0
     _isInstance: 0
     _instancer: {fileID: 0}
   _backEvent: {fileID: 11400000, guid: b766ff9d68ddca54fa261291f3350032, type: 2}

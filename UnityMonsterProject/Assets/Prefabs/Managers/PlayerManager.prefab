@@ -55,6 +55,7 @@ MonoBehaviour:
         MapPrefab: {fileID: 0}
         SplinePrefab: {fileID: 0}
         TotalLaps: 0
+        MiniMapRotation: 0
       PlayerCount: 0
       CharacterDatas: []
       State: 0
@@ -67,6 +68,7 @@ MonoBehaviour:
           MapPrefab: {fileID: 0}
           SplinePrefab: {fileID: 0}
           TotalLaps: 0
+          MiniMapRotation: 0
         _isInstance: 0
         _instancer: {fileID: 0}
       DefaultCharacterDatas: []
@@ -86,6 +88,13 @@ MonoBehaviour:
   _endTime: 3
   _maxEndTime: 30
   _podiumSceneName: Podium
+  _placements:
+    _isVariable: 1
+    _variable: {fileID: 11400000, guid: b98076cda959a254d9a1d632b31506d9, type: 2}
+    _constant:
+      PlayerPlacement: 
+    _isInstance: 0
+    _instancer: {fileID: 0}
 --- !u!114 &148369706736024740
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class KartPlace : MonoBehaviour
 
     private void Start()
     {
-        if (_placements.Value.GetCharacter(_player, out CharacterData characterData))
+        if (_placements.Value.GetCharacterDataFromPlace(_player, out CharacterData characterData))
         {
             Instantiate(characterData.KartPrefab, _kartVisual);
             Instantiate(characterData.CharacterPrefab, _characterVisual);

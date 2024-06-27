@@ -6,32 +6,44 @@ using UnityEngine.InputSystem.Controls;
 public class DS4
 {
     // Gyroscope
-    public static ButtonControl gyroX = null;
-    public static ButtonControl gyroY = null;
-    public static ButtonControl gyroZ = null;
+    public ButtonControl gyroX = null;
+    public ButtonControl gyroY = null;
+    public ButtonControl gyroZ = null;
 
     // Acceleration
     // public static ButtonControl acclX = null;
     // public static ButtonControl acclY = null;
     // public static ButtonControl acclZ = null;
 
-    public static Gamepad controller = null;
+    public Gamepad controller = null;
 
-    public static Gamepad getConroller(string layoutFile = null)
+    public Gamepad getConroller(string layoutFile = null, int padIndex = 0)
     {
         // Read layout from JSON file
-        string layout = File.ReadAllText(layoutFile == null ? "Assets/Script/customLayout.json" : layoutFile);
+        string layout = layoutFile;// == null ? "Assets/Scripts/Input/Controller/customLayout.json" : layoutFile);
+
+        if (padIndex == 0)
+            InputSystem.RegisterLayoutOverride(layout, $"DualShock4GamepadHIDCUST");
+
+        var gamepads = Gamepad.all;
+
+        if (gamepads.Count <= padIndex)
+            return null;
+
+        var ds4 = gamepads[padIndex];
+
+        if (ds4 == null)
+            return null;
 
         // Overwrite the default layout
-        InputSystem.RegisterLayoutOverride(layout, "DualShock4GamepadHID");
+       
 
-        var ds4 = Gamepad.current;
-        DS4.controller = ds4;
-        bindControls(DS4.controller);
-        return DS4.controller;
+        controller = ds4;
+        bindControls(controller);
+        return controller;
     }
 
-    private static void bindControls(Gamepad ds4)
+    private  void bindControls(Gamepad ds4)
     {
         gyroX = ds4.GetChildControl<ButtonControl>("gyro X 14");
         gyroY = ds4.GetChildControl<ButtonControl>("gyro Y 16");
@@ -41,7 +53,7 @@ public class DS4
         // acclZ = ds4.GetChildControl<ButtonControl>("accl Z 24");
     }
 
-    public static Quaternion getRotation(float scale = 1)
+    public Quaternion getRotation(float scale = 1)
     {
         float x = processRawData(gyroX.ReadValue()) * scale;
         float y = processRawData(gyroY.ReadValue()) * scale;
@@ -49,7 +61,7 @@ public class DS4
         return Quaternion.Euler(x, y, z);
     }
 
-    private static float processRawData(float data)
+    private float processRawData(float data)
     {
         return data > 0.5 ? 1 - data : -data;
     }

@@ -89,6 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40043ee10402c1408e2c840d881c738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxControllers: 2
+  _scale: 4000
+  _inputPrefab: {fileID: 3100847449652750792, guid: 82e25e79a69ab8d4fb1f59c81e64e362,
+    type: 3}
 --- !u!1 &6237384974573284733
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +234,7 @@ MonoBehaviour:
         MoveDown: 0
         MoveRight: 0
         MoveLeft: 0
+        IsPS: 0
     _isInstance: 0
     _instancer: {fileID: 0}
   - _isVariable: 1
@@ -249,5 +254,6 @@ MonoBehaviour:
         MoveDown: 0
         MoveRight: 0
         MoveLeft: 0
+        IsPS: 0
     _isInstance: 0
     _instancer: {fileID: 0}

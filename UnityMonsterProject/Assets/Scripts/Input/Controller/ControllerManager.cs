@@ -2,80 +2,59 @@ using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 public class ControllerManager : MonoBehaviour, IInputManager
 {
+    [SerializeField] private int _maxControllers = 2;
+    [SerializeField] private float _scale = 4000;
+
     private List<InputAsset> _inputs = new List<InputAsset>();
 
-    private Dictionary<InputAsset, (Gamepad gamepad, bool connected)> _players = new Dictionary<InputAsset, (Gamepad gamepad, bool connected)>();
+    private Dictionary<InputAsset, (InputTest input, bool connected)> _players = new Dictionary<InputAsset, (InputTest input, bool connected)>();
+
+    [SerializeField] private GameObject _inputPrefab;
 
     public bool TryAddPlayer(InputAsset playerInputAsset)
     {
-        if (1 <= PlayerCount()) return false;
+        if (_maxControllers <= PlayerCount()) return false;
 
-        Gamepad pad = DS4.getConroller();
+        InputTest input = Instantiate(_inputPrefab, transform).GetComponent<InputTest>();
+        input.Setup(PlayerCount());
 
-        if (pad == null) return false;
+        if (input.Pad == null) 
+        {
+            Destroy(input.gameObject);
+            return false;
+        }
+           
 
         _inputs.Add(playerInputAsset);
-        _players.Add(playerInputAsset, (pad, true));
+        _players.Add(playerInputAsset, (input, true));
         return true;
     }
 
     public void RemovePlayer(InputAsset playerInputAsset)
     {
         _inputs.Remove(playerInputAsset);
+        _players.Remove(playerInputAsset);
     }
 
     public void UpdateInput()
     {
         if (PlayerCount() == 0) return;
 
-        //1. player - WASD
-
         foreach (var v in _players)
         {
-            Gamepad pad = v.Value.gamepad;
+            Gamepad pad = v.Value.input.Pad;
 
             if (pad == null)
             {
-                try 
-                {
-                    _players[v.Key] = (DS4.getConroller(), true);
-                }
-                catch
-                {
-                    _players[v.Key] = (null, false);
-                    continue;
-                } 
+                Debug.Log("Disconnected");
+                _players[v.Key] = (v.Value.input, false);
+                continue;
             }
 
-            Quaternion gyro = DS4.getRotation(4000 * Time.deltaTime);
-            Vector3 eulerAngles = gyro.eulerAngles;
-            float yaw = eulerAngles.y;
-            float steer = Mathf.InverseLerp(-90, 90, Mathf.DeltaAngle(0, yaw));
-
-            InputData input = new InputData
-            {
-                IsAccelerating = pad.buttonEast.isPressed,
-                IsBraking = pad.buttonSouth.isPressed,
-                //SteerInput = pad.leftStick.ReadValue().x,
-                SteerInput  = steer,
-                IsTricking = false,
-                AbilityBoost = pad.buttonWest.isPressed,
-                Ability1 = pad.buttonNorth.isPressed,
-               
-                Press = pad.buttonEast.wasPressedThisFrame,
-                Back = pad.buttonSouth.isPressed,
-
-                MoveUp = pad.dpad.up.wasPressedThisFrame,
-                MoveDown = pad.dpad.down.wasPressedThisFrame,
-                MoveRight = pad.dpad.right.wasPressedThisFrame,
-                MoveLeft = pad.dpad.left.wasPressedThisFrame
-            };
-
-            SetPlayerInput(v.Key, input);
+            SetPlayerInput(v.Key, v.Value.input.GetData());
         }
     }
 
@@ -88,7 +67,7 @@ public class ControllerManager : MonoBehaviour, IInputManager
 
     public int GetAvailablePlayerSlots()
     {
-        return 1 - PlayerCount();
+        return _maxControllers - PlayerCount();
     }
 
     public bool IsConnected(InputAsset inputAsset)
