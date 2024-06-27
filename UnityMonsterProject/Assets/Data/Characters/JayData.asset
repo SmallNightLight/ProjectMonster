@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbe0dd19f80d4040a7239fdf2e0e173, type: 3}
+  m_Name: JayData
+  m_EditorClassIdentifier: 
+  VariableType: 0
+  InitializeTypeVariable: 2
+  InitializeTypeRuntimeSet: 0
+  _value:
+    CharacterPrefab: {fileID: 0}
+    KartPrefab: {fileID: 0}
+    PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+    SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+    MainAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+        AbilityIcon: {fileID: 0}
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    BoostAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+        AbilityIcon: {fileID: 0}
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    CharacterIcon: {fileID: 0}
+    CharacterIconSquare: {fileID: 0}
+  _startValue:
+    CharacterPrefab: {fileID: 3400777995575427491, guid: 0df3b65a3d56b064d8c565a0ede1afa2,
+      type: 3}
+    KartPrefab: {fileID: 1137002362718511134, guid: 07b21a97575408b4d8837424ff609c8d,
+      type: 3}
+    PrimaryColor: {r: 0.9811321, g: 0, b: 0.4366933, a: 1}
+    SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    MainAbility:
+      _isVariable: 1
+      _variable: {fileID: 11400000, guid: 9bca8fa3149e5724bb98208529403ff4, type: 2}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+        AbilityIcon: {fileID: 0}
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    BoostAbility:
+      _isVariable: 1
+      _variable: {fileID: 11400000, guid: 3120cea0eef10814b90c69bb8c1c1c68, type: 2}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+        AbilityIcon: {fileID: 0}
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    CharacterIcon: {fileID: 21300000, guid: 066bcfc303d762043a9226ae521d2f2b, type: 3}
+    CharacterIconSquare: {fileID: 21300000, guid: ed8da9ecfd93358479e507c7db9725e0,
+      type: 3}
+  _runtimeSet: []
+  _startRuntimeSet: []
+  DebugValue:
+    CharacterPrefab: {fileID: 0}
+    KartPrefab: {fileID: 0}
+    PrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+    SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+    MainAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+        AbilityIcon: {fileID: 0}
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    BoostAbility:
+      _isVariable: 0
+      _variable: {fileID: 0}
+      _constant:
+        AdditionalStats: []
+        Duration: 0
+        CoolDown: 0
+        WorldEffects: []
+        AbilityIcon: {fileID: 0}
+      _isInstance: 0
+      _instancer: {fileID: 0}
+    CharacterIcon: {fileID: 0}
+    CharacterIconSquare: {fileID: 0}

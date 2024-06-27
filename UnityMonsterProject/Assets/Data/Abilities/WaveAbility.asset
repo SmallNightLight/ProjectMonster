@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b23dd65d9bf2cc4cb9cc2c166d653b6, type: 3}
+  m_Name: WaveAbility
+  m_EditorClassIdentifier: 
+  VariableType: 0
+  InitializeTypeVariable: 2
+  InitializeTypeRuntimeSet: 0
+  _value:
+    AdditionalStats: []
+    Duration: 0
+    CoolDown: 0
+    WorldEffects: []
+    AbilityIcon: {fileID: 0}
+  _startValue:
+    AdditionalStats:
+    - {fileID: 11400000, guid: 07204c1c4881f6145aa9c5507ddc1b03, type: 2}
+    Duration: 1
+    CoolDown: 10
+    WorldEffects:
+    - Prefab: {fileID: 8511215126266384469, guid: f492c229b7c72034c9c54d8557902db7,
+        type: 3}
+      Position: {x: 0, y: 0, z: 0}
+      KartIsParent: 0
+      UseKartPosition: 1
+      UseKartRotation: 0
+      UseKartPositionXZ: 0
+      UseKartRotationY: 1
+      UseIdentityRotation: 0
+      Rotation: {x: 0, y: 0, z: 0}
+    AbilityIcon: {fileID: 21300000, guid: 13c908ed464f269409fcc53e9a64cd8c, type: 3}
+  _runtimeSet: []
+  _startRuntimeSet: []
+  DebugValue:
+    AdditionalStats: []
+    Duration: 0
+    CoolDown: 0
+    WorldEffects: []
+    AbilityIcon: {fileID: 0}

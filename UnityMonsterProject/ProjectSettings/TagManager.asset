@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ability
+  - TrackObject
+  - Hit
+  - Slow
+  - Ground
+  - Shortcut
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX
@@ -11,18 +18,18 @@ TagManager:
   - 
   - Water
   - UI
+  - Outline
+  - BackgroundObjects
+  - MainObjects
+  - Lights
+  - Particles
+  - Obstacles
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Kart
+  - MiniMap
+  - Camera1
+  - Camera2
   - 
   - 
   - 

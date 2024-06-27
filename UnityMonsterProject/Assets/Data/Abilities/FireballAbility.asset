@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b23dd65d9bf2cc4cb9cc2c166d653b6, type: 3}
+  m_Name: FireballAbility
+  m_EditorClassIdentifier: 
+  VariableType: 0
+  InitializeTypeVariable: 2
+  InitializeTypeRuntimeSet: 0
+  _value:
+    AdditionalStats: []
+    Duration: 0
+    CoolDown: 0
+    WorldEffects: []
+    AbilityIcon: {fileID: 0}
+  _startValue:
+    AdditionalStats: []
+    Duration: 1
+    CoolDown: 10
+    WorldEffects:
+    - Prefab: {fileID: 3259550474009428215, guid: 4f1de8a389b6ddf41b76892958d64c25,
+        type: 3}
+      Position: {x: -0.5, y: 1, z: 0.3}
+      KartIsParent: 0
+      UseKartPosition: 1
+      UseKartRotation: 1
+      UseKartPositionXZ: 0
+      UseKartRotationY: 0
+      UseIdentityRotation: 0
+      Rotation: {x: -45, y: 0, z: 0}
+    AbilityIcon: {fileID: 21300000, guid: 8db12329e928edd489d8a6032611617d, type: 3}
+  _runtimeSet: []
+  _startRuntimeSet: []
+  DebugValue:
+    AdditionalStats: []
+    Duration: 0
+    CoolDown: 0
+    WorldEffects: []
+    AbilityIcon: {fileID: 0}
