@@ -2,6 +2,7 @@ using ScriptableArchitecture.Data;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class KeyboardManager : MonoBehaviour, IInputManager
 {
@@ -44,7 +45,13 @@ public class KeyboardManager : MonoBehaviour, IInputManager
                         Ability1 = Input.GetKey(KeyCode.E),
 
                         //UI input
-                        Back = Input.GetKeyDown(KeyCode.Escape)
+                        Press = Input.GetKeyDown(KeyCode.Space),
+                        Back = Input.GetKeyDown(KeyCode.Escape),
+
+                        MoveUp = Input.GetKeyDown(KeyCode.W),
+                        MoveDown = Input.GetKeyDown(KeyCode.S),
+                        MoveRight = Input.GetKeyDown(KeyCode.D),
+                        MoveLeft = Input.GetKeyDown(KeyCode.A)
                     };
                     break;
 
@@ -59,7 +66,14 @@ public class KeyboardManager : MonoBehaviour, IInputManager
                         Ability1 = Input.GetKey(KeyCode.RightShift),
 
                         //UI input
-                        Back = Input.GetKeyDown(KeyCode.Escape)
+                        //UI input
+                        Press = Input.GetKeyDown(KeyCode.Return),
+                        Back = Input.GetKeyDown(KeyCode.Escape),
+
+                        MoveUp = Input.GetKeyDown(KeyCode.UpArrow),
+                        MoveDown = Input.GetKeyDown(KeyCode.DownArrow),
+                        MoveRight = Input.GetKeyDown(KeyCode.RightArrow),
+                        MoveLeft = Input.GetKeyDown(KeyCode.LeftArrow)
                     };
                     break;
 
